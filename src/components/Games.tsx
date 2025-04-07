@@ -1,27 +1,39 @@
 
 import React from 'react';
+import { Gamepad2, Crosshair, TrophyIcon, Target } from 'lucide-react';
 
+// Updated games array with additional gaming options
 const games = [
   {
     name: "8-Ball Pool",
     image: "https://images.unsplash.com/photo-1501003878151-d3cb87799705?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    description: "Challenge your friends to a game of precision and strategy on our professional pool tables."
+    description: "Challenge your friends to a game of precision and strategy on our professional pool tables.",
+    icon: <Target className="h-6 w-6" />
   },
   {
-    name: "PC Gaming",
-    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    description: "Experience the latest PC games on high-end rigs with premium peripherals and displays."
+    name: "Snooker",
+    image: "https://images.unsplash.com/photo-1609092883077-21fa4efab0c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", 
+    description: "Experience the classic game of snooker on our premium tables with professional equipment.",
+    icon: <Crosshair className="h-6 w-6" />
   },
   {
-    name: "Console Gaming",
-    image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    description: "Jump into action with PlayStation and Xbox games on large screens and comfortable seating."
+    name: "PS5 Gaming",
+    image: "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    description: "Enjoy the latest PS5 titles including FIFA, Call of Duty, GTA, and more on large screens.",
+    icon: <Gamepad2 className="h-6 w-6" />
   },
   {
-    name: "VR Experiences",
-    image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", 
-    description: "Immerse yourself in virtual worlds with our cutting-edge VR setups and experiences."
+    name: "Gaming Tournaments",
+    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    description: "Join our weekly gaming tournaments with exciting prizes and compete with the best players.",
+    icon: <TrophyIcon className="h-6 w-6" />
   }
+];
+
+// Updated game menu with specific titles
+const gameTitles = [
+  { category: "PS5 Games", titles: ["FIFA 24", "Call of Duty: Modern Warfare", "GTA V", "God of War Ragnarök", "Spider-Man 2", "Elden Ring", "Hogwarts Legacy", "Mortal Kombat 1"] },
+  { category: "Multiplayer Favorites", titles: ["Fortnite", "Rocket League", "Fall Guys", "It Takes Two", "Overcooked 2", "Tekken 8", "Street Fighter 6", "NBA 2K24"] },
 ];
 
 const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => {
@@ -41,9 +53,14 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
       
       <div className="absolute inset-0 flex flex-col justify-end p-6">
         <div className="transform transition-transform duration-300 group-hover:translate-y-0 translate-y-8">
-          <h3 className="text-2xl font-bold text-white mb-2 group-hover:neon-text-blue transition-all duration-300">
-            {game.name}
-          </h3>
+          <div className="flex items-center mb-2">
+            <div className="mr-2 text-neon-pink">
+              {game.icon}
+            </div>
+            <h3 className="text-2xl font-bold text-white group-hover:neon-text-blue transition-all duration-300">
+              {game.name}
+            </h3>
+          </div>
           <p className="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
             {game.description}
           </p>
@@ -75,7 +92,7 @@ const Games = () => {
             Our <span className="neon-text-pink">Gaming</span> Experiences
           </h2>
           <p className="max-w-2xl mx-auto text-gray-400">
-            Discover the variety of gaming experiences we offer at Cuephoria, from classic billiards to cutting-edge virtual reality.
+            Discover the variety of gaming experiences we offer at Cuephoria, from classic billiards to the latest PS5 games.
           </p>
         </div>
         
@@ -85,13 +102,40 @@ const Games = () => {
           ))}
         </div>
         
+        {/* Game titles section */}
+        <div className="mt-16">
+          <div className="glass-card rounded-lg p-6 md:p-8">
+            <h3 className="text-2xl font-bold mb-6 text-center text-white">
+              Available <span className="neon-text-blue">Game Titles</span>
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {gameTitles.map((category, i) => (
+                <div key={i} className="space-y-4">
+                  <h4 className="text-xl font-semibold neon-text-pink">{category.category}</h4>
+                  <div className="grid grid-cols-2 gap-2">
+                    {category.titles.map((title, j) => (
+                      <div 
+                        key={j} 
+                        className="bg-gaming-accent/30 px-3 py-2 rounded-md text-white hover:bg-neon-blue/20 transition-colors cursor-default"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
         <div className="mt-16 text-center">
           <div className="glass-card inline-block rounded-lg p-6 md:p-8 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold mb-4 text-white">
               Looking for more? We regularly update our game library!
             </h3>
             <p className="text-gray-400 mb-6">
-              Follow us on social media to stay updated on the latest additions to our game collection and upcoming events.
+              Follow us on social media to stay updated on the latest additions to our game collection and upcoming tournaments.
             </p>
             <a 
               href="#book-now" 
