@@ -93,8 +93,7 @@ const Hero = () => {
           
           <div className="w-full lg:w-1/2 relative">
             <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
-              {/* Animated rotating border */}
-              <div className="absolute inset-0 border-4 border-neon-blue rounded-full opacity-30 animate-rotate-slow"></div>
+              {/* Removed the animated rotating border that was here */}
               
               {/* Animated pulsing light rays */}
               <div className="absolute inset-0 flex items-center justify-center">
