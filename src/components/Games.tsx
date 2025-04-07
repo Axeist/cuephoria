@@ -2,7 +2,7 @@
 import React from 'react';
 import { Gamepad2, Crosshair, TrophyIcon, Target } from 'lucide-react';
 
-// Updated games array with additional gaming options
+// Updated games array with Metashot Challenges instead of VR
 const games = [
   {
     name: "8-Ball Pool",
@@ -12,7 +12,7 @@ const games = [
   },
   {
     name: "Snooker",
-    image: "https://images.unsplash.com/photo-1609092883077-21fa4efab0c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", 
+    image: "https://images.unsplash.com/photo-1563396983906-b3795482a59a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", 
     description: "Experience the classic game of snooker on our premium tables with professional equipment.",
     icon: <Crosshair className="h-6 w-6" />
   },
@@ -23,9 +23,9 @@ const games = [
     icon: <Gamepad2 className="h-6 w-6" />
   },
   {
-    name: "Gaming Tournaments",
-    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    description: "Join our weekly gaming tournaments with exciting prizes and compete with the best players.",
+    name: "Metashot Challenges",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    description: "Physical batting experience where you hit targets in our interactive gaming environment.",
     icon: <TrophyIcon className="h-6 w-6" />
   }
 ];
@@ -34,6 +34,12 @@ const games = [
 const gameTitles = [
   { category: "PS5 Games", titles: ["FIFA 24", "Call of Duty: Modern Warfare", "GTA V", "God of War Ragnarök", "Spider-Man 2", "Elden Ring", "Hogwarts Legacy", "Mortal Kombat 1"] },
   { category: "Multiplayer Favorites", titles: ["Fortnite", "Rocket League", "Fall Guys", "It Takes Two", "Overcooked 2", "Tekken 8", "Street Fighter 6", "NBA 2K24"] },
+];
+
+// Pricing information
+const pricingOptions = [
+  { name: "Weekly Pass", price: "₹399", description: "Full access to all gaming facilities for 7 days" },
+  { name: "Monthly Pass", price: "₹1499", description: "Full access to all gaming facilities for 30 days" }
 ];
 
 const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => {
@@ -123,6 +129,33 @@ const Games = () => {
                       </div>
                     ))}
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
+        {/* Pricing section */}
+        <div className="mt-16">
+          <div className="glass-card rounded-lg p-6 md:p-8">
+            <h3 className="text-2xl font-bold mb-6 text-center text-white">
+              Membership <span className="neon-text-blue">Pricing</span>
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {pricingOptions.map((option, i) => (
+                <div key={i} className="glass-card p-6 rounded-xl border border-neon-blue/20 hover:border-neon-blue/50 transition-all duration-300">
+                  <h4 className="text-xl font-semibold neon-text-pink mb-2">{option.name}</h4>
+                  <div className="text-3xl font-bold text-white mb-4">{option.price}</div>
+                  <p className="text-gray-300">{option.description}</p>
+                  <a 
+                    href={`https://wa.me/918637625155?text=${encodeURIComponent(`Hello! I'd like to purchase the ${option.name} at Cuephoria.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer" 
+                    className="mt-6 w-full py-2 rounded-md bg-neon-blue/20 hover:bg-neon-blue/30 text-white text-center block transition-colors"
+                  >
+                    Get This Pass
+                  </a>
                 </div>
               ))}
             </div>

@@ -15,7 +15,7 @@ const Index = () => {
   const [showScrollProgress, setShowScrollProgress] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Smooth scroll implementation
+  // Improved smooth scroll implementation
   useEffect(() => {
     const handleHashLinkClick = (e: MouseEvent) => {
       const target = e.target as HTMLAnchorElement;
@@ -24,8 +24,9 @@ const Index = () => {
         const targetSection = document.querySelector(target.hash);
         if (targetSection) {
           e.preventDefault();
+          const offsetTop = targetSection.getBoundingClientRect().top + window.scrollY;
           window.scrollTo({
-            top: targetSection.getBoundingClientRect().top + window.scrollY,
+            top: offsetTop - 80, // Add offset for navbar
             behavior: 'smooth'
           });
         }
@@ -39,53 +40,60 @@ const Index = () => {
     };
   }, []);
 
-  // Enhanced scroll tracking
+  // Enhanced scroll tracking with debouncing for smoother updates
   useEffect(() => {
+    let timeout: number | null = null;
+    
     const handleScroll = () => {
-      // Calculate scroll progress
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
+      if (timeout) window.cancelAnimationFrame(timeout);
       
-      if (window.scrollY > 200) {
-        setShowScrollProgress(true);
-      } else {
-        setShowScrollProgress(false);
-      }
+      timeout = window.requestAnimationFrame(() => {
+        // Calculate scroll progress
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (window.scrollY / totalHeight) * 100;
+        setScrollProgress(progress);
+        
+        if (window.scrollY > 200) {
+          setShowScrollProgress(true);
+        } else {
+          setShowScrollProgress(false);
+        }
 
-      // Determine active section for navigation highlighting
-      const sections = ['home', 'about', 'games', 'gallery', 'book-now', 'contact'];
-      let current = '';
-      
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          // If the top of the element is close to the top of the viewport, or if we're at the element
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            current = section;
-            break;
+        // Determine active section for navigation highlighting
+        const sections = ['home', 'about', 'games', 'gallery', 'book-now', 'contact'];
+        let current = '';
+        
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            // If the top of the element is close to the top of the viewport, or if we're at the element
+            if (rect.top <= 150 && rect.bottom >= 150) {
+              current = section;
+              break;
+            }
           }
         }
-      }
-      
-      if (current && current !== activeSection) {
-        setActiveSection(current);
-      }
+        
+        if (current && current !== activeSection) {
+          setActiveSection(current);
+        }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (timeout) window.cancelAnimationFrame(timeout);
     };
   }, [activeSection]);
 
-  // Intersection Observer for animations
+  // Intersection Observer for animations with improved thresholds
   useEffect(() => {
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.1
+      threshold: [0.1, 0.2, 0.3, 0.4, 0.5] // Multiple thresholds for smoother animations
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
@@ -123,10 +131,10 @@ const Index = () => {
       <Contact />
       <Footer />
       
-      {/* Interactive scroll indicator */}
-      <div className={`fixed right-4 top-1/2 transform -translate-y-1/2 h-1/3 w-2 bg-gaming-accent/20 rounded-full z-50 transition-opacity duration-300 ${showScrollProgress ? 'opacity-100' : 'opacity-0'}`}>
+      {/* Interactive scroll indicator with smoother animation */}
+      <div className={`fixed right-4 top-1/2 transform -translate-y-1/2 h-1/3 w-2 bg-gaming-accent/20 rounded-full z-50 transition-opacity duration-500 ${showScrollProgress ? 'opacity-100' : 'opacity-0'}`}>
         <div 
-          className="bg-neon-blue rounded-full w-full transition-all duration-300"
+          className="bg-neon-blue rounded-full w-full transition-all duration-300 ease-out"
           style={{ height: `${scrollProgress}%` }}
         ></div>
       </div>
@@ -134,7 +142,7 @@ const Index = () => {
       {/* Back to top button with progress indicator */}
       <a 
         href="#home"
-        className={`fixed bottom-8 right-8 h-12 w-12 rounded-full bg-gaming-darker text-white border border-neon-blue/30 flex items-center justify-center z-50 shadow-lg transition-all duration-300 overflow-hidden ${showScrollProgress ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        className={`fixed bottom-8 right-8 h-12 w-12 rounded-full bg-gaming-darker text-white border border-neon-blue/30 flex items-center justify-center z-50 shadow-lg transition-all duration-500 ease-out overflow-hidden ${showScrollProgress ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         style={{
           background: `conic-gradient(rgba(0, 255, 255, 0.8) ${scrollProgress}%, #121826 0%)`
         }}

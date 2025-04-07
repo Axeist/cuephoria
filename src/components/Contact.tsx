@@ -174,7 +174,7 @@ const Contact = () => {
         <div className="mt-16 glass-card rounded-xl p-4 relative overflow-hidden">
           <div className="aspect-video w-full">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5442535289286!2d78.7682!3d10.8225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baa2f0256b777e5%3A0x9b3ecbe2a7b4b3aa!2sThiruverumbur%2C%20Tamil%20Nadu%20620013!5e0!3m2!1sen!2sin!4v1649237235022!5m2!1sen!2sin" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2238984935098!2d78.75926407557512!3d10.794156358865413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf3f2c7173895%3A0xf7d55d8ea7b7e770!2sTwilight%20Dance%20Studio%20Thiruverumbur!5e0!3m2!1sen!2sin!4v1744028465453!5m2!1sen!2sin" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 

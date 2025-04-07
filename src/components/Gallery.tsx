@@ -9,19 +9,19 @@ const galleryImages = [
     caption: "Immersive PS5 Gaming Experience"
   },
   {
-    url: "https://images.unsplash.com/photo-1611996575749-79a3a250f948?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    url: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     alt: "Tournament at Cuephoria",
     caption: "Weekly Gaming Tournaments"
   },
   {
-    url: "https://images.unsplash.com/photo-1609092883077-21fa4efab0c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    url: "https://images.unsplash.com/photo-1563396983906-b3795482a59a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     alt: "8-Ball game in progress",
     caption: "Professional 8-Ball Tables"
   },
   {
-    url: "https://images.unsplash.com/photo-1605118936262-08b59c08b3ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    alt: "Snooker championship",
-    caption: "Snooker Championship Events"
+    url: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    alt: "Metashot challenge",
+    caption: "Metashot Challenge Experience"
   },
   {
     url: "https://images.unsplash.com/photo-1587095951604-b9d124a7e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
@@ -29,7 +29,7 @@ const galleryImages = [
     caption: "Relaxing Gaming Lounge Atmosphere"
   },
   {
-    url: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    url: "https://images.unsplash.com/photo-1500673922987-e212871fec22?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     alt: "Console gaming setup",
     caption: "State-of-the-art Console Setup"
   }
