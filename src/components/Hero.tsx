@@ -75,10 +75,10 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
               <button
                 onClick={() => {
-                  // Open Calendly popup programmatically
+                  // Open Calendly popup programmatically with updated URL
                   if (window.Calendly) {
                     window.Calendly.initPopupWidget({
-                      url: 'https://calendly.com/cuephoriaclub/60min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=101927&text_color=1cd0d3&primary_color=ff2cef'
+                      url: 'https://calendly.com/cuephoriaclub/60min?background_color=0b101a&text_color=1cd0d3&primary_color=fd2dee'
                     });
                   }
                 }}
@@ -134,12 +134,12 @@ const Hero = () => {
         <span className="text-white/70 text-sm mt-2">Scroll Down</span>
       </div>
       
-      {/* Floating Book Slot button */}
+      {/* Floating Book Slot button with updated text and styling */}
       <button
         onClick={() => {
           if (window.Calendly) {
             window.Calendly.initPopupWidget({
-              url: 'https://calendly.com/cuephoriaclub/60min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=101927&text_color=1cd0d3&primary_color=ff2cef'
+              url: 'https://calendly.com/cuephoriaclub/60min?background_color=0b101a&text_color=1cd0d3&primary_color=fd2dee'
             });
           }
         }}

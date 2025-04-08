@@ -20,11 +20,11 @@ const BookNow = () => {
               Book your gaming or pool session now and prepare for an unforgettable experience at Cuephoria.
             </p>
             
-            <div className="glass-card rounded-xl p-8 border border-neon-blue/20 h-[600px]">
-              {/* Embedded Calendly inline widget */}
+            <div className="glass-card rounded-xl p-8 border border-neon-blue/20 h-[700px]">
+              {/* Updated Calendly inline widget */}
               <div 
                 className="calendly-inline-widget w-full h-full"
-                data-url="https://calendly.com/cuephoriaclub/60min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=101927&text_color=1cd0d3&primary_color=ff2cef"
+                data-url="https://calendly.com/cuephoriaclub/60min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=131e2c&text_color=01ffff&primary_color=ff2cef"
               ></div>
             </div>
           </div>
@@ -86,7 +86,7 @@ const BookNow = () => {
                   onClick={() => {
                     if (window.Calendly) {
                       window.Calendly.initPopupWidget({
-                        url: 'https://calendly.com/cuephoriaclub/60min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=101927&text_color=1cd0d3&primary_color=ff2cef'
+                        url: 'https://calendly.com/cuephoriaclub/60min?background_color=0b101a&text_color=1cd0d3&primary_color=fd2dee'
                       });
                     }
                   }}
