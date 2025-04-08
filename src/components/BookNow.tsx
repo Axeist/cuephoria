@@ -1,8 +1,38 @@
 
-import React from 'react';
-import { Calendar, Clock, Users, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calendar, Clock, Users, ArrowRight, User } from 'lucide-react';
 
 const BookNow = () => {
+  const [bookingData, setBookingData] = useState({
+    type: 'Pool Table',
+    date: '',
+    time: '',
+    people: '',
+    name: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setBookingData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleTypeSelect = (type: string) => {
+    setBookingData(prev => ({ ...prev, type }));
+  };
+
+  // Create WhatsApp message with all booking details
+  const createWhatsAppMessage = () => {
+    const { type, date, time, people, name } = bookingData;
+    return encodeURIComponent(
+      `Hello! I'd like to book a slot at Cuephoria.\n\n` +
+      `Name: ${name || 'Not specified'}\n` +
+      `Game Type: ${type || 'Not specified'}\n` +
+      `Date: ${date || 'Not specified'}\n` +
+      `Time: ${time || 'Not specified'}\n` +
+      `Number of People: ${people || 'Not specified'}`
+    );
+  };
+
   return (
     <section id="book-now" className="py-20 relative">
       {/* Background elements */}
@@ -24,13 +54,34 @@ const BookNow = () => {
               <div className="flex flex-col space-y-2">
                 <span className="text-gray-400">Choose your experience:</span>
                 <div className="grid grid-cols-2 gap-4">
-                  <button className="py-3 px-4 rounded-lg bg-gaming-accent text-white hover:bg-neon-blue hover:text-gaming-darker transition-colors duration-300">
+                  <button 
+                    className={`py-3 px-4 rounded-lg ${bookingData.type === 'Pool Table' ? 'bg-neon-blue text-gaming-darker' : 'bg-gaming-accent text-white'} hover:bg-neon-blue hover:text-gaming-darker transition-colors duration-300`}
+                    onClick={() => handleTypeSelect('Pool Table')}
+                  >
                     Pool Table
                   </button>
-                  <button className="py-3 px-4 rounded-lg bg-gaming-accent text-white hover:bg-neon-pink hover:text-gaming-darker transition-colors duration-300">
+                  <button 
+                    className={`py-3 px-4 rounded-lg ${bookingData.type === 'Gaming Station' ? 'bg-neon-pink text-gaming-darker' : 'bg-gaming-accent text-white'} hover:bg-neon-pink hover:text-gaming-darker transition-colors duration-300`}
+                    onClick={() => handleTypeSelect('Gaming Station')}
+                  >
                     Gaming Station
                   </button>
                 </div>
+              </div>
+              
+              <div className="flex flex-col space-y-2">
+                <label className="text-gray-400 flex items-center">
+                  <User className="h-4 w-4 mr-2 text-neon-pink" />
+                  Your Name
+                </label>
+                <input 
+                  type="text" 
+                  name="name"
+                  value={bookingData.name}
+                  onChange={handleInputChange}
+                  placeholder="Enter your name"
+                  className="w-full bg-gaming-darker border border-gaming-accent rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon-pink"
+                />
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -42,6 +93,9 @@ const BookNow = () => {
                   <div className="relative">
                     <input 
                       type="date" 
+                      name="date"
+                      value={bookingData.date}
+                      onChange={handleInputChange}
                       className="w-full bg-gaming-darker border border-gaming-accent rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon-blue"
                     />
                   </div>
@@ -53,7 +107,12 @@ const BookNow = () => {
                     Start Time
                   </label>
                   <div className="relative">
-                    <select className="w-full bg-gaming-darker border border-gaming-accent rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon-pink appearance-none">
+                    <select 
+                      name="time"
+                      value={bookingData.time}
+                      onChange={handleInputChange}
+                      className="w-full bg-gaming-darker border border-gaming-accent rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon-pink appearance-none"
+                    >
                       <option value="">Select time</option>
                       {Array.from({ length: 12 }).map((_, i) => (
                         <option key={i} value={`${i + 11}:00`}>{`${i + 11}:00`}</option>
@@ -73,7 +132,12 @@ const BookNow = () => {
                     Number of People
                   </label>
                   <div className="relative">
-                    <select className="w-full bg-gaming-darker border border-gaming-accent rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon-blue appearance-none">
+                    <select 
+                      name="people"
+                      value={bookingData.people}
+                      onChange={handleInputChange}
+                      className="w-full bg-gaming-darker border border-gaming-accent rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon-blue appearance-none"
+                    >
                       <option value="">Select</option>
                       {Array.from({ length: 10 }).map((_, i) => (
                         <option key={i} value={i + 1}>{i + 1}</option>
@@ -90,7 +154,7 @@ const BookNow = () => {
               
               <div className="pt-4">
                 <a 
-                  href={`https://wa.me/918637625155?text=${encodeURIComponent("Hello! I'd like to book a slot at Cuephoria.")}`}
+                  href={`https://wa.me/918637625155?text=${createWhatsAppMessage()}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 rounded-lg bg-neon-blue text-gaming-darker font-semibold hover:bg-neon-blue/80 transition-all duration-300 flex items-center justify-center group"
@@ -124,7 +188,7 @@ const BookNow = () => {
               
               <div className="flex justify-between items-center pb-4 border-b border-gaming-accent">
                 <div>
-                  <h4 className="text-xl font-semibold text-neon-blue">VR Experience</h4>
+                  <h4 className="text-xl font-semibold text-neon-blue">Metashot Challenges</h4>
                   <p className="text-gray-400">Per 30 minutes</p>
                 </div>
                 <div className="text-2xl font-bold text-white">₹250</div>
@@ -138,12 +202,12 @@ const BookNow = () => {
                     <span className="text-neon-blue font-semibold">₹350</span>
                   </li>
                   <li className="flex justify-between">
-                    <span className="text-gray-300">Pool Tournament Entry (Weekend)</span>
-                    <span className="text-neon-blue font-semibold">₹500</span>
+                    <span className="text-gray-300">Weekly Pass</span>
+                    <span className="text-neon-blue font-semibold">₹399</span>
                   </li>
                   <li className="flex justify-between">
-                    <span className="text-gray-300">Full Day Gaming Pass</span>
-                    <span className="text-neon-blue font-semibold">₹1000</span>
+                    <span className="text-gray-300">Monthly Pass</span>
+                    <span className="text-neon-blue font-semibold">₹1499</span>
                   </li>
                 </ul>
               </div>

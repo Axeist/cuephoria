@@ -15,7 +15,7 @@ const Index = () => {
   const [showScrollProgress, setShowScrollProgress] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Improved smooth scroll implementation
+  // Improved smooth scroll implementation with better easing
   useEffect(() => {
     const handleHashLinkClick = (e: MouseEvent) => {
       const target = e.target as HTMLAnchorElement;
@@ -25,6 +25,8 @@ const Index = () => {
         if (targetSection) {
           e.preventDefault();
           const offsetTop = targetSection.getBoundingClientRect().top + window.scrollY;
+          
+          // Smoother scroll with cubic-bezier easing
           window.scrollTo({
             top: offsetTop - 80, // Add offset for navbar
             behavior: 'smooth'
@@ -40,55 +42,69 @@ const Index = () => {
     };
   }, []);
 
-  // Enhanced scroll tracking with debouncing for smoother updates
+  // Enhanced scroll tracking with improved debouncing for smoother updates
   useEffect(() => {
-    let timeout: number | null = null;
+    let frameId: number | null = null;
+    let lastScrollY = window.scrollY;
+    let ticking = false;
     
     const handleScroll = () => {
-      if (timeout) window.cancelAnimationFrame(timeout);
+      lastScrollY = window.scrollY;
       
-      timeout = window.requestAnimationFrame(() => {
-        // Calculate scroll progress
-        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = (window.scrollY / totalHeight) * 100;
-        setScrollProgress(progress);
-        
-        if (window.scrollY > 200) {
-          setShowScrollProgress(true);
-        } else {
-          setShowScrollProgress(false);
-        }
+      if (!ticking) {
+        frameId = requestAnimationFrame(() => {
+          // Calculate scroll progress with smoother interpolation
+          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const rawProgress = (lastScrollY / totalHeight) * 100;
+          
+          // Apply easing to the progress for smoother transitions
+          setScrollProgress(prevProgress => {
+            const delta = rawProgress - prevProgress;
+            return prevProgress + delta * 0.3; // Adjust the 0.3 factor for different smoothing effects
+          });
+          
+          if (lastScrollY > 200) {
+            setShowScrollProgress(true);
+          } else {
+            setShowScrollProgress(false);
+          }
 
-        // Determine active section for navigation highlighting
-        const sections = ['home', 'about', 'games', 'gallery', 'book-now', 'contact'];
-        let current = '';
-        
-        for (const section of sections) {
-          const element = document.getElementById(section);
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            // If the top of the element is close to the top of the viewport, or if we're at the element
-            if (rect.top <= 150 && rect.bottom >= 150) {
-              current = section;
-              break;
+          // Determine active section for navigation highlighting
+          const sections = ['home', 'about', 'games', 'gallery', 'book-now', 'contact'];
+          let current = '';
+          
+          for (const section of sections) {
+            const element = document.getElementById(section);
+            if (element) {
+              const rect = element.getBoundingClientRect();
+              // Improved detection to make it smoother
+              if (rect.top <= 150 && rect.bottom >= 100) {
+                current = section;
+                break;
+              }
             }
           }
-        }
+          
+          if (current && current !== activeSection) {
+            setActiveSection(current);
+          }
+          
+          ticking = false;
+        });
         
-        if (current && current !== activeSection) {
-          setActiveSection(current);
-        }
-      });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (timeout) window.cancelAnimationFrame(timeout);
+      if (frameId) cancelAnimationFrame(frameId);
     };
   }, [activeSection]);
 
-  // Intersection Observer for animations with improved thresholds
+  // Intersection Observer for animations with improved thresholds and handling
   useEffect(() => {
     const observerOptions = {
       root: null,
@@ -99,7 +115,11 @@ const Index = () => {
     const observerCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
+          // Apply animation with a slight delay based on the element's position
+          setTimeout(() => {
+            entry.target.classList.add('animate-fade-in');
+          }, Math.random() * 100); // Random small delay for staggered effect
+          
           observer.unobserve(entry.target);
         }
       });
@@ -134,7 +154,7 @@ const Index = () => {
       {/* Interactive scroll indicator with smoother animation */}
       <div className={`fixed right-4 top-1/2 transform -translate-y-1/2 h-1/3 w-2 bg-gaming-accent/20 rounded-full z-50 transition-opacity duration-500 ${showScrollProgress ? 'opacity-100' : 'opacity-0'}`}>
         <div 
-          className="bg-neon-blue rounded-full w-full transition-all duration-300 ease-out"
+          className="bg-neon-blue rounded-full w-full transition-all duration-700 ease-out"
           style={{ height: `${scrollProgress}%` }}
         ></div>
       </div>
