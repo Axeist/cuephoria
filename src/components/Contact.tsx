@@ -48,8 +48,21 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      // Send email using EmailJS or similar service
-      const response = await fetch('https://formsubmit.co/ajax/cuephoriaclub@gmail.com', {
+      // Prepare message for SMS
+      const smsContent = `New Message from Cuephoria Website:
+Name: ${formData.name}
+Email: ${formData.email}
+Subject: ${formData.subject || 'No Subject'}
+Message: ${formData.message}`;
+      
+      // Encode the message for WhatsApp URL
+      const encodedMessage = encodeURIComponent(smsContent);
+      
+      // Create WhatsApp API URL (this will open WhatsApp with pre-filled message)
+      const whatsappUrl = `https://wa.me/918637625155?text=${encodedMessage}`;
+      
+      // Also send email as backup
+      await fetch('https://formsubmit.co/ajax/cuephoriaclub@gmail.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -63,9 +76,8 @@ const Contact = () => {
         })
       });
       
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
+      // Open WhatsApp in a new tab
+      window.open(whatsappUrl, '_blank');
       
       toast({
         title: "Message Sent!",
@@ -279,7 +291,7 @@ const Contact = () => {
         <div className="mt-16 glass-card rounded-xl p-4 relative overflow-hidden">
           <div className="aspect-video w-full">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2238984935098!2d78.75926407557512!3d10.794156358865413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf3f2c7173895%3A0xf7d55d8ea7b7e770!2sTwilight%20Dance%20Studio%20Thiruverumbur!5e0!3m2!1sen!2sin!4v1744028465453!5m2!1sen!2sin&map_id=8f718de201b74b5c" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2238984935098!2d78.75926407557512!3d10.794156358865413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf3f2c7173895%3A0xf7d55d8ea7b7e770!2sTwilight%20Dance%20Studio%20Thiruverumbur!5e0!3m2!1sen!2sin!4v1744028465453!5m2!1sen!2sin&map_id=2ae58f26a0d86fcd" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
