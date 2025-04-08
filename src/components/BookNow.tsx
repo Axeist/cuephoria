@@ -189,9 +189,9 @@ const BookNow = () => {
               <div className="flex justify-between items-center pb-4 border-b border-gaming-accent">
                 <div>
                   <h4 className="text-xl font-semibold text-neon-blue">Metashot Challenges</h4>
-                  <p className="text-gray-400">Per 30 minutes</p>
+                  <p className="text-gray-400">Per challenge</p>
                 </div>
-                <div className="text-2xl font-bold text-white">₹250</div>
+                <div className="text-2xl font-bold text-white">₹49</div>
               </div>
               
               <div className="pt-4">
