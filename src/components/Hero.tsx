@@ -134,19 +134,7 @@ const Hero = () => {
         <span className="text-white/70 text-sm mt-2">Scroll Down</span>
       </div>
       
-      {/* Floating Book Slot button with updated text and styling */}
-      <button
-        onClick={() => {
-          if (window.Calendly) {
-            window.Calendly.initPopupWidget({
-              url: 'https://calendly.com/cuephoriaclub/60min?background_color=0b101a&text_color=1cd0d3&primary_color=fd2dee'
-            });
-          }
-        }}
-        className="fixed left-4 top-1/2 transform -translate-y-1/2 px-4 py-3 bg-neon-pink text-white rounded-full shadow-lg rotate-90 origin-left z-50 hover:bg-neon-pink/90 transition-all hover:scale-105 font-medium"
-      >
-        Book a Slot
-      </button>
+      {/* Removed the floating Book Slot button */}
     </section>
   );
 };

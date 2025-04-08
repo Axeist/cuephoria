@@ -1,8 +1,27 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Calendar, Clock, Users } from 'lucide-react';
 
 const BookNow = () => {
+  const calendlyRef = useRef<HTMLDivElement>(null);
+
+  // This useEffect will properly initialize the Calendly inline widget
+  useEffect(() => {
+    // Make sure Calendly is loaded and the DOM element exists
+    if (window.Calendly && calendlyRef.current) {
+      // Clear any existing content
+      calendlyRef.current.innerHTML = '';
+      
+      // Initialize the inline widget directly
+      window.Calendly.initInlineWidget({
+        url: 'https://calendly.com/cuephoriaclub/60min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=131e2c&text_color=01ffff&primary_color=ff2cef',
+        parentElement: calendlyRef.current,
+        prefill: {},
+        utm: {}
+      });
+    }
+  }, []);
+
   return (
     <section id="book-now" className="py-20 relative">
       {/* Background elements */}
@@ -21,10 +40,10 @@ const BookNow = () => {
             </p>
             
             <div className="glass-card rounded-xl p-8 border border-neon-blue/20 h-[700px]">
-              {/* Updated Calendly inline widget */}
+              {/* Calendly inline widget with ref for direct initialization */}
               <div 
-                className="calendly-inline-widget w-full h-full"
-                data-url="https://calendly.com/cuephoriaclub/60min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=131e2c&text_color=01ffff&primary_color=ff2cef"
+                ref={calendlyRef}
+                className="w-full h-full"
               ></div>
             </div>
           </div>

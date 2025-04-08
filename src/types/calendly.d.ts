@@ -10,6 +10,13 @@ interface CalendlyWidget {
   initPopupWidget(options: {
     url: string;
   }): void;
+
+  initInlineWidget(options: {
+    url: string;
+    parentElement: HTMLElement;
+    prefill?: Record<string, any>;
+    utm?: Record<string, any>;
+  }): void;
 }
 
 interface Window {
