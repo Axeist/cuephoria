@@ -73,15 +73,22 @@ const Hero = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
-              <a 
-                href="#book-now" 
+              <button
+                onClick={() => {
+                  // Open Calendly popup programmatically
+                  if (window.Calendly) {
+                    window.Calendly.initPopupWidget({
+                      url: 'https://calendly.com/cuephoriaclub/60min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=101927&text_color=1cd0d3&primary_color=ff2cef'
+                    });
+                  }
+                }}
                 className="px-8 py-3 rounded-md bg-neon-blue text-gaming-darker font-semibold hover:bg-neon-blue/80 transition-all duration-300 transform hover:scale-105 flex items-center justify-center group"
               >
                 Book a Slot
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </button>
               <a 
-                href={`https://wa.me/918637625155?text=${encodeURIComponent("Hello! I'd like to inquire about slot availability at Cuephoria.")}`}
+                href={`https://wa.me/918637625155?text=${encodeURIComponent("Hello! I'd like to inquire about Cuephoria.")}`}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="px-8 py-3 rounded-md bg-transparent border-2 border-neon-pink text-white font-semibold hover:bg-neon-pink/10 transition-all duration-300 flex items-center justify-center"
@@ -93,8 +100,6 @@ const Hero = () => {
           
           <div className="w-full lg:w-1/2 relative">
             <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
-              {/* Removed the animated rotating border that was here */}
-              
               {/* Animated pulsing light rays */}
               <div className="absolute inset-0 flex items-center justify-center">
                 {Array.from({ length: 12 }).map((_, i) => (
@@ -128,6 +133,20 @@ const Hero = () => {
         </div>
         <span className="text-white/70 text-sm mt-2">Scroll Down</span>
       </div>
+      
+      {/* Floating Book Slot button */}
+      <button
+        onClick={() => {
+          if (window.Calendly) {
+            window.Calendly.initPopupWidget({
+              url: 'https://calendly.com/cuephoriaclub/60min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=101927&text_color=1cd0d3&primary_color=ff2cef'
+            });
+          }
+        }}
+        className="fixed left-4 top-1/2 transform -translate-y-1/2 px-4 py-3 bg-neon-pink text-white rounded-full shadow-lg rotate-90 origin-left z-50 hover:bg-neon-pink/90 transition-all hover:scale-105 font-medium"
+      >
+        Book a Slot
+      </button>
     </section>
   );
 };
