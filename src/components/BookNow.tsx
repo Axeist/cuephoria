@@ -41,20 +41,20 @@ const BookNow = () => {
         
         <div className="flex flex-col lg:flex-row items-stretch gap-12">
           <div className="w-full lg:w-1/2">
-            <div className="glass-card rounded-xl p-8 border border-neon-blue/20 h-full">
+            <div className="glass-card rounded-xl p-8 border border-neon-blue/20 h-full flex flex-col">
               {/* Calendly inline widget with ref for direct initialization */}
               <div 
                 ref={calendlyRef}
-                className="w-full h-[600px]"
+                className="w-full flex-grow h-[600px]"
               ></div>
             </div>
           </div>
           
           <div className="w-full lg:w-1/2">
-            <div className="glass-card rounded-xl p-8 border border-neon-pink/20 h-full">
+            <div className="glass-card rounded-xl p-8 border border-neon-pink/20 h-full flex flex-col">
               <h3 className="text-2xl font-bold mb-6 text-white">Pricing & Packages</h3>
               
-              <div className="space-y-6">
+              <div className="space-y-6 flex-grow">
                 <div className="flex justify-between items-center pb-4 border-b border-gaming-accent">
                   <div>
                     <h4 className="text-xl font-semibold text-neon-blue">Pool Table</h4>
@@ -101,22 +101,6 @@ const BookNow = () => {
                   <p className="text-gray-400 text-sm">
                     * Prices may vary during weekends and holidays. Special offers available for groups and regular customers.
                   </p>
-                </div>
-                
-                <div className="pt-4">
-                  <button
-                    onClick={() => {
-                      if (window.Calendly) {
-                        window.Calendly.initPopupWidget({
-                          url: 'https://calendly.com/cuephoriaclub/60min?background_color=0b101a&text_color=1cd0d3&primary_color=fd2dee'
-                        });
-                      }
-                    }}
-                    className="w-full py-3 rounded-lg bg-neon-blue text-gaming-darker font-semibold hover:bg-neon-blue/80 transition-all duration-300 flex items-center justify-center group"
-                  >
-                    Book Now
-                    <Calendar className="ml-2 h-5 w-5" />
-                  </button>
                 </div>
               </div>
             </div>

@@ -47,10 +47,25 @@ const Contact = () => {
     
     setIsSubmitting(true);
     
-    // Simulate form submission
     try {
-      // In a real implementation, you would send this data to your server
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Send email using EmailJS or similar service
+      const response = await fetch('https://formsubmit.co/ajax/cuephoriaclub@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || 'Message from Cuephoria Website',
+          message: formData.message
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
       
       toast({
         title: "Message Sent!",
@@ -66,6 +81,7 @@ const Contact = () => {
         message: ''
       });
     } catch (error) {
+      console.error('Error sending message:', error);
       toast({
         title: "Error",
         description: "There was a problem sending your message. Please try again.",
@@ -121,10 +137,10 @@ const Contact = () => {
                   <div>
                     <h4 className="text-lg font-semibold text-white">Email</h4>
                     <a 
-                      href="mailto:contact@cuephoria.in" 
+                      href="mailto:cuephoriaclub@gmail.com" 
                       className="text-gray-400 hover:text-neon-pink transition-colors"
                     >
-                      contact@cuephoria.in
+                      cuephoriaclub@gmail.com
                     </a>
                   </div>
                 </div>
@@ -170,7 +186,7 @@ const Contact = () => {
                     className="h-10 w-10 rounded-full bg-gaming-accent flex items-center justify-center hover:bg-neon-pink/20 transition-colors"
                   >
                     <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.06 1.805.249 2.227.419.562.217.96.477 1.382.896.419.42.679.819.896 1.381.17.422.359 1.057.419 2.227.058 1.265.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.06 1.17-.249 1.805-.419 2.227-.217.562-.477.96-.896 1.382-.42.419-.819.679-1.381.896-.422.17-1.057.359-2.227.419-1.265.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.06-1.805-.249-2.227-.419-.562-.217-.96-.477-1.382-.896-.419-.42-.679-.819-.896-1.381-.17-.422-.359-1.057-.419-2.227-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.06-1.17.249-1.805.419-2.227.217-.562.477-.96.896-1.382.42-.419.819-.679 1.381-.896.422-.17 1.057-.359 2.227-.419 1.265-.058 1.645-.07 4.85-.07m0-2.163c-3.259 0-3.667.014-4.947.072-1.277.058-2.148.261-2.913.558-.789.306-1.459.718-2.126 1.384-.666.667-1.079 1.337-1.384 2.126-.297.765-.5 1.636-.558 2.913-.058 1.28-.072 1.689-.072 4.948s.014 3.667.072 4.947c.058 1.277.261 2.148.558 2.913.306.789.718 1.459 1.384 2.126.667.666 1.337 1.079 2.126 1.384.765.297 1.636.5 2.913.558 1.28.058 1.689.072 4.948.072s3.667-.014 4.947-.072c1.277-.058 2.148-.261 2.913-.558.789-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.337 1.384-2.126.297-.765.5-1.636.558-2.913.058-1.28.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.058-1.277-.261-2.148-.558-2.913-.306-.789-.718-1.459-1.384-2.126-.667-.666-1.337-1.079-2.126-1.384-.765-.297-1.636-.5-2.913-.558-1.28-.058-1.689-.072-4.948-.072z" />
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.06 1.805.249 2.227.419.562.217.96.477 1.382.896.419.42.679.819.896 1.381.17.422.359 1.057.419 2.227.058 1.265.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.06 1.17-.249 1.805-.419 2.227-.217.562-.477.96-.896 1.382-.42.419-.819.679-1.381.896-.422.17-1.057.359-2.227.419-1.265.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.06-1.805-.249-2.227-.419-.562-.217-.96-.477-1.382-.896-.419-.42-.679-.819-.896-1.381-.17-.422-.359-1.057-.419-2.227-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.06-1.17.249-1.805.419-2.227.217-.562.477-.96.896-1.382.42-.419.819-.679 1.381-.896.422-.17 1.057-.359 2.227-.419 1.265-.058 1.689-.072 4.948-.072z" />
                       <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z" />
                     </svg>
                   </a>
@@ -263,7 +279,7 @@ const Contact = () => {
         <div className="mt-16 glass-card rounded-xl p-4 relative overflow-hidden">
           <div className="aspect-video w-full">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2238984935098!2d78.75926407557512!3d10.794156358865413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf3f2c7173895%3A0xf7d55d8ea7b7e770!2sTwilight%20Dance%20Studio%20Thiruverumbur!5e0!3m2!1sen!2sin!4v1744028465453!5m2!1sen!2sin" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2238984935098!2d78.75926407557512!3d10.794156358865413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf3f2c7173895%3A0xf7d55d8ea7b7e770!2sTwilight%20Dance%20Studio%20Thiruverumbur!5e0!3m2!1sen!2sin!4v1744028465453!5m2!1sen!2sin&map_id=8f718de201b74b5c" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
