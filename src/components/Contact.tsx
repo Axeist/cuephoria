@@ -1,8 +1,81 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    try {
+      // In a real implementation, you would send this data to your server
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      toast({
+        title: "Message Sent!",
+        description: "We've received your message and will get back to you soon.",
+        variant: "default"
+      });
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-20 relative">
       {/* Background elements */}
@@ -120,22 +193,30 @@ const Contact = () => {
             <div className="glass-card rounded-xl p-8 h-full">
               <h3 className="text-2xl font-bold mb-6 text-white">Send us a Message</h3>
               
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-gray-400 mb-2">Name</label>
+                    <label className="block text-gray-400 mb-2">Name*</label>
                     <input 
                       type="text" 
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       className="w-full bg-gaming-darker border border-gaming-accent rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon-blue"
                       placeholder="Your name"
+                      required
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-400 mb-2">Email</label>
+                    <label className="block text-gray-400 mb-2">Email*</label>
                     <input 
                       type="email" 
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       className="w-full bg-gaming-darker border border-gaming-accent rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon-blue"
                       placeholder="Your email"
+                      required
                     />
                   </div>
                 </div>
@@ -144,25 +225,33 @@ const Contact = () => {
                   <label className="block text-gray-400 mb-2">Subject</label>
                   <input 
                     type="text" 
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     className="w-full bg-gaming-darker border border-gaming-accent rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon-blue"
                     placeholder="What's this about?"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-gray-400 mb-2">Message</label>
+                  <label className="block text-gray-400 mb-2">Message*</label>
                   <textarea 
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     className="w-full bg-gaming-darker border border-gaming-accent rounded-lg px-4 py-2 text-white focus:outline-none focus:border-neon-blue min-h-[120px]"
                     placeholder="Your message..."
+                    required
                   ></textarea>
                 </div>
                 
                 <div>
                   <button 
                     type="submit" 
-                    className="w-full py-3 rounded-lg bg-neon-pink text-white font-semibold hover:bg-neon-pink/80 transition-all duration-300 flex items-center justify-center group"
+                    disabled={isSubmitting}
+                    className="w-full py-3 rounded-lg bg-neon-pink text-white font-semibold hover:bg-neon-pink/80 transition-all duration-300 flex items-center justify-center group disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                     <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
