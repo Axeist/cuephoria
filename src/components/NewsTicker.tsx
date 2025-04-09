@@ -39,7 +39,8 @@ const NewsTicker = () => {
         </div>
       </div>
       
-      <style>{`
+      <style>
+      {`
         .ticker-container {
           width: 100%;
           overflow: hidden;
@@ -78,7 +79,8 @@ const NewsTicker = () => {
             text-shadow: 0 0 15px rgba(255, 45, 239, 0.8), 0 0 20px rgba(255, 45, 239, 0.5);
           }
         }
-      `}</style>
+      `}
+      </style>
     </div>
   );
 };
