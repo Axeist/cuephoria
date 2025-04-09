@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Gamepad2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import NewsTicker from './NewsTicker';
-import VisitorStats from './VisitorStats';
 
 interface NavLinkProps {
   href: string;
@@ -116,11 +115,6 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             </a>
           </nav>
           
-          {/* Visitor Stats (Desktop only) */}
-          <div className="hidden lg:block absolute right-24">
-            <VisitorStats />
-          </div>
-          
           {/* Mobile Menu Button */}
           <button 
             className="md:hidden text-white"
@@ -143,7 +137,7 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
       {/* Mobile Menu with improved overlay */}
       <div 
         className={cn(
-          "fixed inset-0 bg-gaming-darker/95 backdrop-blur-lg z-50 transition-all duration-300 md:hidden overflow-hidden",
+          "fixed inset-0 bg-gaming-darker/95 backdrop-blur-lg z-50 transition-all duration-300 md:hidden overflow-auto",
           mobileMenuOpen 
             ? "opacity-100 translate-y-0 pointer-events-auto" 
             : "opacity-0 -translate-y-full pointer-events-none"
@@ -177,11 +171,6 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             >
               Book Now
             </a>
-            
-            {/* Visitor Stats (Mobile only) */}
-            <div className="w-full mt-4">
-              <VisitorStats />
-            </div>
             
             {/* Special online booking promotion in mobile menu */}
             <div className="glass-card rounded-lg p-4 mt-6 border border-neon-blue/30 w-full">

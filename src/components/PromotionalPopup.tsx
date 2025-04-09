@@ -1,13 +1,18 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X, ArrowRight } from 'lucide-react';
 
 interface PromotionalPopupProps {
   delayInSeconds?: number;
+  reappearInSeconds?: number;
 }
 
-const PromotionalPopup = ({ delayInSeconds = 30 }: PromotionalPopupProps) => {
+const PromotionalPopup = ({ 
+  delayInSeconds = 30, 
+  reappearInSeconds = 120 
+}: PromotionalPopupProps) => {
   const [isVisible, setIsVisible] = useState(false);
+  const hasBeenShownRef = useRef(false);
   
   useEffect(() => {
     // Check if popup was already shown in this session
@@ -16,12 +21,24 @@ const PromotionalPopup = ({ delayInSeconds = 30 }: PromotionalPopupProps) => {
     if (!popupShown) {
       const timer = setTimeout(() => {
         setIsVisible(true);
+        hasBeenShownRef.current = true;
         sessionStorage.setItem('promotional_popup_shown', 'true');
       }, delayInSeconds * 1000);
       
       return () => clearTimeout(timer);
     }
   }, [delayInSeconds]);
+  
+  // Effect for reappearing popup after closing
+  useEffect(() => {
+    if (hasBeenShownRef.current && !isVisible) {
+      const reappearTimer = setTimeout(() => {
+        setIsVisible(true);
+      }, reappearInSeconds * 1000);
+      
+      return () => clearTimeout(reappearTimer);
+    }
+  }, [isVisible, reappearInSeconds]);
   
   if (!isVisible) return null;
   

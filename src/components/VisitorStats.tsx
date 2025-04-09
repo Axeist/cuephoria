@@ -64,37 +64,40 @@ const VisitorStats = () => {
   }, []);
   
   return (
-    <div className="glass-card p-3 rounded-lg border border-neon-blue/20 flex items-center justify-around">
-      <div className="text-center px-2">
-        <div className="flex items-center justify-center mb-1">
-          <Users size={16} className="mr-1 text-neon-blue" />
-          <span className="text-xs text-gray-400">Total</span>
+    <div className="glass-card p-4 rounded-lg border border-neon-blue/20">
+      <h4 className="text-center text-white font-semibold mb-3">Live Stats</h4>
+      <div className="flex items-center justify-around">
+        <div className="text-center px-4">
+          <div className="flex items-center justify-center mb-1">
+            <Users size={16} className="mr-1 text-neon-blue" />
+            <span className="text-xs text-gray-400">Total Visitors</span>
+          </div>
+          <div className="text-xl font-bold text-white glow-text">{totalVisitors.toLocaleString()}</div>
         </div>
-        <div className="text-lg font-bold text-white">{totalVisitors.toLocaleString()}</div>
-      </div>
-      
-      <div className="text-center px-2 border-x border-gray-700">
-        <div className="flex items-center justify-center mb-1">
-          <Users size={16} className="mr-1 text-neon-pink" />
-          <span className="text-xs text-gray-400">Today</span>
+        
+        <div className="text-center px-4 border-x border-gray-700">
+          <div className="flex items-center justify-center mb-1">
+            <Users size={16} className="mr-1 text-neon-pink" />
+            <span className="text-xs text-gray-400">Today's Visitors</span>
+          </div>
+          <div className="text-xl font-bold text-white glow-text">{todayVisitors.toLocaleString()}</div>
         </div>
-        <div className="text-lg font-bold text-white">{todayVisitors.toLocaleString()}</div>
-      </div>
-      
-      <div className="text-center px-2">
-        <div className="flex items-center justify-center mb-1">
-          <svg 
-            className="w-4 h-4 mr-1 text-green-400" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24" 
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-          <span className="text-xs text-gray-400">Bookings</span>
+        
+        <div className="text-center px-4">
+          <div className="flex items-center justify-center mb-1">
+            <svg 
+              className="w-4 h-4 mr-1 text-green-400" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span className="text-xs text-gray-400">Total Bookings</span>
+          </div>
+          <div className="text-xl font-bold text-white glow-text">{bookings.toLocaleString()}</div>
         </div>
-        <div className="text-lg font-bold text-white">{bookings.toLocaleString()}</div>
       </div>
     </div>
   );

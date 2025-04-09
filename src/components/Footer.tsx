@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import VisitorStats from './VisitorStats';
 
 const Footer = () => {
   return (
@@ -31,6 +32,13 @@ const Footer = () => {
               Book Online Now
               <ArrowUpRight className="ml-1 h-4 w-4" />
             </a>
+          </div>
+        </div>
+        
+        {/* Visitor Stats Section */}
+        <div className="mb-10 flex justify-center">
+          <div className="max-w-lg w-full">
+            <VisitorStats />
           </div>
         </div>
         

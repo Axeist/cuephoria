@@ -30,14 +30,16 @@ const NewsTicker = () => {
                 key={index} 
                 className={`inline-block whitespace-nowrap px-4 text-white ${index === currentNewsIndex ? 'ticker-visible' : 'ticker-hidden'}`}
               >
-                {item}
+                <span className="mr-2 text-neon-pink">★</span>
+                <span className="glow-text">{item}</span>
+                <span className="ml-2 text-neon-blue">★</span>
               </span>
             ))}
           </div>
         </div>
       </div>
       
-      <style jsx="true">{`
+      <style>{`
         .ticker-container {
           width: 100%;
           overflow: hidden;
@@ -58,6 +60,7 @@ const NewsTicker = () => {
           opacity: 1;
           transform: translateY(0);
           transition: opacity 0.5s ease, transform 0.5s ease;
+          animation: pulse-glow 2s ease-in-out infinite;
         }
         
         .ticker-hidden {
@@ -65,6 +68,15 @@ const NewsTicker = () => {
           height: 0;
           position: absolute;
           transform: translateY(10px);
+        }
+        
+        @keyframes pulse-glow {
+          0%, 100% {
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+          }
+          50% {
+            text-shadow: 0 0 15px rgba(255, 45, 239, 0.8), 0 0 20px rgba(255, 45, 239, 0.5);
+          }
         }
       `}</style>
     </div>
