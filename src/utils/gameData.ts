@@ -21,7 +21,7 @@ export const gameData = [
   },
   {
     title: "Metashot Challenge",
-    icon: "baseball",
+    icon: "cricket",
     image: "/lovable-uploads/0e03cdfd-e1a2-47c2-858c-9e7f35867b0c.png",
     description: "Experience our AR cricket game where you play with a physical bat and make real shots in-game. Feel the thrill of hitting sixes on a virtual cricket pitch!"
   }

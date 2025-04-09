@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent } from "./ui/card";
 import { gameData } from "../utils/gameData";
-import { LucideIcon, Gamepad, Target, Baseball } from 'lucide-react';
+import { LucideIcon, Gamepad, Target, CircleDot } from 'lucide-react';
 
 const GamesSection: React.FC = () => {
   // Helper function to get the appropriate icon based on icon name
@@ -11,7 +11,7 @@ const GamesSection: React.FC = () => {
     const iconMap: Record<string, LucideIcon> = {
       'gamepad': Gamepad,
       'target': Target,
-      'baseball': Baseball
+      'cricket': CircleDot
     };
     
     // Return the mapped icon or Gamepad as fallback
