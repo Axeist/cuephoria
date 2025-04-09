@@ -8,20 +8,8 @@ export const galleryImages = [
   {
     id: 2,
     src: "/lovable-uploads/49cea69d-9aaf-4b3c-811e-de6cea2ec236.png",
-    alt: "Next-Gen Console Station",
-    title: "Next-Gen Console Station"
-  },
-  {
-    id: 3,
-    src: "/lovable-uploads/5894a42d-9123-4b3f-b180-7570e915d5ed.png",
-    alt: "Immersive VR Experience",
-    title: "Immersive VR Experience"
-  },
-  {
-    id: 4,
-    src: "/lovable-uploads/a1562404-58ac-46dc-8720-c7849ec94926.png",
-    alt: "Championship Pool Tables",
-    title: "Championship Pool Tables"
+    alt: "Professional Pool Tables",
+    title: "Professional Pool Tables"
   },
   {
     id: 5,
@@ -42,24 +30,12 @@ export const galleryData = [
   {
     id: 2,
     image: "/lovable-uploads/49cea69d-9aaf-4b3c-811e-de6cea2ec236.png",
-    title: "Next-Gen Console Station",
-    description: "Experience the latest AAA titles on cutting-edge hardware with our optimized gaming stations featuring 4K displays and surround sound."
+    title: "Professional Pool Tables",
+    description: "Experience the precision and elegance of professional-grade pool tables in our dedicated billiards area, perfect for casual games or serious competition."
   },
   {
     id: 3,
-    image: "/lovable-uploads/5894a42d-9123-4b3f-b180-7570e915d5ed.png", 
-    title: "Immersive VR Experience",
-    description: "Step into other worlds with our high-end VR setups featuring full-body tracking and custom-designed play areas for maximum immersion."
-  },
-  {
-    id: 4,
-    image: "/lovable-uploads/a1562404-58ac-46dc-8720-c7849ec94926.png",
-    title: "Championship Pool Tables",
-    description: "Our tournament-grade billiards tables are maintained to professional standards, offering the perfect surface for casual games or serious competition."
-  },
-  {
-    id: 5,
-    image: "/lovable-uploads/a8c2452f-9057-4737-9fe0-08855baa94e5.png",
+    image: "/lovable-uploads/a8c2452f-9057-4737-9fe0-08855baa94e5.png", 
     title: "Neon-lit Gaming Lounge",
     description: "The perfect social space for gamers to connect, featuring ambient lighting, comfortable seating, and quick access to our bar and refreshments."
   }
