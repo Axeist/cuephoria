@@ -27,7 +27,7 @@ export const gameData = [
   }
 ];
 
-// Gallery data with fixed image URL
+// Gallery data with uploaded images
 export const galleryData = [
   {
     id: 1,
@@ -43,7 +43,7 @@ export const galleryData = [
   },
   {
     id: 3,
-    image: "/lovable-uploads/a1562404-58ac-46dc-8720-c7849ec94926.png",
+    image: "/lovable-uploads/5894a42d-9123-4b3f-b180-7570e915d5ed.png", 
     title: "Exciting PS5 Gaming Setup",
     description: "Gather your friends and dive into the latest PS5 games on our high-definition screens with surround sound."
   },

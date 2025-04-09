@@ -4,32 +4,32 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const galleryImages = [
   {
-    url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    url: "/lovable-uploads/2fa0e70e-4a7a-42ae-b82c-a47608a6d4ee.png",
     alt: "Player enjoying PS5 gaming at Cuephoria Trichy",
     caption: "Immersive PS5 Gaming Experience"
   },
   {
-    url: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    url: "/lovable-uploads/a1562404-58ac-46dc-8720-c7849ec94926.png",
     alt: "Weekly gaming tournament at Cuephoria Trichy",
     caption: "Weekly Gaming Tournaments"
   },
   {
-    url: "https://images.unsplash.com/photo-1563396983906-b3795482a59a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    url: "/lovable-uploads/49cea69d-9aaf-4b3c-811e-de6cea2ec236.png",
     alt: "Professional 8-Ball pool table at Cuephoria Trichy",
     caption: "Professional 8-Ball Tables"
   },
   {
-    url: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    url: "/lovable-uploads/0e03cdfd-e1a2-47c2-858c-9e7f35867b0c.png",
     alt: "Metashot challenge experience at Cuephoria Trichy",
     caption: "Metashot Challenge Experience"
   },
   {
-    url: "https://images.unsplash.com/photo-1587095951604-b9d124a7e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    url: "/lovable-uploads/a8c2452f-9057-4737-9fe0-08855baa94e5.png",
     alt: "Relaxing gaming lounge atmosphere at Cuephoria Trichy",
     caption: "Relaxing Gaming Lounge Atmosphere"
   },
   {
-    url: "https://images.unsplash.com/photo-1500673922987-e212871fec22?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    url: "/lovable-uploads/5894a42d-9123-4b3f-b180-7570e915d5ed.png",
     alt: "State-of-the-art gaming console setup at Cuephoria Trichy",
     caption: "State-of-the-art Console Setup"
   }

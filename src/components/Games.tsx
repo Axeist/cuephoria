@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { Gamepad2, Crosshair, TrophyIcon, Target } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
-// Updated games array with relevant images and detailed descriptions
+// Updated games array with uploaded images
 const games = [
   {
     name: "8-Ball Pool",
-    image: "/lovable-uploads/5894a42d-9123-4b3f-b180-7570e915d5ed.png",
+    image: "/lovable-uploads/49cea69d-9aaf-4b3c-811e-de6cea2ec236.png",
     description: "Challenge your friends to a game of precision and strategy on our professional pool tables.",
     icon: <Target className="h-6 w-6" />,
     detailedDescription: "Experience the classic game of 8-Ball Pool at Cuephoria on our premium tournament-grade tables. Perfect your skills with precision cues and professional equipment. Our tables feature Italian slate surfaces and championship cloth for the ultimate playing experience. Regular tournaments are held for both beginners and advanced players, with prizes for winners.",
@@ -20,7 +20,7 @@ const games = [
   },
   {
     name: "Snooker",
-    image: "https://images.unsplash.com/photo-1563396983906-b3795482a59a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", 
+    image: "/lovable-uploads/a8c2452f-9057-4737-9fe0-08855baa94e5.png", 
     description: "Experience the classic game of snooker on our premium tables with professional equipment.",
     icon: <Crosshair className="h-6 w-6" />,
     detailedDescription: "Enjoy the strategic game of Snooker on our full-size professional tables at Cuephoria. Our snooker setups feature premium equipment, including championship balls and high-quality cues. The dedicated snooker area offers a quiet, focused environment for serious players, with proper lighting and ample space around each table for comfortable gameplay.",
@@ -33,7 +33,7 @@ const games = [
   },
   {
     name: "PS5 Gaming",
-    image: "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    image: "/lovable-uploads/2663021f-e6d3-4c75-8f66-b2672cc5f988.png",
     description: "Enjoy the latest PS5 titles including FIFA, Call of Duty, GTA, and more on large screens.",
     icon: <Gamepad2 className="h-6 w-6" />,
     detailedDescription: "Immerse yourself in next-generation gaming on our PlayStation 5 setups at Cuephoria. Each gaming station features 4K HDR displays, premium gaming chairs, and high-quality headsets for an optimal gaming experience. We regularly update our game library with the latest titles across various genres, from sports simulations to action adventures and competitive multiplayer games.",
@@ -46,7 +46,7 @@ const games = [
   },
   {
     name: "Metashot Challenges",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    image: "/lovable-uploads/0e03cdfd-e1a2-47c2-858c-9e7f35867b0c.png",
     description: "Physical batting experience where you hit targets in our interactive gaming environment.",
     icon: <TrophyIcon className="h-6 w-6" />,
     detailedDescription: "Metashot Challenges combine physical activity with digital gaming technology for a unique entertainment experience. Our custom-built interactive environment features projection technology that tracks your movements and scoring in real-time. Perfect for groups, these challenges test your reflexes, accuracy, and strategic thinking as you hit virtual targets with specially designed equipment.",
