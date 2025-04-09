@@ -20,7 +20,7 @@ const Footer = () => {
               </h3>
               <p className="text-gray-300">
                 Get <span className="text-neon-blue font-bold">FLAT 10% OFF</span> your bill + 
-                <span className="text-neon-pink font-bold"> 1 FREE AR Metashot Cricket Challenge</span> 
+                <span className="text-neon-pink font-bold"> 1 FREE AR Metashot Cricket Challenge </span> 
                 only through online bookings!
               </p>
             </div>

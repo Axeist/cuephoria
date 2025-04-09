@@ -133,8 +133,6 @@ const Hero = () => {
         </div>
         <span className="text-white/70 text-sm mt-2">Scroll Down</span>
       </div>
-      
-      {/* Removed the floating Book Slot button */}
     </section>
   );
 };

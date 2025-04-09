@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Gamepad2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import NewsTicker from './NewsTicker';
+import VisitorStats from './VisitorStats';
 
 interface NavLinkProps {
   href: string;
@@ -71,62 +73,77 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
   ];
 
   return (
-    <header 
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled 
-          ? "bg-gaming-darker/80 backdrop-blur-md shadow-lg py-3" 
-          : "bg-transparent py-5"
-      )}
-    >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <a href="/" className="flex items-center space-x-2">
-          <img 
-            src="/lovable-uploads/2fa0e70e-4a7a-42ae-b82c-a47608a6d4ee.png" 
-            alt="Cuephoria" 
-            className="h-12 animate-pulse-neon"
-          />
-          <span className="text-xl font-bold neon-text-blue animate-pulse-neon">CUEPHORIA</span>
-        </a>
-        
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          {navItems.map((item) => (
-            <NavLink 
-              key={item.href} 
-              href={item.href} 
-              isActive={activeSection === item.href.substring(1)}
-            >
-              {item.label}
-            </NavLink>
-          ))}
-          <a 
-            href="#book-now" 
-            className={cn(
-              "px-6 py-2 rounded-md font-medium transition-colors",
-              activeSection === "book-now" 
-                ? "bg-neon-pink text-white" 
-                : "bg-neon-pink/80 text-white hover:bg-neon-pink animate-pulse-neon"
-            )}
-          >
-            Book Now
+    <>
+      <header 
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          isScrolled 
+            ? "bg-gaming-darker/80 backdrop-blur-md shadow-lg py-3" 
+            : "bg-transparent py-5"
+        )}
+      >
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <a href="/" className="flex items-center space-x-2">
+            <img 
+              src="/lovable-uploads/2fa0e70e-4a7a-42ae-b82c-a47608a6d4ee.png" 
+              alt="Cuephoria" 
+              className="h-12 animate-pulse-neon"
+            />
+            <span className="text-xl font-bold neon-text-blue animate-pulse-neon">CUEPHORIA</span>
           </a>
-        </nav>
-        
-        {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden text-white"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-        >
-          {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-6">
+            {navItems.map((item) => (
+              <NavLink 
+                key={item.href} 
+                href={item.href} 
+                isActive={activeSection === item.href.substring(1)}
+              >
+                {item.label}
+              </NavLink>
+            ))}
+            <a 
+              href="#book-now" 
+              className={cn(
+                "px-6 py-2 rounded-md font-medium transition-colors",
+                activeSection === "book-now" 
+                  ? "bg-neon-pink text-white" 
+                  : "bg-neon-pink/80 text-white hover:bg-neon-pink animate-pulse-neon"
+              )}
+            >
+              Book Now
+            </a>
+          </nav>
+          
+          {/* Visitor Stats (Desktop only) */}
+          <div className="hidden lg:block absolute right-24">
+            <VisitorStats />
+          </div>
+          
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden text-white"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
+      </header>
+      
+      {/* News Ticker positioned just below the header */}
+      <div className={cn(
+        "fixed left-0 right-0 z-40 transition-all duration-300",
+        isScrolled ? "top-[60px]" : "top-[80px]" 
+      )}>
+        <NewsTicker />
       </div>
       
       {/* Mobile Menu with improved overlay */}
       <div 
         className={cn(
-          "fixed inset-0 bg-gaming-darker/95 backdrop-blur-lg z-40 transition-all duration-300 md:hidden",
+          "fixed inset-0 bg-gaming-darker/95 backdrop-blur-lg z-50 transition-all duration-300 md:hidden overflow-hidden",
           mobileMenuOpen 
             ? "opacity-100 translate-y-0 pointer-events-auto" 
             : "opacity-0 -translate-y-full pointer-events-none"
@@ -161,6 +178,11 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
               Book Now
             </a>
             
+            {/* Visitor Stats (Mobile only) */}
+            <div className="w-full mt-4">
+              <VisitorStats />
+            </div>
+            
             {/* Special online booking promotion in mobile menu */}
             <div className="glass-card rounded-lg p-4 mt-6 border border-neon-blue/30 w-full">
               <p className="text-center text-sm text-gray-300 mb-2">
@@ -188,7 +210,7 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
           </nav>
         </div>
       </div>
-    </header>
+    </>
   );
 };
 

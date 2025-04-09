@@ -8,6 +8,7 @@ import Gallery from '../components/Gallery';
 import BookNow from '../components/BookNow';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
+import PromotionalPopup from '../components/PromotionalPopup';
 import { ChevronUp } from 'lucide-react';
 
 const Index = () => {
@@ -28,7 +29,7 @@ const Index = () => {
           
           // Smoother scroll with cubic-bezier easing
           window.scrollTo({
-            top: offsetTop - 80, // Add offset for navbar
+            top: offsetTop - 110, // Adjusted offset for navbar + news ticker
             behavior: 'smooth'
           });
         }
@@ -143,16 +144,22 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gaming-dark text-white">
       <Navbar activeSection={activeSection} />
-      <Hero />
-      <About />
-      <Games />
-      <Gallery />
-      <BookNow />
-      <Contact />
-      <Footer />
+      {/* Add extra padding-top to accommodate the news ticker */}
+      <div className="pt-28">
+        <Hero />
+        <About />
+        <Games />
+        <Gallery />
+        <BookNow />
+        <Contact />
+        <Footer />
+      </div>
+      
+      {/* Promotional Popup */}
+      <PromotionalPopup delayInSeconds={30} />
       
       {/* Interactive scroll indicator with smoother animation */}
-      <div className={`fixed right-4 top-1/2 transform -translate-y-1/2 h-1/3 w-2 bg-gaming-accent/20 rounded-full z-50 transition-opacity duration-500 ${showScrollProgress ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`fixed right-4 top-1/2 transform -translate-y-1/2 h-1/3 w-2 bg-gaming-accent/20 rounded-full z-40 transition-opacity duration-500 ${showScrollProgress ? 'opacity-100' : 'opacity-0'}`}>
         <div 
           className="bg-neon-blue rounded-full w-full transition-all duration-700 ease-out"
           style={{ height: `${scrollProgress}%` }}
@@ -162,7 +169,7 @@ const Index = () => {
       {/* Back to top button with progress indicator */}
       <a 
         href="#home"
-        className={`fixed bottom-8 right-8 h-12 w-12 rounded-full bg-gaming-darker text-white border border-neon-blue/30 flex items-center justify-center z-50 shadow-lg transition-all duration-500 ease-out overflow-hidden ${showScrollProgress ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        className={`fixed bottom-8 right-8 h-12 w-12 rounded-full bg-gaming-darker text-white border border-neon-blue/30 flex items-center justify-center z-40 shadow-lg transition-all duration-500 ease-out overflow-hidden ${showScrollProgress ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         style={{
           background: `conic-gradient(rgba(0, 255, 255, 0.8) ${scrollProgress}%, #121826 0%)`
         }}
