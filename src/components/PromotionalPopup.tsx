@@ -15,25 +15,98 @@ const PromotionalPopup = ({
   const hasBeenShownRef = useRef(false);
   
   useEffect(() => {
+    // Function to check if user is in the booking section
+    const isInBookingSection = () => {
+      // Check if URL hash is #book-now
+      if (window.location.hash === '#book-now') {
+        return true;
+      }
+      
+      // Check if user has scrolled to booking section
+      const bookingSection = document.getElementById('book-now');
+      if (bookingSection) {
+        const rect = bookingSection.getBoundingClientRect();
+        // If booking section is currently visible in the viewport
+        if (rect.top >= -300 && rect.top <= window.innerHeight) {
+          return true;
+        }
+      }
+      
+      return false;
+    };
+    
+    // Function to check if Calendly is active
+    const isCalendlyActive = () => {
+      // Check for Calendly iframe or popup
+      const calendlyElements = document.querySelectorAll('.calendly-inline-widget, .calendly-overlay');
+      return calendlyElements.length > 0;
+    };
+    
     // Check if popup was already shown in this session
     const popupShown = sessionStorage.getItem('promotional_popup_shown');
     
-    if (!popupShown) {
+    // Function to determine if popup should be shown
+    const shouldShowPopup = () => {
+      return !popupShown && !isInBookingSection() && !isCalendlyActive();
+    };
+    
+    // Initial check and setup timer
+    if (shouldShowPopup()) {
       const timer = setTimeout(() => {
-        setIsVisible(true);
-        hasBeenShownRef.current = true;
-        sessionStorage.setItem('promotional_popup_shown', 'true');
+        // Re-check conditions right before showing
+        if (shouldShowPopup()) {
+          setIsVisible(true);
+          hasBeenShownRef.current = true;
+          sessionStorage.setItem('promotional_popup_shown', 'true');
+        }
       }, delayInSeconds * 1000);
       
       return () => clearTimeout(timer);
     }
-  }, [delayInSeconds]);
+    
+    // Set up event listeners for scroll and hash changes
+    const handleScroll = () => {
+      if (isVisible && (isInBookingSection() || isCalendlyActive())) {
+        setIsVisible(false);
+      }
+    };
+    
+    const handleHashChange = () => {
+      if (isVisible && window.location.hash === '#book-now') {
+        setIsVisible(false);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('hashchange', handleHashChange);
+    
+    // Setup observer to check for Calendly
+    const observer = new MutationObserver(() => {
+      if (isVisible && isCalendlyActive()) {
+        setIsVisible(false);
+      }
+    });
+    
+    observer.observe(document.body, { childList: true, subtree: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('hashchange', handleHashChange);
+      observer.disconnect();
+    };
+  }, [delayInSeconds, isVisible]);
   
   // Effect for reappearing popup after closing
   useEffect(() => {
     if (hasBeenShownRef.current && !isVisible) {
       const reappearTimer = setTimeout(() => {
-        setIsVisible(true);
+        // Check if we should show the popup before showing it again
+        const isInBookingSection = window.location.hash === '#book-now' || 
+          document.querySelectorAll('.calendly-inline-widget, .calendly-overlay').length > 0;
+        
+        if (!isInBookingSection) {
+          setIsVisible(true);
+        }
       }, reappearInSeconds * 1000);
       
       return () => clearTimeout(reappearTimer);
