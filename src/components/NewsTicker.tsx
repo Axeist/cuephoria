@@ -21,7 +21,7 @@ const NewsTicker = () => {
   }, []);
   
   return (
-    <div className="bg-gaming-darker/80 backdrop-blur-md border-y border-neon-blue/20 py-1 overflow-hidden">
+    <div className="bg-gaming-darker/80 backdrop-blur-md border-y border-neon-blue/20 py-1 overflow-hidden" role="complementary" aria-label="Announcements">
       <div className="ticker-container">
         <div className="ticker-wrapper">
           <div className="ticker-text">
@@ -29,10 +29,11 @@ const NewsTicker = () => {
               <span 
                 key={index} 
                 className={`inline-block whitespace-nowrap px-4 text-white ${index === currentNewsIndex ? 'ticker-visible' : 'ticker-hidden'}`}
+                aria-hidden={index !== currentNewsIndex}
               >
-                <span className="mr-2 text-neon-pink">★</span>
+                <span className="mr-2 text-neon-pink" aria-hidden="true">★</span>
                 <span className="glow-text">{item}</span>
-                <span className="ml-2 text-neon-blue">★</span>
+                <span className="ml-2 text-neon-blue" aria-hidden="true">★</span>
               </span>
             ))}
           </div>

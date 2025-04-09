@@ -9,6 +9,7 @@ import BookNow from '../components/BookNow';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import PromotionalPopup from '../components/PromotionalPopup';
+import SEOMetadata from '../components/SEOMetadata';
 import { ChevronUp } from 'lucide-react';
 
 const Index = () => {
@@ -143,9 +144,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gaming-dark text-white">
+      <SEOMetadata />
       <Navbar activeSection={activeSection} />
       {/* Add extra padding-top to accommodate the news ticker */}
-      <div className="pt-28">
+      <main className="pt-28">
         <Hero />
         <About />
         <Games />
@@ -153,10 +155,10 @@ const Index = () => {
         <BookNow />
         <Contact />
         <Footer />
-      </div>
+      </main>
       
       {/* Promotional Popup */}
-      <PromotionalPopup delayInSeconds={30} />
+      <PromotionalPopup delayInSeconds={30} reappearInSeconds={120} />
       
       {/* Interactive scroll indicator with smoother animation */}
       <div className={`fixed right-4 top-1/2 transform -translate-y-1/2 h-1/3 w-2 bg-gaming-accent/20 rounded-full z-40 transition-opacity duration-500 ${showScrollProgress ? 'opacity-100' : 'opacity-0'}`}>
@@ -173,6 +175,7 @@ const Index = () => {
         style={{
           background: `conic-gradient(rgba(0, 255, 255, 0.8) ${scrollProgress}%, #121826 0%)`
         }}
+        aria-label="Back to top"
       >
         <div className="absolute inset-1 rounded-full bg-gaming-darker flex items-center justify-center">
           <ChevronUp size={20} className="text-neon-blue" />

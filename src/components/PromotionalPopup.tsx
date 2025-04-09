@@ -43,7 +43,12 @@ const PromotionalPopup = ({
   if (!isVisible) return null;
   
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div 
+      className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      role="dialog" 
+      aria-modal="true" 
+      aria-labelledby="popup-title"
+    >
       <div className="glass-card relative rounded-xl max-w-md w-full p-6 border-2 border-neon-pink animate-scale-pulse">
         <button 
           onClick={() => setIsVisible(false)}
@@ -54,7 +59,7 @@ const PromotionalPopup = ({
         </button>
         
         <div className="text-center mb-6">
-          <h3 className="text-2xl font-bold neon-text-pink mb-2">
+          <h3 id="popup-title" className="text-2xl font-bold neon-text-pink mb-2">
             SPECIAL ONLINE OFFER!
           </h3>
           <p className="text-gray-300 mb-4">
