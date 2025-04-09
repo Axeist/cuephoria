@@ -8,7 +8,7 @@ interface PromotionalPopupProps {
 }
 
 const PromotionalPopup = ({ 
-  delayInSeconds = 30, 
+  delayInSeconds = 10,  // Changed from 30 to 10 
   reappearInSeconds = 120 
 }: PromotionalPopupProps) => {
   const [isVisible, setIsVisible] = useState(false);
