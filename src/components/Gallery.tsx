@@ -1,39 +1,7 @@
 
 import React from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-
-const galleryImages = [
-  {
-    url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071&auto=format&fit=crop",
-    alt: "Player enjoying PS5 gaming at Cuephoria Trichy",
-    caption: "Immersive PS5 Gaming Experience"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=2070&auto=format&fit=crop",
-    alt: "Weekly gaming tournament at Cuephoria Trichy",
-    caption: "Weekly Gaming Tournaments"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1642132652069-08f20ae393eb?q=80&w=2070&auto=format&fit=crop",
-    alt: "Professional 8-Ball pool table at Cuephoria Trichy",
-    caption: "Professional 8-Ball Tables"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1607034071380-031f8b1692be?q=80&w=2070&auto=format&fit=crop",
-    alt: "Metashot challenge experience at Cuephoria Trichy",
-    caption: "Metashot Challenge Experience"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=2047&auto=format&fit=crop",
-    alt: "Relaxing gaming lounge atmosphere at Cuephoria Trichy",
-    caption: "Relaxing Gaming Lounge Atmosphere"
-  },
-  {
-    url: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=2057&auto=format&fit=crop",
-    alt: "State-of-the-art gaming console setup at Cuephoria Trichy",
-    caption: "State-of-the-art Console Setup"
-  }
-];
+import { galleryImages } from '../utils/gameData';
 
 const Gallery = () => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -76,7 +44,7 @@ const Gallery = () => {
             <div 
               className={`w-full h-full transition-opacity duration-500 ${isTransitioning ? 'opacity-30' : 'opacity-100'}`}
               style={{
-                backgroundImage: `url(${galleryImages[currentIndex].url})`,
+                backgroundImage: `url(${galleryImages[currentIndex].src})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               }}
@@ -87,7 +55,7 @@ const Gallery = () => {
             {/* Caption */}
             <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
               <h3 className="text-xl md:text-2xl font-semibold neon-text-blue">
-                {galleryImages[currentIndex].caption}
+                {galleryImages[currentIndex].title}
               </h3>
             </div>
             
@@ -128,7 +96,7 @@ const Gallery = () => {
                 aria-label={`View ${image.alt}`}
               >
                 <img 
-                  src={image.url} 
+                  src={image.src} 
                   alt={`Thumbnail ${index + 1}`}
                   className="w-full h-full object-cover"
                   loading="lazy"
