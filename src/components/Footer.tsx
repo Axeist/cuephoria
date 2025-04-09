@@ -11,6 +11,29 @@ const Footer = () => {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
+        {/* Online booking promotion banner */}
+        <div className="glass-card rounded-xl p-6 mb-12 border-2 border-neon-pink animate-pulse-neon">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div className="mb-4 md:mb-0">
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                <span className="neon-text-pink">SPECIAL ONLINE OFFER!</span>
+              </h3>
+              <p className="text-gray-300">
+                Get <span className="text-neon-blue font-bold">FLAT 10% OFF</span> your bill + 
+                <span className="text-neon-pink font-bold"> 1 FREE AR Metashot Cricket Challenge</span> 
+                only through online bookings!
+              </p>
+            </div>
+            <a 
+              href="#book-now" 
+              className="px-6 py-3 rounded-md font-medium transition-colors bg-neon-pink text-white hover:bg-neon-pink/80 flex items-center"
+            >
+              Book Online Now
+              <ArrowUpRight className="ml-1 h-4 w-4" />
+            </a>
+          </div>
+        </div>
+        
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
           <div className="mb-8 md:mb-0">
             <img 
@@ -71,8 +94,8 @@ const Footer = () => {
                 </li>
                 <li className="text-gray-400">
                   <span className="block text-sm text-neon-pink">Email</span>
-                  <a href="mailto:contact@cuephoria.in" className="hover:text-neon-blue transition-colors">
-                    contact@cuephoria.in
+                  <a href="mailto:cuephoriaclub@gmail.com" className="hover:text-neon-blue transition-colors">
+                    cuephoriaclub@gmail.com
                   </a>
                 </li>
                 <li className="text-gray-400">
@@ -90,6 +113,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-10 w-10 rounded-full bg-gaming-accent flex items-center justify-center hover:bg-neon-blue/20 transition-colors"
+                  aria-label="Facebook"
                 >
                   <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
@@ -100,6 +124,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-10 w-10 rounded-full bg-gaming-accent flex items-center justify-center hover:bg-neon-pink/20 transition-colors"
+                  aria-label="Instagram"
                 >
                   <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.06 1.805.249 2.227.419.562.217.96.477 1.382.896.419.42.679.819.896 1.381.17.422.359 1.057.419 2.227.058 1.265.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.06 1.17-.249 1.805-.419 2.227-.217.562-.477.96-.896 1.382-.42.419-.819.679-1.381.896-.422.17-1.057.359-2.227.419-1.265.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.06-1.805-.249-2.227-.419-.562-.217-.96-.477-1.382-.896-.419-.42-.679-.819-.896-1.381-.17-.422-.359-1.057-.419-2.227-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.06-1.17.249-1.805.419-2.227.217-.562.477-.96.896-1.382.42-.419.819-.679 1.381-.896.422-.17 1.057-.359 2.227-.419 1.265-.058 1.645-.07 4.85-.07m0-2.163c-3.259 0-3.667.014-4.947.072-1.277.058-2.148.261-2.913.558-.789.306-1.459.718-2.126 1.384-.666.667-1.079 1.337-1.384 2.126-.297.765-.5 1.636-.558 2.913-.058 1.28-.072 1.689-.072 4.948s.014 3.667.072 4.947c.058 1.277.261 2.148.558 2.913.306.789.718 1.459 1.384 2.126.667.666 1.337 1.079 2.126 1.384.765.297 1.636.5 2.913.558 1.28.058 1.689.072 4.948.072s3.667-.014 4.947-.072c1.277-.058 2.148-.261 2.913-.558.789-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.337 1.384-2.126.297-.765.5-1.636.558-2.913.058-1.28.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.058-1.277-.261-2.148-.558-2.913-.306-.789-.718-1.459-1.384-2.126-.667-.666-1.337-1.079-2.126-1.384-.765-.297-1.636-.5-2.913-.558-1.28-.058-1.689-.072-4.948-.072z" />
@@ -111,6 +136,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer" 
                   className="h-10 w-10 rounded-full bg-gaming-accent flex items-center justify-center hover:bg-green-500/20 transition-colors"
+                  aria-label="WhatsApp"
                 >
                   <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
