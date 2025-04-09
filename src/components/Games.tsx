@@ -1,32 +1,61 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Gamepad2, Crosshair, TrophyIcon, Target } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
-// Updated games array with Metashot Challenges instead of VR
+// Updated games array with relevant images and detailed descriptions
 const games = [
   {
     name: "8-Ball Pool",
-    image: "https://images.unsplash.com/photo-1501003878151-d3cb87799705?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    image: "/lovable-uploads/5894a42d-9123-4b3f-b180-7570e915d5ed.png",
     description: "Challenge your friends to a game of precision and strategy on our professional pool tables.",
-    icon: <Target className="h-6 w-6" />
+    icon: <Target className="h-6 w-6" />,
+    detailedDescription: "Experience the classic game of 8-Ball Pool at Cuephoria on our premium tournament-grade tables. Perfect your skills with precision cues and professional equipment. Our tables feature Italian slate surfaces and championship cloth for the ultimate playing experience. Regular tournaments are held for both beginners and advanced players, with prizes for winners.",
+    benefits: [
+      "Professional grade tables with Italian slate surfaces",
+      "Premium cues and accessories available",
+      "Regular tournaments with prizes",
+      "One-on-one coaching sessions available"
+    ]
   },
   {
     name: "Snooker",
     image: "https://images.unsplash.com/photo-1563396983906-b3795482a59a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", 
     description: "Experience the classic game of snooker on our premium tables with professional equipment.",
-    icon: <Crosshair className="h-6 w-6" />
+    icon: <Crosshair className="h-6 w-6" />,
+    detailedDescription: "Enjoy the strategic game of Snooker on our full-size professional tables at Cuephoria. Our snooker setups feature premium equipment, including championship balls and high-quality cues. The dedicated snooker area offers a quiet, focused environment for serious players, with proper lighting and ample space around each table for comfortable gameplay.",
+    benefits: [
+      "Full-size professional tables (12ft x 6ft)",
+      "Championship quality balls and accessories",
+      "Dedicated quiet playing area",
+      "Snooker league membership available"
+    ]
   },
   {
     name: "PS5 Gaming",
     image: "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     description: "Enjoy the latest PS5 titles including FIFA, Call of Duty, GTA, and more on large screens.",
-    icon: <Gamepad2 className="h-6 w-6" />
+    icon: <Gamepad2 className="h-6 w-6" />,
+    detailedDescription: "Immerse yourself in next-generation gaming on our PlayStation 5 setups at Cuephoria. Each gaming station features 4K HDR displays, premium gaming chairs, and high-quality headsets for an optimal gaming experience. We regularly update our game library with the latest titles across various genres, from sports simulations to action adventures and competitive multiplayer games.",
+    benefits: [
+      "Premium gaming setups with 4K HDR displays",
+      "Comfortable gaming chairs and accessories",
+      "Latest game titles across all popular genres",
+      "Multiplayer tournament capabilities"
+    ]
   },
   {
     name: "Metashot Challenges",
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     description: "Physical batting experience where you hit targets in our interactive gaming environment.",
-    icon: <TrophyIcon className="h-6 w-6" />
+    icon: <TrophyIcon className="h-6 w-6" />,
+    detailedDescription: "Metashot Challenges combine physical activity with digital gaming technology for a unique entertainment experience. Our custom-built interactive environment features projection technology that tracks your movements and scoring in real-time. Perfect for groups, these challenges test your reflexes, accuracy, and strategic thinking as you hit virtual targets with specially designed equipment.",
+    benefits: [
+      "Interactive physical and digital gaming experience",
+      "Real-time performance tracking and scoring",
+      "Multiple difficulty levels for all skill levels",
+      "Great for team-building events and parties"
+    ]
   }
 ];
 
@@ -43,44 +72,110 @@ const pricingOptions = [
 ];
 
 const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div 
-      className="group relative overflow-hidden rounded-xl glass-card"
-      style={{ animationDelay: `${index * 0.1}s` }}
-    >
-      <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-10 transition-opacity duration-300"></div>
-      <div className="aspect-[4/3] overflow-hidden">
-        <img 
-          src={game.image} 
-          alt={game.name} 
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-      </div>
-      
-      <div className="absolute inset-0 flex flex-col justify-end p-6">
-        <div className="transform transition-transform duration-300 group-hover:translate-y-0 translate-y-8">
-          <div className="flex items-center mb-2">
-            <div className="mr-2 text-neon-pink">
-              {game.icon}
+    <>
+      <div 
+        className="group relative overflow-hidden rounded-xl glass-card cursor-pointer"
+        style={{ animationDelay: `${index * 0.1}s` }}
+        onClick={() => setOpen(true)}
+        role="button"
+        aria-label={`Learn more about ${game.name}`}
+        tabIndex={0}
+      >
+        <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-10 transition-opacity duration-300"></div>
+        <div className="aspect-[4/3] overflow-hidden">
+          <img 
+            src={game.image} 
+            alt={`${game.name} at Cuephoria Gaming Lounge in Trichy`} 
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy"
+          />
+        </div>
+        
+        <div className="absolute inset-0 flex flex-col justify-end p-6">
+          <div className="transform transition-transform duration-300 group-hover:translate-y-0 translate-y-8">
+            <div className="flex items-center mb-2">
+              <div className="mr-2 text-neon-pink">
+                {game.icon}
+              </div>
+              <h3 className="text-2xl font-bold text-white group-hover:neon-text-blue transition-all duration-300">
+                {game.name}
+              </h3>
             </div>
-            <h3 className="text-2xl font-bold text-white group-hover:neon-text-blue transition-all duration-300">
-              {game.name}
-            </h3>
+            <p className="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+              {game.description}
+            </p>
           </div>
-          <p className="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-            {game.description}
-          </p>
+        </div>
+        
+        {/* Animated border on hover */}
+        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-blue via-neon-pink to-neon-blue animate-shimmer"></div>
+          <div className="absolute bottom-0 right-0 w-full h-1 bg-gradient-to-r from-neon-pink via-neon-blue to-neon-pink animate-shimmer"></div>
+          <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-neon-blue via-neon-pink to-neon-blue animate-shimmer"></div>
+          <div className="absolute right-0 bottom-0 w-1 h-full bg-gradient-to-b from-neon-pink via-neon-blue to-neon-pink animate-shimmer"></div>
         </div>
       </div>
-      
-      {/* Animated border on hover */}
-      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-blue via-neon-pink to-neon-blue animate-shimmer"></div>
-        <div className="absolute bottom-0 right-0 w-full h-1 bg-gradient-to-r from-neon-pink via-neon-blue to-neon-pink animate-shimmer"></div>
-        <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-neon-blue via-neon-pink to-neon-blue animate-shimmer"></div>
-        <div className="absolute right-0 bottom-0 w-1 h-full bg-gradient-to-b from-neon-pink via-neon-blue to-neon-pink animate-shimmer"></div>
-      </div>
-    </div>
+
+      {/* Detailed Game Information Dialog */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="bg-gaming-darker border border-neon-blue/30 text-white max-w-3xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold neon-text-blue flex items-center gap-2">
+              {game.icon} {game.name}
+            </DialogTitle>
+            <DialogDescription className="text-gray-300">
+              Experience premium entertainment at Cuephoria, Trichy
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="rounded-lg overflow-hidden">
+              <img 
+                src={game.image} 
+                alt={`${game.name} at Cuephoria Gaming Lounge in Trichy`} 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            
+            <div className="space-y-4">
+              <p className="text-gray-200">
+                {game.detailedDescription}
+              </p>
+              
+              <h4 className="text-lg font-semibold neon-text-pink mt-4">Key Features</h4>
+              <ul className="space-y-2">
+                {game.benefits.map((benefit, i) => (
+                  <li key={i} className="flex items-start">
+                    <div className="mr-3 mt-1 h-5 w-5 text-neon-blue flex-shrink-0">
+                      <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-300">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <div className="pt-4">
+                <a 
+                  href="#book-now" 
+                  className="px-6 py-2 rounded-md bg-neon-pink text-white font-medium hover:bg-neon-pink/80 transition-colors inline-flex items-center"
+                  onClick={() => setOpen(false)}
+                >
+                  Book This Experience
+                  <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 

@@ -14,4 +14,8 @@ Allow: /
 User-agent: *
 Allow: /
 
+# Sitemap
 Sitemap: https://cuephoria.in/sitemap.xml
+
+# Disallow specific folders (if needed)
+# Disallow: /admin/

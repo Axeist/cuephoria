@@ -13,7 +13,7 @@ interface SEOMetadataProps {
 const SEOMetadata = ({
   title = "Cuephoria - Premier Gaming Lounge & 8-Ball Pool Club in Trichy",
   description = "Experience Trichy's premier gaming lounge and 8-ball pool club at Cuephoria. Enjoy PS5, VR games, billiards, and more in an electrifying atmosphere with special online booking discounts.",
-  keywords = "gaming lounge, 8-ball club, billiards, Trichy, PS5, VR games, pool table, AR games, online booking, cuephoria",
+  keywords = "gaming lounge, 8-ball club, billiards, Trichy, PS5, VR games, pool table, AR games, online booking, cuephoria, snooker, metashot challenges",
   canonicalUrl = "https://cuephoria.in",
   ogImage = "/lovable-uploads/2fa0e70e-4a7a-42ae-b82c-a47608a6d4ee.png"
 }: SEOMetadataProps) => {
@@ -37,6 +37,52 @@ const SEOMetadata = ({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+
+      {/* Additional SEO Tags */}
+      <meta name="robots" content="index, follow" />
+      <meta name="author" content="Cuephoria Gaming Lounge" />
+      <meta name="geo.region" content="IN-TN" />
+      <meta name="geo.placename" content="Trichy" />
+      <meta name="geo.position" content="10.7905;78.7047" />
+      <meta name="ICBM" content="10.7905, 78.7047" />
+      
+      {/* Structured Data */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "EntertainmentBusiness",
+          "name": "Cuephoria Gaming Lounge",
+          "image": ogImage,
+          "@id": canonicalUrl,
+          "url": canonicalUrl,
+          "telephone": "+918637625155",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Cuephoria Gaming Lounge",
+            "addressLocality": "Trichy",
+            "postalCode": "620001",
+            "addressCountry": "IN"
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "11:00",
+            "closes": "23:00"
+          },
+          "sameAs": [
+            "https://www.facebook.com/cuephoria",
+            "https://www.instagram.com/cuephoria/"
+          ]
+        })}
+      </script>
     </Helmet>
   );
 };
