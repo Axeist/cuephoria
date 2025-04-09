@@ -19,7 +19,7 @@ const galleryImages = [
     caption: "Professional 8-Ball Tables"
   },
   {
-    url: "https://images.unsplash.com/photo-1611691934391-5b4a7ad3f2fd?q=80&w=2070&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1607034071380-031f8b1692be?q=80&w=2070&auto=format&fit=crop",
     alt: "Metashot challenge experience at Cuephoria Trichy",
     caption: "Metashot Challenge Experience"
   },
