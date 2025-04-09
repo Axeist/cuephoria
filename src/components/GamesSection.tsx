@@ -2,14 +2,23 @@
 import React from 'react';
 import { Card, CardContent } from "./ui/card";
 import { gameData } from "../utils/gameData";
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon, Gamepad } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 
 const GamesSection: React.FC = () => {
-  // Helper function to dynamically get Lucide icons
+  // Helper function to safely get Lucide icons by name
   const getIcon = (iconName: string): LucideIcon => {
-    const Icon = (LucideIcons as Record<string, LucideIcon>)[iconName.charAt(0).toUpperCase() + iconName.slice(1)];
-    return Icon || LucideIcons.GameController;
+    // Convert iconName to PascalCase as Lucide icons use that convention
+    const pascalCaseName = iconName.charAt(0).toUpperCase() + iconName.slice(1);
+    
+    // Safely check if the icon exists in LucideIcons
+    if (pascalCaseName in LucideIcons && 
+        typeof (LucideIcons as any)[pascalCaseName] === 'function') {
+      return (LucideIcons as any)[pascalCaseName];
+    }
+    
+    // Return Gamepad as fallback icon
+    return Gamepad;
   };
 
   return (

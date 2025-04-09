@@ -1,8 +1,9 @@
+
 // Game data with updated images
 export const gameData = [
   {
     title: "8-Ball Pool",
-    icon: "trophy",
+    icon: "target",
     image: "/lovable-uploads/49cea69d-9aaf-4b3c-811e-de6cea2ec236.png",
     description: "Challenge friends to classic 8-ball pool on our professional tables. Perfect your angles and enjoy competitive gameplay."
   },
@@ -14,7 +15,7 @@ export const gameData = [
   },
   {
     title: "PS5 Gaming",
-    icon: "gamepad-2",
+    icon: "gamepad",
     image: "/lovable-uploads/2663021f-e6d3-4c75-8f66-b2672cc5f988.png",
     description: "Enjoy the latest PS5 titles including FIFA, Call of Duty, GTA, and more on large screens with immersive sound systems."
   },
@@ -30,7 +31,7 @@ export const gameData = [
 export const galleryData = [
   {
     id: 1,
-    image: "/lovable-uploads/a1562404-58ac-46dc-8720-c7849ec94926.png",
+    image: "/lovable-uploads/2fa0e70e-4a7a-42ae-b82c-a47608a6d4ee.png",
     title: "Relaxing Gaming Lounge Atmosphere",
     description: "Unwind in our comfortable gaming lounge with perfect lighting and ambiance for both casual and competitive play."
   },
