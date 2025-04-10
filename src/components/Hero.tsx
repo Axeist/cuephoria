@@ -61,7 +61,7 @@ const Hero = ({ className = '' }) => {
             </h2>
             
             <p className="text-lg text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0">
-              Experience the perfect blend of billiards, snooker, and PS5 gaming at Cuephoria, Trichy's premier gaming lounge and café. Level up your entertainment with our premium pool tables and gaming stations!
+              Experience the perfect blend of billiards, snooker, and PS5 gaming at Cuephoria, Trichy's premier gaming lounge and café.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mb-8">
