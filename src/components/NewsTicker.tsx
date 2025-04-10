@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 const news = [
   "SPECIAL ONLINE OFFER! Get FLAT 10% OFF your bill + 1 FREE AR Metashot Cricket Challenge",
   "Book online to secure your slot and enjoy exclusive discounts",
+  "STUDENT SPECIAL OFFER! Get FLAT ₹100 OFF on Weekly & Monthly Passes with a valid student ID",
   "Try our latest AR and VR games with friends and family",
   "Join Cuephoria's gaming tournaments and win exciting prizes",
   "Perfect spot for birthday parties and corporate events"
