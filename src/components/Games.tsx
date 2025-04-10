@@ -127,30 +127,33 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
             : 'max-w-3xl max-h-[90vh]'} overflow-y-auto p-4 md:p-6`}
         >
           <DialogHeader className="relative mb-2 md:mb-4">
-            <DialogTitle className="text-xl md:text-2xl font-bold neon-text-blue flex items-center gap-2">
-              {game.icon} {game.name}
-            </DialogTitle>
-            <DialogDescription className="text-gray-300 mb-4">
-              Experience premium entertainment at Cuephoria, Trichy
-            </DialogDescription>
+            <div className="flex justify-between items-center w-full">
+              <div>
+                <DialogTitle className="text-xl md:text-2xl font-bold neon-text-blue flex items-center gap-2">
+                  {game.icon} {game.name}
+                </DialogTitle>
+                <DialogDescription className="text-gray-300 mb-4">
+                  Experience premium entertainment at Cuephoria, Trichy
+                </DialogDescription>
+              </div>
+              <button
+                onClick={() => setOpen(false)}
+                className="h-8 w-8 rounded-full bg-gaming-accent/50 flex items-center justify-center hover:bg-neon-blue/30 transition-colors"
+                aria-label="Close dialog"
+              >
+                <X className="h-5 w-5 text-white" />
+              </button>
+            </div>
 
             {isMobile && (
               <a 
                 href="#book-now" 
-                className="w-full mb-4 py-2 rounded-md bg-neon-pink text-white text-center block transition-colors"
+                className="w-full mt-4 py-2 rounded-md bg-neon-pink text-white text-center block transition-colors"
                 onClick={() => setOpen(false)}
               >
                 Book This Experience
               </a>
             )}
-
-            <button
-              onClick={() => setOpen(false)}
-              className="absolute right-0 top-0 h-8 w-8 rounded-full bg-gaming-accent/50 flex items-center justify-center hover:bg-neon-blue/30 transition-colors"
-              aria-label="Close dialog"
-            >
-              <X className="h-5 w-5 text-white" />
-            </button>
           </DialogHeader>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 overflow-hidden">
