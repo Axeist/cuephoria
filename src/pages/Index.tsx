@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -119,7 +120,7 @@ const Index = () => {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     
-    const targetElements = document.querySelectorAll('section, h2, .glass-card');
+    const targetElements = document.querySelectorAll('section, h1, h2, .glass-card');
     
     targetElements.forEach(el => {
       el.classList.add('opacity-0');
@@ -136,6 +137,7 @@ const Index = () => {
       <SEOMetadata />
       <Navbar activeSection={activeSection} />
       <main className="pt-16">
+        <h1 className="sr-only">Cuephoria - Premier 8-Ball Pool Club & Gaming Lounge in Trichy</h1>
         <Hero className="mt-[-2rem]" />
         <About />
         <Games />

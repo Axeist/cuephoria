@@ -56,8 +56,12 @@ const Hero = ({ className = '' }) => {
               <span className="block text-3xl md:text-4xl mt-2 text-white">8-BALL CLUB & GAMING</span>
             </h1>
             
+            <h2 className="text-xl text-gray-300 mb-6 max-w-xl mx-auto lg:mx-0 font-semibold">
+              Trichy's Premier Gaming Lounge & Pool Club
+            </h2>
+            
             <p className="text-lg text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0">
-              Experience the perfect blend of billiards and gaming at Trichy's premier gaming lounge and café. Level up your entertainment experience!
+              Experience the perfect blend of billiards, snooker, and PS5 gaming at Cuephoria, Trichy's premier gaming lounge and café. Level up your entertainment with our premium pool tables and gaming stations!
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mb-8">
@@ -68,7 +72,7 @@ const Hero = ({ className = '' }) => {
               
               <div className="flex items-center space-x-2 text-gray-300">
                 <MapPin className="h-5 w-5 text-neon-blue" />
-                <span>Thiruverumbur, Tamil Nadu</span>
+                <span>Thiruverumbur, Trichy, Tamil Nadu</span>
               </div>
             </div>
             
@@ -88,7 +92,7 @@ const Hero = ({ className = '' }) => {
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
               <a 
-                href={`https://wa.me/918637625155?text=${encodeURIComponent("Hello! I'd like to inquire about Cuephoria.")}`}
+                href={`https://wa.me/918637625155?text=${encodeURIComponent("Hello! I'd like to inquire about Cuephoria gaming lounge and pool club in Trichy.")}`}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="px-8 py-3 rounded-md bg-transparent border-2 border-neon-pink text-white font-semibold hover:bg-neon-pink/10 transition-all duration-300 flex items-center justify-center"
@@ -117,7 +121,7 @@ const Hero = ({ className = '' }) => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <img 
                   src="/lovable-uploads/2fa0e70e-4a7a-42ae-b82c-a47608a6d4ee.png" 
-                  alt="Cuephoria Logo" 
+                  alt="Cuephoria Logo - 8-Ball Pool Club & Gaming Lounge in Trichy" 
                   className="w-full h-full object-contain animate-float"
                 />
               </div>
@@ -131,7 +135,7 @@ const Hero = ({ className = '' }) => {
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1">
           <div className="w-1 h-3 bg-white rounded-full animate-bounce-slow"></div>
         </div>
-        <span className="text-white/70 text-sm mt-2">Scroll Down</span>
+        <span className="text-white/70 text-sm mt-2">Scroll Down to Explore Cuephoria</span>
       </div>
     </section>
   );

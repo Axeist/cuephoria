@@ -11,9 +11,9 @@ interface SEOMetadataProps {
 }
 
 const SEOMetadata = ({
-  title = "Cuephoria - Premier Gaming Lounge & 8-Ball Pool Club in Trichy",
-  description = "Experience Trichy's premier gaming lounge and 8-ball pool club at Cuephoria. Enjoy PS5, VR games, billiards, and more in an electrifying atmosphere with special online booking discounts.",
-  keywords = "gaming lounge, 8-ball club, billiards, Trichy, PS5, VR games, pool table, AR games, online booking, cuephoria, snooker, metashot challenges",
+  title = "Cuephoria | Premier 8-Ball Pool Club & Gaming Lounge in Trichy",
+  description = "Visit Cuephoria Gaming Lounge in Trichy for the best 8-ball pool, snooker, PS5 gaming & VR experiences. Book online for exclusive discounts!",
+  keywords = "Cuephoria, gaming lounge, 8-ball club, billiards, Trichy, PS5, VR games, pool table, snooker, metashot challenges, premier gaming Trichy",
   canonicalUrl = "https://cuephoria.in",
   ogImage = "/lovable-uploads/bf64c942-20de-45f0-a655-188a21952fc4.png"
 }: SEOMetadataProps) => {
@@ -39,7 +39,7 @@ const SEOMetadata = ({
       <meta name="twitter:image" content={ogImage} />
 
       {/* Additional SEO Tags */}
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content="index, follow, max-image-preview:large" />
       <meta name="author" content="Cuephoria Gaming Lounge" />
       <meta name="geo.region" content="IN-TN" />
       <meta name="geo.placename" content="Trichy" />
@@ -56,12 +56,20 @@ const SEOMetadata = ({
           "@id": canonicalUrl,
           "url": canonicalUrl,
           "telephone": "+918637625155",
+          "priceRange": "₹₹",
+          "description": "Cuephoria is Trichy's premier gaming lounge and 8-ball pool club, offering PS5, VR games, billiards, and more in an electrifying atmosphere.",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Cuephoria Gaming Lounge",
-            "addressLocality": "Trichy",
-            "postalCode": "620001",
-            "addressCountry": "IN"
+            "streetAddress": "Roof Top, No.1, Shivani Complex, Vaithiyalingam St, Muthu Nagar",
+            "addressLocality": "Thiruverumbur, Trichy",
+            "postalCode": "620013",
+            "addressCountry": "IN",
+            "addressRegion": "Tamil Nadu"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 10.794156358865413,
+            "longitude": 78.75926407557512
           },
           "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
@@ -78,7 +86,7 @@ const SEOMetadata = ({
             "closes": "23:00"
           },
           "sameAs": [
-            "https://www.facebook.com/cuephoria",
+            "https://www.facebook.com/profile.php?id=61574215405586&sk=about",
             "https://www.instagram.com/cuephoriaclub/"
           ]
         })}
