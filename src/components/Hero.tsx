@@ -2,11 +2,11 @@
 import React from 'react';
 import { ArrowRight, Clock, MapPin, Gamepad2 } from 'lucide-react';
 
-const Hero = () => {
+const Hero = ({ className = '' }) => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center pt-20 overflow-hidden"
+      className={`relative min-h-screen flex items-center pt-20 overflow-hidden ${className}`}
     >
       {/* Background elements */}
       <div className="absolute inset-0 bg-gaming-darker">
