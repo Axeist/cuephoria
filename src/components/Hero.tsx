@@ -6,7 +6,7 @@ const Hero = ({ className = '' }) => {
   return (
     <section 
       id="home" 
-      className={`relative min-h-screen flex items-center pt-20 overflow-hidden ${className}`}
+      className={`relative min-h-screen flex items-center pt-14 overflow-hidden ${className}`}
     >
       {/* Background elements */}
       <div className="absolute inset-0 bg-gaming-darker">
@@ -49,22 +49,22 @@ const Hero = ({ className = '' }) => {
       </div>
       
       <div className="container mx-auto px-4 z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          <div className="w-full lg:w-1/2 text-center lg:text-left mt-16 md:mt-0">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="w-full lg:w-1/2 text-center lg:text-left mt-8 md:mt-0">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
               <span className="block neon-text-blue animate-pulse-neon">CUEPHORIA</span>
               <span className="block text-3xl md:text-4xl mt-2 text-white">8-BALL CLUB & GAMING</span>
             </h1>
             
-            <h2 className="text-xl text-gray-300 mb-6 max-w-xl mx-auto lg:mx-0 font-semibold">
+            <h2 className="text-xl text-gray-300 mb-4 max-w-xl mx-auto lg:mx-0 font-semibold">
               Trichy's Premier Gaming Lounge & Pool Club
             </h2>
             
-            <p className="text-lg text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0">
+            <p className="text-lg text-gray-300 mb-6 max-w-xl mx-auto lg:mx-0">
               Experience the perfect blend of billiards, snooker, and PS5 gaming at Cuephoria, Trichy's premier gaming lounge and café.
             </p>
             
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 mb-6">
               <div className="flex items-center space-x-2 text-gray-300">
                 <Clock className="h-5 w-5 text-neon-pink" />
                 <span>11:00 AM - 11:00 PM</span>
@@ -103,7 +103,7 @@ const Hero = ({ className = '' }) => {
           </div>
           
           <div className="w-full lg:w-1/2 relative">
-            <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
+            <div className="relative w-56 h-56 md:w-80 md:h-80 mx-auto">
               {/* Animated pulsing light rays */}
               <div className="absolute inset-0 flex items-center justify-center">
                 {Array.from({ length: 12 }).map((_, i) => (
@@ -130,8 +130,8 @@ const Hero = ({ className = '' }) => {
         </div>
       </div>
       
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+      {/* Scroll indicator - removed to save vertical space on mobile */}
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex-col items-center hidden md:flex">
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1">
           <div className="w-1 h-3 bg-white rounded-full animate-bounce-slow"></div>
         </div>

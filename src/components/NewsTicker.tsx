@@ -21,7 +21,7 @@ const NewsTicker = () => {
   }, []);
   
   return (
-    <div className="bg-gaming-darker/80 backdrop-blur-md border-y border-neon-blue/20 py-1 overflow-hidden" role="complementary" aria-label="Announcements">
+    <div className="bg-gaming-darker/80 backdrop-blur-md border-y border-neon-blue/20 py-0.5 overflow-hidden" role="complementary" aria-label="Announcements">
       <div className="ticker-container">
         <div className="ticker-wrapper">
           <div className="ticker-text">
@@ -49,7 +49,7 @@ const NewsTicker = () => {
         
         .ticker-wrapper {
           width: 100%;
-          padding: 0.25rem 0;
+          padding: 0.15rem 0;
         }
         
         .ticker-text {
@@ -80,9 +80,12 @@ const NewsTicker = () => {
         
         @media (max-width: 640px) {
           .ticker-visible {
-            font-size: 0.75rem;
-            line-height: 1.2;
-            padding: 0.25rem 0.5rem;
+            font-size: 0.7rem;
+            line-height: 1.1;
+            padding: 0.15rem 0.5rem;
+          }
+          .ticker-wrapper {
+            padding: 0.1rem 0;
           }
         }
         
