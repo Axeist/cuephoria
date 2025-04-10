@@ -77,8 +77,8 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled 
-            ? "bg-gaming-darker/80 backdrop-blur-md shadow-lg py-3" 
-            : "bg-transparent py-5"
+            ? "bg-gaming-darker/80 backdrop-blur-md shadow-lg py-2" 
+            : "bg-transparent py-3 md:py-5"
         )}
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
@@ -86,9 +86,9 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             <img 
               src="/lovable-uploads/2fa0e70e-4a7a-42ae-b82c-a47608a6d4ee.png" 
               alt="Cuephoria" 
-              className="h-12 animate-pulse-neon"
+              className="h-8 md:h-12 animate-pulse-neon"
             />
-            <span className="text-xl font-bold neon-text-blue animate-pulse-neon">CUEPHORIA</span>
+            <span className="text-lg md:text-xl font-bold neon-text-blue animate-pulse-neon">CUEPHORIA</span>
           </a>
           
           {/* Desktop Navigation */}
@@ -128,8 +128,8 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
       
       {/* News Ticker positioned just below the header */}
       <div className={cn(
-        "fixed left-0 right-0 z-40 transition-all duration-300",
-        isScrolled ? "top-[60px]" : "top-[80px]" 
+        "fixed left-0 right-0 z-40 transition-all duration-300 w-full",
+        isScrolled ? "top-[52px] md:top-[60px]" : "top-[68px] md:top-[80px]" 
       )}>
         <NewsTicker />
       </div>

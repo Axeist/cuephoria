@@ -28,7 +28,7 @@ const NewsTicker = () => {
             {news.map((item, index) => (
               <span 
                 key={index} 
-                className={`inline-block whitespace-nowrap px-4 text-white ${index === currentNewsIndex ? 'ticker-visible' : 'ticker-hidden'}`}
+                className={`inline-block whitespace-normal px-4 text-white ${index === currentNewsIndex ? 'ticker-visible' : 'ticker-hidden'}`}
                 aria-hidden={index !== currentNewsIndex}
               >
                 <span className="mr-2 text-neon-pink" aria-hidden="true">★</span>
@@ -56,6 +56,8 @@ const NewsTicker = () => {
           width: 100%;
           text-align: center;
           position: relative;
+          max-width: 100%;
+          overflow: hidden;
         }
         
         .ticker-visible {
@@ -63,6 +65,10 @@ const NewsTicker = () => {
           transform: translateY(0);
           transition: opacity 0.5s ease, transform 0.5s ease;
           animation: pulse-glow 2s ease-in-out infinite;
+          max-width: 100%;
+          display: block;
+          margin: 0 auto;
+          padding: 0 1rem;
         }
         
         .ticker-hidden {
@@ -70,6 +76,14 @@ const NewsTicker = () => {
           height: 0;
           position: absolute;
           transform: translateY(10px);
+        }
+        
+        @media (max-width: 640px) {
+          .ticker-visible {
+            font-size: 0.85rem;
+            line-height: 1.2;
+            padding: 0.25rem 0.5rem;
+          }
         }
         
         @keyframes pulse-glow {

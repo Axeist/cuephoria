@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
-import { Gamepad2, Crosshair, TrophyIcon, Target } from 'lucide-react';
+import { Gamepad2, Crosshair, TrophyIcon, Target, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { useIsMobile } from "../hooks/use-mobile";
 
 // Updated games array with uploaded images
 const games = [
@@ -73,6 +73,7 @@ const pricingOptions = [
 
 const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => {
   const [open, setOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -110,7 +111,6 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
           </div>
         </div>
         
-        {/* Animated border on hover */}
         <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-blue via-neon-pink to-neon-blue animate-shimmer"></div>
           <div className="absolute bottom-0 right-0 w-full h-1 bg-gradient-to-r from-neon-pink via-neon-blue to-neon-pink animate-shimmer"></div>
@@ -119,11 +119,17 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
         </div>
       </div>
 
-      {/* Detailed Game Information Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="bg-gaming-darker border border-neon-blue/30 text-white max-w-3xl">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold neon-text-blue flex items-center gap-2">
+        <DialogContent className="bg-gaming-darker border border-neon-blue/30 text-white max-w-3xl max-h-[90vh] overflow-y-auto md:max-h-[85vh] p-4 md:p-6">
+          <DialogHeader className="relative mb-2 md:mb-4">
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute right-0 top-0 h-8 w-8 rounded-full bg-gaming-accent/50 flex items-center justify-center hover:bg-neon-blue/30 transition-colors"
+              aria-label="Close dialog"
+            >
+              <X className="h-5 w-5 text-white" />
+            </button>
+            <DialogTitle className="text-xl md:text-2xl font-bold neon-text-blue flex items-center gap-2 pr-10">
               {game.icon} {game.name}
             </DialogTitle>
             <DialogDescription className="text-gray-300">
@@ -131,7 +137,7 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
             </DialogDescription>
           </DialogHeader>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 overflow-hidden">
             <div className="rounded-lg overflow-hidden">
               <img 
                 src={game.image} 
@@ -140,36 +146,55 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
               />
             </div>
             
-            <div className="space-y-4">
-              <p className="text-gray-200">
+            <div className="space-y-3 md:space-y-4 overflow-y-auto max-h-[40vh] md:max-h-[60vh] pr-1">
+              <p className="text-sm md:text-base text-gray-200">
                 {game.detailedDescription}
               </p>
               
-              <h4 className="text-lg font-semibold neon-text-pink mt-4">Key Features</h4>
+              <h4 className="text-md md:text-lg font-semibold neon-text-pink mt-3 md:mt-4">Key Features</h4>
               <ul className="space-y-2">
                 {game.benefits.map((benefit, i) => (
                   <li key={i} className="flex items-start">
-                    <div className="mr-3 mt-1 h-5 w-5 text-neon-blue flex-shrink-0">
+                    <div className="mr-2 md:mr-3 mt-1 h-4 md:h-5 w-4 md:w-5 text-neon-blue flex-shrink-0">
                       <svg viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-300">{benefit}</span>
+                    <span className="text-sm md:text-base text-gray-300">{benefit}</span>
                   </li>
                 ))}
               </ul>
               
-              <div className="pt-4">
-                <a 
-                  href="#book-now" 
-                  className="px-6 py-2 rounded-md bg-neon-pink text-white font-medium hover:bg-neon-pink/80 transition-colors inline-flex items-center"
-                  onClick={() => setOpen(false)}
-                >
-                  Book This Experience
-                  <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                  </svg>
-                </a>
+              <div className="pt-3 md:pt-4">
+                {!isMobile && (
+                  <a 
+                    href="#book-now" 
+                    className="px-4 md:px-6 py-2 rounded-md bg-neon-pink text-white text-sm md:text-base font-medium hover:bg-neon-pink/80 transition-colors inline-flex items-center"
+                    onClick={() => setOpen(false)}
+                  >
+                    Book This Experience
+                    <svg className="ml-2 h-4 md:h-5 w-4 md:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </a>
+                )}
+                {isMobile && (
+                  <div className="flex justify-between items-center">
+                    <a 
+                      href="#book-now" 
+                      className="px-4 py-2 rounded-md bg-neon-pink text-white text-sm font-medium hover:bg-neon-pink/80 transition-colors inline-flex items-center"
+                      onClick={() => setOpen(false)}
+                    >
+                      Book Now
+                    </a>
+                    <button 
+                      onClick={() => setOpen(false)}
+                      className="px-4 py-2 rounded-md bg-gaming-accent text-white text-sm font-medium hover:bg-gaming-accent/70 transition-colors"
+                    >
+                      Close
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -182,7 +207,6 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
 const Games = () => {
   return (
     <section id="games" className="py-20 relative">
-      {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,45,239,0.1)_0,rgba(15,25,40,0)_60%)]"></div>
       </div>
@@ -203,7 +227,6 @@ const Games = () => {
           ))}
         </div>
         
-        {/* Game titles section */}
         <div className="mt-16">
           <div className="glass-card rounded-lg p-6 md:p-8">
             <h3 className="text-2xl font-bold mb-6 text-center text-white">
@@ -230,7 +253,6 @@ const Games = () => {
           </div>
         </div>
         
-        {/* Pricing section */}
         <div className="mt-16">
           <div className="glass-card rounded-lg p-6 md:p-8">
             <h3 className="text-2xl font-bold mb-6 text-center text-white">
