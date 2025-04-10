@@ -138,7 +138,7 @@ const Index = () => {
       <Navbar activeSection={activeSection} />
       <main className="pt-16">
         <h1 className="sr-only">Cuephoria - Premier 8-Ball Pool Club & Gaming Lounge in Trichy</h1>
-        <Hero className="mt-[-2rem]" />
+        <Hero className="mt-12 md:mt-[-2rem]" />
         <About />
         <Games />
         <Gallery />

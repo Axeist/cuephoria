@@ -50,7 +50,7 @@ const Hero = ({ className = '' }) => {
       
       <div className="container mx-auto px-4 z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          <div className="w-full lg:w-1/2 text-center lg:text-left">
+          <div className="w-full lg:w-1/2 text-center lg:text-left mt-16 md:mt-0">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               <span className="block neon-text-blue animate-pulse-neon">CUEPHORIA</span>
               <span className="block text-3xl md:text-4xl mt-2 text-white">8-BALL CLUB & GAMING</span>

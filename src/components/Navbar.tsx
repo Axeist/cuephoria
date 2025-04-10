@@ -129,7 +129,7 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
       {/* News Ticker positioned just below the header */}
       <div className={cn(
         "fixed left-0 right-0 z-40 transition-all duration-300 w-full",
-        isScrolled ? "top-[52px] md:top-[60px]" : "top-[68px] md:top-[80px]" 
+        isScrolled ? "top-[52px] md:top-[60px]" : "top-[56px] md:top-[80px]" 
       )}>
         <NewsTicker />
       </div>

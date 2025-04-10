@@ -80,7 +80,7 @@ const NewsTicker = () => {
         
         @media (max-width: 640px) {
           .ticker-visible {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             line-height: 1.2;
             padding: 0.25rem 0.5rem;
           }
