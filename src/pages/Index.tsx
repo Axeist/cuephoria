@@ -146,8 +146,8 @@ const Index = () => {
     <div className="min-h-screen bg-gaming-dark text-white">
       <SEOMetadata />
       <Navbar activeSection={activeSection} />
-      {/* Add extra padding-top to accommodate the news ticker */}
-      <main className="pt-28">
+      {/* Reduced padding-top to minimize gap */}
+      <main className="pt-20">
         <Hero />
         <About />
         <Games />
