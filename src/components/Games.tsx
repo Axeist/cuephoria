@@ -102,11 +102,11 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
               <div className="mr-2 text-neon-pink">
                 {game.icon}
               </div>
-              <h3 className="text-2xl font-bold text-white group-hover:neon-text-blue transition-all duration-300">
+              <h3 className="text-2xl font-bold text-white group-hover:neon-text-blue transition-all duration-300 break-words">
                 {game.name}
               </h3>
             </div>
-            <p className="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+            <p className="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 break-words hyphens-auto">
               {game.description}
             </p>
           </div>
@@ -129,7 +129,7 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
           <DialogHeader className="relative mb-2 md:mb-4">
             <div className="flex justify-between items-center w-full">
               <div>
-                <DialogTitle className="text-xl md:text-2xl font-bold neon-text-blue flex items-center gap-2">
+                <DialogTitle className="text-xl md:text-2xl font-bold neon-text-blue flex items-center gap-2 break-words">
                   {game.icon} {game.name}
                 </DialogTitle>
                 <DialogDescription className="text-gray-300 mb-4">
@@ -166,7 +166,7 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
             </div>
             
             <div className="space-y-3 md:space-y-4 overflow-y-auto max-h-[40vh] md:max-h-[60vh] pr-1">
-              <p className="text-sm md:text-base text-gray-200">
+              <p className="text-sm md:text-base text-gray-200 break-words whitespace-normal">
                 {game.detailedDescription}
               </p>
               
@@ -179,7 +179,7 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-sm md:text-base text-gray-300">{benefit}</span>
+                    <span className="text-sm md:text-base text-gray-300 break-words whitespace-normal">{benefit}</span>
                   </li>
                 ))}
               </ul>

@@ -42,10 +42,11 @@ const BookNow = () => {
         <div className="flex flex-col lg:flex-row items-stretch gap-12">
           <div className="w-full lg:w-1/2">
             <div className="glass-card rounded-xl p-8 border border-neon-blue/20 h-full flex flex-col">
-              {/* Calendly inline widget with ref for direct initialization */}
+              {/* Calendly inline widget with ref for direct initialization - aligned left */}
               <div 
                 ref={calendlyRef}
-                className="w-full flex-grow h-[600px]"
+                className="w-full flex-grow h-[600px] text-left"
+                style={{ textAlign: 'left' }}
               ></div>
             </div>
           </div>
