@@ -15,7 +15,7 @@ const SEOMetadata = ({
   description = "Experience Trichy's premier gaming lounge and 8-ball pool club at Cuephoria. Enjoy PS5, VR games, billiards, and more in an electrifying atmosphere with special online booking discounts.",
   keywords = "gaming lounge, 8-ball club, billiards, Trichy, PS5, VR games, pool table, AR games, online booking, cuephoria, snooker, metashot challenges",
   canonicalUrl = "https://cuephoria.in",
-  ogImage = "/lovable-uploads/2fa0e70e-4a7a-42ae-b82c-a47608a6d4ee.png"
+  ogImage = "/lovable-uploads/bf64c942-20de-45f0-a655-188a21952fc4.png"
 }: SEOMetadataProps) => {
   return (
     <Helmet>
@@ -79,7 +79,7 @@ const SEOMetadata = ({
           },
           "sameAs": [
             "https://www.facebook.com/cuephoria",
-            "https://www.instagram.com/cuephoria/"
+            "https://www.instagram.com/cuephoriaclub/"
           ]
         })}
       </script>
