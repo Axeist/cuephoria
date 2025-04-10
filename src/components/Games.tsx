@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Gamepad2, Crosshair, TrophyIcon, Target, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -120,8 +121,29 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="bg-gaming-darker border border-neon-blue/30 text-white max-w-3xl max-h-[90vh] overflow-y-auto md:max-h-[85vh] p-4 md:p-6">
+        <DialogContent 
+          className={`bg-gaming-darker border border-neon-blue/30 text-white ${isMobile 
+            ? 'max-w-[95vw] max-h-[90vh] w-[95vw] rounded-lg' 
+            : 'max-w-3xl max-h-[90vh]'} overflow-y-auto p-4 md:p-6`}
+        >
           <DialogHeader className="relative mb-2 md:mb-4">
+            <DialogTitle className="text-xl md:text-2xl font-bold neon-text-blue flex items-center gap-2">
+              {game.icon} {game.name}
+            </DialogTitle>
+            <DialogDescription className="text-gray-300 mb-4">
+              Experience premium entertainment at Cuephoria, Trichy
+            </DialogDescription>
+
+            {isMobile && (
+              <a 
+                href="#book-now" 
+                className="w-full mb-4 py-2 rounded-md bg-neon-pink text-white text-center block transition-colors"
+                onClick={() => setOpen(false)}
+              >
+                Book This Experience
+              </a>
+            )}
+
             <button
               onClick={() => setOpen(false)}
               className="absolute right-0 top-0 h-8 w-8 rounded-full bg-gaming-accent/50 flex items-center justify-center hover:bg-neon-blue/30 transition-colors"
@@ -129,12 +151,6 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
             >
               <X className="h-5 w-5 text-white" />
             </button>
-            <DialogTitle className="text-xl md:text-2xl font-bold neon-text-blue flex items-center gap-2 pr-10">
-              {game.icon} {game.name}
-            </DialogTitle>
-            <DialogDescription className="text-gray-300">
-              Experience premium entertainment at Cuephoria, Trichy
-            </DialogDescription>
           </DialogHeader>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 overflow-hidden">
@@ -179,21 +195,12 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
                   </a>
                 )}
                 {isMobile && (
-                  <div className="flex justify-between items-center">
-                    <a 
-                      href="#book-now" 
-                      className="px-4 py-2 rounded-md bg-neon-pink text-white text-sm font-medium hover:bg-neon-pink/80 transition-colors inline-flex items-center"
-                      onClick={() => setOpen(false)}
-                    >
-                      Book Now
-                    </a>
-                    <button 
-                      onClick={() => setOpen(false)}
-                      className="px-4 py-2 rounded-md bg-gaming-accent text-white text-sm font-medium hover:bg-gaming-accent/70 transition-colors"
-                    >
-                      Close
-                    </button>
-                  </div>
+                  <button 
+                    onClick={() => setOpen(false)}
+                    className="w-full py-2 rounded-md bg-gaming-accent text-white text-sm font-medium hover:bg-gaming-accent/70 transition-colors"
+                  >
+                    Close
+                  </button>
                 )}
               </div>
             </div>
