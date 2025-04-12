@@ -45,7 +45,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
           <div className="mb-8 md:mb-0">
             <img 
-              src="/lovable-uploads/2fa0e70e-4a7a-42ae-b82c-a47608a6d4ee.png" 
+              src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
               alt="Cuephoria" 
               className="h-16 mb-4" 
             />
