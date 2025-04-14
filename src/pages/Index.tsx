@@ -135,12 +135,12 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gaming-dark text-white">
       <SEOMetadata 
-        title="Cuephoria | Best PS5 Gaming, 8-Ball Pool & Snooker Club in Trichy" 
-        description="Visit Cuephoria - Trichy's #1 premium gaming lounge offering PS5 games, 8-ball pool, snooker, VR gaming & ideal hangout spot for friends. Book online for exclusive discounts!"
+        title="Cuephoria | Best PS5 Gaming & Pool Club for Students in Trichy" 
+        description="Visit Cuephoria - Trichy's #1 gaming lounge with student discounts! Enjoy PS5 games, 8-ball pool, snooker & the perfect college hangout spot. Book online for exclusive student offers!"
       />
       <Navbar activeSection={activeSection} />
       <main className="pt-16">
-        <h1 className="sr-only">Cuephoria - Best PS5 Gaming, 8-Ball Pool, Snooker and Hangout Place in Trichy</h1>
+        <h1 className="sr-only">Cuephoria - Best PS5 Gaming, 8-Ball Pool, Snooker and Student Hangout Place in Trichy</h1>
         <Hero className="mt-8 md:mt-[-2rem]" />
         <About />
         <Games />

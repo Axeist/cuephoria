@@ -11,9 +11,9 @@ interface SEOMetadataProps {
 }
 
 const SEOMetadata = ({
-  title = "Cuephoria | Best PS5 Gaming, 8-Ball Pool & Snooker Club in Trichy",
-  description = "Visit Cuephoria - Trichy's #1 premium gaming lounge offering PS5 games, 8-ball pool, snooker, VR gaming & ideal hangout spot for friends. Book online for exclusive discounts!",
-  keywords = "Cuephoria, gaming lounge Trichy, PS5 gaming Trichy, 8-ball pool Trichy, snooker Trichy, pool table Trichy, PlayStation games Trichy, VR games, metashot challenges, hangout place Trichy, chill out spot Trichy, billiards Trichy, gaming center Trichy, best gaming lounge Trichy, weekend hangout Trichy, gaming cafe Trichy",
+  title = "Cuephoria | Best PS5 Gaming, 8-Ball Pool & Snooker Club for Students in Trichy",
+  description = "Cuephoria - Trichy's #1 gaming lounge for college & school students with PS5 games, 8-ball pool, snooker & student discounts. The perfect hangout spot for friends. Book online now!",
+  keywords = "Cuephoria, gaming lounge Trichy, PS5 gaming Trichy, 8-ball pool Trichy, snooker Trichy, pool table Trichy, PlayStation games Trichy, VR games, metashot challenges, hangout place Trichy, chill out spot Trichy, billiards Trichy, gaming center Trichy, best gaming lounge Trichy, weekend hangout Trichy, gaming cafe Trichy, student gaming Trichy, college hangout Trichy, student discount gaming Trichy, student recreation Trichy",
   canonicalUrl = "https://cuephoria.in",
   ogImage = "/lovable-uploads/bf64c942-20de-45f0-a655-188a21952fc4.png"
 }: SEOMetadataProps) => {
@@ -49,6 +49,8 @@ const SEOMetadata = ({
       <meta name="revisit-after" content="7 days" />
       <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      <meta name="audience" content="all, students, gamers, youth" />
+      <meta name="target" content="College Students, School Students, Gamers" />
       
       {/* Structured Data */}
       <script type="application/ld+json">
@@ -61,7 +63,7 @@ const SEOMetadata = ({
           "url": canonicalUrl,
           "telephone": "+918637625155",
           "priceRange": "₹₹",
-          "description": "Cuephoria is Trichy's premier gaming lounge and 8-ball pool club, offering PS5, VR games, billiards, snooker, and more in an electrifying atmosphere.",
+          "description": "Cuephoria is Trichy's premier gaming lounge and 8-ball pool club, offering PS5, VR games, billiards, snooker, and special student discounts in an electrifying atmosphere.",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "Roof Top, No.1, Shivani Complex, Vaithiyalingam St, Muthu Nagar",
@@ -93,6 +95,19 @@ const SEOMetadata = ({
             "https://www.facebook.com/profile.php?id=61574215405586&sk=about",
             "https://www.instagram.com/cuephoriaclub/"
           ],
+          "audience": {
+            "@type": "Audience",
+            "audienceType": "College Students, School Students, Young Adults",
+            "geographicArea": {
+              "@type": "GeoShape",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Trichy",
+                "addressRegion": "Tamil Nadu",
+                "addressCountry": "IN"
+              }
+            }
+          },
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": "Cuephoria Gaming Services",
@@ -121,9 +136,24 @@ const SEOMetadata = ({
                 "@type": "Offer",
                 "name": "Hangout Space in Trichy",
                 "description": "Premium chill-out space for friends and groups"
+              },
+              {
+                "@type": "Offer",
+                "name": "Student Discount Gaming",
+                "description": "Special rates and packages for college and school students"
               }
             ]
           },
+          "specialOpeningHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "name": "Student Happy Hours",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+              "opens": "14:00",
+              "closes": "17:00",
+              "description": "Special rates for students with valid ID"
+            }
+          ],
           "keywords": [
             "PS5 gaming Trichy",
             "8-Ball Pool Trichy",
@@ -135,7 +165,13 @@ const SEOMetadata = ({
             "VR gaming Trichy",
             "Pool table Trichy",
             "Gaming center Trichy",
-            "Billiards Trichy"
+            "Billiards Trichy",
+            "College student gaming Trichy",
+            "School student gaming Trichy",
+            "Student discount gaming Trichy",
+            "Student recreation Trichy",
+            "Gaming cafe near college Trichy",
+            "Best hangout place for students Trichy"
           ]
         })}
       </script>

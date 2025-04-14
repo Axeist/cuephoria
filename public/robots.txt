@@ -18,11 +18,20 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+# Google Mobile Bot
+User-agent: Googlebot-Mobile
+Allow: /
+
 # Crawl-delay for all bots
 Crawl-delay: 1
 
 # Sitemap
 Sitemap: https://cuephoria.in/sitemap.xml
+
+# Specific sections for targeting
+Allow: /#student-gaming-trichy
+Allow: /#college-hangout-trichy
+Allow: /#student-discount-gaming-trichy
 
 # Disallow specific folders (if needed)
 # Disallow: /admin/
