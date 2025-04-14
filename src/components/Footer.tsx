@@ -2,6 +2,7 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import VisitorStats from './VisitorStats';
+import Terms from './Terms';
 
 const Footer = () => {
   return (
@@ -87,6 +88,14 @@ const Footer = () => {
                     Contact
                     <ArrowUpRight className="ml-1 h-3 w-3" />
                   </a>
+                </li>
+                <li>
+                  <Terms>
+                    <span className="text-gray-400 hover:text-neon-blue transition-colors flex items-center cursor-pointer">
+                      Terms & Conditions
+                      <ArrowUpRight className="ml-1 h-3 w-3" />
+                    </span>
+                  </Terms>
                 </li>
               </ul>
             </div>
