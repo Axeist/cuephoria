@@ -11,9 +11,9 @@ interface SEOMetadataProps {
 }
 
 const SEOMetadata = ({
-  title = "Cuephoria | Premier 8-Ball Pool Club & Gaming Lounge in Trichy",
-  description = "Visit Cuephoria Gaming Lounge in Trichy for the best 8-ball pool, snooker, PS5 gaming & VR experiences. Book online for exclusive discounts!",
-  keywords = "Cuephoria, gaming lounge, 8-ball club, billiards, Trichy, PS5, VR games, pool table, snooker, metashot challenges, premier gaming Trichy",
+  title = "Cuephoria | Best PS5 Gaming, 8-Ball Pool & Snooker Club in Trichy",
+  description = "Visit Cuephoria - Trichy's #1 premium gaming lounge offering PS5 games, 8-ball pool, snooker, VR gaming & ideal hangout spot for friends. Book online for exclusive discounts!",
+  keywords = "Cuephoria, gaming lounge Trichy, PS5 gaming Trichy, 8-ball pool Trichy, snooker Trichy, pool table Trichy, PlayStation games Trichy, VR games, metashot challenges, hangout place Trichy, chill out spot Trichy, billiards Trichy, gaming center Trichy, best gaming lounge Trichy, weekend hangout Trichy, gaming cafe Trichy",
   canonicalUrl = "https://cuephoria.in",
   ogImage = "/lovable-uploads/bf64c942-20de-45f0-a655-188a21952fc4.png"
 }: SEOMetadataProps) => {
@@ -39,25 +39,29 @@ const SEOMetadata = ({
       <meta name="twitter:image" content={ogImage} />
 
       {/* Additional SEO Tags */}
-      <meta name="robots" content="index, follow, max-image-preview:large" />
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       <meta name="author" content="Cuephoria Gaming Lounge" />
       <meta name="geo.region" content="IN-TN" />
       <meta name="geo.placename" content="Trichy" />
       <meta name="geo.position" content="10.7905;78.7047" />
       <meta name="ICBM" content="10.7905, 78.7047" />
+      <meta name="language" content="English" />
+      <meta name="revisit-after" content="7 days" />
+      <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       
       {/* Structured Data */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "EntertainmentBusiness",
+          "@type": "LocalBusiness",
+          "@id": canonicalUrl,
           "name": "Cuephoria Gaming Lounge",
           "image": ogImage,
-          "@id": canonicalUrl,
           "url": canonicalUrl,
           "telephone": "+918637625155",
           "priceRange": "₹₹",
-          "description": "Cuephoria is Trichy's premier gaming lounge and 8-ball pool club, offering PS5, VR games, billiards, and more in an electrifying atmosphere.",
+          "description": "Cuephoria is Trichy's premier gaming lounge and 8-ball pool club, offering PS5, VR games, billiards, snooker, and more in an electrifying atmosphere.",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "Roof Top, No.1, Shivani Complex, Vaithiyalingam St, Muthu Nagar",
@@ -88,6 +92,50 @@ const SEOMetadata = ({
           "sameAs": [
             "https://www.facebook.com/profile.php?id=61574215405586&sk=about",
             "https://www.instagram.com/cuephoriaclub/"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Cuephoria Gaming Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "PS5 Gaming in Trichy",
+                "description": "Premium PlayStation 5 gaming experience with latest titles"
+              },
+              {
+                "@type": "Offer",
+                "name": "8-Ball Pool in Trichy",
+                "description": "Professional 8-Ball Pool tables with premium equipment"
+              },
+              {
+                "@type": "Offer",
+                "name": "Snooker in Trichy",
+                "description": "Full-size snooker tables for casual and competitive play"
+              },
+              {
+                "@type": "Offer",
+                "name": "VR Gaming Experience",
+                "description": "Immersive VR gaming with latest technology"
+              },
+              {
+                "@type": "Offer",
+                "name": "Hangout Space in Trichy",
+                "description": "Premium chill-out space for friends and groups"
+              }
+            ]
+          },
+          "keywords": [
+            "PS5 gaming Trichy",
+            "8-Ball Pool Trichy",
+            "Snooker in Trichy",
+            "Gaming lounge Trichy",
+            "PlayStation games Trichy",
+            "Chill out place Trichy",
+            "Hangout place Trichy",
+            "VR gaming Trichy",
+            "Pool table Trichy",
+            "Gaming center Trichy",
+            "Billiards Trichy"
           ]
         })}
       </script>
