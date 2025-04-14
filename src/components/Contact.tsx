@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -61,7 +62,7 @@ Message: ${formData.message}`;
       const whatsappUrl = `https://wa.me/918637625155?text=${encodedMessage}`;
       
       // Also send email as backup
-      await fetch('https://formsubmit.co/ajax/cuephoriaclub@gmail.com', {
+      await fetch('https://formsubmit.co/ajax/contact@cuephoria.in', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -148,10 +149,10 @@ Message: ${formData.message}`;
                   <div>
                     <h4 className="text-lg font-semibold text-white">Email</h4>
                     <a 
-                      href="mailto:cuephoriaclub@gmail.com" 
+                      href="mailto:contact@cuephoria.in" 
                       className="text-gray-400 hover:text-neon-pink transition-colors"
                     >
-                      cuephoriaclub@gmail.com
+                      contact@cuephoria.in
                     </a>
                   </div>
                 </div>
