@@ -68,12 +68,13 @@ const BookNow = () => {
             Book your gaming or pool session now and prepare for an unforgettable experience at Cuephoria.
           </p>
           
-          <div className="mt-4 mb-6 inline-block bg-gaming-darker/80 backdrop-blur-md py-2 px-6 rounded-lg border border-neon-pink/30">
-            <p className="text-lg text-neon-pink font-bold animate-blink-slow flex items-center justify-center gap-2">
-              <Siren className="h-5 w-5 text-red-500 animate-pulse" />
+          {/* Updated the limited time offer to be properly centered */}
+          <div className="mt-4 mb-6 inline-flex items-center justify-center bg-gaming-darker/80 backdrop-blur-md py-2 px-6 rounded-lg border border-neon-pink/30">
+            <Siren className="h-5 w-5 text-red-500 animate-pulse" />
+            <p className="text-lg text-neon-pink font-bold animate-blink-slow mx-2">
               LIMITED TIME OFFER
-              <Siren className="h-5 w-5 text-red-500 animate-pulse" />
             </p>
+            <Siren className="h-5 w-5 text-red-500 animate-pulse" />
           </div>
           
           <Link 
