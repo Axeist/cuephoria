@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { Calendar, Clock, Users } from 'lucide-react';
+import { Calendar, Clock, Users, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const BookNow = () => {
@@ -111,6 +111,28 @@ const BookNow = () => {
                     <li className="flex justify-between">
                       <span className="text-gray-300">Student Discount on Passes</span>
                       <span className="text-neon-pink font-semibold">₹100 OFF</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                {/* Updated loyalty points section */}
+                <div className="pt-4 border-t border-gaming-accent mt-4">
+                  <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
+                    <Award className="h-5 w-5 text-neon-pink mr-2" />
+                    Loyalty Program
+                  </h4>
+                  <ul className="space-y-3">
+                    <li className="flex justify-between">
+                      <span className="text-gray-300">Non-members earn</span>
+                      <span className="text-neon-blue font-semibold">2 pts per ₹100</span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span className="text-gray-300">Members earn</span>
+                      <span className="text-neon-blue font-semibold">5 pts per ₹100</span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span className="text-gray-300">Point value</span>
+                      <span className="text-neon-pink font-semibold">₹1 per point</span>
                     </li>
                   </ul>
                 </div>

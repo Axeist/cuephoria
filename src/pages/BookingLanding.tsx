@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Clock, MapPin, Star, Calendar } from 'lucide-react';
+import { ArrowRight, Clock, MapPin, Star, Calendar, Award } from 'lucide-react';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import SEOMetadata from '../components/SEOMetadata';
@@ -203,9 +203,25 @@ const BookingLanding = () => {
                     <span>Student Package (2 hours)</span>
                     <span className="font-bold text-neon-pink">₹350</span>
                   </div>
+                  
+                  {/* Updated section for loyalty points */}
+                  <div className="flex justify-between items-center pb-2 border-b border-gaming-accent/30">
+                    <div className="flex items-center">
+                      <Award className="h-4 w-4 text-neon-pink mr-1" />
+                      <span>Loyalty Points (non-members)</span>
+                    </div>
+                    <span className="font-bold text-neon-pink">2 pts per ₹100</span>
+                  </div>
                   <div className="flex justify-between items-center pb-2">
-                    <span>Group Discount (4+ people)</span>
-                    <span className="font-bold text-neon-pink">10% OFF</span>
+                    <div className="flex items-center">
+                      <Award className="h-4 w-4 text-neon-blue mr-1" />
+                      <span>Loyalty Points (members)</span>
+                    </div>
+                    <span className="font-bold text-neon-blue">5 pts per ₹100</span>
+                  </div>
+                  <div className="flex justify-between items-center border-t border-gaming-accent/30 pt-2">
+                    <span>1 Loyalty Point Value</span>
+                    <span className="font-bold text-neon-pink">₹1</span>
                   </div>
                 </div>
               </div>
