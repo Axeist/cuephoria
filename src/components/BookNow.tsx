@@ -1,7 +1,8 @@
 
 import React, { useEffect, useRef } from 'react';
-import { Calendar, Clock, Users, Award } from 'lucide-react';
+import { Calendar, Clock, Users, Award, Table2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 
 const BookNow = () => {
   const calendlyRef = useRef<HTMLDivElement>(null);
@@ -66,90 +67,121 @@ const BookNow = () => {
               </h3>
               
               <div className="space-y-6 flex-grow">
-                <div className="flex justify-between items-center pb-4 border-b border-gaming-accent">
-                  <div>
-                    <h4 className="text-xl font-semibold text-neon-blue">Pool Table</h4>
-                    <p className="text-gray-400">Per hour rate for billiards</p>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="text-2xl font-bold text-gray-400 line-through mr-3">₹300</div>
-                    <div className="text-2xl font-bold text-white">₹150</div>
-                  </div>
+                {/* Pricing Table */}
+                <div className="rounded-lg overflow-hidden border border-gaming-accent/20">
+                  <Table>
+                    <TableBody>
+                      <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
+                        <TableCell className="py-4">
+                          <div>
+                            <h4 className="text-xl font-semibold text-neon-blue">Pool Table</h4>
+                            <p className="text-gray-400">Per hour rate for billiards</p>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-4 text-right">
+                          <div className="flex items-center justify-end">
+                            <div className="text-2xl font-bold text-gray-400 line-through mr-3">₹300</div>
+                            <div className="text-2xl font-bold text-white">₹150</div>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      
+                      <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
+                        <TableCell className="py-4">
+                          <div>
+                            <h4 className="text-xl font-semibold text-neon-pink">Gaming Station</h4>
+                            <p className="text-gray-400">Per controller rate for PC/Console</p>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-4 text-right">
+                          <div className="flex items-center justify-end">
+                            <div className="text-2xl font-bold text-gray-400 line-through mr-3">₹150</div>
+                            <div className="text-2xl font-bold text-white">₹75</div>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      
+                      <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
+                        <TableCell className="py-4">
+                          <div>
+                            <h4 className="text-xl font-semibold text-neon-blue">Metashot Challenges</h4>
+                            <p className="text-gray-400">Per challenge</p>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-4 text-right">
+                          <div className="text-2xl font-bold text-white">FREE</div>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
                 </div>
                 
-                <div className="flex justify-between items-center pb-4 border-b border-gaming-accent">
-                  <div>
-                    <h4 className="text-xl font-semibold text-neon-pink">Gaming Station</h4>
-                    <p className="text-gray-400">Per controller rate for PC/Console</p>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="text-2xl font-bold text-gray-400 line-through mr-3">₹150</div>
-                    <div className="text-2xl font-bold text-white">₹75</div>
-                  </div>
-                </div>
-                
-                <div className="flex justify-between items-center pb-4 border-b border-gaming-accent">
-                  <div>
-                    <h4 className="text-xl font-semibold text-neon-blue">Metashot Challenges</h4>
-                    <p className="text-gray-400">Per challenge</p>
-                  </div>
-                  <div className="text-2xl font-bold text-white">FREE</div>
-                </div>
-                
-                <div className="pt-4">
+                <div>
                   <h4 className="text-xl font-semibold mb-4 text-white">Special Packages</h4>
-                  <ul className="space-y-3">
-                    <li className="flex justify-between">
-                      <span className="text-gray-300">2-Hour Gaming Bundle</span>
-                      <span className="text-neon-blue font-semibold">₹350</span>
-                    </li>
-                    <li className="flex justify-between">
-                      <span className="text-gray-300">Weekly Pass</span>
-                      <span className="text-neon-blue font-semibold">₹399</span>
-                    </li>
-                    <li className="flex justify-between">
-                      <span className="text-gray-300">Monthly Pass</span>
-                      <span className="text-neon-blue font-semibold">₹1499</span>
-                    </li>
-                    <li className="flex justify-between">
-                      <span className="text-gray-300">Student Discount on Passes</span>
-                      <span className="text-neon-pink font-semibold">₹100 OFF</span>
-                    </li>
-                  </ul>
+                  <div className="rounded-lg overflow-hidden border border-gaming-accent/20">
+                    <Table>
+                      <TableBody>
+                        <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
+                          <TableCell className="py-3 text-gray-300">2-Hour Gaming Bundle</TableCell>
+                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹350</TableCell>
+                        </TableRow>
+                        <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
+                          <TableCell className="py-3 text-gray-300">Weekly Pass</TableCell>
+                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹399</TableCell>
+                        </TableRow>
+                        <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
+                          <TableCell className="py-3 text-gray-300">Monthly Pass</TableCell>
+                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹1499</TableCell>
+                        </TableRow>
+                        <TableRow className="hover:bg-gaming-accent/10">
+                          <TableCell className="py-3 text-gray-300">Student Discount on Passes</TableCell>
+                          <TableCell className="py-3 text-right text-neon-pink font-semibold">₹100 OFF</TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </div>
                 </div>
                 
-                {/* Enhanced loyalty points section with better alignment */}
-                <div className="pt-4 border-t border-gaming-accent mt-4">
+                {/* Enhanced loyalty points section with table */}
+                <div className="pt-4 border-t border-gaming-accent">
                   <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
                     <Award className="h-5 w-5 text-neon-pink mr-2" />
                     Loyalty Program
                   </h4>
-                  <ul className="space-y-4">
-                    <li className="flex justify-between items-center">
-                      <div className="flex items-center">
-                        <div className="h-6 w-6 rounded-full bg-neon-pink/20 flex items-center justify-center mr-2">
-                          <Award className="h-4 w-4 text-neon-pink" />
-                        </div>
-                        <span className="text-gray-300">Non-members earn</span>
-                      </div>
-                      <span className="text-neon-blue font-semibold">2 pts per ₹100</span>
-                    </li>
-                    <li className="flex justify-between items-center">
-                      <div className="flex items-center">
-                        <div className="h-6 w-6 rounded-full bg-neon-blue/20 flex items-center justify-center mr-2">
-                          <Award className="h-4 w-4 text-neon-blue" />
-                        </div>
-                        <span className="text-gray-300">Members earn</span>
-                      </div>
-                      <span className="text-neon-blue font-semibold">5 pts per ₹100</span>
-                    </li>
-                    <li className="flex justify-between items-center">
-                      <div className="flex items-center">
-                        <span className="text-gray-300">Point value</span>
-                      </div>
-                      <span className="text-neon-pink font-semibold">₹1 per point</span>
-                    </li>
-                  </ul>
+                  <div className="rounded-lg overflow-hidden border border-gaming-accent/20">
+                    <Table>
+                      <TableBody>
+                        <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
+                          <TableCell className="py-3">
+                            <div className="flex items-center">
+                              <div className="h-6 w-6 rounded-full bg-neon-pink/20 flex items-center justify-center mr-2">
+                                <Award className="h-4 w-4 text-neon-pink" />
+                              </div>
+                              <span className="text-gray-300">Non-members earn</span>
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-3 text-right text-neon-blue font-semibold">2 pts per ₹100</TableCell>
+                        </TableRow>
+                        <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
+                          <TableCell className="py-3">
+                            <div className="flex items-center">
+                              <div className="h-6 w-6 rounded-full bg-neon-blue/20 flex items-center justify-center mr-2">
+                                <Award className="h-4 w-4 text-neon-blue" />
+                              </div>
+                              <span className="text-gray-300">Members earn</span>
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-3 text-right text-neon-blue font-semibold">5 pts per ₹100</TableCell>
+                        </TableRow>
+                        <TableRow className="hover:bg-gaming-accent/10">
+                          <TableCell className="py-3">
+                            <span className="text-gray-300">Point value</span>
+                          </TableCell>
+                          <TableCell className="py-3 text-right text-neon-pink font-semibold">₹1 per point</TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </div>
                 </div>
                 
                 <div className="pt-2 text-center">
