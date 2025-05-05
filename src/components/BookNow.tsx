@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Calendar, Clock, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const BookNow = () => {
   const calendlyRef = useRef<HTMLDivElement>(null);
@@ -37,6 +38,12 @@ const BookNow = () => {
           <p className="text-gray-300 max-w-2xl mx-auto mt-4">
             Book your gaming or pool session now and prepare for an unforgettable experience at Cuephoria.
           </p>
+          <Link 
+            to="/book" 
+            className="mt-6 inline-block px-8 py-3 bg-neon-pink text-white rounded-md hover:bg-neon-pink/80 transition-all duration-300"
+          >
+            Book on our dedicated booking page
+          </Link>
         </div>
         
         <div className="flex flex-col lg:flex-row items-stretch gap-12">

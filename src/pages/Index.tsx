@@ -11,6 +11,7 @@ import Footer from '../components/Footer';
 import PromotionalPopup from '../components/PromotionalPopup';
 import SEOMetadata from '../components/SEOMetadata';
 import { ChevronUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -158,6 +159,14 @@ const Index = () => {
           style={{ height: `${scrollProgress}%` }}
         ></div>
       </div>
+
+      {/* Added fixed booking button for quick access */}
+      <Link 
+        to="/book"
+        className="fixed left-8 bottom-8 z-40 px-6 py-3 bg-neon-pink text-white font-medium rounded-full shadow-lg hover:bg-neon-pink/90 transition-all duration-300 animate-pulse-slow hidden md:flex items-center"
+      >
+        Book Now <span className="ml-1 text-xs">✨</span>
+      </Link>
       
       <a 
         href="#home"
