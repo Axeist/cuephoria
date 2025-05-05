@@ -1,10 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+
+import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2, Siren } from 'lucide-react';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import SEOMetadata from '../components/SEOMetadata';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
 import { useIsMobile } from '../hooks/use-mobile';
+
+// Lazy load VisitorStats to reduce initial load time
+const VisitorStats = lazy(() => import('../components/VisitorStats'));
 
 const BookingLanding = () => {
   const calendlyRef = useRef<HTMLDivElement>(null);
@@ -24,14 +28,39 @@ const BookingLanding = () => {
   });
   
   const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
+  const [calendlyInitialized, setCalendlyInitialized] = useState(false);
   const isMobile = useIsMobile();
   const navigate = useNavigate();
 
-  // Updated useEffect to properly handle the countdown timer
+  // Initialize Calendly only when it's visible in the viewport
   useEffect(() => {
-    // Initialize Calendly
+    // Create an intersection observer to detect when Calendly container is visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !calendlyInitialized) {
+          // Only initialize Calendly when the container is visible and not already initialized
+          initializeCalendly();
+          setCalendlyInitialized(true);
+          // Once initialized, disconnect the observer
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+    
+    // Start observing the Calendly container element
+    if (calendlyRef.current) {
+      observer.observe(calendlyRef.current);
+    }
+    
+    return () => {
+      observer.disconnect();
+    };
+  }, [calendlyInitialized]);
+  
+  // Function to initialize Calendly
+  const initializeCalendly = () => {
     if (window.Calendly && calendlyRef.current) {
-      // ... keep existing code (Calendly initialization)
+      // Clear any existing content
       calendlyRef.current.innerHTML = '';
       
       window.Calendly.initInlineWidget({
@@ -41,33 +70,34 @@ const BookingLanding = () => {
         utm: {}
       });
       
-      // Set a timeout to consider Calendly as loaded after 3 seconds
+      // Set a timeout to consider Calendly as loaded after 2 seconds
+      // This helps provide better user experience if Calendly is slow to load
       const timer = setTimeout(() => {
         setIsCalendlyLoaded(true);
-      }, 3000);
+      }, 2000);
       
       // Listen for Calendly iframe to load
-      const observer = new MutationObserver((mutations) => {
+      const mutationObserver = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           if (mutation.addedNodes.length > 0) {
             // Check if iframe is added
             if (calendlyRef.current?.querySelector('iframe')) {
               setIsCalendlyLoaded(true);
               clearTimeout(timer);
-              observer.disconnect();
+              mutationObserver.disconnect();
             }
           }
         });
       });
       
-      observer.observe(calendlyRef.current, { childList: true, subtree: true });
+      mutationObserver.observe(calendlyRef.current, { childList: true, subtree: true });
       
       return () => {
         clearTimeout(timer);
-        observer.disconnect();
+        mutationObserver.disconnect();
       };
     }
-  }, []);
+  };
   
   // Separate useEffect for the countdown timer to ensure it runs independently
   useEffect(() => {
@@ -129,8 +159,9 @@ const BookingLanding = () => {
             <div className="inline-block animate-pulse-neon mb-4">
               <img 
                 src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
-                alt="Cuephoria Logo" 
+                alt="Cuephoria Logo"
                 className="h-16 md:h-20 mx-auto"
+                loading="eager" // Load this important image eagerly
               />
             </div>
             
@@ -199,11 +230,30 @@ const BookingLanding = () => {
                 Book Your Session Now
               </h2>
               
-              {/* Show loading indicator only when Calendly is not loaded */}
+              {/* Improved loading state with skeleton */}
               {!isCalendlyLoaded && (
                 <div className="absolute inset-0 bg-gaming-darker/80 z-10 flex flex-col items-center justify-center rounded-xl">
                   <div className="w-12 h-12 border-4 border-neon-blue rounded-full border-t-transparent animate-spin mb-4"></div>
                   <p className="text-neon-blue text-center">Loading booking calendar...</p>
+                  
+                  {/* Skeleton for calendar to show loading state */}
+                  <div className="w-11/12 max-w-md mt-8">
+                    <div className="h-10 bg-gaming-accent/20 rounded-md mb-4 animate-pulse"></div>
+                    <div className="grid grid-cols-7 gap-1 mb-4">
+                      {[...Array(7)].map((_, i) => (
+                        <div key={i} className="h-8 bg-gaming-accent/20 rounded-sm animate-pulse"></div>
+                      ))}
+                    </div>
+                    <div className="grid grid-cols-7 gap-1">
+                      {[...Array(28)].map((_, i) => (
+                        <div 
+                          key={i} 
+                          className="h-10 bg-gaming-accent/20 rounded-sm animate-pulse"
+                          style={{ animationDelay: `${i * 50}ms` }}
+                        ></div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )}
               
@@ -332,6 +382,13 @@ const BookingLanding = () => {
                     </TableBody>
                   </Table>
                 </div>
+              </div>
+              
+              {/* Lazy load visitor stats component */}
+              <div className="mt-4">
+                <Suspense fallback={<div className="h-20 bg-gaming-accent/10 animate-pulse rounded-lg"></div>}>
+                  <VisitorStats />
+                </Suspense>
               </div>
               
               <div className="text-center mt-8">

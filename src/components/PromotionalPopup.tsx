@@ -1,14 +1,6 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { X, ArrowRight, GraduationCap, Siren } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 
 interface PromotionalPopupProps {
   delayInSeconds?: number;
@@ -32,67 +24,87 @@ const PromotionalPopup = ({
   const { toast } = useToast();
   
   useEffect(() => {
-    // Function to check if user is in the booking section
-    const isInBookingSection = () => {
-      // Check if URL hash is #book-now
-      if (window.location.hash === '#book-now') {
-        return true;
-      }
-      
-      // Check if user has scrolled to booking section
-      const bookingSection = document.getElementById('book-now');
-      if (bookingSection) {
-        const rect = bookingSection.getBoundingClientRect();
-        // If booking section is currently visible in the viewport
-        if (rect.top >= -300 && rect.top <= window.innerHeight) {
+    // Don't show popup immediately on page load to improve initial load performance
+    // Delay the popup check to not compete with main page resources
+    const checkAndShowPopup = () => {
+      // Function to check if user is in the booking section
+      const isInBookingSection = () => {
+        // Check if URL hash is #book-now
+        if (window.location.hash === '#book-now') {
           return true;
         }
-      }
-      
-      return false;
-    };
-    
-    // Function to check if Calendly is active
-    const isCalendlyActive = () => {
-      // Check for Calendly iframe or popup
-      const calendlyElements = document.querySelectorAll('.calendly-inline-widget, .calendly-overlay');
-      return calendlyElements.length > 0;
-    };
-    
-    // Check if popups were already shown in this session
-    const bookingPopupShown = sessionStorage.getItem('promotional_popup_shown');
-    
-    // Function to determine if popup should be shown
-    const shouldShowPopup = () => {
-      return !bookingPopupShown && !isInBookingSection() && !isCalendlyActive();
-    };
-    
-    // Initial check and setup timer for first popup
-    if (shouldShowPopup()) {
-      const timer = setTimeout(() => {
-        // Re-check conditions right before showing
-        if (shouldShowPopup()) {
-          setActivePopup(PopupType.BOOKING_OFFER);
-          bookingPopupShownRef.current = true;
-          sessionStorage.setItem('promotional_popup_shown', 'true');
-          
-          // Schedule the second popup to appear 15 seconds after the first one
-          setTimeout(() => {
-            if (!isInBookingSection() && !isCalendlyActive()) {
-              setActivePopup(PopupType.STUDENT_DISCOUNT);
-              studentPopupShownRef.current = true;
-            }
-          }, 15000); // 15 seconds after first popup
+        
+        // Check if user has scrolled to booking section
+        const bookingSection = document.getElementById('book-now');
+        if (bookingSection) {
+          const rect = bookingSection.getBoundingClientRect();
+          // If booking section is currently visible in the viewport
+          if (rect.top >= -300 && rect.top <= window.innerHeight) {
+            return true;
+          }
         }
-      }, delayInSeconds * 1000);
+        
+        return false;
+      };
       
-      return () => clearTimeout(timer);
-    }
+      // Function to check if Calendly is active
+      const isCalendlyActive = () => {
+        // Check for Calendly iframe or popup
+        const calendlyElements = document.querySelectorAll('.calendly-inline-widget, .calendly-overlay');
+        return calendlyElements.length > 0;
+      };
+      
+      // Check if popups were already shown in this session
+      const bookingPopupShown = sessionStorage.getItem('promotional_popup_shown');
+      
+      // Function to determine if popup should be shown
+      const shouldShowPopup = () => {
+        return !bookingPopupShown && !isInBookingSection() && !isCalendlyActive();
+      };
+      
+      // Initial check and setup timer for first popup
+      if (shouldShowPopup()) {
+        const timer = setTimeout(() => {
+          // Re-check conditions right before showing
+          if (shouldShowPopup()) {
+            setActivePopup(PopupType.BOOKING_OFFER);
+            bookingPopupShownRef.current = true;
+            sessionStorage.setItem('promotional_popup_shown', 'true');
+            
+            // Schedule the second popup to appear 15 seconds after the first one
+            setTimeout(() => {
+              if (!isInBookingSection() && !isCalendlyActive()) {
+                setActivePopup(PopupType.STUDENT_DISCOUNT);
+                studentPopupShownRef.current = true;
+              }
+            }, 15000); // 15 seconds after first popup
+          }
+        }, delayInSeconds * 1000);
+        
+        return () => clearTimeout(timer);
+      }
+    };
+    
+    // Delay popup initialization to not compete with critical page load
+    const initTimeout = setTimeout(checkAndShowPopup, 3000);
     
     // Set up event listeners for scroll and hash changes
     const handleScroll = () => {
-      if (activePopup !== PopupType.NONE && (isInBookingSection() || isCalendlyActive())) {
-        setActivePopup(PopupType.NONE);
+      if (activePopup !== PopupType.NONE) {
+        // Check if in booking section
+        const bookingSection = document.getElementById('book-now');
+        if (bookingSection) {
+          const rect = bookingSection.getBoundingClientRect();
+          if (rect.top >= -300 && rect.top <= window.innerHeight) {
+            setActivePopup(PopupType.NONE);
+          }
+        }
+        
+        // Check for Calendly
+        const calendlyElements = document.querySelectorAll('.calendly-inline-widget, .calendly-overlay');
+        if (calendlyElements.length > 0) {
+          setActivePopup(PopupType.NONE);
+        }
       }
     };
     
@@ -102,22 +114,35 @@ const PromotionalPopup = ({
       }
     };
     
-    window.addEventListener('scroll', handleScroll);
+    // Use passive event listeners to not block the main thread
+    window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('hashchange', handleHashChange);
     
-    // Setup observer to check for Calendly
-    const observer = new MutationObserver(() => {
-      if (activePopup !== PopupType.NONE && isCalendlyActive()) {
-        setActivePopup(PopupType.NONE);
-      }
-    });
+    // Optimize observer to only check when popup is active
+    let observer: MutationObserver | null = null;
     
-    observer.observe(document.body, { childList: true, subtree: true });
+    if (activePopup !== PopupType.NONE) {
+      observer = new MutationObserver(() => {
+        const calendlyElements = document.querySelectorAll('.calendly-inline-widget, .calendly-overlay');
+        if (calendlyElements.length > 0) {
+          setActivePopup(PopupType.NONE);
+          observer?.disconnect();
+        }
+      });
+      
+      observer.observe(document.body, { 
+        childList: true, 
+        subtree: true,
+        attributes: false,
+        characterData: false
+      });
+    }
     
     return () => {
+      clearTimeout(initTimeout);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('hashchange', handleHashChange);
-      observer.disconnect();
+      observer?.disconnect();
     };
   }, [delayInSeconds, activePopup]);
   
