@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2 } from 'lucide-react';
 import Footer from '../components/Footer';

@@ -176,7 +176,7 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             <div className="glass-card rounded-lg p-4 mt-6 border border-neon-blue/30 w-full">
               <p className="text-center text-sm text-gray-300 mb-2">
                 <span className="block text-neon-pink font-bold mb-1">SPECIAL ONLINE OFFER!</span>
-                Book online and get <span className="text-neon-blue font-bold">FLAT 10% OFF</span> + 
+                Book online and get <span className="text-neon-blue font-bold">FLAT 50% OFF</span> + 
                 <span className="text-neon-pink font-bold"> FREE AR Metashot Cricket Challenge!</span>
               </p>
             </div>

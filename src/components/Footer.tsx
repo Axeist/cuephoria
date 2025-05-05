@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowUpRight, Instagram } from 'lucide-react';
 import VisitorStats from './VisitorStats';
@@ -20,7 +21,7 @@ const Footer = () => {
                 <span className="neon-text-pink">SPECIAL ONLINE OFFER!</span>
               </h3>
               <p className="text-gray-300">
-                Get <span className="text-neon-blue font-bold">FLAT 10% OFF</span> your bill + 
+                Get <span className="text-neon-blue font-bold">FLAT 50% OFF</span> your bill + 
                 <span className="text-neon-pink font-bold"> 1 FREE AR Metashot Cricket Challenge </span> 
                 only through online bookings!
               </p>
