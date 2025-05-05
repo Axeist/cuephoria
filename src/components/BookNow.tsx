@@ -60,7 +60,10 @@ const BookNow = () => {
           
           <div className="w-full lg:w-1/2">
             <div className="glass-card rounded-xl p-8 border border-neon-pink/20 h-full flex flex-col">
-              <h3 className="text-2xl font-bold mb-6 text-white">Pricing & Packages</h3>
+              <h3 className="text-2xl font-bold mb-6 text-white flex items-center">
+                <Calendar className="h-6 w-6 text-neon-blue mr-2" />
+                Pricing & Packages
+              </h3>
               
               <div className="space-y-6 flex-grow">
                 <div className="flex justify-between items-center pb-4 border-b border-gaming-accent">
@@ -115,23 +118,35 @@ const BookNow = () => {
                   </ul>
                 </div>
                 
-                {/* Updated loyalty points section */}
+                {/* Enhanced loyalty points section with better alignment */}
                 <div className="pt-4 border-t border-gaming-accent mt-4">
                   <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
                     <Award className="h-5 w-5 text-neon-pink mr-2" />
                     Loyalty Program
                   </h4>
-                  <ul className="space-y-3">
-                    <li className="flex justify-between">
-                      <span className="text-gray-300">Non-members earn</span>
+                  <ul className="space-y-4">
+                    <li className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <div className="h-6 w-6 rounded-full bg-neon-pink/20 flex items-center justify-center mr-2">
+                          <Award className="h-4 w-4 text-neon-pink" />
+                        </div>
+                        <span className="text-gray-300">Non-members earn</span>
+                      </div>
                       <span className="text-neon-blue font-semibold">2 pts per ₹100</span>
                     </li>
-                    <li className="flex justify-between">
-                      <span className="text-gray-300">Members earn</span>
+                    <li className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <div className="h-6 w-6 rounded-full bg-neon-blue/20 flex items-center justify-center mr-2">
+                          <Award className="h-4 w-4 text-neon-blue" />
+                        </div>
+                        <span className="text-gray-300">Members earn</span>
+                      </div>
                       <span className="text-neon-blue font-semibold">5 pts per ₹100</span>
                     </li>
-                    <li className="flex justify-between">
-                      <span className="text-gray-300">Point value</span>
+                    <li className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <span className="text-gray-300">Point value</span>
+                      </div>
                       <span className="text-neon-pink font-semibold">₹1 per point</span>
                     </li>
                   </ul>

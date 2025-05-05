@@ -96,18 +96,30 @@ const BookingLanding = () => {
               </p>
             </div>
             
-            {/* Countdown Timer */}
+            {/* Enhanced Countdown Timer */}
             <div className="mb-8">
-              <p className="text-gray-300 mb-2">Limited time offer ends in:</p>
-              <div className="flex justify-center gap-4">
-                {Object.entries(timeLeft).map(([unit, value]) => (
-                  <div key={unit} className="text-center">
-                    <div className="bg-gaming-accent/20 backdrop-blur-sm px-3 py-2 rounded-md border border-neon-blue/30">
-                      <span className="text-2xl font-bold text-neon-blue">{value}</span>
+              <p className="text-gray-300 mb-2 flex items-center justify-center gap-2">
+                <Clock className="h-5 w-5 text-red-500 animate-pulse" />
+                <span className="uppercase tracking-wider font-semibold">Limited time offer ends in:</span>
+              </p>
+              <div className="relative">
+                {/* Pulsing background for urgency */}
+                <div className="absolute inset-0 bg-red-500/10 rounded-lg animate-pulse"></div>
+                
+                {/* Timer display */}
+                <div className="flex justify-center gap-3 relative z-10 p-4">
+                  {Object.entries(timeLeft).map(([unit, value]) => (
+                    <div key={unit} className="text-center">
+                      <div className="bg-gaming-accent/20 backdrop-blur-sm px-4 py-3 rounded-md border border-neon-pink/50 shadow-[0_0_15px_rgba(255,45,239,0.3)]">
+                        <span className="text-3xl font-bold text-white">{value.toString().padStart(2, '0')}</span>
+                      </div>
+                      <span className="text-xs font-medium text-neon-blue mt-1 block uppercase tracking-wider">{unit}</span>
                     </div>
-                    <span className="text-xs text-gray-400 mt-1 block capitalize">{unit}</span>
-                  </div>
-                ))}
+                  ))}
+                </div>
+                
+                {/* Border effect */}
+                <div className="absolute -inset-px rounded-lg bg-gradient-to-r from-neon-pink via-neon-blue to-neon-pink opacity-50 blur-[2px] -z-10"></div>
               </div>
             </div>
             
@@ -179,48 +191,53 @@ const BookingLanding = () => {
                 </ul>
               </div>
               
+              {/* Updated Quick Pricing Section with Better Alignment */}
               <div className="mb-8">
                 <h3 className="text-xl font-bold mb-4 flex items-center">
                   <Calendar className="h-5 w-5 text-neon-blue mr-2" />
                   Quick Pricing
                 </h3>
-                <div className="space-y-2 text-gray-200">
-                  <div className="flex justify-between items-center pb-2 border-b border-gaming-accent/30">
-                    <span>PS5 Gaming (per controller)</span>
-                    <div>
+                <div className="space-y-3 text-gray-200 px-1">
+                  <div className="flex justify-between items-center pb-3 border-b border-gaming-accent/30">
+                    <span className="font-medium">PS5 Gaming (per controller)</span>
+                    <div className="flex items-center">
                       <span className="font-bold text-gray-400 line-through mr-2">₹150</span>
-                      <span className="font-bold text-neon-blue">₹75</span>
+                      <span className="font-bold text-neon-blue text-xl">₹75</span>
                     </div>
-                  </div>
-                  <div className="flex justify-between items-center pb-2 border-b border-gaming-accent/30">
-                    <span>Pool Table (per hour)</span>
-                    <div>
-                      <span className="font-bold text-gray-400 line-through mr-2">₹300</span>
-                      <span className="font-bold text-neon-blue">₹150</span>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center pb-2 border-b border-gaming-accent/30">
-                    <span>Student Package (2 hours)</span>
-                    <span className="font-bold text-neon-pink">₹350</span>
                   </div>
                   
-                  {/* Updated section for loyalty points */}
-                  <div className="flex justify-between items-center pb-2 border-b border-gaming-accent/30">
+                  <div className="flex justify-between items-center pb-3 border-b border-gaming-accent/30">
+                    <span className="font-medium">Pool Table (per hour)</span>
                     <div className="flex items-center">
-                      <Award className="h-4 w-4 text-neon-pink mr-1" />
-                      <span>Loyalty Points (non-members)</span>
+                      <span className="font-bold text-gray-400 line-through mr-2">₹300</span>
+                      <span className="font-bold text-neon-blue text-xl">₹150</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between items-center pb-3 border-b border-gaming-accent/30">
+                    <span className="font-medium">Student Package (2 hours)</span>
+                    <span className="font-bold text-neon-pink text-xl">₹350</span>
+                  </div>
+                  
+                  {/* Updated loyalty points section with better alignment */}
+                  <div className="flex justify-between items-center pb-3 border-b border-gaming-accent/30">
+                    <div className="flex items-center">
+                      <Award className="h-5 w-5 text-neon-pink mr-2" />
+                      <span className="font-medium">Loyalty Points (non-members)</span>
                     </div>
                     <span className="font-bold text-neon-pink">2 pts per ₹100</span>
                   </div>
-                  <div className="flex justify-between items-center pb-2">
+                  
+                  <div className="flex justify-between items-center pb-3 border-b border-gaming-accent/30">
                     <div className="flex items-center">
-                      <Award className="h-4 w-4 text-neon-blue mr-1" />
-                      <span>Loyalty Points (members)</span>
+                      <Award className="h-5 w-5 text-neon-blue mr-2" />
+                      <span className="font-medium">Loyalty Points (members)</span>
                     </div>
                     <span className="font-bold text-neon-blue">5 pts per ₹100</span>
                   </div>
-                  <div className="flex justify-between items-center border-t border-gaming-accent/30 pt-2">
-                    <span>1 Loyalty Point Value</span>
+                  
+                  <div className="flex justify-between items-center pt-2">
+                    <span className="font-medium">1 Loyalty Point Value</span>
                     <span className="font-bold text-neon-pink">₹1</span>
                   </div>
                 </div>
