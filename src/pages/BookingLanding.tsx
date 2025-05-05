@@ -8,7 +8,16 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from ".
 
 const BookingLanding = () => {
   const calendlyRef = useRef<HTMLDivElement>(null);
+  const [countdownEnds] = useState(() => {
+    // Set countdown to end 3 days from now
+    const end = new Date();
+    end.setDate(end.getDate() + 3);
+    return end;
+  });
+  
   const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
     minutes: 0,
     seconds: 0
   });
@@ -28,39 +37,26 @@ const BookingLanding = () => {
       });
     }
     
-    // Generate random minutes between 15-30
-    const randomMinutes = Math.floor(Math.random() * (30 - 15 + 1)) + 15;
-    
-    // Set initial countdown
-    setTimeLeft({
-      minutes: randomMinutes,
-      seconds: 0
-    });
-    
     // Countdown timer
     const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev.minutes === 0 && prev.seconds === 0) {
-          clearInterval(timer);
-          return prev;
-        }
-        
-        if (prev.seconds === 0) {
-          return {
-            minutes: prev.minutes - 1,
-            seconds: 59
-          };
-        }
-        
-        return {
-          minutes: prev.minutes,
-          seconds: prev.seconds - 1
-        };
+      const now = new Date().getTime();
+      const distance = countdownEnds.getTime() - now;
+      
+      if (distance < 0) {
+        clearInterval(timer);
+        return;
+      }
+      
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000)
       });
     }, 1000);
     
     return () => clearInterval(timer);
-  }, []);
+  }, [countdownEnds]);
 
   return (
     <div className="min-h-screen bg-gaming-darker text-white">
@@ -101,43 +97,31 @@ const BookingLanding = () => {
               </p>
             </div>
             
-            {/* Enhanced Countdown Timer with even more urgency */}
+            {/* Enhanced Countdown Timer with even more visual appeal */}
             <div className="mb-8">
-              <div className="flex items-center justify-center gap-2 mb-1">
+              <p className="text-gray-300 mb-2 flex items-center justify-center gap-2">
                 <Clock className="h-5 w-5 text-red-500 animate-pulse" />
-                <p className="uppercase tracking-wider font-bold text-red-400">FLASH OFFER ENDING SOON:</p>
-              </div>
-              
-              <div className="relative max-w-xs mx-auto">
-                {/* Red glow background for critical urgency */}
-                <div className="absolute inset-0 bg-gradient-to-r from-red-700/40 via-red-600/30 to-red-700/40 rounded-lg animate-pulse blur-sm"></div>
+                <span className="uppercase tracking-wider font-semibold">Limited time offer ends in:</span>
+              </p>
+              <div className="relative">
+                {/* Pulsing background for urgency - enhanced */}
+                <div className="absolute inset-0 bg-red-600/15 rounded-lg animate-pulse"></div>
                 
-                {/* Timer display - more attention-grabbing */}
-                <div className="relative z-10 py-3 px-8 bg-black/50 border-2 border-red-500 rounded-lg shadow-lg shadow-red-600/30">
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="text-center">
-                      <div className="bg-black px-4 py-2 rounded border border-red-500">
-                        <span className="text-4xl font-bold text-white">{String(timeLeft.minutes).padStart(2, '0')}</span>
+                {/* Timer display - enhanced */}
+                <div className="flex justify-center gap-3 relative z-10 p-4">
+                  {Object.entries(timeLeft).map(([unit, value]) => (
+                    <div key={unit} className="text-center">
+                      <div className="bg-gaming-accent/30 backdrop-blur-sm px-4 py-3 rounded-md border border-neon-pink/50 shadow-[0_0_15px_rgba(255,45,239,0.4)]">
+                        <span className="text-3xl font-bold text-white">{value.toString().padStart(2, '0')}</span>
                       </div>
-                      <span className="text-xs font-medium text-red-400 mt-1 block uppercase tracking-wider">min</span>
+                      <span className="text-xs font-medium text-neon-blue mt-1 block uppercase tracking-wider">{unit}</span>
                     </div>
-                    <div className="text-2xl font-bold text-red-500 animate-pulse">:</div>
-                    <div className="text-center">
-                      <div className="bg-black px-4 py-2 rounded border border-red-500">
-                        <span className="text-4xl font-bold text-white">{String(timeLeft.seconds).padStart(2, '0')}</span>
-                      </div>
-                      <span className="text-xs font-medium text-red-400 mt-1 block uppercase tracking-wider">sec</span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
                 
-                {/* Enhanced glow effect */}
-                <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-red-600 via-red-500 to-red-600 opacity-40 blur-sm -z-10"></div>
+                {/* Enhanced border effect with animation */}
+                <div className="absolute -inset-px rounded-lg bg-gradient-to-r from-neon-pink via-neon-blue to-neon-pink opacity-50 blur-[2px] animate-pulse -z-10"></div>
               </div>
-              
-              <p className="text-red-400 text-sm mt-2 font-semibold animate-pulse">
-                Book now before this limited time offer expires!
-              </p>
             </div>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
