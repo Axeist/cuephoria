@@ -1,11 +1,12 @@
 
-import React, { useEffect, useRef } from 'react';
-import { Calendar, Clock, Users, Award, Table2 } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Calendar, Clock, Users, Award, Table2, Siren } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 
 const BookNow = () => {
   const calendlyRef = useRef<HTMLDivElement>(null);
+  const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
 
   // This useEffect will properly initialize the Calendly inline widget
   useEffect(() => {
@@ -21,6 +22,33 @@ const BookNow = () => {
         prefill: {},
         utm: {}
       });
+      
+      // Set a timeout to consider Calendly as loaded after 3 seconds
+      // This helps prevent showing loading animation indefinitely
+      const timer = setTimeout(() => {
+        setIsCalendlyLoaded(true);
+      }, 3000);
+      
+      // Listen for Calendly iframe to load
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.addedNodes.length > 0) {
+            // Check if iframe is added
+            if (calendlyRef.current?.querySelector('iframe')) {
+              setIsCalendlyLoaded(true);
+              clearTimeout(timer);
+              observer.disconnect();
+            }
+          }
+        });
+      });
+      
+      observer.observe(calendlyRef.current, { childList: true, subtree: true });
+      
+      return () => {
+        clearTimeout(timer);
+        observer.disconnect();
+      };
     }
   }, []);
 
@@ -39,6 +67,15 @@ const BookNow = () => {
           <p className="text-gray-300 max-w-2xl mx-auto mt-4">
             Book your gaming or pool session now and prepare for an unforgettable experience at Cuephoria.
           </p>
+          
+          <div className="mt-4 mb-6 inline-block bg-gaming-darker/80 backdrop-blur-md py-2 px-6 rounded-lg border border-neon-pink/30">
+            <p className="text-lg text-neon-pink font-bold animate-blink-slow flex items-center justify-center gap-2">
+              <Siren className="h-5 w-5 text-red-500 animate-pulse" />
+              LIMITED TIME OFFER
+              <Siren className="h-5 w-5 text-red-500 animate-pulse" />
+            </p>
+          </div>
+          
           <Link 
             to="/book" 
             className="mt-6 inline-block px-8 py-3 bg-neon-pink text-white rounded-md hover:bg-neon-pink/80 transition-all duration-300"
@@ -49,7 +86,15 @@ const BookNow = () => {
         
         <div className="flex flex-col lg:flex-row items-stretch gap-12">
           <div className="w-full lg:w-1/2">
-            <div className="glass-card rounded-xl p-8 border border-neon-blue/20 h-full flex flex-col">
+            <div className="glass-card rounded-xl p-8 border border-neon-blue/20 h-full flex flex-col relative">
+              {/* Show loading indicator only when Calendly is not loaded */}
+              {!isCalendlyLoaded && (
+                <div className="absolute inset-0 bg-gaming-darker/80 z-10 flex flex-col items-center justify-center rounded-xl">
+                  <div className="w-12 h-12 border-4 border-neon-blue rounded-full border-t-transparent animate-spin mb-4"></div>
+                  <p className="text-neon-blue text-center">Loading booking calendar...</p>
+                </div>
+              )}
+              
               {/* Calendly inline widget with ref for direct initialization - aligned left */}
               <div 
                 ref={calendlyRef}
@@ -185,8 +230,9 @@ const BookNow = () => {
                 </div>
                 
                 <div className="pt-2 text-center">
-                  <p className="text-gray-400 text-sm">
-                    * Online bookings get FLAT 50% OFF on your total bill + FREE Metashot Challenge this month!
+                  <p className="text-gray-400 text-sm animate-blink-slow">
+                    * Online bookings get <span className="text-neon-blue font-bold">FLAT 50% OFF</span> on your total bill + 
+                    <span className="text-neon-pink font-bold"> FREE Metashot Challenge </span>this month!
                   </p>
                 </div>
               </div>

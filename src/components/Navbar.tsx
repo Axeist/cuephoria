@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Gamepad2 } from 'lucide-react';
+import { Menu, X, Gamepad2, Siren } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import NewsTicker from './NewsTicker';
 
@@ -175,7 +175,11 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             {/* Special online booking promotion in mobile menu */}
             <div className="glass-card rounded-lg p-4 mt-6 border border-neon-blue/30 w-full">
               <p className="text-center text-sm text-gray-300 mb-2">
-                <span className="block text-neon-pink font-bold mb-1">SPECIAL ONLINE OFFER!</span>
+                <span className="block text-neon-pink font-bold mb-1 animate-blink-slow flex items-center justify-center gap-1">
+                  <Siren className="h-4 w-4 text-red-500 animate-pulse" />
+                  SPECIAL ONLINE OFFER!
+                  <Siren className="h-4 w-4 text-red-500 animate-pulse" />
+                </span>
                 Book online and get <span className="text-neon-blue font-bold">FLAT 50% OFF</span> + 
                 <span className="text-neon-pink font-bold"> FREE AR Metashot Cricket Challenge!</span>
               </p>

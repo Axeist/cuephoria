@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { X, ArrowRight, GraduationCap } from 'lucide-react';
+import { X, ArrowRight, GraduationCap, Siren } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import {
   Dialog,
@@ -185,9 +185,13 @@ const PromotionalPopup = ({
       </button>
       
       <div className="text-center mb-6">
-        <h3 id="booking-popup-title" className="text-2xl font-bold neon-text-pink mb-2">
-          SPECIAL ONLINE OFFER!
-        </h3>
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <Siren size={24} className="text-red-500 animate-pulse" />
+          <h3 id="booking-popup-title" className="text-2xl font-bold neon-text-pink animate-blink-slow">
+            SPECIAL ONLINE OFFER!
+          </h3>
+          <Siren size={24} className="text-red-500 animate-pulse" />
+        </div>
         <p className="text-gray-300 mb-4">
           Get <span className="text-neon-blue font-bold">FLAT 50% OFF</span> your bill + 
           <span className="text-neon-pink font-bold"> 1 FREE AR Metashot Cricket Challenge </span> 
@@ -222,10 +226,12 @@ const PromotionalPopup = ({
       </button>
       
       <div className="text-center mb-6">
-        <div className="flex justify-center mb-2">
-          <GraduationCap size={40} className="text-neon-blue" />
+        <div className="flex justify-center items-center mb-2 gap-2">
+          <Siren size={20} className="text-red-500 animate-pulse" />
+          <GraduationCap size={32} className="text-neon-blue" />
+          <Siren size={20} className="text-red-500 animate-pulse" />
         </div>
-        <h3 id="student-popup-title" className="text-2xl font-bold neon-text-blue mb-2">
+        <h3 id="student-popup-title" className="text-2xl font-bold neon-text-blue mb-2 animate-blink-slow">
           STUDENT SPECIAL OFFER!
         </h3>
         <p className="text-gray-300 mb-4">

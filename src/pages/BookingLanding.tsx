@@ -1,16 +1,19 @@
+
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2 } from 'lucide-react';
+import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2, Siren } from 'lucide-react';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import SEOMetadata from '../components/SEOMetadata';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
+import { useIsMobile } from '../hooks/use-mobile';
 
 const BookingLanding = () => {
   const calendlyRef = useRef<HTMLDivElement>(null);
   const [countdownEnds] = useState(() => {
-    // Set countdown to end 3 days from now
+    // Set countdown to end with a random time between 15-30 minutes
     const end = new Date();
-    end.setDate(end.getDate() + 3);
+    const randomMinutes = Math.floor(Math.random() * (30 - 15 + 1)) + 15; // Random between 15-30
+    end.setMinutes(end.getMinutes() + randomMinutes);
     return end;
   });
   
@@ -21,6 +24,8 @@ const BookingLanding = () => {
     seconds: 0
   });
   
+  const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
+  const isMobile = useIsMobile();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,6 +39,33 @@ const BookingLanding = () => {
         prefill: {},
         utm: {}
       });
+      
+      // Set a timeout to consider Calendly as loaded after 3 seconds
+      // This helps prevent showing loading animation indefinitely
+      const timer = setTimeout(() => {
+        setIsCalendlyLoaded(true);
+      }, 3000);
+      
+      // Listen for Calendly iframe to load
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.addedNodes.length > 0) {
+            // Check if iframe is added
+            if (calendlyRef.current?.querySelector('iframe')) {
+              setIsCalendlyLoaded(true);
+              clearTimeout(timer);
+              observer.disconnect();
+            }
+          }
+        });
+      });
+      
+      observer.observe(calendlyRef.current, { childList: true, subtree: true });
+      
+      return () => {
+        clearTimeout(timer);
+        observer.disconnect();
+      };
     }
     
     // Countdown timer
@@ -88,19 +120,22 @@ const BookingLanding = () => {
             </h1>
             
             <div className="bg-gaming-darker/80 backdrop-blur-md p-4 rounded-lg border border-neon-pink/30 mb-6">
-              <p className="text-xl text-neon-pink font-bold mb-2">
+              <p className="text-xl text-neon-pink font-bold mb-2 animate-blink-slow flex items-center justify-center gap-2">
+                <Siren className="h-6 w-6 text-red-500 animate-pulse" />
                 OPENING MEGA OFFER!
+                <Siren className="h-6 w-6 text-red-500 animate-pulse" />
               </p>
               <p className="text-lg text-white">
                 Get <span className="text-neon-blue font-bold">FLAT 50% OFF</span> on your total bill with online bookings!
               </p>
             </div>
             
-            {/* Enhanced Countdown Timer with even more visual appeal */}
+            {/* Enhanced Countdown Timer with Blinking Effect */}
             <div className="mb-8">
-              <p className="text-gray-300 mb-2 flex items-center justify-center gap-2">
+              <p className="text-gray-300 mb-2 flex items-center justify-center gap-2 animate-blink-slow">
                 <Clock className="h-5 w-5 text-red-500 animate-pulse" />
-                <span className="uppercase tracking-wider font-semibold">Limited time offer ends in:</span>
+                <span className="uppercase tracking-wider font-semibold">FLASH OFFER ENDING SOON:</span>
+                <Clock className="h-5 w-5 text-red-500 animate-pulse" />
               </p>
               <div className="relative">
                 {/* Pulsing background for urgency - enhanced */}
@@ -139,10 +174,18 @@ const BookingLanding = () => {
           {/* Two Column Layout */}
           <div className="flex flex-col lg:flex-row bg-gaming-darker/50 backdrop-blur-lg rounded-xl overflow-hidden border border-neon-blue/30">
             {/* Booking Widget Column */}
-            <div className="w-full lg:w-7/12 p-4 lg:p-8">
+            <div className="w-full lg:w-7/12 p-4 lg:p-8 relative">
               <h2 className="text-2xl font-bold mb-6 text-center text-neon-blue">
                 Book Your Session Now
               </h2>
+              
+              {/* Show loading indicator only when Calendly is not loaded */}
+              {!isCalendlyLoaded && (
+                <div className="absolute inset-0 bg-gaming-darker/80 z-10 flex flex-col items-center justify-center">
+                  <div className="w-12 h-12 border-4 border-neon-blue rounded-full border-t-transparent animate-spin mb-4"></div>
+                  <p className="text-neon-blue text-center">Loading booking calendar...</p>
+                </div>
+              )}
               
               <div 
                 ref={calendlyRef}
