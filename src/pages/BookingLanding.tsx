@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2, Siren } from 'lucide-react';
 import Footer from '../components/Footer';
@@ -28,9 +27,11 @@ const BookingLanding = () => {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
 
+  // Updated useEffect to properly handle the countdown timer
   useEffect(() => {
     // Initialize Calendly
     if (window.Calendly && calendlyRef.current) {
+      // ... keep existing code (Calendly initialization)
       calendlyRef.current.innerHTML = '';
       
       window.Calendly.initInlineWidget({
@@ -41,7 +42,6 @@ const BookingLanding = () => {
       });
       
       // Set a timeout to consider Calendly as loaded after 3 seconds
-      // This helps prevent showing loading animation indefinitely
       const timer = setTimeout(() => {
         setIsCalendlyLoaded(true);
       }, 3000);
@@ -67,14 +67,28 @@ const BookingLanding = () => {
         observer.disconnect();
       };
     }
-    
+  }, []);
+  
+  // Separate useEffect for the countdown timer to ensure it runs independently
+  useEffect(() => {
     // Countdown timer
-    const timer = setInterval(() => {
+    const updateCountdown = () => {
       const now = new Date().getTime();
       const distance = countdownEnds.getTime() - now;
       
       if (distance < 0) {
-        clearInterval(timer);
+        // If time expired, reset to a new random time
+        const newEnd = new Date();
+        const newRandomMinutes = Math.floor(Math.random() * (30 - 15 + 1)) + 15;
+        newEnd.setMinutes(newEnd.getMinutes() + newRandomMinutes);
+        
+        setTimeLeft({
+          days: 0,
+          hours: 0,
+          minutes: newRandomMinutes,
+          seconds: 0
+        });
+        
         return;
       }
       
@@ -84,7 +98,13 @@ const BookingLanding = () => {
         minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
         seconds: Math.floor((distance % (1000 * 60)) / 1000)
       });
-    }, 1000);
+    };
+    
+    // Run immediately once
+    updateCountdown();
+    
+    // Then update every second
+    const timer = setInterval(updateCountdown, 1000);
     
     return () => clearInterval(timer);
   }, [countdownEnds]);
@@ -181,7 +201,7 @@ const BookingLanding = () => {
               
               {/* Show loading indicator only when Calendly is not loaded */}
               {!isCalendlyLoaded && (
-                <div className="absolute inset-0 bg-gaming-darker/80 z-10 flex flex-col items-center justify-center">
+                <div className="absolute inset-0 bg-gaming-darker/80 z-10 flex flex-col items-center justify-center rounded-xl">
                   <div className="w-12 h-12 border-4 border-neon-blue rounded-full border-t-transparent animate-spin mb-4"></div>
                   <p className="text-neon-blue text-center">Loading booking calendar...</p>
                 </div>
