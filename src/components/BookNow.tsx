@@ -68,15 +68,21 @@ const BookNow = () => {
                     <h4 className="text-xl font-semibold text-neon-blue">Pool Table</h4>
                     <p className="text-gray-400">Per hour rate for billiards</p>
                   </div>
-                  <div className="text-2xl font-bold text-white">₹300</div>
+                  <div className="flex items-center">
+                    <div className="text-2xl font-bold text-gray-400 line-through mr-3">₹300</div>
+                    <div className="text-2xl font-bold text-white">₹150</div>
+                  </div>
                 </div>
                 
                 <div className="flex justify-between items-center pb-4 border-b border-gaming-accent">
                   <div>
                     <h4 className="text-xl font-semibold text-neon-pink">Gaming Station</h4>
-                    <p className="text-gray-400">Per hour rate for PC/Console</p>
+                    <p className="text-gray-400">Per controller rate for PC/Console</p>
                   </div>
-                  <div className="text-2xl font-bold text-white">₹200</div>
+                  <div className="flex items-center">
+                    <div className="text-2xl font-bold text-gray-400 line-through mr-3">₹150</div>
+                    <div className="text-2xl font-bold text-white">₹75</div>
+                  </div>
                 </div>
                 
                 <div className="flex justify-between items-center pb-4 border-b border-gaming-accent">
@@ -84,7 +90,7 @@ const BookNow = () => {
                     <h4 className="text-xl font-semibold text-neon-blue">Metashot Challenges</h4>
                     <p className="text-gray-400">Per challenge</p>
                   </div>
-                  <div className="text-2xl font-bold text-white">₹49</div>
+                  <div className="text-2xl font-bold text-white">FREE</div>
                 </div>
                 
                 <div className="pt-4">
@@ -102,12 +108,16 @@ const BookNow = () => {
                       <span className="text-gray-300">Monthly Pass</span>
                       <span className="text-neon-blue font-semibold">₹1499</span>
                     </li>
+                    <li className="flex justify-between">
+                      <span className="text-gray-300">Student Discount on Passes</span>
+                      <span className="text-neon-pink font-semibold">₹100 OFF</span>
+                    </li>
                   </ul>
                 </div>
                 
                 <div className="pt-2 text-center">
                   <p className="text-gray-400 text-sm">
-                    * Prices may vary during weekends and holidays. Special offers available for groups and regular customers.
+                    * Online bookings get FLAT 50% OFF on your total bill + FREE Metashot Challenge this month!
                   </p>
                 </div>
               </div>

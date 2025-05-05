@@ -89,10 +89,10 @@ const BookingLanding = () => {
             
             <div className="bg-gaming-darker/80 backdrop-blur-md p-4 rounded-lg border border-neon-pink/30 mb-6">
               <p className="text-xl text-neon-pink font-bold mb-2">
-                STUDENT SPECIAL OFFER!
+                OPENING MEGA OFFER!
               </p>
               <p className="text-lg text-white">
-                Show your student ID for <span className="text-neon-blue font-bold">15% OFF</span> on all gaming & pool sessions!
+                Get <span className="text-neon-blue font-bold">FLAT 50% OFF</span> on your total bill with online bookings!
               </p>
             </div>
             
@@ -174,7 +174,7 @@ const BookingLanding = () => {
                     <div className="h-5 w-5 rounded-full bg-neon-pink/20 flex items-center justify-center mr-2 mt-1">
                       <span className="text-neon-pink text-xs">✓</span>
                     </div>
-                    <span>AR Metashot Cricket Challenge</span>
+                    <span>Free AR Metashot Cricket Challenge</span>
                   </li>
                 </ul>
               </div>
@@ -186,12 +186,18 @@ const BookingLanding = () => {
                 </h3>
                 <div className="space-y-2 text-gray-200">
                   <div className="flex justify-between items-center pb-2 border-b border-gaming-accent/30">
-                    <span>PS5 Gaming (per hour)</span>
-                    <span className="font-bold text-neon-blue">₹200</span>
+                    <span>PS5 Gaming (per controller)</span>
+                    <div>
+                      <span className="font-bold text-gray-400 line-through mr-2">₹150</span>
+                      <span className="font-bold text-neon-blue">₹75</span>
+                    </div>
                   </div>
                   <div className="flex justify-between items-center pb-2 border-b border-gaming-accent/30">
                     <span>Pool Table (per hour)</span>
-                    <span className="font-bold text-neon-blue">₹300</span>
+                    <div>
+                      <span className="font-bold text-gray-400 line-through mr-2">₹300</span>
+                      <span className="font-bold text-neon-blue">₹150</span>
+                    </div>
                   </div>
                   <div className="flex justify-between items-center pb-2 border-b border-gaming-accent/30">
                     <span>Student Package (2 hours)</span>

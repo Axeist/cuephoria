@@ -154,7 +154,7 @@ const PromotionalPopup = ({
     
     toast({
       title: "Booking Started",
-      description: "You're getting FLAT 10% OFF + FREE Metashot Challenge!",
+      description: "You're getting FLAT 50% OFF + FREE Metashot Challenge!",
     });
   };
   
@@ -189,7 +189,7 @@ const PromotionalPopup = ({
           SPECIAL ONLINE OFFER!
         </h3>
         <p className="text-gray-300 mb-4">
-          Get <span className="text-neon-blue font-bold">FLAT 10% OFF</span> your bill + 
+          Get <span className="text-neon-blue font-bold">FLAT 50% OFF</span> your bill + 
           <span className="text-neon-pink font-bold"> 1 FREE AR Metashot Cricket Challenge </span> 
           only through online bookings!
         </p>
