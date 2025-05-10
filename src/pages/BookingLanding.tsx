@@ -1,6 +1,5 @@
-
 import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
-import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2, Siren } from 'lucide-react';
+import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2, Siren, ActivitySquare } from 'lucide-react';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import SEOMetadata from '../components/SEOMetadata';
@@ -218,6 +217,40 @@ const BookingLanding = () => {
               <div className="flex items-center space-x-2 text-gray-200">
                 <MapPin className="h-5 w-5 text-neon-blue" />
                 <span>Thiruverumbur, Trichy, Tamil Nadu</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Live Occupancy Status Section */}
+          <div className="max-w-5xl mx-auto mb-8">
+            <div className="bg-gaming-darker/70 backdrop-blur-lg border border-neon-blue/30 rounded-xl overflow-hidden shadow-lg shadow-neon-blue/10">
+              <div className="p-4 border-b border-neon-blue/20">
+                <h2 className="text-2xl font-bold flex items-center justify-center gap-2">
+                  <ActivitySquare className="text-neon-pink h-6 w-6" />
+                  <span className="text-neon-blue">Live Occupancy Status</span>
+                </h2>
+                <p className="text-center text-gray-300 text-sm">Check real-time availability of Pool Tables and PS5 controllers</p>
+              </div>
+              
+              {/* Iframe with loading skeleton */}
+              <div className="relative w-full" style={{ height: "500px" }}>
+                {/* Loading skeleton */}
+                <div className="absolute inset-0 bg-gaming-darker/70 flex flex-col items-center justify-center z-10 animate-pulse" id="occupancy-loader">
+                  <div className="w-12 h-12 border-4 border-neon-blue rounded-full border-t-transparent animate-spin mb-4"></div>
+                  <p className="text-neon-blue">Loading occupancy data...</p>
+                </div>
+                
+                {/* Iframe for the occupancy view */}
+                <iframe 
+                  src="https://app.cuephoria.in/public/stations" 
+                  className="w-full h-full border-0"
+                  style={{ minHeight: "500px" }}
+                  title="Cuephoria Live Occupancy"
+                  onLoad={() => {
+                    const loader = document.getElementById('occupancy-loader');
+                    if (loader) loader.style.display = 'none';
+                  }}
+                ></iframe>
               </div>
             </div>
           </div>
