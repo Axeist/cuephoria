@@ -245,7 +245,7 @@ const BookingLanding = () => {
                 
                 {/* Iframe for the occupancy view - height adjusted for mobile */}
                 <iframe 
-                  src="https://app.cuephoria.in/public/stations" 
+                  src="https://admin.cuephoria.in/public/stations" 
                   className="w-full h-full border-0"
                   style={{ minHeight: isMobile ? "400px" : "500px" }}
                   title="Cuephoria Live Occupancy"
