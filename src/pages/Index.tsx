@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -9,6 +8,7 @@ import BookNow from '../components/BookNow';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import PromotionalPopup from '../components/PromotionalPopup';
+import Chatbot from '../components/Chatbot';
 import SEOMetadata from '../components/SEOMetadata';
 import { ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -152,6 +152,7 @@ const Index = () => {
       </main>
       
       <PromotionalPopup delayInSeconds={30} reappearInSeconds={120} />
+      <Chatbot />
       
       <div className={`fixed right-4 top-1/2 transform -translate-y-1/2 h-1/3 w-2 bg-gaming-accent/20 rounded-full z-40 transition-opacity duration-500 ${showScrollProgress ? 'opacity-100' : 'opacity-0'}`}>
         <div 
