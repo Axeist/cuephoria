@@ -1,14 +1,20 @@
-
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MessageCircle, X, Send, ChevronLeft, ChevronRight, MapPin, Calendar, BarChart3, Phone, Mail, Clock } from 'lucide-react';
 import { checkProfanity } from '../utils/profanityFilter';
-import { quickReplies, getRandomQuirkyResponse } from '../utils/chatbotData';
+import { quickReplies, getRandomQuirkyResponse, getRandomTamildResponse } from '../utils/chatbotData';
+import { Button } from './ui/button';
 
 interface Message {
   id: string;
   text: string;
   isUser: boolean;
   timestamp: Date;
+  buttons?: Array<{
+    text: string;
+    action: 'link' | 'phone' | 'email';
+    value: string;
+    icon?: React.ReactNode;
+  }>;
 }
 
 interface Warning {
@@ -24,7 +30,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hey there, gamer! 👋 I'm Shakila, your friendly Cuephoria guide! Ready to dive into some epic gaming action? What can I help you with today? 🎮✨",
+      text: "Vanakkam! 🙏 I'm Shakila, your friendly Cuephoria guide here in Trichy! Ready to dive into some epic gaming action at the heart of Tamil Nadu? What can I help you with today, da? 🎮✨",
       isUser: false,
       timestamp: new Date()
     }
@@ -90,12 +96,13 @@ const Chatbot = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const addMessage = (text: string, isUser: boolean) => {
+  const addMessage = (text: string, isUser: boolean, buttons?: Message['buttons']) => {
     const newMessage: Message = {
       id: Date.now().toString(),
       text,
       isUser,
-      timestamp: new Date()
+      timestamp: new Date(),
+      buttons
     };
     setMessages(prev => [...prev, newMessage]);
   };
@@ -120,6 +127,16 @@ const Chatbot = () => {
     }, delay);
   };
 
+  const handleButtonClick = (action: string, value: string) => {
+    if (action === 'link') {
+      window.open(value, '_blank');
+    } else if (action === 'phone') {
+      window.open(`tel:${value}`);
+    } else if (action === 'email') {
+      window.open(`mailto:${value}`);
+    }
+  };
+
   const handleSendMessage = () => {
     if (!inputText.trim() || isChatDisabled) return;
 
@@ -129,12 +146,12 @@ const Chatbot = () => {
       const newCount = profanityCount + 1;
       setProfanityCount(newCount);
       
-      addWarning(`Warning ${newCount}/3: Let's keep it gaming-friendly! 🎮`);
+      addWarning(`Warning ${newCount}/3: Enna da, let's keep it gaming-friendly! 🎮`);
       
       if (newCount >= 3) {
         setIsChatDisabled(true);
         simulateTyping(() => {
-          addMessage("Whoa there, keyboard warrior! 😤 Looks like someone needs a timeout. Maybe try some meditation... or better yet, channel that energy into some epic gaming! 🎮💀", false);
+          addMessage("Aiyo! Looks like someone needs a timeout, da! 😤 Maybe try some meditation... or better yet, channel that energy into some epic gaming at Cuephoria! Come visit us in Trichy! 🎮💀", false);
         });
       }
       
@@ -145,8 +162,8 @@ const Chatbot = () => {
     addMessage(inputText, true);
     
     simulateTyping(() => {
-      const response = generateResponse(inputText.toLowerCase());
-      addMessage(response, false);
+      const { response, buttons } = generateResponse(inputText.toLowerCase());
+      addMessage(response, false, buttons);
     });
     
     setInputText('');
@@ -159,8 +176,8 @@ const Chatbot = () => {
     addMessage(reply, true);
     
     simulateTyping(() => {
-      const response = generateResponse(reply.toLowerCase());
-      addMessage(response, false);
+      const { response, buttons } = generateResponse(reply.toLowerCase());
+      addMessage(response, false, buttons);
     });
   };
 
@@ -186,50 +203,121 @@ const Chatbot = () => {
     if (notificationTimeoutRef.current) clearTimeout(notificationTimeoutRef.current);
   };
 
-  const generateResponse = (input: string) => {
-    // Enhanced responses that guide towards booking
+  const generateResponse = (input: string): { response: string; buttons?: Message['buttons'] } => {
+    // Enhanced responses with Tamil localization and action buttons
     if (input.includes('pool') || input.includes('8-ball') || input.includes('snooker') || input.includes('billiards')) {
-      return "🎱 Pool Games are absolutely epic! We've got professional tables waiting for you:\n\n💰 Regular Price: ₹300/day\n🔥 Opening Offer: 50% OFF - Now just ₹150!\n\nThat's a whole day of pool mastery! Want me to help you book a session right now? Just say 'book now' and I'll get you sorted! 😎";
+      return {
+        response: "🎱 Vanakkam! Pool Games are absolutely mass, da! We've got professional tables waiting for you here in Trichy:\n\n💰 Regular Price: ₹300/day\n🔥 Opening Offer: 50% OFF - Now just ₹150!\n\nThat's a whole day of pool mastery! Ready to book your session right now?",
+        buttons: [
+          { text: "Book Now", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> },
+          { text: "Check Live Tables", action: "link", value: "https://admin.cuephoria.in/public/sessions", icon: <BarChart3 size={16} /> }
+        ]
+      };
     }
     
     if (input.includes('ps5') || input.includes('playstation') || input.includes('console') || input.includes('controller')) {
-      return "🎮 PS5 Gaming is where the magic happens! We've got the latest titles and premium controllers:\n\n💰 Regular Price: ₹150 per controller\n🔥 Opening Offer: 50% OFF - Now just ₹75!\n\nReady to secure your gaming throne? I can help you book a slot instantly! Just let me know when you'd like to play! 🚀";
+      return {
+        response: "🎮 Aiyo! PS5 Gaming is where the real magic happens, da! We've got the latest titles and premium controllers here in Trichy:\n\n💰 Regular Price: ₹150 per controller\n🔥 Opening Offer: 50% OFF - Now just ₹75!\n\nReady to secure your gaming throne? Book immediately!",
+        buttons: [
+          { text: "Book PS5 Session", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> },
+          { text: "Live Availability", action: "link", value: "https://admin.cuephoria.in/public/sessions", icon: <BarChart3 size={16} /> }
+        ]
+      };
     }
     
     if (input.includes('board') || input.includes('uno') || input.includes('ludo') || input.includes('monopoly') || input.includes('free')) {
-      return "🎲 Board Games are totally FREE and absolutely fun! We've got UNO, LUDO, Monopoly and more!\n\nPerfect for hanging out with friends! Want to combine this with some PS5 or pool action? I can book you a mixed session for the ultimate gaming experience! 🍕🥤";
+      return {
+        response: "🎲 Vanakkam! Board Games are totally FREE and super fun, da! We've got UNO, LUDO, Monopoly and more at our Trichy location!\n\nPerfect for hanging out with friends! Want to combine this with some PS5 or pool action?",
+        buttons: [
+          { text: "Book Mixed Session", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
+        ]
+      };
     }
     
     if (input.includes('book') || input.includes('reserve') || input.includes('slot') || input.includes('book now')) {
-      return "🎯 Awesome! Let's get you booked! Here's the fastest way:\n\n🔗 Instant Booking: cuephoria.in/book\n\nOr if you prefer, I can guide you through our booking process right here! What type of gaming session interests you most?\n\n🎮 PS5 Gaming (₹75 per controller)\n🎱 Pool Games (₹150 per day)\n🎲 Board Games (FREE with snacks)\n\nJust pick one and I'll help you secure the perfect time slot! ⚡";
+      return {
+        response: "🎯 Superb! Let's get you booked at Cuephoria Trichy! Here's the fastest way:\n\n🎮 PS5 Gaming (₹75 per controller)\n🎱 Pool Games (₹150 per day)\n🎲 Board Games (FREE with snacks)\n\nBook your perfect gaming session now!",
+        buttons: [
+          { text: "Instant Booking", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
+        ]
+      };
     }
     
     if (input.includes('available') || input.includes('busy') || input.includes('occupancy') || input.includes('tables') || input.includes('live')) {
-      return "👀 Smart move checking availability first! Here's the live scoop:\n\n🔗 Real-time Status: admin.cuephoria.in/public/sessions\n\nYou can see exactly which tables and controllers are free right now! Spotted something you like? I can help you book it immediately before someone else grabs it! 📊⚡";
+      return {
+        response: "👀 Smart move checking availability first, da! Here's the live scoop from our Trichy location:\n\nSee exactly which tables and controllers are free right now! Spotted something you like? Book it immediately!",
+        buttons: [
+          { text: "Live Occupancy", action: "link", value: "https://admin.cuephoria.in/public/sessions", icon: <BarChart3 size={16} /> },
+          { text: "Quick Book", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
+        ]
+      };
     }
     
     if (input.includes('weekly') || input.includes('pass') || input.includes('membership')) {
-      return "💎 Weekly Passes are INCREDIBLE value! Check this out:\n\n🎮 PS5 Solo Weekly Pass - ₹399 (was ₹799!)\n🎱 Table Gaming Weekly Pass - ₹799 (was ₹1,599!)\n\nBoth include ₹100 worth of snacks and 50% off extra time!\n\nWant me to help you get started with a weekly pass? It's literally the best deal in town! 💪";
+      return {
+        response: "💎 Aiyayo! Weekly Passes are INCREDIBLE value, da! Check this out:\n\n🎮 PS5 Solo Weekly Pass - ₹399 (was ₹799!)\n🎱 Table Gaming Weekly Pass - ₹799 (was ₹1,599!)\n\nBoth include ₹100 worth of snacks and 50% off extra time! Best deal in all of Trichy!",
+        buttons: [
+          { text: "Get Weekly Pass", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
+        ]
+      };
     }
     
     if (input.includes('contact') || input.includes('phone') || input.includes('call') || input.includes('number')) {
-      return "📞 Need to chat with our team? Here's how:\n\n📱 Phone: +91 86376 25155\n📧 Email: contact@cuephoria.in\n⏰ Hours: 11:00 AM – 11:00 PM\n\nBut hey, I'm here to help you book right now! What would you like to reserve? I can get you sorted in seconds! 🚀";
+      return {
+        response: "📞 Want to chat with our Trichy team? Here's how:\n\n⏰ Hours: 11:00 AM – 11:00 PM\n\nBut hey, I'm here to help you book right now! What would you like to reserve?",
+        buttons: [
+          { text: "Call Us", action: "phone", value: "+918637625155", icon: <Phone size={16} /> },
+          { text: "Email Us", action: "email", value: "contact@cuephoria.in", icon: <Mail size={16} /> }
+        ]
+      };
     }
     
     if (input.includes('location') || input.includes('address') || input.includes('where') || input.includes('directions') || input.includes('map')) {
-      return "📍 Easy to find, easier to love!\n\n🗺️ Get Directions: https://maps.app.goo.gl/ghXWYG9eLWpEwrK98\n\nOnce you know where we are, want me to book you a session? I can reserve your spot so it's ready when you arrive! What gaming adventure calls to you? 🎮";
+      return {
+        response: "📍 Easy to find in the heart of Trichy, da!\n\nOnce you know where we are, want me to book you a session? I can reserve your spot so it's ready when you arrive! What gaming adventure calls to you?",
+        buttons: [
+          { text: "Get Directions", action: "link", value: "https://maps.app.goo.gl/ghXWYG9eLWpEwrK98", icon: <MapPin size={16} /> },
+          { text: "Book Session", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
+        ]
+      };
     }
     
     if (input.includes('price') || input.includes('cost') || input.includes('how much') || input.includes('rates')) {
-      return "💰 Here's our epic pricing breakdown:\n\n🎱 Pool Games: ₹150 (50% off!)\n🎮 PS5 Gaming: ₹75 per controller (50% off!)\n🎲 Board Games: FREE!\n\nThese prices are INSANE for what you get! Ready to lock in these amazing rates? I can book your session right now! Which game mode speaks to your soul? 🤔";
+      return {
+        response: "💰 Vanakkam! Here's our mass pricing for Trichy:\n\n🎱 Pool Games: ₹150 (50% off!)\n🎮 PS5 Gaming: ₹75 per controller (50% off!)\n🎲 Board Games: FREE!\n\nThese prices are the best in all of Tamil Nadu, da!",
+        buttons: [
+          { text: "Book at These Rates", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
+        ]
+      };
     }
     
     if (input.includes('time') || input.includes('hours') || input.includes('open') || input.includes('close') || input.includes('when')) {
-      return "⏰ We're open for epic adventures:\n\n🕚 Daily: 11:00 AM – 11:00 PM\n\nThat's 12 hours of pure gaming bliss! What time works best for you? I can check availability and book you the perfect slot! Early bird or night owl? 🦉";
+      return {
+        response: "⏰ Vanakkam! We're open for epic adventures in Trichy:\n\n🕚 Daily: 11:00 AM – 11:00 PM\n\nThat's 12 hours of pure gaming bliss! What time works best for you, da?",
+        buttons: [
+          { text: "Book Time Slot", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> },
+          { text: "Live Availability", action: "link", value: "https://admin.cuephoria.in/public/sessions", icon: <BarChart3 size={16} /> }
+        ]
+      };
     }
     
-    // Default response that guides to booking
-    return getRandomQuirkyResponse() + "\n\nBut hey, while I have your attention - want to book an amazing gaming session? I can get you sorted in under 30 seconds! 🎮⚡";
+    // Handle Tamil greetings and local references
+    if (input.includes('vanakkam') || input.includes('trichy') || input.includes('tamil')) {
+      return {
+        response: "Vanakkam da! 🙏 So happy to meet a local! Cuephoria is the pride of Trichy's gaming scene! We're bringing world-class gaming right here to Tamil Nadu. What brings you to our gaming paradise today?",
+        buttons: [
+          { text: "Explore Games", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
+        ]
+      };
+    }
+    
+    // Default response with Tamil flavor
+    return {
+      response: getRandomTamildResponse() + "\n\nBut hey, while I have your attention - want to book an amazing gaming session here in Trichy? I can get you sorted in under 30 seconds, da! 🎮⚡",
+      buttons: [
+        { text: "Book Now", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
+      ]
+    };
   };
 
   if (!isOpen) {
@@ -267,7 +355,7 @@ const Chatbot = () => {
               <div>
                 <h3 className="text-white font-orbitron font-semibold">Shakila</h3>
                 <p className="text-xs text-gray-300">
-                  {isTyping ? "Typing..." : "Your Gaming Guide 🎮"}
+                  {isTyping ? "Typing..." : "Your Trichy Gaming Guide 🎮"}
                 </p>
               </div>
             </div>
@@ -301,14 +389,33 @@ const Chatbot = () => {
               key={message.id}
               className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
             >
-              <div
-                className={`max-w-[80%] p-3 rounded-lg text-sm ${
-                  message.isUser
-                    ? 'bg-neon-blue/20 text-white ml-auto'
-                    : 'bg-gray-700/50 text-gray-100'
-                } whitespace-pre-line`}
-              >
-                {message.text}
+              <div className="max-w-[90%]">
+                <div
+                  className={`p-3 rounded-lg text-sm ${
+                    message.isUser
+                      ? 'bg-neon-blue/20 text-white ml-auto'
+                      : 'bg-gray-700/50 text-gray-100'
+                  } whitespace-pre-line`}
+                >
+                  {message.text}
+                </div>
+                
+                {/* Action Buttons */}
+                {message.buttons && message.buttons.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {message.buttons.map((button, index) => (
+                      <Button
+                        key={index}
+                        onClick={() => handleButtonClick(button.action, button.value)}
+                        size="sm"
+                        className="bg-neon-blue/20 hover:bg-neon-blue/30 text-neon-blue border border-neon-blue/50 text-xs h-8"
+                      >
+                        {button.icon}
+                        {button.text}
+                      </Button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -338,18 +445,18 @@ const Chatbot = () => {
             <button
               onClick={() => navigateQuickReplies('left')}
               disabled={quickReplyIndex === 0}
-              className="p-1 text-neon-blue hover:text-neon-pink transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="p-1 text-neon-blue hover:text-neon-pink transition-colors disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0"
             >
               <ChevronLeft size={16} />
             </button>
             
-            <div className="flex-1 grid grid-cols-2 gap-2">
+            <div className="flex-1 grid grid-cols-2 gap-1.5">
               {currentQuickReplies.map((reply, index) => (
                 <button
                   key={`${reply}-${quickReplyIndex}-${index}`}
                   onClick={() => handleQuickReply(reply)}
                   disabled={isChatDisabled}
-                  className="text-xs bg-neon-blue/10 hover:bg-neon-blue/20 text-neon-blue border border-neon-blue/30 px-2 py-1 rounded transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105"
+                  className="text-xs bg-neon-blue/10 hover:bg-neon-blue/20 text-neon-blue border border-neon-blue/30 px-2 py-1.5 rounded transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 text-center"
                 >
                   {reply}
                 </button>
@@ -359,7 +466,7 @@ const Chatbot = () => {
             <button
               onClick={() => navigateQuickReplies('right')}
               disabled={quickReplyIndex >= quickReplies.length - 4}
-              className="p-1 text-neon-blue hover:text-neon-pink transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="p-1 text-neon-blue hover:text-neon-pink transition-colors disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0"
             >
               <ChevronRight size={16} />
             </button>
@@ -375,7 +482,7 @@ const Chatbot = () => {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-              placeholder={isChatDisabled ? "Chat disabled due to warnings" : "Type your message..."}
+              placeholder={isChatDisabled ? "Chat disabled due to warnings" : "Type your message, da..."}
               disabled={isChatDisabled}
               className="flex-1 bg-gaming-dark border border-neon-blue/30 rounded px-3 py-2 text-white text-sm focus:outline-none focus:border-neon-blue/50 disabled:opacity-50 disabled:cursor-not-allowed"
             />
