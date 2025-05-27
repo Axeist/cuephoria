@@ -153,6 +153,14 @@ const Index = () => {
       
       <PromotionalPopup delayInSeconds={30} reappearInSeconds={120} />
       
+      {/* Chatbot iframe */}
+      <iframe 
+        src="https://e81a2fe4-81a7-49aa-9573-69aaa712e530.lovableproject.com/widget"
+        className="chatbot-iframe"
+        title="Cuephoria Chatbot"
+        frameBorder="0"
+      />
+      
       <div className={`fixed right-4 top-1/2 transform -translate-y-1/2 h-1/3 w-2 bg-gaming-accent/20 rounded-full z-40 transition-opacity duration-500 ${showScrollProgress ? 'opacity-100' : 'opacity-0'}`}>
         <div 
           className="bg-neon-blue rounded-full w-full transition-all duration-700 ease-out"
