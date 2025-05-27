@@ -220,3 +220,35 @@
     transform: none !important;
   }
 }
+
+/* Chatbot positioning and z-index management */
+/* Ensure chatbot doesn't conflict with existing fixed elements */
+iframe[src*="lovableproject.com"] {
+  z-index: 999 !important;
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+}
+
+/* Mobile chatbot positioning */
+@media (max-width: 768px) {
+  iframe[src*="lovableproject.com"] {
+    bottom: 15px !important;
+    right: 15px !important;
+    max-width: 300px !important;
+  }
+}
+
+/* Ensure chatbot doesn't overlap with scroll-to-top button */
+@media (min-width: 769px) {
+  .fixed.bottom-8.right-8 {
+    bottom: 120px !important;
+  }
+}
+
+/* Adjust fixed booking button position on mobile to avoid chatbot */
+@media (max-width: 768px) {
+  .fixed.left-8.bottom-8 {
+    bottom: 120px !important;
+  }
+}
