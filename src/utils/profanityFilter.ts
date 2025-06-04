@@ -1,9 +1,23 @@
-// Comprehensive profanity filter with 1000+ offensive words
+
+// Comprehensive profanity filter with 1000+ offensive words including Tamil profanity
 const profanityWords = [
   // Common profanity (keeping it clean for the code, but comprehensive)
   'damn', 'hell', 'crap', 'shit', 'fuck', 'bitch', 'ass', 'bastard', 'piss',
   'bloody', 'bollocks', 'bugger', 'cock', 'dick', 'prick', 'pussy', 'slut',
   'whore', 'tits', 'boobs', 'nipple', 'vagina', 'penis', 'dildo', 'horny',
+  
+  // Tamil profanity and offensive words
+  'punda', 'sunni', 'oombu', 'kena punda', 'kena', 'poolu', 'kothi', 'thevidiya',
+  'otha', 'oothu', 'kambi', 'naaye', 'naai', 'mayiru', 'lavada', 'lavde',
+  'randi', 'kuthi', 'poda', 'pode', 'thayoli', 'thevdiya', 'koothi', 'poolay',
+  'thevda', 'nakku', 'chappu', 'omma', 'amma', 'mokkai', 'kiruku', 'mental',
+  'soothu', 'suuthu', 'adi', 'adiye', 'dei', 'da punda', 'pundaya', 'sunniya',
+  'oombal', 'nakkal', 'chappal', 'thoo', 'ayyo poda', 'vedakka', 'kanja',
+  'kundu', 'kundiya', 'tholla', 'tollai', 'soothla', 'poola', 'pundai',
+  
+  // Tamil variations and transliterations
+  'p*nda', 'p***a', 's*nni', 'o*mbu', 'k*na', 'th*vidiya', 'o*ha', 'o*thu',
+  'puNda', 'suNni', 'Oombu', 'keNa', 'puNdai', 'suNniya', 'Otha', 'Oothu',
   
   // Gaming-specific toxic terms
   'noob', 'scrub', 'trash', 'garbage', 'loser', 'suck', 'sucks', 'retard',
@@ -73,7 +87,7 @@ const profanityWords = [
   'mad', 'angry', 'rage', 'quit', 'ragequit', 'tilted', 'triggered'
 ];
 
-// Additional patterns to check
+// Additional patterns to check including Tamil patterns
 const profanityPatterns = [
   /f[\*\-_\.]*u[\*\-_\.]*c[\*\-_\.]*k/gi,
   /s[\*\-_\.]*h[\*\-_\.]*i[\*\-_\.]*t/gi,
@@ -82,7 +96,17 @@ const profanityPatterns = [
   /a[\*\-_\.]*s[\*\-_\.]*s/gi,
   /p[\*\-_\.]*i[\*\-_\.]*s[\*\-_\.]*s/gi,
   /h[\*\-_\.]*e[\*\-_\.]*l[\*\-_\.]*l/gi,
-  /c[\*\-_\.]*r[\*\-_\.]*a[\*\-_\.]*p/gi
+  /c[\*\-_\.]*r[\*\-_\.]*a[\*\-_\.]*p/gi,
+  
+  // Tamil profanity patterns
+  /p[\*\-_\.]*u[\*\-_\.]*n[\*\-_\.]*d[\*\-_\.]*a/gi,
+  /s[\*\-_\.]*u[\*\-_\.]*n[\*\-_\.]*n[\*\-_\.]*i/gi,
+  /o[\*\-_\.]*o[\*\-_\.]*m[\*\-_\.]*b[\*\-_\.]*u/gi,
+  /k[\*\-_\.]*e[\*\-_\.]*n[\*\-_\.]*a/gi,
+  /t[\*\-_\.]*h[\*\-_\.]*e[\*\-_\.]*v[\*\-_\.]*i[\*\-_\.]*d[\*\-_\.]*i[\*\-_\.]*y[\*\-_\.]*a/gi,
+  /o[\*\-_\.]*t[\*\-_\.]*h[\*\-_\.]*a/gi,
+  /p[\*\-_\.]*o[\*\-_\.]*o[\*\-_\.]*l[\*\-_\.]*u/gi,
+  /k[\*\-_\.]*o[\*\-_\.]*t[\*\-_\.]*h[\*\-_\.]*i/gi
 ];
 
 export const checkProfanity = (text: string): boolean => {

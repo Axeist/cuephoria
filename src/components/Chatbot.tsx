@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, ChevronLeft, ChevronRight, MapPin, Calendar, BarChart3, Phone, Mail, Clock } from 'lucide-react';
 import { checkProfanity } from '../utils/profanityFilter';
-import { quickReplies, getRandomQuirkyResponse, getRandomTamildResponse } from '../utils/chatbotData';
+import { quickReplies, getRandomQuirkyResponse, getRandomTamildResponse, getContextualResponse } from '../utils/chatbotData';
 import { Button } from './ui/button';
 
 interface Message {
@@ -204,10 +204,12 @@ const Chatbot = () => {
   };
 
   const generateResponse = (input: string): { response: string; buttons?: Message['buttons'] } => {
-    // Enhanced responses with Tamil localization and action buttons
-    if (input.includes('pool') || input.includes('8-ball') || input.includes('snooker') || input.includes('billiards')) {
+    const lowerInput = input.toLowerCase();
+    
+    // Enhanced responses with better ambiguity handling
+    if (lowerInput.includes('pool') || lowerInput.includes('8-ball') || lowerInput.includes('snooker') || lowerInput.includes('billiards')) {
       return {
-        response: "🎱 Vanakkam! Pool Games are absolutely mass, da! We've got professional tables waiting for you here in Trichy:\n\n💰 Regular Price: ₹300/day\n🔥 Opening Offer: 50% OFF - Now just ₹150!\n\nThat's a whole day of pool mastery! Ready to book your session right now?",
+        response: "🎱 Vanakkam! Pool Games are absolutely mass, da! We've got professional tables waiting for you here in Trichy:\n\n💰 Regular Price: ₹300/day\n🔥 Opening Offer: 50% OFF - Now just ₹150!\n\nThat's a whole day of pool mastery! Perfect for hanging out with friends or some serious practice. Ready to book your session right now?",
         buttons: [
           { text: "Book Now", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> },
           { text: "Check Live Tables", action: "link", value: "https://admin.cuephoria.in/public/sessions", icon: <BarChart3 size={16} /> }
@@ -215,9 +217,9 @@ const Chatbot = () => {
       };
     }
     
-    if (input.includes('ps5') || input.includes('playstation') || input.includes('console') || input.includes('controller')) {
+    if (lowerInput.includes('ps5') || lowerInput.includes('playstation') || lowerInput.includes('console') || lowerInput.includes('controller')) {
       return {
-        response: "🎮 Aiyo! PS5 Gaming is where the real magic happens, da! We've got the latest titles and premium controllers here in Trichy:\n\n💰 Regular Price: ₹150 per controller\n🔥 Opening Offer: 50% OFF - Now just ₹75!\n\nReady to secure your gaming throne? Book immediately!",
+        response: "🎮 Aiyo! PS5 Gaming is where the real magic happens, da! We've got the latest titles and premium controllers here in Trichy:\n\n💰 Regular Price: ₹150 per controller\n🔥 Opening Offer: 50% OFF - Now just ₹75!\n\nWhether you're into FIFA, God of War, or Spider-Man, we've got you covered! Ready to secure your gaming throne? Book immediately!",
         buttons: [
           { text: "Book PS5 Session", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> },
           { text: "Live Availability", action: "link", value: "https://admin.cuephoria.in/public/sessions", icon: <BarChart3 size={16} /> }
@@ -225,27 +227,27 @@ const Chatbot = () => {
       };
     }
     
-    if (input.includes('board') || input.includes('uno') || input.includes('ludo') || input.includes('monopoly') || input.includes('free')) {
+    if (lowerInput.includes('board') || lowerInput.includes('uno') || lowerInput.includes('ludo') || lowerInput.includes('monopoly') || lowerInput.includes('free')) {
       return {
-        response: "🎲 Vanakkam! Board Games are totally FREE and super fun, da! We've got UNO, LUDO, Monopoly and more at our Trichy location!\n\nPerfect for hanging out with friends! Want to combine this with some PS5 or pool action?",
+        response: "🎲 Vanakkam! Board Games are totally FREE and super fun, da! We've got UNO, LUDO, Monopoly and more at our Trichy location!\n\nPerfect for hanging out with friends and family! No time limits on board games when you order snacks. Want to combine this with some PS5 or pool action for the ultimate gaming experience?",
         buttons: [
           { text: "Book Mixed Session", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
         ]
       };
     }
     
-    if (input.includes('book') || input.includes('reserve') || input.includes('slot') || input.includes('book now')) {
+    if (lowerInput.includes('book') || lowerInput.includes('reserve') || lowerInput.includes('slot') || lowerInput.includes('book now')) {
       return {
-        response: "🎯 Superb! Let's get you booked at Cuephoria Trichy! Here's the fastest way:\n\n🎮 PS5 Gaming (₹75 per controller)\n🎱 Pool Games (₹150 per day)\n🎲 Board Games (FREE with snacks)\n\nBook your perfect gaming session now!",
+        response: "🎯 Superb! Let's get you booked at Cuephoria Trichy! Here's what's available with our opening offers:\n\n🎮 PS5 Gaming (₹75 per controller - 50% off!)\n🎱 Pool Games (₹150 per day - 50% off!)\n🎲 Board Games (FREE with snacks)\n\nI can help you book the perfect gaming session right now! What's calling to you today?",
         buttons: [
           { text: "Instant Booking", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
         ]
       };
     }
     
-    if (input.includes('available') || input.includes('busy') || input.includes('occupancy') || input.includes('tables') || input.includes('live')) {
+    if (lowerInput.includes('available') || lowerInput.includes('busy') || lowerInput.includes('occupancy') || lowerInput.includes('tables') || lowerInput.includes('live')) {
       return {
-        response: "👀 Smart move checking availability first, da! Here's the live scoop from our Trichy location:\n\nSee exactly which tables and controllers are free right now! Spotted something you like? Book it immediately!",
+        response: "👀 Smart move checking availability first, da! Here's the live scoop from our Trichy location:\n\nYou can see exactly which tables and controllers are free right now! Our live system updates every few minutes so you get real-time info. Spotted something you like? Book it immediately before someone else grabs it!",
         buttons: [
           { text: "Live Occupancy", action: "link", value: "https://admin.cuephoria.in/public/sessions", icon: <BarChart3 size={16} /> },
           { text: "Quick Book", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
@@ -253,18 +255,18 @@ const Chatbot = () => {
       };
     }
     
-    if (input.includes('weekly') || input.includes('pass') || input.includes('membership')) {
+    if (lowerInput.includes('weekly') || lowerInput.includes('pass') || lowerInput.includes('membership') || lowerInput.includes('monthly')) {
       return {
-        response: "💎 Aiyayo! Weekly Passes are INCREDIBLE value, da! Check this out:\n\n🎮 PS5 Solo Weekly Pass - ₹399 (was ₹799!)\n🎱 Table Gaming Weekly Pass - ₹799 (was ₹1,599!)\n\nBoth include ₹100 worth of snacks and 50% off extra time! Best deal in all of Trichy!",
+        response: "💎 Aiyayo! Our passes are INCREDIBLE value, da! Check this out:\n\n🎮 PS5 Solo Weekly Pass - ₹399 (was ₹799!)\n🎱 Table Gaming Weekly Pass - ₹799 (was ₹1,599!)\n📅 Monthly options also available!\n\nBoth include ₹100 worth of snacks and 50% off extra time! Absolutely the best deal in all of Trichy! Perfect for regular gamers.",
         buttons: [
           { text: "Get Weekly Pass", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
         ]
       };
     }
     
-    if (input.includes('contact') || input.includes('phone') || input.includes('call') || input.includes('number')) {
+    if (lowerInput.includes('contact') || lowerInput.includes('phone') || lowerInput.includes('call') || lowerInput.includes('number')) {
       return {
-        response: "📞 Want to chat with our Trichy team? Here's how:\n\n⏰ Hours: 11:00 AM – 11:00 PM\n\nBut hey, I'm here to help you book right now! What would you like to reserve?",
+        response: "📞 Want to chat with our friendly Trichy team? Here's how to reach us:\n\n⏰ Hours: 11:00 AM – 11:00 PM daily\n\nOur team loves talking about gaming! But hey, I'm here to help you book right now and save you a call. What would you like to reserve, da?",
         buttons: [
           { text: "Call Us", action: "phone", value: "+918637625155", icon: <Phone size={16} /> },
           { text: "Email Us", action: "email", value: "contact@cuephoria.in", icon: <Mail size={16} /> }
@@ -272,9 +274,9 @@ const Chatbot = () => {
       };
     }
     
-    if (input.includes('location') || input.includes('address') || input.includes('where') || input.includes('directions') || input.includes('map')) {
+    if (lowerInput.includes('location') || lowerInput.includes('address') || lowerInput.includes('where') || lowerInput.includes('directions') || lowerInput.includes('map')) {
       return {
-        response: "📍 Easy to find in the heart of Trichy, da!\n\nOnce you know where we are, want me to book you a session? I can reserve your spot so it's ready when you arrive! What gaming adventure calls to you?",
+        response: "📍 Easy to find in the heart of Trichy, da! We're perfectly located for easy access from anywhere in the city.\n\nOnce you know where we are, want me to book you a session? I can reserve your spot so it's ready when you arrive! What gaming adventure calls to you today?",
         buttons: [
           { text: "Get Directions", action: "link", value: "https://maps.app.goo.gl/ghXWYG9eLWpEwrK98", icon: <MapPin size={16} /> },
           { text: "Book Session", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
@@ -282,18 +284,18 @@ const Chatbot = () => {
       };
     }
     
-    if (input.includes('price') || input.includes('cost') || input.includes('how much') || input.includes('rates')) {
+    if (lowerInput.includes('price') || lowerInput.includes('cost') || lowerInput.includes('how much') || lowerInput.includes('rates') || lowerInput.includes('cheap') || lowerInput.includes('expensive')) {
       return {
-        response: "💰 Vanakkam! Here's our mass pricing for Trichy:\n\n🎱 Pool Games: ₹150 (50% off!)\n🎮 PS5 Gaming: ₹75 per controller (50% off!)\n🎲 Board Games: FREE!\n\nThese prices are the best in all of Tamil Nadu, da!",
+        response: "💰 Vanakkam! Here's our transparent pricing for Trichy (with massive opening discounts!):\n\n🎱 Pool Games: ₹150/day (50% off original ₹300!)\n🎮 PS5 Gaming: ₹75 per controller (50% off original ₹150!)\n🎲 Board Games: FREE with any snack order!\n\nHonestly, these are the best gaming rates in all of Tamil Nadu, da! No hidden charges, no surprises.",
         buttons: [
           { text: "Book at These Rates", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
         ]
       };
     }
     
-    if (input.includes('time') || input.includes('hours') || input.includes('open') || input.includes('close') || input.includes('when')) {
+    if (lowerInput.includes('time') || lowerInput.includes('hours') || lowerInput.includes('open') || lowerInput.includes('close') || lowerInput.includes('when')) {
       return {
-        response: "⏰ Vanakkam! We're open for epic adventures in Trichy:\n\n🕚 Daily: 11:00 AM – 11:00 PM\n\nThat's 12 hours of pure gaming bliss! What time works best for you, da?",
+        response: "⏰ Vanakkam! We're open every single day for epic adventures in Trichy:\n\n🕚 Daily: 11:00 AM – 11:00 PM\n\nThat's 12 solid hours of pure gaming bliss! Morning gaming sessions are usually quieter if you prefer that, while evenings get more energetic. What time works best for your gaming style, da?",
         buttons: [
           { text: "Book Time Slot", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> },
           { text: "Live Availability", action: "link", value: "https://admin.cuephoria.in/public/sessions", icon: <BarChart3 size={16} /> }
@@ -301,19 +303,29 @@ const Chatbot = () => {
       };
     }
     
-    // Handle Tamil greetings and local references
-    if (input.includes('vanakkam') || input.includes('trichy') || input.includes('tamil')) {
+    if (lowerInput.includes('student') || lowerInput.includes('discount') || lowerInput.includes('offer') || lowerInput.includes('deal')) {
       return {
-        response: "Vanakkam da! 🙏 So happy to meet a local! Cuephoria is the pride of Trichy's gaming scene! We're bringing world-class gaming right here to Tamil Nadu. What brings you to our gaming paradise today?",
+        response: "🎓 Student life and gaming go hand in hand, da! Our current 50% off opening offers are already student-friendly:\n\n🎮 PS5: Just ₹75 per controller\n🎱 Pool: Just ₹150 for whole day\n🎲 Board games: FREE!\n\nPerfect for study breaks and hanging with classmates! Group bookings get even more fun. Ready to book your stress-busting session?",
+        buttons: [
+          { text: "Book Student Session", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
+        ]
+      };
+    }
+    
+    // Handle Tamil greetings and local references with more personality
+    if (lowerInput.includes('vanakkam') || lowerInput.includes('trichy') || lowerInput.includes('tamil') || lowerInput.includes('hello') || lowerInput.includes('hi')) {
+      return {
+        response: "Vanakkam da! 🙏 So happy to meet you! Cuephoria is the pride of Trichy's gaming scene - we're bringing world-class gaming right here to the heart of Tamil Nadu! \n\nI'm Shakila, and I'm genuinely excited to help you plan the perfect gaming experience. What brings you to our digital doorstep today? Ready for some epic fun?",
         buttons: [
           { text: "Explore Games", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
         ]
       };
     }
     
-    // Default response with Tamil flavor
+    // Enhanced ambiguous query handling with contextual responses
+    const contextualResponse = getContextualResponse(input);
     return {
-      response: getRandomTamildResponse() + "\n\nBut hey, while I have your attention - want to book an amazing gaming session here in Trichy? I can get you sorted in under 30 seconds, da! 🎮⚡",
+      response: contextualResponse + "\n\nBut hey, while I have your attention - want to book an amazing gaming session here in Trichy? I can get you sorted in under 30 seconds, da! 🎮⚡",
       buttons: [
         { text: "Book Now", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
       ]
@@ -430,7 +442,7 @@ const Chatbot = () => {
                     <div className="w-2 h-2 bg-neon-pink rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
                     <div className="w-2 h-2 bg-neon-pink rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                   </div>
-                  <span className="text-xs ml-2">Shakila is typing...</span>
+                  <span className="text-xs ml-2">Shakila is thinking...</span>
                 </div>
               </div>
             </div>
