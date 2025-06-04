@@ -206,6 +206,26 @@ const Chatbot = () => {
   const generateResponse = (input: string): { response: string; buttons?: Message['buttons'] } => {
     const lowerInput = input.toLowerCase();
     
+    // Handle simple greetings first
+    if (lowerInput === 'hey' || lowerInput === 'hi' || lowerInput === 'hello' || 
+        lowerInput === 'hii' || lowerInput === 'hiii' || lowerInput === 'heyyy') {
+      const greetingResponses = [
+        "Hey there! 🙋‍♀️ Welcome to Cuephoria Trichy! I'm Shakila, and I'm super excited to help you plan an epic gaming session. What sounds fun to you today?",
+        "Hi! 👋 Great to see you here! I'm your friendly gaming guide Shakila. Ready to discover the best gaming experience in all of Tamil Nadu?",
+        "Hello! 😊 You've just connected with the coolest gaming spot in Trichy! I'm Shakila, and I can't wait to help you dive into some serious fun. What's on your mind?",
+        "Hey! 🎮 Perfect timing! I'm Shakila from Cuephoria, and we've got some incredible gaming action waiting for you here in Trichy. How can I make your day awesome?"
+      ];
+      const randomGreeting = greetingResponses[Math.floor(Math.random() * greetingResponses.length)];
+      
+      return {
+        response: randomGreeting,
+        buttons: [
+          { text: "Show Me Games", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> },
+          { text: "Check Prices", action: "link", value: "https://cuephoria.in/book", icon: <BarChart3 size={16} /> }
+        ]
+      };
+    }
+    
     // Enhanced responses with better ambiguity handling
     if (lowerInput.includes('pool') || lowerInput.includes('8-ball') || lowerInput.includes('snooker') || lowerInput.includes('billiards')) {
       return {
@@ -313,7 +333,7 @@ const Chatbot = () => {
     }
     
     // Handle Tamil greetings and local references with more personality
-    if (lowerInput.includes('vanakkam') || lowerInput.includes('trichy') || lowerInput.includes('tamil') || lowerInput.includes('hello') || lowerInput.includes('hi')) {
+    if (lowerInput.includes('vanakkam') || lowerInput.includes('trichy') || lowerInput.includes('tamil')) {
       return {
         response: "Vanakkam da! 🙏 So happy to meet you! Cuephoria is the pride of Trichy's gaming scene - we're bringing world-class gaming right here to the heart of Tamil Nadu! \n\nI'm Shakila, and I'm genuinely excited to help you plan the perfect gaming experience. What brings you to our digital doorstep today? Ready for some epic fun?",
         buttons: [
