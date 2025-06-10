@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Gamepad2, Siren } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -50,6 +51,7 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -65,7 +67,6 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
     { href: "#home", label: "Home" },
     { href: "#about", label: "About" },
     { href: "#games", label: "Games" },
-    { href: "#viral-features", label: "Challenges" },
     { href: "#gallery", label: "Gallery" },
     { href: "#contact", label: "Contact" }
   ];
