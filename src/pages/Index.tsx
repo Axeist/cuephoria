@@ -4,6 +4,7 @@ import Hero from '../components/Hero';
 import About from '../components/About';
 import Games from '../components/Games';
 import Gallery from '../components/Gallery';
+import ViralFeatures from '../components/ViralFeatures';
 import BookNow from '../components/BookNow';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
@@ -67,7 +68,7 @@ const Index = () => {
             setShowScrollProgress(false);
           }
 
-          const sections = ['home', 'about', 'games', 'gallery', 'book-now', 'contact'];
+          const sections = ['home', 'about', 'games', 'viral-features', 'gallery', 'book-now', 'contact'];
           let current = '';
           
           for (const section of sections) {
@@ -145,6 +146,7 @@ const Index = () => {
         <Hero className="mt-8 md:mt-[-2rem]" />
         <About />
         <Games />
+        <ViralFeatures />
         <Gallery />
         <BookNow />
         <Contact />
@@ -161,7 +163,6 @@ const Index = () => {
         ></div>
       </div>
 
-      {/* Added fixed booking button for quick access */}
       <Link 
         to="/book"
         className="fixed left-8 bottom-8 z-40 px-6 py-3 bg-neon-pink text-white font-medium rounded-full shadow-lg hover:bg-neon-pink/90 transition-all duration-300 animate-pulse-slow hidden md:flex items-center"
