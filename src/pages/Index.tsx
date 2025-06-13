@@ -1,8 +1,10 @@
+
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Games from '../components/Games';
+import Tournaments from '../components/Tournaments';
 import Gallery from '../components/Gallery';
 import BookNow from '../components/BookNow';
 import Contact from '../components/Contact';
@@ -67,7 +69,7 @@ const Index = () => {
             setShowScrollProgress(false);
           }
 
-          const sections = ['home', 'about', 'games', 'gallery', 'book-now', 'contact'];
+          const sections = ['home', 'about', 'games', 'tournaments', 'gallery', 'book-now', 'contact'];
           let current = '';
           
           for (const section of sections) {
@@ -145,6 +147,7 @@ const Index = () => {
         <Hero className="mt-8 md:mt-[-2rem]" />
         <About />
         <Games />
+        <Tournaments />
         <Gallery />
         <BookNow />
         <Contact />
