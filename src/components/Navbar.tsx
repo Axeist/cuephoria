@@ -66,11 +66,10 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
   const navItems = [
     { href: "#home", label: "Home" },
     { href: "#about", label: "About" },
-    { href: "#games", label: "Games", isPage: true }, // now supports page
+    { href: "#games", label: "Games" },
     { href: "#tournaments", label: "Tournaments" },
     { href: "#gallery", label: "Gallery" },
-    { href: "#contact", label: "Contact" },
-    { href: "/blog", label: "Blog", isPage: true } // add blog link
+    { href: "#contact", label: "Contact" }
   ];
 
   return (
@@ -96,28 +95,13 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              item.isPage ? (
-                <a 
-                  key={item.href} 
-                  href={item.href}
-                  className={cn(
-                    "relative px-3 py-2 group",
-                    window.location.pathname.startsWith(item.href)
-                      ? "text-neon-pink font-bold"
-                      : "text-white group-hover:text-neon-pink"
-                  )}
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <NavLink 
-                  key={item.href} 
-                  href={item.href} 
-                  isActive={activeSection === item.href.substring(1)}
-                >
-                  {item.label}
-                </NavLink>
-              )
+              <NavLink 
+                key={item.href} 
+                href={item.href} 
+                isActive={activeSection === item.href.substring(1)}
+              >
+                {item.label}
+              </NavLink>
             ))}
             <a 
               href="#book-now" 
@@ -163,40 +147,23 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
         <div className="pt-24 pb-8 px-6 h-full overflow-y-auto">
           <nav className="flex flex-col items-center space-y-6">
             {navItems.map((item, index) => (
-              item.isPage ? (
-                <a 
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "text-lg transition-colors relative",
-                    window.location.pathname.startsWith(item.href)
-                      ? "text-neon-blue font-bold"
-                      : "text-white hover:text-neon-blue"
-                  )}
-                  onClick={() => setMobileMenuOpen(false)}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <a 
-                  key={item.href}
-                  href={item.href} 
-                  className={cn(
-                    "text-lg transition-colors relative",
-                    activeSection === item.href.substring(1) 
-                      ? "text-neon-blue" 
-                      : "text-white hover:text-neon-blue"
-                  )}
-                  onClick={() => setMobileMenuOpen(false)}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {item.label}
-                  {activeSection === item.href.substring(1) && (
-                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-neon-blue"></span>
-                  )}
-                </a>
-              )
+              <a 
+                key={item.href}
+                href={item.href} 
+                className={cn(
+                  "text-lg transition-colors relative",
+                  activeSection === item.href.substring(1) 
+                    ? "text-neon-blue" 
+                    : "text-white hover:text-neon-blue"
+                )}
+                onClick={() => setMobileMenuOpen(false)}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {item.label}
+                {activeSection === item.href.substring(1) && (
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-neon-blue"></span>
+                )}
+              </a>
             ))}
             <a 
               href="#book-now" 
