@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Trophy, Users, Calendar, ExternalLink, Zap } from 'lucide-react';
+import { Trophy, Users, Calendar, ExternalLink, Zap, Award } from 'lucide-react';
 
 const Tournaments = () => {
   const handleTournamentClick = () => {
@@ -61,36 +61,48 @@ const Tournaments = () => {
           </div>
         </div>
 
-        {/* Featured Tournament Info */}
+        {/* Featured Tournament Info - Alignment UPDATED */}
         <div className="glass-card rounded-lg p-8 mb-8 border border-neon-blue/30 bg-gradient-to-r from-gaming-dark/50 to-gaming-darker/50">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
+          {/* LIVE label and heading */}
+          <div className="flex flex-col items-center justify-center mb-6">
+            <div className="flex items-center justify-center gap-2 mb-2">
               <Zap className="h-6 w-6 text-yellow-400 animate-pulse" />
-              <span className="text-yellow-400 font-bold text-lg animate-blink-slow">LIVE TOURNAMENTS</span>
+              <span className="text-yellow-400 font-bold text-lg animate-blink-slow uppercase tracking-wide">Live Tournaments</span>
               <Zap className="h-6 w-6 text-yellow-400 animate-pulse" />
             </div>
-            <h3 className="text-2xl font-bold mb-4 text-white">
-              🎮 Current & Upcoming Gaming Championships
+            <h3 className="text-2xl md:text-3xl font-extrabold text-white flex items-center gap-2 text-center mb-2">
+              <span role="img" aria-label="controller" className="text-2xl">🎮</span>
+              <span className="font-orbitron tracking-wide">Current &amp; Upcoming Gaming Championships</span>
             </h3>
-            <div className="grid md:grid-cols-2 gap-6 text-left">
-              <div>
-                <h4 className="text-neon-blue font-semibold mb-2">🏅 Tournament Categories:</h4>
-                <ul className="text-gray-300 space-y-1">
-                  <li>• FIFA Championships</li>
-                  <li>• Call of Duty Battles</li>
-                  <li>• Pool & Snooker Contests</li>
-                  <li>• Multi-Game Challenges</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-neon-pink font-semibold mb-2">🎁 Exciting Rewards:</h4>
-                <ul className="text-gray-300 space-y-1">
-                  <li>• Cash Prizes up to ₹10,000</li>
-                  <li>• Gaming Accessories</li>
-                  <li>• Free Gaming Hours</li>
-                  <li>• Cuephoria Merchandise</li>
-                </ul>
-              </div>
+          </div>
+          
+          {/* Lists aligned in columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-2 max-w-3xl mx-auto">
+            {/* Tournament Categories */}
+            <div>
+              <h4 className="font-bold text-lg md:text-xl mb-2 flex items-center gap-2 neon-text-blue">
+                <span role="img" aria-label="medal" className="text-xl">🏅</span>
+                Tournament Categories:
+              </h4>
+              <ul className="text-gray-300 text-base md:text-lg space-y-1 ml-2 md:ml-4 font-medium">
+                <li>• FIFA Championships</li>
+                <li>• Call of Duty Battles</li>
+                <li>• Pool &amp; Snooker Contests</li>
+                <li>• Multi-Game Challenges</li>
+              </ul>
+            </div>
+            {/* Exciting Rewards */}
+            <div>
+              <h4 className="font-bold text-lg md:text-xl mb-2 flex items-center gap-2 neon-text-pink">
+                <span role="img" aria-label="gift" className="text-xl">🎁</span>
+                Exciting Rewards:
+              </h4>
+              <ul className="text-gray-300 text-base md:text-lg space-y-1 ml-2 md:ml-4 font-medium">
+                <li>• Cash Prizes up to ₹10,000</li>
+                <li>• Gaming Accessories</li>
+                <li>• Free Gaming Hours</li>
+                <li>• Cuephoria Merchandise</li>
+              </ul>
             </div>
           </div>
         </div>
