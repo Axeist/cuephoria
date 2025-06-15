@@ -212,7 +212,7 @@ const Chatbot = () => {
         response: "🎱 Vanakkam! Pool Games are absolutely mass, da! We've got professional tables waiting for you here in Trichy:\n\n💰 Regular Price: ₹300/day\n🔥 Opening Offer: 50% OFF - Now just ₹150!\n\nThat's a whole day of pool mastery! Perfect for hanging out with friends or some serious practice. Ready to book your session right now?",
         buttons: [
           { text: "Book Now", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> },
-          { text: "Check Live Tables", action: "link", value: "https://admin.cuephoria.in/public/sessions", icon: <BarChart3 size={16} /> }
+          { text: "Check Live Tables", action: "link", value: "https://admin.cuephoria.in/public/stations", icon: <BarChart3 size={16} /> }
         ]
       };
     }
@@ -222,7 +222,7 @@ const Chatbot = () => {
         response: "🎮 Aiyo! PS5 Gaming is where the real magic happens, da! We've got the latest titles and premium controllers here in Trichy:\n\n💰 Regular Price: ₹150 per controller\n🔥 Opening Offer: 50% OFF - Now just ₹75!\n\nWhether you're into FIFA, God of War, or Spider-Man, we've got you covered! Ready to secure your gaming throne? Book immediately!",
         buttons: [
           { text: "Book PS5 Session", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> },
-          { text: "Live Availability", action: "link", value: "https://admin.cuephoria.in/public/sessions", icon: <BarChart3 size={16} /> }
+          { text: "Live Availability", action: "link", value: "https://admin.cuephoria.in/public/stations", icon: <BarChart3 size={16} /> }
         ]
       };
     }
@@ -249,7 +249,7 @@ const Chatbot = () => {
       return {
         response: "👀 Smart move checking availability first, da! Here's the live scoop from our Trichy location:\n\nYou can see exactly which tables and controllers are free right now! Our live system updates every few minutes so you get real-time info. Spotted something you like? Book it immediately before someone else grabs it!",
         buttons: [
-          { text: "Live Occupancy", action: "link", value: "https://admin.cuephoria.in/public/sessions", icon: <BarChart3 size={16} /> },
+          { text: "Live Occupancy", action: "link", value: "https://admin.cuephoria.in/public/stations", icon: <BarChart3 size={16} /> },
           { text: "Quick Book", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
         ]
       };
@@ -298,7 +298,7 @@ const Chatbot = () => {
         response: "⏰ Vanakkam! We're open every single day for epic adventures in Trichy:\n\n🕚 Daily: 11:00 AM – 11:00 PM\n\nThat's 12 solid hours of pure gaming bliss! Morning gaming sessions are usually quieter if you prefer that, while evenings get more energetic. What time works best for your gaming style, da?",
         buttons: [
           { text: "Book Time Slot", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> },
-          { text: "Live Availability", action: "link", value: "https://admin.cuephoria.in/public/sessions", icon: <BarChart3 size={16} /> }
+          { text: "Live Availability", action: "link", value: "https://admin.cuephoria.in/public/stations", icon: <BarChart3 size={16} /> }
         ]
       };
     }
