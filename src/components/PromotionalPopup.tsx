@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, ArrowRight, GraduationCap, Siren } from 'lucide-react';
+import { X, ArrowRight, GraduationCap, Siren, Award } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 interface PromotionalPopupProps {
@@ -9,7 +9,7 @@ interface PromotionalPopupProps {
 
 // Enum to track which popup to show
 enum PopupType {
-  BOOKING_OFFER,
+  MEMBERSHIP_OFFER,
   STUDENT_DISCOUNT,
   NONE
 }
@@ -19,7 +19,7 @@ const PromotionalPopup = ({
   reappearInSeconds = 120 
 }: PromotionalPopupProps) => {
   const [activePopup, setActivePopup] = useState<PopupType>(PopupType.NONE);
-  const bookingPopupShownRef = useRef(false);
+  const membershipPopupShownRef = useRef(false);
   const studentPopupShownRef = useRef(false);
   const { toast } = useToast();
   
@@ -67,8 +67,8 @@ const PromotionalPopup = ({
         const timer = setTimeout(() => {
           // Re-check conditions right before showing
           if (shouldShowPopup()) {
-            setActivePopup(PopupType.BOOKING_OFFER);
-            bookingPopupShownRef.current = true;
+            setActivePopup(PopupType.MEMBERSHIP_OFFER);
+            membershipPopupShownRef.current = true;
             sessionStorage.setItem('promotional_popup_shown', 'true');
             
             // Schedule the second popup to appear 15 seconds after the first one
@@ -148,7 +148,7 @@ const PromotionalPopup = ({
   
   // Effect for reappearing popup after closing
   useEffect(() => {
-    if ((bookingPopupShownRef.current || studentPopupShownRef.current) && activePopup === PopupType.NONE) {
+    if ((membershipPopupShownRef.current || studentPopupShownRef.current) && activePopup === PopupType.NONE) {
       const reappearTimer = setTimeout(() => {
         // Check if we should show the popup before showing it again
         const isInBookingSection = window.location.hash === '#book-now' || 
@@ -157,7 +157,7 @@ const PromotionalPopup = ({
         if (!isInBookingSection) {
           // Alternate between the popups when they reappear
           if (studentPopupShownRef.current) {
-            setActivePopup(PopupType.BOOKING_OFFER);
+            setActivePopup(PopupType.MEMBERSHIP_OFFER);
           } else {
             setActivePopup(PopupType.STUDENT_DISCOUNT);
           }
@@ -168,7 +168,7 @@ const PromotionalPopup = ({
     }
   }, [activePopup, reappearInSeconds]);
   
-  const handleBookNow = () => {
+  const handleMembershipOffer = () => {
     setActivePopup(PopupType.NONE);
     // Open Calendly popup
     if (window.Calendly) {
@@ -178,8 +178,8 @@ const PromotionalPopup = ({
     }
     
     toast({
-      title: "Booking Started",
-      description: "You're getting FLAT 50% OFF + FREE Metashot Challenge!",
+      title: "Membership Offer Started",
+      description: "You're getting 50% OFF with monthly membership!",
     });
   };
   
@@ -198,8 +198,8 @@ const PromotionalPopup = ({
     }
   };
   
-  // Render the Booking Offer Popup
-  const renderBookingOfferPopup = () => (
+  // Render the Membership Offer Popup
+  const renderMembershipOfferPopup = () => (
     <div className="glass-card relative rounded-xl max-w-md w-full p-6 border-2 border-neon-pink animate-scale-pulse">
       <button 
         onClick={() => setActivePopup(PopupType.NONE)}
@@ -211,26 +211,27 @@ const PromotionalPopup = ({
       
       <div className="text-center mb-6">
         <div className="flex items-center justify-center gap-2 mb-2">
-          <h3 id="booking-popup-title" className="text-2xl font-bold neon-text-pink animate-blink-slow">
-            SPECIAL ONLINE OFFER!
-          </h3>
+          <Award size={32} className="text-neon-pink" />
         </div>
+        <h3 id="membership-popup-title" className="text-2xl font-bold neon-text-pink animate-blink-slow">
+          MONTHLY MEMBERSHIP OFFER!
+        </h3>
         <p className="text-gray-300 mb-4">
-          Get <span className="text-neon-blue font-bold">FLAT 50% OFF</span> your bill + 
-          <span className="text-neon-pink font-bold"> 1 FREE AR Metashot Cricket Challenge </span> 
-          only through online bookings!
+          <span className="text-neon-blue font-bold">💎 Silver (₹199)</span> - Up to 2 players or<br/>
+          <span className="text-neon-pink font-bold">🌟 Gold (₹349)</span> - Up to 4 players<br/>
+          Get <span className="text-neon-blue font-bold">50% OFF</span> for the entire month!
         </p>
         <p className="text-sm text-gray-400">
-          Limited time offer. Book now to avail this exclusive deal.
+          Priority bookings, premium membership card, and PS5 + Pool at half price!
         </p>
       </div>
       
       <div className="flex justify-center">
         <button
-          onClick={handleBookNow}
+          onClick={handleMembershipOffer}
           className="px-6 py-3 rounded-md bg-neon-blue text-gaming-darker font-semibold hover:bg-neon-blue/80 transition-all duration-300 transform hover:scale-105 flex items-center justify-center group"
         >
-          Book a Slot Now
+          Get Membership Now
           <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
@@ -257,7 +258,7 @@ const PromotionalPopup = ({
         </h3>
         <p className="text-gray-300 mb-4">
           Get <span className="text-neon-pink font-bold">FLAT ₹100 OFF</span> on 
-          <span className="text-neon-blue font-bold"> Weekly & Monthly Passes </span> 
+          <span className="text-neon-blue font-bold"> Monthly Memberships </span> 
           with a valid student ID!
         </p>
         <p className="text-sm text-gray-400">
@@ -270,7 +271,7 @@ const PromotionalPopup = ({
           onClick={handleStudentDiscount}
           className="px-6 py-3 rounded-md bg-neon-pink text-gaming-darker font-semibold hover:bg-neon-pink/80 transition-all duration-300 transform hover:scale-105 flex items-center justify-center group"
         >
-          View Passes
+          View Memberships
           <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
@@ -284,9 +285,9 @@ const PromotionalPopup = ({
       className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
       role="dialog" 
       aria-modal="true" 
-      aria-labelledby={activePopup === PopupType.BOOKING_OFFER ? "booking-popup-title" : "student-popup-title"}
+      aria-labelledby={activePopup === PopupType.MEMBERSHIP_OFFER ? "membership-popup-title" : "student-popup-title"}
     >
-      {activePopup === PopupType.BOOKING_OFFER ? renderBookingOfferPopup() : renderStudentDiscountPopup()}
+      {activePopup === PopupType.MEMBERSHIP_OFFER ? renderMembershipOfferPopup() : renderStudentDiscountPopup()}
     </div>
   );
 };

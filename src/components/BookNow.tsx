@@ -97,7 +97,7 @@ const BookNow = () => {
             <div className="inline-flex items-center bg-gaming-darker/80 backdrop-blur-md py-3 px-8 rounded-lg border border-neon-pink/30">
               <Siren className="h-5 w-5 text-red-500 animate-pulse mr-3" />
               <p className="text-lg md:text-xl text-neon-pink font-bold animate-blink-slow">
-                LIMITED TIME OFFER
+                50% OFF MONTHLY MEMBERSHIP
               </p>
               <Siren className="h-5 w-5 text-red-500 animate-pulse ml-3" />
             </div>
@@ -154,11 +154,11 @@ const BookNow = () => {
             <div className="glass-card rounded-xl p-8 border border-neon-pink/20 h-full flex flex-col">
               <h3 className="text-2xl font-bold mb-6 text-white flex items-center">
                 <Calendar className="h-6 w-6 text-neon-blue mr-2" />
-                Pricing & Packages
+                Pricing & Monthly Memberships
               </h3>
               
               <div className="space-y-6 flex-grow">
-                {/* Pricing Table */}
+                {/* Regular Pricing Table */}
                 <div className="rounded-lg overflow-hidden border border-gaming-accent/20">
                   <Table>
                     <TableBody>
@@ -195,26 +195,36 @@ const BookNow = () => {
                   </Table>
                 </div>
                 
+                {/* Monthly Membership Section */}
                 <div>
-                  <h4 className="text-xl font-semibold mb-4 text-white">Special Packages</h4>
+                  <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
+                    <Award className="h-5 w-5 text-neon-pink mr-2" />
+                    Monthly Memberships - 50% OFF
+                  </h4>
                   <div className="rounded-lg overflow-hidden border border-gaming-accent/20">
                     <Table>
                       <TableBody>
                         <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
-                          <TableCell className="py-3 text-gray-300">2-Hour Gaming Bundle</TableCell>
-                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹400</TableCell>
+                          <TableCell className="py-4">
+                            <div>
+                              <h5 className="text-lg font-semibold text-gray-300">💎 Silver Membership</h5>
+                              <p className="text-sm text-gray-400">Up to 2 players • Priority bookings</p>
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-4 text-right text-neon-blue font-semibold">₹199</TableCell>
                         </TableRow>
                         <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
-                          <TableCell className="py-3 text-gray-300">Weekly Pass</TableCell>
-                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹449</TableCell>
-                        </TableRow>
-                        <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
-                          <TableCell className="py-3 text-gray-300">Monthly Pass</TableCell>
-                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹1699</TableCell>
+                          <TableCell className="py-4">
+                            <div>
+                              <h5 className="text-lg font-semibold text-gray-300">🌟 Gold Membership</h5>
+                              <p className="text-sm text-gray-400">Up to 4 players • Priority bookings</p>
+                            </div>
+                          </TableCell>
+                          <TableCell className="py-4 text-right text-neon-pink font-semibold">₹349</TableCell>
                         </TableRow>
                         <TableRow className="hover:bg-gaming-accent/10">
-                          <TableCell className="py-3 text-gray-300">Student Discount on Passes</TableCell>
-                          <TableCell className="py-3 text-right text-neon-pink font-semibold">₹100 OFF</TableCell>
+                          <TableCell className="py-3 text-gray-300">Extra players (per hour)</TableCell>
+                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹49</TableCell>
                         </TableRow>
                       </TableBody>
                     </Table>

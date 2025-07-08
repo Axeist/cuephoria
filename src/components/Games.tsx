@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Gamepad2, Crosshair, TrophyIcon, Target, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -14,14 +13,14 @@ const games = [
     detailedDescription: "Experience the classic game of 8-Ball Pool at Cuephoria on our premium tournament-grade tables. Perfect your skills with precision cues and professional equipment. Our tables feature Italian slate surfaces and championship cloth for the ultimate playing experience. Regular tournaments are held for both beginners and advanced players, with prizes for winners.",
     benefits: [
       "Professional grade tables with Italian slate surfaces",
-      "Premium cues and accessories available",
+      "Premium cues and accessories available", 
       "Regular tournaments with prizes",
       "One-on-one coaching sessions available"
     ]
   },
   {
     name: "Snooker",
-    image: "/lovable-uploads/a8c2452f-9057-4737-9fe0-08855baa94e5.png", 
+    image: "/lovable-uploads/a8c2452f-9057-4737-9fe0-08855baa94e5.png",
     description: "Experience the classic game of snooker on our premium tables with professional equipment.",
     icon: <Crosshair className="h-6 w-6" />,
     detailedDescription: "Enjoy the strategic game of Snooker on our full-size professional tables at Cuephoria. Our snooker setups feature premium equipment, including championship balls and high-quality cues. The dedicated snooker area offers a quiet, focused environment for serious players, with proper lighting and ample space around each table for comfortable gameplay.",
@@ -53,10 +52,20 @@ const gameTitles = [
   { category: "Multiplayer Favorites", titles: ["Fortnite", "Rocket League", "Fall Guys", "It Takes Two", "Overcooked 2", "Tekken 8", "Street Fighter 6", "NBA 2K24"] },
 ];
 
-// Pricing information
+// Updated pricing information with new membership structure
 const pricingOptions = [
-  { name: "Weekly Pass", price: "₹449", description: "Full access to all gaming facilities for 7 days" },
-  { name: "Monthly Pass", price: "₹1699", description: "Full access to all gaming facilities for 30 days" }
+  { 
+    name: "💎 Silver Membership",
+    price: "₹199",
+    description: "Up to 2 players • 50% OFF for entire month • Priority bookings • Premium membership card",
+    features: ["PS5 & 8-Ball Pool at half price", "Priority bookings", "Premium membership card", "₹49 per extra player/hour"]
+  },
+  { 
+    name: "🌟 Gold Membership",
+    price: "₹349", 
+    description: "Up to 4 players • 50% OFF for entire month • Priority bookings • Premium membership card",
+    features: ["PS5 & 8-Ball Pool at half price", "Priority bookings", "Premium membership card", "₹49 per extra player/hour"]
+  }
 ];
 
 const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => {
@@ -253,7 +262,7 @@ const Games = () => {
         <div className="mt-16">
           <div className="glass-card rounded-lg p-6 md:p-8">
             <h3 className="text-2xl font-bold mb-6 text-center text-white">
-              Membership <span className="neon-text-blue">Pricing</span>
+              Monthly <span className="neon-text-blue">Memberships</span> - 50% OFF
             </h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -261,14 +270,26 @@ const Games = () => {
                 <div key={i} className="glass-card p-6 rounded-xl border border-neon-blue/20 hover:border-neon-blue/50 transition-all duration-300">
                   <h4 className="text-xl font-semibold neon-text-pink mb-2">{option.name}</h4>
                   <div className="text-3xl font-bold text-white mb-4">{option.price}</div>
-                  <p className="text-gray-300">{option.description}</p>
+                  <p className="text-gray-300 mb-4">{option.description}</p>
+                  
+                  <div className="space-y-2 mb-6">
+                    {option.features.map((feature, j) => (
+                      <div key={j} className="flex items-center text-sm text-gray-200">
+                        <div className="h-4 w-4 rounded-full bg-neon-blue/20 flex items-center justify-center mr-2">
+                          <span className="text-neon-blue text-xs">✓</span>
+                        </div>
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
+                  
                   <a 
                     href={`https://wa.me/918637625155?text=${encodeURIComponent(`Hello! I'd like to purchase the ${option.name} at Cuephoria.`)}`}
                     target="_blank"
                     rel="noopener noreferrer" 
                     className="mt-6 w-full py-2 rounded-md bg-neon-blue/20 hover:bg-neon-blue/30 text-white text-center block transition-colors"
                   >
-                    Get This Pass
+                    Get This Membership
                   </a>
                 </div>
               ))}

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2, Siren, ActivitySquare } from 'lucide-react';
 import Footer from '../components/Footer';
@@ -172,7 +173,7 @@ const BookingLanding = () => {
             <div className="bg-gaming-darker/80 backdrop-blur-md p-3 md:p-4 rounded-lg border border-neon-pink/30 mb-4 md:mb-6">
               <p className="text-lg md:text-xl text-neon-pink font-bold mb-1 md:mb-2 animate-blink-slow flex items-center justify-center gap-2">
                 <Siren className="h-5 w-5 text-red-500 animate-pulse" />
-                OPENING MEGA OFFER!
+                MONTHLY MEMBERSHIP - 50% OFF!
                 <Siren className="h-5 w-5 text-red-500 animate-pulse" />
               </p>
               <p className="text-base md:text-lg text-white">
@@ -328,7 +329,7 @@ const BookingLanding = () => {
                     <div className="h-4 w-4 md:h-5 md:w-5 rounded-full bg-neon-pink/20 flex items-center justify-center mr-2 mt-1">
                       <span className="text-neon-pink text-xs">✓</span>
                     </div>
-                    <span>Student-friendly pricing</span>
+                    <span>Monthly memberships with 50% savings</span>
                   </li>
                 </ul>
               </div>
@@ -367,46 +368,62 @@ const BookingLanding = () => {
                             </div>
                           </TableCell>
                         </TableRow>
+                      </TableBody>
+                    </Table>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Monthly Memberships Section */}
+              <div className="mb-6 md:mb-8">
+                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
+                  <Award className="h-4 w-4 md:h-5 md:w-5 text-neon-pink mr-2" />
+                  Monthly Memberships - 50% OFF
+                </h3>
+                
+                <div className="rounded-lg overflow-hidden border border-gaming-accent/30">
+                  <div className="overflow-x-auto">
+                    <Table className="w-full">
+                      <TableBody>
+                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
+                          <TableCell className="py-2 md:py-3 text-left text-sm md:text-base">
+                            <div className="flex items-center">
+                              <span className="font-medium text-white">💎 Silver Membership</span>
+                            </div>
+                            <p className="text-xs text-gray-400">Up to 2 players</p>
+                          </TableCell>
+                          <TableCell className="py-2 md:py-3 text-right text-sm md:text-base">
+                            <span className="font-bold text-neon-blue">₹199</span>
+                          </TableCell>
+                        </TableRow>
+                        
+                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
+                          <TableCell className="py-2 md:py-3 text-left text-sm md:text-base">
+                            <div className="flex items-center">
+                              <span className="font-medium text-white">🌟 Gold Membership</span>
+                            </div>
+                            <p className="text-xs text-gray-400">Up to 4 players</p>
+                          </TableCell>
+                          <TableCell className="py-2 md:py-3 text-right text-sm md:text-base">
+                            <span className="font-bold text-neon-pink">₹349</span>
+                          </TableCell>
+                        </TableRow>
                         
                         <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
                           <TableCell className="py-2 md:py-3 text-left font-medium text-white text-sm md:text-base">
-                            Student Package (2 hours)
+                            Extra players (per hour)
                           </TableCell>
                           <TableCell className="py-2 md:py-3 text-right">
-                            <span className="font-bold text-neon-pink text-lg md:text-xl">₹400</span>
-                          </TableCell>
-                        </TableRow>
-                        
-                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left text-sm md:text-base">
-                            <div className="flex items-center">
-                              <Award className="h-4 w-4 md:h-5 md:w-5 text-neon-pink mr-1 md:mr-2" />
-                              <span className="font-medium text-white">Loyalty (non-members)</span>
-                            </div>
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right text-sm md:text-base">
-                            <span className="font-bold text-neon-pink">2 pts per ₹100</span>
-                          </TableCell>
-                        </TableRow>
-                        
-                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left text-sm md:text-base">
-                            <div className="flex items-center">
-                              <Award className="h-4 w-4 md:h-5 md:w-5 text-neon-blue mr-1 md:mr-2" />
-                              <span className="font-medium text-white">Loyalty (members)</span>
-                            </div>
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right text-sm md:text-base">
-                            <span className="font-bold text-neon-blue">5 pts per ₹100</span>
+                            <span className="font-bold text-neon-blue">₹49</span>
                           </TableCell>
                         </TableRow>
                         
                         <TableRow className="hover:bg-gaming-accent/10">
                           <TableCell className="py-2 md:py-3 text-left font-medium text-white text-sm md:text-base">
-                            1 Loyalty Point Value
+                            Loyalty (members)
                           </TableCell>
                           <TableCell className="py-2 md:py-3 text-right">
-                            <span className="font-bold text-neon-pink">₹1</span>
+                            <span className="font-bold text-neon-pink">5 pts per ₹100</span>
                           </TableCell>
                         </TableRow>
                       </TableBody>
@@ -427,7 +444,7 @@ const BookingLanding = () => {
                   Can't book online right now?
                 </p>
                 <a 
-                  href={`https://wa.me/918637625155?text=${encodeURIComponent("Hi! I'd like to book a slot at Cuephoria. [Student Offer]")}`}
+                  href={`https://wa.me/918637625155?text=${encodeURIComponent("Hi! I'd like to book a slot at Cuephoria. [Monthly Membership Offer]")}`}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-4 py-2 md:px-6 md:py-3 rounded-md bg-neon-pink/90 text-white hover:bg-neon-pink transition-all duration-300 text-sm md:text-base"
