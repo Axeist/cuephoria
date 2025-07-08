@@ -44,19 +44,6 @@ const games = [
       "Latest game titles across all popular genres",
       "Multiplayer tournament capabilities"
     ]
-  },
-  {
-    name: "Metashot Challenges",
-    image: "/lovable-uploads/0e03cdfd-e1a2-47c2-858c-9e7f35867b0c.png",
-    description: "Physical batting experience where you hit targets in our interactive gaming environment.",
-    icon: <TrophyIcon className="h-6 w-6" />,
-    detailedDescription: "Metashot Challenges combine physical activity with digital gaming technology for a unique entertainment experience. Our custom-built interactive environment features projection technology that tracks your movements and scoring in real-time. Perfect for groups, these challenges test your reflexes, accuracy, and strategic thinking as you hit virtual targets with specially designed equipment.",
-    benefits: [
-      "Interactive physical and digital gaming experience",
-      "Real-time performance tracking and scoring",
-      "Multiple difficulty levels for all skill levels",
-      "Great for team-building events and parties"
-    ]
   }
 ];
 
@@ -68,8 +55,8 @@ const gameTitles = [
 
 // Pricing information
 const pricingOptions = [
-  { name: "Weekly Pass", price: "₹399", description: "Full access to all gaming facilities for 7 days" },
-  { name: "Monthly Pass", price: "₹1499", description: "Full access to all gaming facilities for 30 days" }
+  { name: "Weekly Pass", price: "₹449", description: "Full access to all gaming facilities for 7 days" },
+  { name: "Monthly Pass", price: "₹1699", description: "Full access to all gaming facilities for 30 days" }
 ];
 
 const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => {
@@ -231,7 +218,7 @@ const Games = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {games.map((game, index) => (
             <GameCard key={index} game={game} index={index} />
           ))}

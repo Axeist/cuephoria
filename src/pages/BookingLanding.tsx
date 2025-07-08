@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2, Siren, ActivitySquare } from 'lucide-react';
 import Footer from '../components/Footer';
@@ -177,7 +176,7 @@ const BookingLanding = () => {
                 <Siren className="h-5 w-5 text-red-500 animate-pulse" />
               </p>
               <p className="text-base md:text-lg text-white">
-                Get <span className="text-neon-blue font-bold">FLAT 50% OFF</span> on your total bill with online bookings!
+                Get <span className="text-neon-blue font-bold">25% OFF</span> on your total bill with online bookings!
               </p>
             </div>
             
@@ -331,12 +330,6 @@ const BookingLanding = () => {
                     </div>
                     <span>Student-friendly pricing</span>
                   </li>
-                  <li className="flex items-start">
-                    <div className="h-4 w-4 md:h-5 md:w-5 rounded-full bg-neon-pink/20 flex items-center justify-center mr-2 mt-1">
-                      <span className="text-neon-pink text-xs">✓</span>
-                    </div>
-                    <span>Free AR Metashot Cricket Challenge</span>
-                  </li>
                 </ul>
               </div>
               
@@ -358,7 +351,7 @@ const BookingLanding = () => {
                           <TableCell className="py-2 md:py-3 text-right">
                             <div className="flex items-center justify-end">
                               <span className="font-bold text-gray-400 line-through mr-1 md:mr-2 text-sm md:text-base">₹150</span>
-                              <span className="font-bold text-neon-blue text-lg md:text-xl">₹75</span>
+                              <span className="font-bold text-neon-blue text-lg md:text-xl">₹113</span>
                             </div>
                           </TableCell>
                         </TableRow>
@@ -370,7 +363,7 @@ const BookingLanding = () => {
                           <TableCell className="py-2 md:py-3 text-right">
                             <div className="flex items-center justify-end">
                               <span className="font-bold text-gray-400 line-through mr-1 md:mr-2 text-sm md:text-base">₹300</span>
-                              <span className="font-bold text-neon-blue text-lg md:text-xl">₹150</span>
+                              <span className="font-bold text-neon-blue text-lg md:text-xl">₹225</span>
                             </div>
                           </TableCell>
                         </TableRow>
@@ -380,7 +373,7 @@ const BookingLanding = () => {
                             Student Package (2 hours)
                           </TableCell>
                           <TableCell className="py-2 md:py-3 text-right">
-                            <span className="font-bold text-neon-pink text-lg md:text-xl">₹350</span>
+                            <span className="font-bold text-neon-pink text-lg md:text-xl">₹400</span>
                           </TableCell>
                         </TableRow>
                         

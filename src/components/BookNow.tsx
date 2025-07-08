@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { Calendar, Clock, Users, Award, Table2, Siren } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -173,7 +172,7 @@ const BookNow = () => {
                         <TableCell className="py-4 text-right">
                           <div className="flex items-center justify-end">
                             <div className="text-2xl font-bold text-gray-400 line-through mr-3">₹300</div>
-                            <div className="text-2xl font-bold text-white">₹150</div>
+                            <div className="text-2xl font-bold text-white">₹225</div>
                           </div>
                         </TableCell>
                       </TableRow>
@@ -188,20 +187,8 @@ const BookNow = () => {
                         <TableCell className="py-4 text-right">
                           <div className="flex items-center justify-end">
                             <div className="text-2xl font-bold text-gray-400 line-through mr-3">₹150</div>
-                            <div className="text-2xl font-bold text-white">₹75</div>
+                            <div className="text-2xl font-bold text-white">₹113</div>
                           </div>
-                        </TableCell>
-                      </TableRow>
-                      
-                      <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
-                        <TableCell className="py-4">
-                          <div>
-                            <h4 className="text-xl font-semibold text-neon-blue">Metashot Challenges</h4>
-                            <p className="text-gray-400">Per challenge</p>
-                          </div>
-                        </TableCell>
-                        <TableCell className="py-4 text-right">
-                          <div className="text-2xl font-bold text-white">FREE</div>
                         </TableCell>
                       </TableRow>
                     </TableBody>
@@ -215,15 +202,15 @@ const BookNow = () => {
                       <TableBody>
                         <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
                           <TableCell className="py-3 text-gray-300">2-Hour Gaming Bundle</TableCell>
-                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹350</TableCell>
+                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹400</TableCell>
                         </TableRow>
                         <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
                           <TableCell className="py-3 text-gray-300">Weekly Pass</TableCell>
-                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹399</TableCell>
+                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹449</TableCell>
                         </TableRow>
                         <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
                           <TableCell className="py-3 text-gray-300">Monthly Pass</TableCell>
-                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹1499</TableCell>
+                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹1699</TableCell>
                         </TableRow>
                         <TableRow className="hover:bg-gaming-accent/10">
                           <TableCell className="py-3 text-gray-300">Student Discount on Passes</TableCell>
@@ -278,8 +265,7 @@ const BookNow = () => {
                 
                 <div className="pt-2 text-center">
                   <p className="text-gray-400 text-sm animate-blink-slow">
-                    * Online bookings get <span className="text-neon-blue font-bold">FLAT 50% OFF</span> on your total bill + 
-                    <span className="text-neon-pink font-bold"> FREE Metashot Challenge </span>this month!
+                    * Online bookings get <span className="text-neon-blue font-bold">25% OFF</span> on your total bill this month!
                   </p>
                 </div>
               </div>
