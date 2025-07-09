@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -6,7 +5,6 @@ import About from '../components/About';
 import Games from '../components/Games';
 import Tournaments from '../components/Tournaments';
 import Gallery from '../components/Gallery';
-import Testimonials from '../components/Testimonials';
 import BookNow from '../components/BookNow';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
@@ -18,6 +16,9 @@ import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  // Removed scroll progress state and logic
+  // const [showScrollProgress, setShowScrollProgress] = useState(false);
+  // const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleHashLinkClick = (e: MouseEvent) => {
@@ -54,7 +55,22 @@ const Index = () => {
 
       if (!ticking) {
         frameId = requestAnimationFrame(() => {
-          const sections = ['home', 'about', 'games', 'tournaments', 'gallery', 'testimonials', 'book-now', 'contact'];
+          // Removed scroll progress calculation and state updates
+          // const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          // const rawProgress = (lastScrollY / totalHeight) * 100;
+
+          // setScrollProgress(prevProgress => {
+          //   const delta = rawProgress - prevProgress;
+          //   return prevProgress + delta * 0.3;
+          // });
+
+          // if (lastScrollY > 200) {
+          //   setShowScrollProgress(true);
+          // } else {
+          //   setShowScrollProgress(false);
+          // }
+
+          const sections = ['home', 'about', 'games', 'tournaments', 'gallery', 'book-now', 'contact'];
           let current = '';
 
           for (const section of sections) {
@@ -134,7 +150,6 @@ const Index = () => {
         <Games />
         <Tournaments />
         <Gallery />
-        <Testimonials />
         <BookNow />
         <Contact />
         <Footer />
@@ -143,6 +158,16 @@ const Index = () => {
       <PromotionalPopup delayInSeconds={30} reappearInSeconds={120} />
       <Chatbot />
       
+      {/* REMOVED: The vertical fixed scroll progress indicator */}
+      {/* 
+      <div className={`fixed right-4 top-1/2 transform -translate-y-1/2 h-1/3 w-2 bg-gaming-accent/20 rounded-full z-40 transition-opacity duration-500 ${showScrollProgress ? 'opacity-100' : 'opacity-0'}`}>
+        <div 
+          className="bg-neon-blue rounded-full w-full transition-all duration-700 ease-out"
+          style={{ height: `${scrollProgress}%` }}
+        ></div>
+      </div>
+      */}
+
       {/* Added fixed booking button for quick access */}
       <Link 
         to="/book"
@@ -154,10 +179,13 @@ const Index = () => {
       <a 
         href="#home"
         className={
+          // Removed showScrollProgress logic; always show for usability if desired, or add condition as needed
           "fixed bottom-8 right-8 h-12 w-12 rounded-full bg-gaming-darker text-white border border-neon-blue/30 flex items-center justify-center z-40 shadow-lg transition-all duration-500 ease-out overflow-hidden"
         }
+        // If you'd like to always show the scroll-to-top button, keep as is. Otherwise, add your own logic.
         aria-label="Back to top"
         style={{
+          // Removed conic-gradient scrollProgress highlighting
           background: `#121826`
         }}
       >
