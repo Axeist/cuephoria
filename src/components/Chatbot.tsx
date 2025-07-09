@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, ChevronLeft, ChevronRight, MapPin, Calendar, BarChart3, Phone, Mail, Clock } from 'lucide-react';
+import { MessageCircle, X, Send, ChevronLeft, ChevronRight, MapPin, Calendar, BarChart3, Phone, Mail, Clock, Upload } from 'lucide-react';
 import { checkProfanity } from '../utils/profanityFilter';
 import { quickReplies, getRandomQuirkyResponse, getRandomTamildResponse, getContextualResponse } from '../utils/chatbotData';
 import { Button } from './ui/button';
+import { useTestimonials, Testimonial } from '../hooks/useTestimonials';
 
 interface Message {
   id: string;
@@ -11,7 +12,7 @@ interface Message {
   timestamp: Date;
   buttons?: Array<{
     text: string;
-    action: 'link' | 'phone' | 'email';
+    action: 'link' | 'phone' | 'email' | 'upload';
     value: string;
     icon?: React.ReactNode;
   }>;
@@ -46,17 +47,18 @@ const Chatbot = () => {
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const autoOpenTimeoutRef = useRef<NodeJS.Timeout>();
   const notificationTimeoutRef = useRef<NodeJS.Timeout>();
 
-  // Show notification after 10 seconds, auto-open after 50 seconds total
+  const { updateTestimonials } = useTestimonials();
+
   useEffect(() => {
     if (!hasInteracted) {
       notificationTimeoutRef.current = setTimeout(() => {
         setShowNotification(true);
         setNotificationCount(1);
         
-        // Auto-open after additional 40 seconds (50 total)
         autoOpenTimeoutRef.current = setTimeout(() => {
           if (!isOpen) {
             setIsOpen(true);
@@ -73,7 +75,6 @@ const Chatbot = () => {
     };
   }, [hasInteracted, isOpen]);
 
-  // Auto-rotate quick replies with smooth gliding
   useEffect(() => {
     if (!autoRotateEnabled) return;
 
@@ -127,6 +128,47 @@ const Chatbot = () => {
     }, delay);
   };
 
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (file.type !== 'application/json') {
+      addWarning('Please upload a JSON file only!');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const jsonData = JSON.parse(e.target?.result as string);
+        
+        // Validate if it's an array of testimonials
+        if (Array.isArray(jsonData) && jsonData.length > 0) {
+          const validTestimonials: Testimonial[] = jsonData.filter(item => 
+            item.name && typeof item.stars === 'number' && item.stars >= 1 && item.stars <= 5
+          );
+          
+          if (validTestimonials.length > 0) {
+            updateTestimonials(validTestimonials);
+            simulateTyping(() => {
+              addMessage(`Perfect! I've successfully updated the testimonials with ${validTestimonials.length} reviews. The website will now show these fresh customer reviews! 🎉✨`, false);
+            });
+          } else {
+            addWarning('Invalid testimonial format in JSON file!');
+          }
+        } else {
+          addWarning('JSON file should contain an array of testimonials!');
+        }
+      } catch (error) {
+        addWarning('Invalid JSON file format!');
+        console.error('JSON parsing error:', error);
+      }
+    };
+    
+    reader.readAsText(file);
+    event.target.value = ''; // Reset file input
+  };
+
   const handleButtonClick = (action: string, value: string) => {
     if (action === 'link') {
       window.open(value, '_blank');
@@ -134,6 +176,8 @@ const Chatbot = () => {
       window.open(`tel:${value}`);
     } else if (action === 'email') {
       window.open(`mailto:${value}`);
+    } else if (action === 'upload') {
+      fileInputRef.current?.click();
     }
   };
 
@@ -169,44 +213,19 @@ const Chatbot = () => {
     setInputText('');
   };
 
-  const handleQuickReply = (reply: string) => {
-    if (isChatDisabled) return;
-    
-    setHasInteracted(true);
-    addMessage(reply, true);
-    
-    simulateTyping(() => {
-      const { response, buttons } = generateResponse(reply.toLowerCase());
-      addMessage(response, false, buttons);
-    });
-  };
-
-  const navigateQuickReplies = (direction: 'left' | 'right') => {
-    setAutoRotateEnabled(false);
-    setHasInteracted(true);
-    
-    const newIndex = direction === 'left' 
-      ? Math.max(0, quickReplyIndex - 1)
-      : Math.min(quickReplies.length - 4, quickReplyIndex + 1);
-    
-    setQuickReplyIndex(newIndex);
-    setCurrentQuickReplies(quickReplies.slice(newIndex, newIndex + 4));
-  };
-
-  const handleOpenChat = () => {
-    setIsOpen(true);
-    setShowNotification(false);
-    setNotificationCount(0);
-    setHasInteracted(true);
-    
-    if (autoOpenTimeoutRef.current) clearTimeout(autoOpenTimeoutRef.current);
-    if (notificationTimeoutRef.current) clearTimeout(notificationTimeoutRef.current);
-  };
-
   const generateResponse = (input: string): { response: string; buttons?: Message['buttons'] } => {
     const lowerInput = input.toLowerCase();
     
-    // Enhanced responses with better ambiguity handling
+    // Secret admin command for testimonial upload
+    if (lowerInput.includes('upload reviews') || lowerInput.includes('update testimonials') || lowerInput.includes('admin upload')) {
+      return {
+        response: "🔐 Admin mode detected! You can upload new testimonials using the button below. Make sure it's a valid JSON file with review data, da! 🎯",
+        buttons: [
+          { text: "Upload Reviews", action: "upload", value: "", icon: <Upload size={16} /> }
+        ]
+      };
+    }
+
     if (lowerInput.includes('pool') || lowerInput.includes('8-ball') || lowerInput.includes('snooker') || lowerInput.includes('billiards')) {
       return {
         response: "🎱 Vanakkam! Pool Games are absolutely mass, da! We've got professional tables waiting for you here in Trichy:\n\n💰 Regular Price: ₹300/day\n🔥 Opening Offer: 50% OFF - Now just ₹150!\n\nThat's a whole day of pool mastery! Perfect for hanging out with friends or some serious practice. Ready to book your session right now?",
@@ -312,7 +331,6 @@ const Chatbot = () => {
       };
     }
     
-    // Handle Tamil greetings and local references with more personality
     if (lowerInput.includes('vanakkam') || lowerInput.includes('trichy') || lowerInput.includes('tamil') || lowerInput.includes('hello') || lowerInput.includes('hi')) {
       return {
         response: "Vanakkam da! 🙏 So happy to meet you! Cuephoria is the pride of Trichy's gaming scene - we're bringing world-class gaming right here to the heart of Tamil Nadu! \n\nI'm Shakila, and I'm genuinely excited to help you plan the perfect gaming experience. What brings you to our digital doorstep today? Ready for some epic fun?",
@@ -322,7 +340,6 @@ const Chatbot = () => {
       };
     }
     
-    // Enhanced ambiguous query handling with contextual responses
     const contextualResponse = getContextualResponse(input);
     return {
       response: contextualResponse + "\n\nBut hey, while I have your attention - want to book an amazing gaming session here in Trichy? I can get you sorted in under 30 seconds, da! 🎮⚡",
@@ -330,6 +347,40 @@ const Chatbot = () => {
         { text: "Book Now", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
       ]
     };
+  };
+
+  const handleQuickReply = (reply: string) => {
+    if (isChatDisabled) return;
+    
+    setHasInteracted(true);
+    addMessage(reply, true);
+    
+    simulateTyping(() => {
+      const { response, buttons } = generateResponse(reply.toLowerCase());
+      addMessage(response, false, buttons);
+    });
+  };
+
+  const navigateQuickReplies = (direction: 'left' | 'right') => {
+    setAutoRotateEnabled(false);
+    setHasInteracted(true);
+    
+    const newIndex = direction === 'left' 
+      ? Math.max(0, quickReplyIndex - 1)
+      : Math.min(quickReplies.length - 4, quickReplyIndex + 1);
+    
+    setQuickReplyIndex(newIndex);
+    setCurrentQuickReplies(quickReplies.slice(newIndex, newIndex + 4));
+  };
+
+  const handleOpenChat = () => {
+    setIsOpen(true);
+    setShowNotification(false);
+    setNotificationCount(0);
+    setHasInteracted(true);
+    
+    if (autoOpenTimeoutRef.current) clearTimeout(autoOpenTimeoutRef.current);
+    if (notificationTimeoutRef.current) clearTimeout(notificationTimeoutRef.current);
   };
 
   if (!isOpen) {
@@ -356,6 +407,14 @@ const Chatbot = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 w-80 max-w-[calc(100vw-2rem)] md:w-96">
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".json"
+        onChange={handleFileUpload}
+        className="hidden"
+      />
+      
       <div className="bg-gaming-darker border border-neon-blue/30 rounded-lg shadow-2xl overflow-hidden animate-fade-in">
         {/* Header */}
         <div className="bg-gradient-to-r from-neon-blue/20 to-neon-pink/20 p-4 border-b border-neon-blue/30">
