@@ -276,9 +276,9 @@ const Chatbot = () => {
     
     if (lowerInput.includes('weekly') || lowerInput.includes('pass') || lowerInput.includes('membership') || lowerInput.includes('monthly')) {
       return {
-        response: "💎 Aiyayo! Our passes are INCREDIBLE value, da! Check this out:\n\n🎮 PS5 Solo Weekly Pass - ₹399 (was ₹799!)\n🎱 Table Gaming Weekly Pass - ₹799 (was ₹1,599!)\n📅 Monthly options also available!\n\nBoth include ₹100 worth of snacks and 50% off extra time! Absolutely the best deal in all of Trichy! Perfect for regular gamers.",
+        response: "💎 Aiyayo! Our Monthly Memberships are INCREDIBLE value, da! Check this out:\n\n🥈 Silver Membership - ₹199/month (Up to 2 players)\n🥇 Gold Membership - ₹349/month (Up to 4 players)\n\nBoth include:\n✨ 50% OFF all gaming sessions\n🍿 ₹100 worth of FREE snacks\n🎯 Priority bookings & VIP treatment\n📱 Premium membership card\n\nAbsolutely the best deal in all of Trichy! Perfect for regular gamers who want VIP treatment!",
         buttons: [
-          { text: "Get Weekly Pass", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
+          { text: "Get Membership", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
         ]
       };
     }
@@ -305,7 +305,7 @@ const Chatbot = () => {
     
     if (lowerInput.includes('price') || lowerInput.includes('cost') || lowerInput.includes('how much') || lowerInput.includes('rates') || lowerInput.includes('cheap') || lowerInput.includes('expensive')) {
       return {
-        response: "💰 Vanakkam! Here's our transparent pricing for Trichy (with massive opening discounts!):\n\n🎱 Pool Games: ₹150/day (50% off original ₹300!)\n🎮 PS5 Gaming: ₹75 per controller (50% off original ₹150!)\n🎲 Board Games: FREE with any snack order!\n\nHonestly, these are the best gaming rates in all of Tamil Nadu, da! No hidden charges, no surprises.",
+        response: "💰 Vanakkam! Here's our transparent pricing for Trichy (with massive opening discounts!):\n\n🎱 Pool Games: ₹150/day (50% off original ₹300!)\n🎮 PS5 Gaming: ₹75 per controller (50% off original ₹150!)\n🎲 Board Games: FREE with any snack order!\n\n💎 Monthly Memberships:\n🥈 Silver: ₹199 (2 players) - 50% off everything!\n🥇 Gold: ₹349 (4 players) - 50% off everything!\n\nHonestly, these are the best gaming rates in all of Tamil Nadu, da! No hidden charges, no surprises.",
         buttons: [
           { text: "Book at These Rates", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
         ]
@@ -324,7 +324,7 @@ const Chatbot = () => {
     
     if (lowerInput.includes('student') || lowerInput.includes('discount') || lowerInput.includes('offer') || lowerInput.includes('deal')) {
       return {
-        response: "🎓 Student life and gaming go hand in hand, da! Our current 50% off opening offers are already student-friendly:\n\n🎮 PS5: Just ₹75 per controller\n🎱 Pool: Just ₹150 for whole day\n🎲 Board games: FREE!\n\nPerfect for study breaks and hanging with classmates! Group bookings get even more fun. Ready to book your stress-busting session?",
+        response: "🎓 Student life and gaming go hand in hand, da! We've got special student offers:\n\n🎮 Current 50% off opening offers for all students\n💎 Monthly Memberships with EXTRA ₹100 OFF with valid student ID:\n🥈 Silver: Just ₹99 (normally ₹199)\n🥇 Gold: Just ₹249 (normally ₹349)\n\nPerfect for study breaks and hanging with classmates! Group bookings get even more fun. Ready to book your stress-busting session?",
         buttons: [
           { text: "Book Student Session", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
         ]

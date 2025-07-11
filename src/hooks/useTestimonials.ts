@@ -20,9 +20,11 @@ export const useTestimonials = () => {
       try {
         const storedTestimonials = localStorage.getItem('cuephoria_testimonials');
         if (storedTestimonials) {
-          setTestimonials(JSON.parse(storedTestimonials));
+          const parsed = JSON.parse(storedTestimonials);
+          console.log('Loaded testimonials from localStorage:', parsed.length);
+          setTestimonials(parsed);
         } else {
-          // Updated comprehensive testimonials data with all 37 reviews
+          // Complete 37 reviews data
           const defaultTestimonials: Testimonial[] = [
             {
               "title": "Cuephoria Gaming Lounge & Café",
@@ -45,7 +47,7 @@ export const useTestimonials = () => {
               "url": "https://www.google.com/maps/search/?api=1&query=Cuephoria%20Gaming%20Lounge%20%26%20Caf%C3%A9&query_place_id=ChIJ2cKrHw_zqjsRHpMUHV-CvYM",
               "stars": 5,
               "name": "prashanth prakash",
-              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT21ONk9EQkxSRkZ0YUdOUmVIZ3dSSFJSUjB4NlVYYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodChtycF9oOmN6ODBLRFFtaGNReHgwRHRRR0x6UXc%7C0cL_ok41AA-%7C?hl=en",
+              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT21ONk9EQkxSRkZ0YUdOUmVIZ3dSSFRSUjB4NlVYYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodChtycF9oOmN6ODBLRFFtaGNReHgwRHRRR0x6UXc%7C0cL_ok41AA-%7C?hl=en",
               "text": "Great setup and really nice play to chill with friends over a game of snooker or FIFA.. Spacious and comfortable with bean bags everywhere.. And of course snacks to order available as well. Loved it!!"
             },
             {
@@ -173,7 +175,7 @@ export const useTestimonials = () => {
               "url": "https://www.google.com/maps/search/?api=1&query=Cuephoria%20Gaming%20Lounge%20%26%20Caf%C3%A9&query_place_id=ChIJ2cKrHw_zqjsRHpMUHV-CvYM",
               "stars": 5,
               "name": "abdul wahith",
-              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2tFM1ZtRkZjREUxU2xGdlVtMVJhVXhJWTNJMlIzYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodChtycF9oOkE3VmFFcDE1SlFvUm1RaUxIY3I2R3c%7C0cPxoiti2pL%7C?hl=en",
+              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2tFM1ZtRkZjREUxU2xGdlVtMVJhVXhJWTNJMlIzYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodCbtycF9oOkE3VmFFcDE1SlFvUm1RaUxIY3I2R3c%7C0cPxoiti2pL%7C?hl=en",
               "text": "More enjoyable and joyfull"
             },
             {
@@ -181,7 +183,7 @@ export const useTestimonials = () => {
               "url": "https://www.google.com/maps/search/?api=1&query=Cuephoria%20Gaming%20Lounge%20%26%20Caf%C3%A9&query_place_id=ChIJ2cKrHw_zqjsRHpMUHV-CvYM",
               "stars": 5,
               "name": "Jhon Abraham",
-              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2xaSVluUkxWM1pPTVVWR1YyRk5iRlpmY1ZwNGVIYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodChtycF9oOlZIYnRLV3ZOMUVGV2FNbFZfcVp4eHc%7C0cPxnbV39Kg%7C?hl=en",
+              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2xaSVluUkxWM1pPTVVWR1YyRk5iRlpmY1ZwNGVIYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodCbtycF9oOlZIYnRLV3ZOMUVGV2FNbFZfcVp4eHc%7C0cPxnbV39Kg%7C?hl=en",
               "text": "No.1 Trichy"
             },
             {
@@ -189,7 +191,7 @@ export const useTestimonials = () => {
               "url": "https://www.google.com/maps/search/?api=1&query=Cuephoria%20Gaming%20Lounge%20%26%20Caf%C3%A9&query_place_id=ChIJ2cKrHw_zqjsRHpMUHV-CvYM",
               "stars": 5,
               "name": "daya yugesh",
-              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT210VU1uSmxWSFUzTmpkMVJWcHJTVXBXY0U0eWFYYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodChtycF9oOmtUMnJlVHU3Njd1RVprSUpWcE4yaXc%7C0cPZRgPXWk8%7C?hl=en",
+              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT210VU1uSmxWSFUzTmpkMVJWcHJTVXBXY0U0eWFYYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodCbtycF9oOmtUMnJlVHU3Njd1RVprSUpWcE4yaXc%7C0cPZRgPXWk8%7C?hl=en",
               "text": "Nice place for gamers 💓"
             },
             {
@@ -205,7 +207,7 @@ export const useTestimonials = () => {
               "url": "https://www.google.com/maps/search/?api=1&query=Cuephoria%20Gaming%20Lounge%20%26%20Caf%C3%A9&query_place_id=ChIJ2cKrHw_zqjsRHpMUHV-CvYM",
               "stars": 5,
               "name": "Mukesh G",
-              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT25wRVJWcFdUVVpOYldOZlRIRTVZVkJhVDI4MlRuYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodChtycF9oOnpERVpWTUZNbWNfTHE5YVBaT282Tnc%7C0cPZQ2ruSsC%7C?hl=en",
+              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT25wRVJWcFdUVVpOYldOZlRIRTVZVkJhVDI4MlRuYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodCbtycF9oOnpERVpWTUZNbWNfTHE5YVBaT282Tnc%7C0cPZQ2ruSsC%7C?hl=en",
               "text": "Nice spot"
             },
             {
@@ -213,7 +215,7 @@ export const useTestimonials = () => {
               "url": "https://www.google.com/maps/search/?api=1&query=Cuephoria%20Gaming%20Lounge%20%26%20Caf%C3%A9&query_place_id=ChIJ2cKrHw_zqjsRHpMUHV-CvYM",
               "stars": 5,
               "name": "Wicked wango",
-              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2pSSU5XRm5ja2xtWDE5UE4wbFNTaTE1ZGpkTlQyYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodChtycF9oOjRINWFncklmX19PN0lSSi15djdNT2c%7C0cM16hPFAgM%7C?hl=en",
+              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2pSSU5XRm5ja2xtWDE5UE4wbFNTaTE1ZGpkTlQyYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodCbtycF9oOjRINWFncklmX19PN0lSSi15djdNT2c%7C0cM16hPFAgM%7C?hl=en",
               "text": "good"
             },
             {
@@ -245,7 +247,7 @@ export const useTestimonials = () => {
               "url": "https://www.google.com/maps/search/?api=1&query=Cuephoria%20Gaming%20Lounge%20%26%20Caf%C3%A9&query_place_id=ChIJ2cKrHw_zqjsRHpMUHV-CvYM",
               "stars": 5,
               "name": "Pranesh Elangovan",
-              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2pkT2JsTmFjV2xoVG5WUGRYRXpZbHBTYW1OVkxYYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodChtycF9oOjdOblNacWlhTnVPdXEzYlpSamNVLXc%7C0cQ-lCMCMHu%7C?hl=en",
+              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2pkT2JsTmFjV2xoVG5WUGRYRXpZbHBTYW1OVkxYYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodCbtycF9oOjdOblNacWlhTnVPdXEzYlpSamNVLXc%7C0cQ-lCMCMHu%7C?hl=en",
               "text": null
             },
             {
@@ -253,7 +255,7 @@ export const useTestimonials = () => {
               "url": "https://www.google.com/maps/search/?api=1&query=Cuephoria%20Gaming%20Lounge%20%26%20Caf%C3%A9&query_place_id=ChIJ2cKrHw_zqjsRHpMUHV-CvYM",
               "stars": 5,
               "name": "R O PrithiviRajan",
-              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2w5VFFuUjZjSFJJUm1SclFtWnJaMll3WkhOTGNtYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodChtycF9oOl9TQnR6cHRIRmRrQmZrZ2YwZHNLcmc%7C0cPyrxeXohK%7C?hl=en",
+              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2w5VFFuUjZjSFJJUm1SclFtWnJaMll3WkhOTGNtYxAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodCbtycF9oOl9TQnR6cHRIRmRrQmZrZ2YwZHNLcmc%7C0cPyrxeXohK%7C?hl=en",
               "text": null
             },
             {
@@ -261,7 +263,7 @@ export const useTestimonials = () => {
               "url": "https://www.google.com/maps/search/?api=1&query=Cuephoria%20Gaming%20Lounge%20%26%20Caf%C3%A9&query_place_id=ChIJ2cKrHw_zqjsRHpMUHV-CvYM",
               "stars": 5,
               "name": "Mahesh Sharuk",
-              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2xBMlZXeHRlVFpFYzBaMU0wUjVUa2xwTFV0QlkxRRAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodChtycF9oOlA2VWxteTZEc0Z1M0R5TklpLUtBY1E%7C0cNeYWXILIg%7C?hl=en",
+              "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2xBMlZXeHRlVFpFYzBaMU0wUjVUa2xwTFV0QlkxRRAB!2m1!1s0x0:0x83bd825f1d14931e!3m1!1s2@1:CAIQACodCbtycF9oOlA2VWxteTZEc0Z1M0R5TklpLUtBY1E%7C0cNeYWXILIg%7C?hl=en",
               "text": null
             },
             {
@@ -321,6 +323,8 @@ export const useTestimonials = () => {
               "text": null
             }
           ];
+          
+          console.log('Using default testimonials:', defaultTestimonials.length);
           setTestimonials(defaultTestimonials);
           localStorage.setItem('cuephoria_testimonials', JSON.stringify(defaultTestimonials));
         }
@@ -336,6 +340,7 @@ export const useTestimonials = () => {
   }, []);
 
   const updateTestimonials = (newTestimonials: Testimonial[]) => {
+    console.log('Updating testimonials with', newTestimonials.length, 'reviews');
     setTestimonials(newTestimonials);
     localStorage.setItem('cuephoria_testimonials', JSON.stringify(newTestimonials));
   };
