@@ -173,7 +173,7 @@ const BookingLanding = () => {
             <div className="bg-gaming-darker/80 backdrop-blur-md p-3 md:p-4 rounded-lg border border-neon-pink/30 mb-4 md:mb-6">
               <p className="text-lg md:text-xl text-neon-pink font-bold mb-1 md:mb-2 animate-blink-slow flex items-center justify-center gap-2">
                 <Siren className="h-5 w-5 text-red-500 animate-pulse" />
-                MONTHLY MEMBERSHIP - 25% OFF!
+                MONTHLY MEMBERSHIP - 50% OFF!
                 <Siren className="h-5 w-5 text-red-500 animate-pulse" />
               </p>
               <p className="text-base md:text-lg text-white">
@@ -218,6 +218,42 @@ const BookingLanding = () => {
               <div className="flex items-center space-x-1 md:space-x-2 text-gray-200 text-sm md:text-base">
                 <MapPin className="h-4 w-4 md:h-5 md:w-5 text-neon-blue" />
                 <span>Thiruverumbur, Trichy</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Live Occupancy Status Section - Improved for mobile */}
+          <div className="max-w-5xl mx-auto mb-6 md:mb-8">
+            <div className="bg-gaming-darker/70 backdrop-blur-lg border border-neon-blue/30 rounded-xl overflow-hidden shadow-lg shadow-neon-blue/10">
+              <div className="p-3 md:p-4 border-b border-neon-blue/20 text-center">
+                <h2 className="text-xl md:text-2xl font-bold flex items-center justify-center gap-1 md:gap-2">
+                  <ActivitySquare className="text-neon-pink h-5 w-5 md:h-6 md:w-6" />
+                  <span className="text-neon-blue">Live Occupancy Status</span>
+                </h2>
+                <p className="text-center text-gray-300 text-xs md:text-sm">
+                  Check real-time availability of Pool Tables and PS5 controllers
+                </p>
+              </div>
+              
+              {/* Iframe with loading skeleton - height adjusted for mobile */}
+              <div className="relative w-full" style={{ height: isMobile ? "400px" : "500px" }}>
+                {/* Loading skeleton */}
+                <div className="absolute inset-0 bg-gaming-darker/70 flex flex-col items-center justify-center z-10 animate-pulse" id="occupancy-loader">
+                  <div className="w-10 h-10 md:w-12 md:h-12 border-4 border-neon-blue rounded-full border-t-transparent animate-spin mb-3 md:mb-4"></div>
+                  <p className="text-neon-blue text-sm md:text-base">Loading occupancy data...</p>
+                </div>
+                
+                {/* Iframe for the occupancy view - height adjusted for mobile */}
+                <iframe 
+                  src="https://admin.cuephoria.in/public/stations" 
+                  className="w-full h-full border-0"
+                  style={{ minHeight: isMobile ? "400px" : "500px" }}
+                  title="Cuephoria Live Occupancy"
+                  onLoad={() => {
+                    const loader = document.getElementById('occupancy-loader');
+                    if (loader) loader.style.display = 'none';
+                  }}
+                ></iframe>
               </div>
             </div>
           </div>
@@ -293,7 +329,7 @@ const BookingLanding = () => {
                     <div className="h-4 w-4 md:h-5 md:w-5 rounded-full bg-neon-pink/20 flex items-center justify-center mr-2 mt-1">
                       <span className="text-neon-pink text-xs">✓</span>
                     </div>
-                    <span>Monthly memberships with 25% savings</span>
+                    <span>Monthly memberships with 50% savings</span>
                   </li>
                 </ul>
               </div>
@@ -338,11 +374,11 @@ const BookingLanding = () => {
                 </div>
               </div>
               
-              {/* Monthly Memberships Section - Updated to 25% OFF */}
+              {/* Monthly Memberships Section */}
               <div className="mb-6 md:mb-8">
                 <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
                   <Award className="h-4 w-4 md:h-5 md:w-5 text-neon-pink mr-2" />
-                  Monthly Memberships - 25% OFF
+                  Monthly Memberships - 50% OFF
                 </h3>
                 
                 <div className="rounded-lg overflow-hidden border border-gaming-accent/30">

@@ -1,25 +1,11 @@
 
-import React, { useEffect, useState } from 'react';
-import { Star, Quote, ExternalLink, MessageCirclePlus } from 'lucide-react';
+import React from 'react';
+import { Star, Quote, ExternalLink } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel';
 import { useTestimonials } from '../hooks/useTestimonials';
-import { Button } from './ui/button';
 
 const Testimonials = () => {
   const { testimonials, isLoading } = useTestimonials();
-  const [api, setApi] = useState<any>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Auto-scroll functionality
-  useEffect(() => {
-    if (!api || isHovered) return;
-
-    const interval = setInterval(() => {
-      api.scrollNext();
-    }, 3000); // Auto-scroll every 3 seconds
-
-    return () => clearInterval(interval);
-  }, [api, isHovered]);
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
@@ -104,19 +90,10 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Featured Reviews Carousel with Auto-scroll */}
+        {/* Featured Reviews Carousel */}
         {featuredTestimonials.length > 0 && (
           <div className="mb-16">
-            <Carousel 
-              className="max-w-7xl mx-auto"
-              setApi={setApi}
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
+            <Carousel className="max-w-7xl mx-auto">
               <CarouselContent className="-ml-2 md:-ml-4">
                 {featuredTestimonials.map((review, index) => (
                   <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
@@ -174,18 +151,6 @@ const Testimonials = () => {
             </Carousel>
           </div>
         )}
-
-        {/* Review Collection Button */}
-        <div className="text-center mb-12">
-          <Button 
-            onClick={() => window.open('https://g.page/r/CR6TFB1fgr2DEBM/review', '_blank')}
-            className="bg-gradient-to-r from-neon-pink to-neon-blue hover:from-neon-pink/90 hover:to-neon-blue/90 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0"
-          >
-            <MessageCirclePlus className="w-5 h-5 mr-2" />
-            Leave us a Review on Google
-          </Button>
-          <p className="text-gray-400 text-sm mt-2">Share your gaming experience with other players!</p>
-        </div>
 
         {/* Quick Reviews Grid */}
         {quickReviews.length > 0 && (
