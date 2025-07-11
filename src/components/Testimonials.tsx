@@ -1,11 +1,14 @@
-
-import React from 'react';
-import { Star, Quote, ExternalLink } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Star, Quote, ExternalLink, MessageSquarePlus } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel';
 import { useTestimonials } from '../hooks/useTestimonials';
+import { Button } from './ui/button';
 
 const Testimonials = () => {
   const { testimonials, isLoading } = useTestimonials();
+  const [api, setApi] = useState<any>();
+  const [current, setCurrent] = useState(0);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
@@ -19,6 +22,31 @@ const Testimonials = () => {
       />
     ));
   };
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (!api || !isAutoScrolling) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 4000); // Move every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [api, isAutoScrolling]);
+
+  // Track current slide for seamless loop
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
+
+    api.on('select', onSelect);
+    onSelect();
+
+    return () => api?.off('select', onSelect);
+  }, [api]);
 
   if (isLoading) {
     return (
@@ -68,7 +96,7 @@ const Testimonials = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Header with Google branding */}
+        {/* Header with Google branding and Review Collection Button */}
         <div className="text-center mb-16">
           <div className="flex items-center justify-center mb-6">
             <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20 shadow-lg">
@@ -85,23 +113,54 @@ const Testimonials = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-orbitron">
             What Our <span className="neon-text-pink glow-text">Gamers Say</span>
           </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
             Real reviews from our amazing gaming community in Trichy
           </p>
+
+          {/* Review Collection Button */}
+          <div className="mb-8">
+            <Button
+              asChild
+              className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-white/20 hover:border-white/40"
+            >
+              <a
+                href="https://g.page/r/CR6TFB1fgr2DEBM/review"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2"
+              >
+                <MessageSquarePlus className="w-5 h-5" />
+                <span>Write a Review</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </Button>
+          </div>
         </div>
 
-        {/* Featured Reviews Carousel */}
+        {/* Featured Reviews Carousel with Auto-scroll */}
         {featuredTestimonials.length > 0 && (
           <div className="mb-16">
-            <Carousel className="max-w-7xl mx-auto">
-              <CarouselContent className="-ml-2 md:-ml-4">
+            <Carousel 
+              className="max-w-7xl mx-auto"
+              setApi={setApi}
+              opts={{
+                align: "start",
+                loop: true,
+                skipSnaps: false,
+                dragFree: true,
+              }}
+            >
+              <CarouselContent 
+                className="-ml-2 md:-ml-4"
+                onMouseEnter={() => setIsAutoScrolling(false)}
+                onMouseLeave={() => setIsAutoScrolling(true)}
+              >
                 {featuredTestimonials.map((review, index) => (
                   <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
                     <div className="glass-card rounded-xl p-6 h-full border border-white/20 hover:border-blue-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-105 group relative overflow-hidden">
                       {/* Animated gradient background */}
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-green-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
-                      {/* Google branding */}
                       <div className="flex items-center justify-between mb-4 relative z-10">
                         <div className="flex items-center space-x-2">
                           <Quote className="w-8 h-8 text-blue-400 drop-shadow-lg" />
@@ -146,9 +205,17 @@ const Testimonials = () => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="bg-gaming-darker/80 backdrop-blur-sm border-blue-400/30 text-blue-400 hover:bg-blue-500/20 hover:border-blue-400/50 shadow-lg" />
-              <CarouselNext className="bg-gaming-darker/80 backdrop-blur-sm border-blue-400/30 text-blue-400 hover:bg-blue-500/20 hover:border-blue-400/50 shadow-lg" />
+              <CarouselPrevious className="bg-gaming-darker/80 backdrop-blur-sm border-blue-400/30 text-blue-400 hover:bg-blue-500/20 hover:border-blue-400/50 shadow-lg -left-4 md:-left-12" />
+              <CarouselNext className="bg-gaming-darker/80 backdrop-blur-sm border-blue-400/30 text-blue-400 hover:bg-blue-500/20 hover:border-blue-400/50 shadow-lg -right-4 md:-right-12" />
             </Carousel>
+
+            {/* Auto-scroll indicator */}
+            <div className="flex justify-center mt-4">
+              <div className="flex items-center space-x-2 text-gray-400 text-xs">
+                <div className={`w-2 h-2 rounded-full ${isAutoScrolling ? 'bg-blue-400 animate-pulse' : 'bg-gray-600'}`}></div>
+                <span>{isAutoScrolling ? 'Auto-scrolling' : 'Paused on hover'}</span>
+              </div>
+            </div>
           </div>
         )}
 
