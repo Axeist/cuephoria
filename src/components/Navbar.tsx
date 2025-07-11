@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Gamepad2, Siren } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -13,11 +14,11 @@ interface NavLinkProps {
 const NavLink = ({ href, children, isActive, onClick }: NavLinkProps) => (
   <a 
     href={href} 
-    className="relative px-3 py-2 group"
+    className="relative px-2 py-2 group"
     onClick={onClick}
   >
     <span className={cn(
-      "relative z-10 transition-colors duration-300",
+      "relative z-10 transition-colors duration-300 text-sm font-medium",
       isActive ? "text-neon-pink" : "text-white group-hover:text-neon-pink"
     )}>
       {children}
@@ -77,35 +78,43 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled 
-            ? "bg-gaming-darker/80 backdrop-blur-md shadow-lg py-1.5" 
-            : "bg-transparent py-2 md:py-5"
+            ? "bg-gaming-darker/90 backdrop-blur-md shadow-lg py-2" 
+            : "bg-transparent py-3"
         )}
       >
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <a href="/" className="flex items-center space-x-2">
-            <img 
-              src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
-              alt="Cuephoria" 
-              className="h-7 md:h-12 animate-pulse-neon"
-            />
-            <span className="text-lg md:text-xl font-bold neon-text-blue animate-pulse-neon">CUEPHORIA</span>
-          </a>
-          
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => (
-              <NavLink 
-                key={item.href} 
-                href={item.href} 
-                isActive={activeSection === item.href.substring(1)}
-              >
-                {item.label}
-              </NavLink>
-            ))}
+        <div className="container mx-auto px-4">
+          {/* Main header row */}
+          <div className="flex justify-between items-center">
+            {/* Logo */}
+            <a href="/" className="flex items-center space-x-2 flex-shrink-0">
+              <img 
+                src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
+                alt="Cuephoria" 
+                className="h-6 md:h-8 animate-pulse-neon"
+              />
+              <span className="text-base md:text-lg font-bold neon-text-blue animate-pulse-neon">
+                CUEPHORIA
+              </span>
+            </a>
+            
+            {/* Desktop Navigation - Compact */}
+            <nav className="hidden lg:flex items-center space-x-1">
+              {navItems.map((item) => (
+                <NavLink 
+                  key={item.href} 
+                  href={item.href} 
+                  isActive={activeSection === item.href.substring(1)}
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </nav>
+
+            {/* Book Now Button */}
             <a 
               href="#book-now" 
               className={cn(
-                "px-6 py-2 rounded-md font-medium transition-colors",
+                "hidden md:flex px-4 py-2 rounded-md font-medium transition-colors text-sm flex-shrink-0",
                 activeSection === "book-now" 
                   ? "bg-neon-pink text-white" 
                   : "bg-neon-pink/80 text-white hover:bg-neon-pink animate-pulse-neon"
@@ -113,23 +122,38 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             >
               Book Now
             </a>
-          </nav>
-          
-          {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+            
+            {/* Mobile Menu Button */}
+            <button 
+              className="lg:hidden text-white flex-shrink-0"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+
+          {/* Tablet Navigation - Below logo on medium screens */}
+          <div className="hidden md:flex lg:hidden mt-3 justify-center">
+            <nav className="flex items-center space-x-1 flex-wrap justify-center">
+              {navItems.map((item) => (
+                <NavLink 
+                  key={item.href} 
+                  href={item.href} 
+                  isActive={activeSection === item.href.substring(1)}
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </nav>
+          </div>
         </div>
       </header>
       
       {/* News Ticker positioned just below the header */}
       <div className={cn(
         "fixed left-0 right-0 z-40 transition-all duration-300 w-full",
-        isScrolled ? "top-[46px] md:top-[60px]" : "top-[50px] md:top-[80px]" 
+        isScrolled ? "top-[52px] md:top-[72px] lg:top-[52px]" : "top-[60px] md:top-[88px] lg:top-[60px]" 
       )}>
         <NewsTicker />
       </div>
@@ -137,20 +161,20 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
       {/* Mobile Menu with improved overlay */}
       <div 
         className={cn(
-          "fixed inset-0 bg-gaming-darker/95 backdrop-blur-lg z-50 transition-all duration-300 md:hidden overflow-auto",
+          "fixed inset-0 bg-gaming-darker/95 backdrop-blur-lg z-50 transition-all duration-300 lg:hidden overflow-auto",
           mobileMenuOpen 
             ? "opacity-100 translate-y-0 pointer-events-auto" 
             : "opacity-0 -translate-y-full pointer-events-none"
         )}
       >
         <div className="pt-24 pb-8 px-6 h-full overflow-y-auto">
-          <nav className="flex flex-col items-center space-y-6">
+          <nav className="flex flex-col items-center space-y-4">
             {navItems.map((item, index) => (
               <a 
                 key={item.href}
                 href={item.href} 
                 className={cn(
-                  "text-lg transition-colors relative",
+                  "text-lg transition-colors relative py-2",
                   activeSection === item.href.substring(1) 
                     ? "text-neon-blue" 
                     : "text-white hover:text-neon-blue"
@@ -166,14 +190,14 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             ))}
             <a 
               href="#book-now" 
-              className="px-6 py-2 rounded-md bg-neon-pink text-white font-medium hover:bg-neon-pink/80 transition-colors"
+              className="px-6 py-3 rounded-md bg-neon-pink text-white font-medium hover:bg-neon-pink/80 transition-colors mt-4"
               onClick={() => setMobileMenuOpen(false)}
             >
               Book Now
             </a>
             
             {/* Special online booking promotion in mobile menu */}
-            <div className="glass-card rounded-lg p-4 mt-6 border border-neon-blue/30 w-full">
+            <div className="glass-card rounded-lg p-4 mt-6 border border-neon-blue/30 w-full max-w-sm">
               <p className="text-center text-sm text-gray-300 mb-2">
                 <span className="block text-neon-pink font-bold mb-1 animate-blink-slow flex items-center justify-center gap-1">
                   <Siren className="h-4 w-4 text-red-500 animate-pulse" />
@@ -186,7 +210,7 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             </div>
             
             {/* Quick contact in mobile menu */}
-            <div className="pt-6 border-t border-white/10 w-full flex flex-col items-center">
+            <div className="pt-6 border-t border-white/10 w-full flex flex-col items-center max-w-sm">
               <p className="text-gray-400 mb-2">Quick Contact:</p>
               <a 
                 href={`https://wa.me/918637625155?text=${encodeURIComponent("Hello! I'd like to book a slot at Cuephoria.")}`}
