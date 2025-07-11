@@ -1,39 +1,11 @@
 
-import React, { useEffect, useCallback } from 'react';
+import React from 'react';
 import { Star, Quote, ExternalLink } from 'lucide-react';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselApi } from './ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel';
 import { useTestimonials } from '../hooks/useTestimonials';
 
 const Testimonials = () => {
   const { testimonials, isLoading } = useTestimonials();
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
-
-  // Auto-scroll functionality
-  useEffect(() => {
-    if (!api) return;
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-
-    // Auto-scroll every 4 seconds
-    const autoScroll = setInterval(() => {
-      if (api.canScrollNext()) {
-        api.scrollNext();
-      } else {
-        api.scrollTo(0); // Seamlessly loop back to start
-      }
-    }, 4000);
-
-    return () => {
-      clearInterval(autoScroll);
-    };
-  }, [api]);
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
@@ -118,36 +90,21 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Enhanced Auto-Scrolling Carousel */}
+        {/* Featured Reviews Carousel */}
         {featuredTestimonials.length > 0 && (
           <div className="mb-16">
-            <Carousel 
-              className="max-w-7xl mx-auto"
-              setApi={setApi}
-              opts={{
-                loop: true,
-                align: "start",
-                duration: 30, // Smooth transition duration
-              }}
-            >
+            <Carousel className="max-w-7xl mx-auto">
               <CarouselContent className="-ml-2 md:-ml-4">
                 {featuredTestimonials.map((review, index) => (
-                  <CarouselItem key={index} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-                    <div className="glass-card rounded-2xl p-6 h-full border border-white/20 hover:border-blue-400/50 transition-all duration-700 hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-[1.02] group relative overflow-hidden backdrop-blur-xl">
-                      {/* Enhanced gradient background */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-green-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                  <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                    <div className="glass-card rounded-xl p-6 h-full border border-white/20 hover:border-blue-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-105 group relative overflow-hidden">
+                      {/* Animated gradient background */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-green-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
-                      {/* Verified badge */}
-                      <div className="absolute top-4 right-4 bg-green-500/20 backdrop-blur-sm rounded-full px-3 py-1 border border-green-400/30">
-                        <span className="text-green-400 text-xs font-medium">✓ Verified</span>
-                      </div>
-                      
-                      {/* Google branding with enhanced design */}
-                      <div className="flex items-center justify-between mb-6 relative z-10">
-                        <div className="flex items-center space-x-3">
-                          <div className="bg-white/10 backdrop-blur-sm rounded-full p-2 border border-white/20">
-                            <Quote className="w-5 h-5 text-blue-400" />
-                          </div>
+                      {/* Google branding */}
+                      <div className="flex items-center justify-between mb-4 relative z-10">
+                        <div className="flex items-center space-x-2">
+                          <Quote className="w-8 h-8 text-blue-400 drop-shadow-lg" />
                           <div className="flex space-x-1">
                             {renderStars(review.stars)}
                           </div>
@@ -156,36 +113,32 @@ const Testimonials = () => {
                           href={review.reviewUrl} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="text-blue-400 hover:text-blue-300 transition-all duration-300 hover:scale-110"
+                          className="text-blue-400 hover:text-blue-300 transition-colors duration-300"
                         >
                           <ExternalLink className="w-4 h-4" />
                         </a>
                       </div>
                       
-                      {/* Enhanced review text */}
-                      <div className="relative z-10 mb-6">
-                        <p className="text-gray-100 text-sm leading-relaxed font-medium line-clamp-4 group-hover:text-white transition-colors duration-300">
-                          "{review.text}"
-                        </p>
-                      </div>
+                      <p className="text-gray-100 mb-6 text-sm leading-relaxed relative z-10 font-medium">
+                        "{review.text}"
+                      </p>
                       
-                      {/* Enhanced reviewer info */}
-                      <div className="flex items-center relative z-10 mt-auto">
-                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 via-green-500 to-red-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0 shadow-lg ring-2 ring-white/20">
+                      <div className="flex items-center relative z-10">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 via-green-500 to-red-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0 shadow-lg">
                           <span className="text-white font-bold text-sm">
                             {review.name.charAt(0).toUpperCase()}
                           </span>
                         </div>
-                        <div className="flex-1">
-                          <p className="text-white font-semibold text-sm">{review.name}</p>
-                          <div className="flex items-center space-x-2 mt-1">
-                            <div className="flex items-center space-x-1">
-                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
-                              <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
-                              <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full"></div>
-                              <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                        <div>
+                          <p className="text-white font-medium text-sm">{review.name}</p>
+                          <div className="flex items-center space-x-1">
+                            <span className="text-xs text-blue-400 font-medium">Google</span>
+                            <div className="flex space-x-1">
+                              <div className="w-1 h-1 bg-blue-500 rounded-full"></div>
+                              <div className="w-1 h-1 bg-red-500 rounded-full"></div>
+                              <div className="w-1 h-1 bg-yellow-500 rounded-full"></div>
+                              <div className="w-1 h-1 bg-green-500 rounded-full"></div>
                             </div>
-                            <span className="text-xs text-blue-400 font-medium">Google Review</span>
                           </div>
                         </div>
                       </div>
@@ -193,63 +146,43 @@ const Testimonials = () => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              
-              {/* Enhanced navigation buttons */}
-              <CarouselPrevious className="hidden md:flex bg-gaming-darker/90 backdrop-blur-sm border-blue-400/40 text-blue-400 hover:bg-blue-500/20 hover:border-blue-400/60 shadow-xl hover:shadow-blue-500/20 transition-all duration-300 hover:scale-110" />
-              <CarouselNext className="hidden md:flex bg-gaming-darker/90 backdrop-blur-sm border-blue-400/40 text-blue-400 hover:bg-blue-500/20 hover:border-blue-400/60 shadow-xl hover:shadow-blue-500/20 transition-all duration-300 hover:scale-110" />
-              
-              {/* Progress indicators */}
-              <div className="flex justify-center mt-6 space-x-2">
-                {Array.from({ length: count }, (_, index) => (
-                  <button
-                    key={index}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index + 1 === current 
-                        ? 'bg-blue-400 w-6' 
-                        : 'bg-white/30 hover:bg-white/50'
-                    }`}
-                    onClick={() => api?.scrollTo(index)}
-                  />
-                ))}
-              </div>
+              <CarouselPrevious className="bg-gaming-darker/80 backdrop-blur-sm border-blue-400/30 text-blue-400 hover:bg-blue-500/20 hover:border-blue-400/50 shadow-lg" />
+              <CarouselNext className="bg-gaming-darker/80 backdrop-blur-sm border-blue-400/30 text-blue-400 hover:bg-blue-500/20 hover:border-blue-400/50 shadow-lg" />
             </Carousel>
           </div>
         )}
 
-        {/* Enhanced Quick Reviews Grid - Mobile Optimized */}
+        {/* Quick Reviews Grid */}
         {quickReviews.length > 0 && (
           <div className="mb-12">
-            <h3 className="text-xl md:text-2xl font-bold text-white text-center mb-8 font-orbitron">
+            <h3 className="text-2xl font-bold text-white text-center mb-8 font-orbitron">
               <span className="neon-text-blue glow-text">5-Star Reviews</span>
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 md:gap-4">
-              {quickReviews.slice(0, 24).map((review, index) => (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+              {quickReviews.slice(0, 18).map((review, index) => (
                 <div 
                   key={index}
-                  className="glass-card rounded-xl p-4 border border-white/10 hover:border-blue-400/40 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20 group relative overflow-hidden backdrop-blur-xl"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="glass-card rounded-lg p-4 border border-white/10 hover:border-blue-400/40 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20 group relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-green-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
-                  <div className="flex justify-center mb-3 relative z-10">
+                  <div className="flex justify-center mb-2 relative z-10">
                     <div className="flex space-x-1">
                       {renderStars(review.stars)}
                     </div>
                   </div>
-                  
                   <div className="text-center relative z-10">
-                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 via-green-500 to-red-500 rounded-full flex items-center justify-center mb-3 mx-auto shadow-md ring-2 ring-white/10">
-                      <span className="text-white font-bold text-sm">
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 via-green-500 to-red-500 rounded-full flex items-center justify-center mb-2 mx-auto shadow-md">
+                      <span className="text-white font-bold text-xs">
                         {review.name.charAt(0).toUpperCase()}
                       </span>
                     </div>
-                    <p className="text-white text-sm font-semibold truncate mb-2">{review.name}</p>
-                    <div className="flex items-center justify-center space-x-1 mb-2">
-                      <div className="w-1 h-1 bg-green-500 rounded-full"></div>
-                      <span className="text-[10px] text-green-400 font-medium">Verified</span>
+                    <p className="text-white text-xs font-medium truncate mb-1">{review.name}</p>
+                    <div className="flex items-center justify-center space-x-1 mb-1">
+                      <span className="text-[10px] text-blue-400">Google</span>
                     </div>
                     {review.text && (
-                      <p className="text-gray-400 text-[10px] line-clamp-2 leading-relaxed">"{review.text}"</p>
+                      <p className="text-gray-400 text-[10px] truncate">"{review.text}"</p>
                     )}
                   </div>
                 </div>
