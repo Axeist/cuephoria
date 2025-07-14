@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2, Siren, ActivitySquare } from 'lucide-react';
 import Footer from '../components/Footer';
@@ -196,15 +195,15 @@ const BookingLanding = () => {
                 Book Your Session Now
               </h2>
               
-              {/* Zoho Bookings iframe with theme matching */}
+              {/* Zoho Bookings iframe with increased height */}
               <div className="w-full rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50">
                 <iframe 
                   width="100%" 
-                  height="750px" 
+                  height="900px" 
                   src="https://cuephoria.zohobookings.in/portal-embed#/cuephoria" 
                   frameBorder="0" 
                   allowFullScreen
-                  className="w-full h-[750px] rounded-lg"
+                  className="w-full h-[900px] rounded-lg"
                   title="Cuephoria Booking System"
                   loading="lazy"
                 />
