@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2, Siren, ActivitySquare } from 'lucide-react';
 import Footer from '../components/Footer';
@@ -199,11 +200,11 @@ const BookingLanding = () => {
               <div className="w-full rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50">
                 <iframe 
                   width="100%" 
-                  height={isMobile ? "500px" : "600px"}
-                  src="https://cuephoria.zohobookings.in/portal-embed#/300085000000042084" 
+                  height="750px" 
+                  src="https://cuephoria.zohobookings.in/portal-embed#/cuephoria" 
                   frameBorder="0" 
                   allowFullScreen
-                  className={`w-full ${isMobile ? 'h-[500px]' : 'h-[600px]'} rounded-lg`}
+                  className="w-full h-[750px] rounded-lg"
                   title="Cuephoria Booking System"
                   loading="lazy"
                 />

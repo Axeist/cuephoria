@@ -52,11 +52,11 @@ const BookNow = () => {
               <div className="w-full flex-grow rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50">
                 <iframe 
                   width="100%" 
-                  height="600px" 
-                  src="https://cuephoria.zohobookings.in/portal-embed#/300085000000042084" 
+                  height="750px" 
+                  src="https://cuephoria.zohobookings.in/portal-embed#/cuephoria" 
                   frameBorder="0" 
                   allowFullScreen
-                  className="w-full h-[600px] rounded-lg"
+                  className="w-full h-[750px] rounded-lg"
                   title="Cuephoria Booking System"
                   loading="lazy"
                 />
