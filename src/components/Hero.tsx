@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { ArrowRight, Clock, MapPin, Gamepad2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = ({ className = '' }) => {
   return (
@@ -77,20 +78,13 @@ const Hero = ({ className = '' }) => {
             </div>
             
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
-              <button
-                onClick={() => {
-                  // Open Calendly popup programmatically with updated URL
-                  if (window.Calendly) {
-                    window.Calendly.initPopupWidget({
-                      url: 'https://calendly.com/cuephoriaclub/60min?background_color=0b101a&text_color=1cd0d3&primary_color=fd2dee'
-                    });
-                  }
-                }}
+              <Link
+                to="/book"
                 className="px-8 py-3 rounded-md bg-neon-blue text-gaming-darker font-semibold hover:bg-neon-blue/80 transition-all duration-300 transform hover:scale-105 flex items-center justify-center group"
               >
                 Book a Slot
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </Link>
               <a 
                 href={`https://wa.me/918637625155?text=${encodeURIComponent("Hello! I'd like to inquire about Cuephoria gaming lounge and pool club in Trichy.")}`}
                 target="_blank" 

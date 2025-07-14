@@ -1,81 +1,10 @@
-import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
+
+import React from 'react';
 import { Calendar, Clock, Users, Award, Table2, Siren } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 
 const BookNow = () => {
-  const calendlyRef = useRef<HTMLDivElement>(null);
-  const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
-  const [calendlyInitialized, setCalendlyInitialized] = useState(false);
-
-  // This useEffect will initialize Calendly only when the element is visible
-  useEffect(() => {
-    // Create an intersection observer to detect when Calendly container is visible
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !calendlyInitialized) {
-          // Only initialize Calendly when the container is visible and not already initialized
-          initializeCalendly();
-          setCalendlyInitialized(true);
-          // Once initialized, disconnect the observer
-          observer.disconnect();
-        }
-      });
-    }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
-    
-    // Start observing the Calendly container element
-    if (calendlyRef.current) {
-      observer.observe(calendlyRef.current);
-    }
-    
-    return () => {
-      observer.disconnect();
-    };
-  }, [calendlyInitialized]);
-  
-  // Function to initialize Calendly
-  const initializeCalendly = () => {
-    if (window.Calendly && calendlyRef.current) {
-      // Clear any existing content
-      calendlyRef.current.innerHTML = '';
-      
-      // Initialize the inline widget directly
-      window.Calendly.initInlineWidget({
-        url: 'https://calendly.com/cuephoriaclub/60min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=131e2c&text_color=01ffff&primary_color=ff2cef',
-        parentElement: calendlyRef.current,
-        prefill: {},
-        utm: {}
-      });
-      
-      // Set a timeout to consider Calendly as loaded after 2 seconds
-      // This helps prevent showing loading animation indefinitely
-      const timer = setTimeout(() => {
-        setIsCalendlyLoaded(true);
-      }, 2000);
-      
-      // Listen for Calendly iframe to load
-      const mutationObserver = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (mutation.addedNodes.length > 0) {
-            // Check if iframe is added
-            if (calendlyRef.current?.querySelector('iframe')) {
-              setIsCalendlyLoaded(true);
-              clearTimeout(timer);
-              mutationObserver.disconnect();
-            }
-          }
-        });
-      });
-      
-      mutationObserver.observe(calendlyRef.current, { childList: true, subtree: true });
-      
-      return () => {
-        clearTimeout(timer);
-        mutationObserver.disconnect();
-      };
-    }
-  };
-
   return (
     <section id="book-now" className="py-20 relative">
       {/* Background elements */}
@@ -114,39 +43,24 @@ const BookNow = () => {
         <div className="flex flex-col lg:flex-row items-stretch gap-12">
           <div className="w-full lg:w-1/2">
             <div className="glass-card rounded-xl p-8 border border-neon-blue/20 h-full flex flex-col relative">
-              {/* Show loading indicator only when Calendly is not loaded */}
-              {!isCalendlyLoaded && (
-                <div className="absolute inset-0 bg-gaming-darker/80 z-10 flex flex-col items-center justify-center rounded-xl">
-                  <div className="w-12 h-12 border-4 border-neon-blue rounded-full border-t-transparent animate-spin mb-4"></div>
-                  <p className="text-neon-blue text-center">Loading booking calendar...</p>
-                  
-                  {/* Skeleton for calendar to improve loading experience */}
-                  <div className="w-11/12 max-w-md mt-8">
-                    <div className="h-10 bg-gaming-accent/20 rounded-md mb-4 animate-pulse"></div>
-                    <div className="grid grid-cols-7 gap-1 mb-4">
-                      {[...Array(7)].map((_, i) => (
-                        <div key={i} className="h-8 bg-gaming-accent/20 rounded-sm animate-pulse"></div>
-                      ))}
-                    </div>
-                    <div className="grid grid-cols-7 gap-1">
-                      {[...Array(28)].map((_, i) => (
-                        <div 
-                          key={i} 
-                          className="h-10 bg-gaming-accent/20 rounded-sm animate-pulse"
-                          style={{ animationDelay: `${i * 30}ms` }}
-                        ></div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
+              <h3 className="text-2xl font-bold mb-6 text-white flex items-center">
+                <Calendar className="h-6 w-6 text-neon-blue mr-2" />
+                Book Your Session
+              </h3>
               
-              {/* Calendly inline widget with ref for direct initialization - aligned left */}
-              <div 
-                ref={calendlyRef}
-                className="w-full flex-grow h-[600px] text-left"
-                style={{ textAlign: 'left' }}
-              ></div>
+              {/* Zoho Bookings iframe with theme matching */}
+              <div className="w-full flex-grow rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50">
+                <iframe 
+                  width="100%" 
+                  height="600px" 
+                  src="https://cuephoria.zohobookings.in/portal-embed#/300085000000042084" 
+                  frameBorder="0" 
+                  allowFullScreen
+                  className="w-full h-[600px] rounded-lg"
+                  title="Cuephoria Booking System"
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
           

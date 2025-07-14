@@ -1,6 +1,8 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { X, ArrowRight, GraduationCap, Siren, Award } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from 'react-router-dom';
 
 interface PromotionalPopupProps {
   delayInSeconds?: number;
@@ -22,6 +24,7 @@ const PromotionalPopup = ({
   const membershipPopupShownRef = useRef(false);
   const studentPopupShownRef = useRef(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   useEffect(() => {
     // Don't show popup immediately on page load to improve initial load performance
@@ -47,11 +50,11 @@ const PromotionalPopup = ({
         return false;
       };
       
-      // Function to check if Calendly is active
-      const isCalendlyActive = () => {
-        // Check for Calendly iframe or popup
-        const calendlyElements = document.querySelectorAll('.calendly-inline-widget, .calendly-overlay');
-        return calendlyElements.length > 0;
+      // Function to check if Zoho Bookings is active
+      const isBookingActive = () => {
+        // Check for Zoho Bookings iframe
+        const zohooElements = document.querySelectorAll('iframe[src*="zohobookings"]');
+        return zohooElements.length > 0;
       };
       
       // Check if popups were already shown in this session
@@ -59,7 +62,7 @@ const PromotionalPopup = ({
       
       // Function to determine if popup should be shown
       const shouldShowPopup = () => {
-        return !bookingPopupShown && !isInBookingSection() && !isCalendlyActive();
+        return !bookingPopupShown && !isInBookingSection() && !isBookingActive();
       };
       
       // Initial check and setup timer for first popup
@@ -73,7 +76,7 @@ const PromotionalPopup = ({
             
             // Schedule the second popup to appear 15 seconds after the first one
             setTimeout(() => {
-              if (!isInBookingSection() && !isCalendlyActive()) {
+              if (!isInBookingSection() && !isBookingActive()) {
                 setActivePopup(PopupType.STUDENT_DISCOUNT);
                 studentPopupShownRef.current = true;
               }
@@ -100,9 +103,9 @@ const PromotionalPopup = ({
           }
         }
         
-        // Check for Calendly
-        const calendlyElements = document.querySelectorAll('.calendly-inline-widget, .calendly-overlay');
-        if (calendlyElements.length > 0) {
+        // Check for Zoho Bookings
+        const zohoElements = document.querySelectorAll('iframe[src*="zohobookings"]');
+        if (zohoElements.length > 0) {
           setActivePopup(PopupType.NONE);
         }
       }
@@ -123,8 +126,8 @@ const PromotionalPopup = ({
     
     if (activePopup !== PopupType.NONE) {
       observer = new MutationObserver(() => {
-        const calendlyElements = document.querySelectorAll('.calendly-inline-widget, .calendly-overlay');
-        if (calendlyElements.length > 0) {
+        const zohoElements = document.querySelectorAll('iframe[src*="zohobookings"]');
+        if (zohoElements.length > 0) {
           setActivePopup(PopupType.NONE);
           observer?.disconnect();
         }
@@ -152,7 +155,7 @@ const PromotionalPopup = ({
       const reappearTimer = setTimeout(() => {
         // Check if we should show the popup before showing it again
         const isInBookingSection = window.location.hash === '#book-now' || 
-          document.querySelectorAll('.calendly-inline-widget, .calendly-overlay').length > 0;
+          document.querySelectorAll('iframe[src*="zohobookings"]').length > 0;
         
         if (!isInBookingSection) {
           // Alternate between the popups when they reappear
@@ -170,12 +173,8 @@ const PromotionalPopup = ({
   
   const handleMembershipOffer = () => {
     setActivePopup(PopupType.NONE);
-    // Open Calendly popup
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/cuephoriaclub/60min?background_color=0b101a&text_color=1cd0d3&primary_color=fd2dee'
-      });
-    }
+    // Navigate to booking page
+    navigate('/book');
     
     toast({
       title: "Membership Offer Started",

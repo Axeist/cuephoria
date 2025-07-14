@@ -1,5 +1,4 @@
-
-import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2, Siren, ActivitySquare } from 'lucide-react';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +10,6 @@ import { useIsMobile } from '../hooks/use-mobile';
 const VisitorStats = lazy(() => import('../components/VisitorStats'));
 
 const BookingLanding = () => {
-  const calendlyRef = useRef<HTMLDivElement>(null);
   const [countdownEnds] = useState(() => {
     // Set countdown to end with a random time between 15-30 minutes
     const end = new Date();
@@ -27,77 +25,8 @@ const BookingLanding = () => {
     seconds: 0
   });
   
-  const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
-  const [calendlyInitialized, setCalendlyInitialized] = useState(false);
   const isMobile = useIsMobile();
   const navigate = useNavigate();
-
-  // Initialize Calendly only when it's visible in the viewport
-  useEffect(() => {
-    // Create an intersection observer to detect when Calendly container is visible
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !calendlyInitialized) {
-          // Only initialize Calendly when the container is visible and not already initialized
-          initializeCalendly();
-          setCalendlyInitialized(true);
-          // Once initialized, disconnect the observer
-          observer.disconnect();
-        }
-      });
-    }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
-    
-    // Start observing the Calendly container element
-    if (calendlyRef.current) {
-      observer.observe(calendlyRef.current);
-    }
-    
-    return () => {
-      observer.disconnect();
-    };
-  }, [calendlyInitialized]);
-  
-  // Function to initialize Calendly
-  const initializeCalendly = () => {
-    if (window.Calendly && calendlyRef.current) {
-      // Clear any existing content
-      calendlyRef.current.innerHTML = '';
-      
-      window.Calendly.initInlineWidget({
-        url: 'https://calendly.com/cuephoriaclub/60min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=131e2c&text_color=01ffff&primary_color=ff2cef',
-        parentElement: calendlyRef.current,
-        prefill: {},
-        utm: {}
-      });
-      
-      // Set a timeout to consider Calendly as loaded after 2 seconds
-      // This helps provide better user experience if Calendly is slow to load
-      const timer = setTimeout(() => {
-        setIsCalendlyLoaded(true);
-      }, 2000);
-      
-      // Listen for Calendly iframe to load
-      const mutationObserver = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (mutation.addedNodes.length > 0) {
-            // Check if iframe is added
-            if (calendlyRef.current?.querySelector('iframe')) {
-              setIsCalendlyLoaded(true);
-              clearTimeout(timer);
-              mutationObserver.disconnect();
-            }
-          }
-        });
-      });
-      
-      mutationObserver.observe(calendlyRef.current, { childList: true, subtree: true });
-      
-      return () => {
-        clearTimeout(timer);
-        mutationObserver.disconnect();
-      };
-    }
-  };
   
   // Separate useEffect for the countdown timer to ensure it runs independently
   useEffect(() => {
@@ -266,37 +195,19 @@ const BookingLanding = () => {
                 Book Your Session Now
               </h2>
               
-              {/* Improved loading state with skeleton */}
-              {!isCalendlyLoaded && (
-                <div className="absolute inset-0 bg-gaming-darker/80 z-10 flex flex-col items-center justify-center rounded-xl">
-                  <div className="w-10 h-10 md:w-12 md:h-12 border-4 border-neon-blue rounded-full border-t-transparent animate-spin mb-3 md:mb-4"></div>
-                  <p className="text-neon-blue text-center text-sm md:text-base">Loading booking calendar...</p>
-                  
-                  {/* Skeleton for calendar to show loading state */}
-                  <div className="w-11/12 max-w-md mt-6 md:mt-8">
-                    <div className="h-8 md:h-10 bg-gaming-accent/20 rounded-md mb-3 md:mb-4 animate-pulse"></div>
-                    <div className="grid grid-cols-7 gap-1 mb-3 md:mb-4">
-                      {[...Array(7)].map((_, i) => (
-                        <div key={i} className="h-6 md:h-8 bg-gaming-accent/20 rounded-sm animate-pulse"></div>
-                      ))}
-                    </div>
-                    <div className="grid grid-cols-7 gap-1">
-                      {[...Array(28)].map((_, i) => (
-                        <div 
-                          key={i} 
-                          className="h-8 md:h-10 bg-gaming-accent/20 rounded-sm animate-pulse"
-                          style={{ animationDelay: `${i * 50}ms` }}
-                        ></div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-              
-              <div 
-                ref={calendlyRef}
-                className="w-full h-[500px] md:h-[600px] rounded-lg overflow-hidden"
-              ></div>
+              {/* Zoho Bookings iframe with theme matching */}
+              <div className="w-full rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50">
+                <iframe 
+                  width="100%" 
+                  height={isMobile ? "500px" : "600px"}
+                  src="https://cuephoria.zohobookings.in/portal-embed#/300085000000042084" 
+                  frameBorder="0" 
+                  allowFullScreen
+                  className={`w-full ${isMobile ? 'h-[500px]' : 'h-[600px]'} rounded-lg`}
+                  title="Cuephoria Booking System"
+                  loading="lazy"
+                />
+              </div>
             </div>
             
             {/* Info Column */}
