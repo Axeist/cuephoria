@@ -195,16 +195,16 @@ const BookingLanding = () => {
                 Book Your Session Now
               </h2>
               
-              {/* Zoho Bookings iframe with increased height */}
+              {/* Cuephoria Booking Website */}
               <div className="w-full rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50">
                 <iframe 
                   width="100%" 
-                  height="900px" 
-                  src="https://cuephoria.zohobookings.in/portal-embed#/cuephoria" 
+                  height="1000px" 
+                  src="https://admin.cuephoria.in/public/booking" 
                   frameBorder="0" 
                   allowFullScreen
-                  className="w-full h-[900px] rounded-lg"
-                  title="Cuephoria Booking System"
+                  className="w-full h-[1000px] rounded-lg"
+                  title="Cuephoria Booking Website"
                   loading="lazy"
                 />
               </div>
