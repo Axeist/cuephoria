@@ -50,11 +50,11 @@ const PromotionalPopup = ({
         return false;
       };
       
-      // Function to check if Zoho Bookings is active
+      // Function to check if Booking is active
       const isBookingActive = () => {
-        // Check for Zoho Bookings iframe
-        const zohooElements = document.querySelectorAll('iframe[src*="zohobookings"]');
-        return zohooElements.length > 0;
+        // Check for Cuephoria Booking iframe
+        const bookingElements = document.querySelectorAll('iframe[src*="admin.cuephoria.in/public/booking"]');
+        return bookingElements.length > 0;
       };
       
       // Check if popups were already shown in this session
@@ -103,9 +103,9 @@ const PromotionalPopup = ({
           }
         }
         
-        // Check for Zoho Bookings
-        const zohoElements = document.querySelectorAll('iframe[src*="zohobookings"]');
-        if (zohoElements.length > 0) {
+        // Check for Cuephoria Booking
+        const bookingElements = document.querySelectorAll('iframe[src*="admin.cuephoria.in/public/booking"]');
+        if (bookingElements.length > 0) {
           setActivePopup(PopupType.NONE);
         }
       }
@@ -126,8 +126,8 @@ const PromotionalPopup = ({
     
     if (activePopup !== PopupType.NONE) {
       observer = new MutationObserver(() => {
-        const zohoElements = document.querySelectorAll('iframe[src*="zohobookings"]');
-        if (zohoElements.length > 0) {
+        const bookingElements = document.querySelectorAll('iframe[src*="admin.cuephoria.in/public/booking"]');
+        if (bookingElements.length > 0) {
           setActivePopup(PopupType.NONE);
           observer?.disconnect();
         }
@@ -155,7 +155,7 @@ const PromotionalPopup = ({
       const reappearTimer = setTimeout(() => {
         // Check if we should show the popup before showing it again
         const isInBookingSection = window.location.hash === '#book-now' || 
-          document.querySelectorAll('iframe[src*="zohobookings"]').length > 0;
+          document.querySelectorAll('iframe[src*="admin.cuephoria.in/public/booking"]').length > 0;
         
         if (!isInBookingSection) {
           // Alternate between the popups when they reappear

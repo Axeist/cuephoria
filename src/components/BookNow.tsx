@@ -48,16 +48,16 @@ const BookNow = () => {
                 Book Your Session
               </h3>
               
-              {/* Zoho Bookings iframe with theme matching */}
+              {/* Cuephoria Booking Website */}
               <div className="w-full flex-grow rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50">
                 <iframe 
                   width="100%" 
                   height="750px" 
-                  src="https://cuephoria.zohobookings.in/portal-embed#/cuephoria" 
+                  src="https://admin.cuephoria.in/public/booking" 
                   frameBorder="0" 
                   allowFullScreen
                   className="w-full h-[750px] rounded-lg"
-                  title="Cuephoria Booking System"
+                  title="Cuephoria Booking Website"
                   loading="lazy"
                 />
               </div>
