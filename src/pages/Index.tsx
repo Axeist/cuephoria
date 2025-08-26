@@ -12,22 +12,19 @@ import PromotionalPopup from '../components/PromotionalPopup';
 import Chatbot from '../components/Chatbot';
 import SEOMetadata from '../components/SEOMetadata';
 import Testimonials from '../components/Testimonials';
-import { ChevronUp } from 'lucide-react';
+import { ChevronUp, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
-
   useEffect(() => {
-    const handleHashLinkClick = (e: MouseEvent) => {
-      const target = e.target as HTMLAnchorElement;
-
+    const handleHashLinkClick = (e) => {
+      const target = e.target;
       if (target.tagName === 'A' && target.hash && target.hash.startsWith('#')) {
         const targetSection = document.querySelector(target.hash);
         if (targetSection) {
           e.preventDefault();
           const offsetTop = targetSection.getBoundingClientRect().top + window.scrollY;
-
           window.scrollTo({
             top: offsetTop - 110,
             behavior: 'smooth'
@@ -35,27 +32,22 @@ const Index = () => {
         }
       }
     };
-
     document.addEventListener('click', handleHashLinkClick);
-
     return () => {
       document.removeEventListener('click', handleHashLinkClick);
     };
   }, []);
 
   useEffect(() => {
-    let frameId: number | null = null;
+    let frameId = null;
     let lastScrollY = window.scrollY;
     let ticking = false;
-
     const handleScroll = () => {
       lastScrollY = window.scrollY;
-
       if (!ticking) {
         frameId = requestAnimationFrame(() => {
           const sections = ['home', 'about', 'games', 'tournaments', 'gallery', 'testimonials', 'book-now', 'contact'];
           let current = '';
-
           for (const section of sections) {
             const element = document.getElementById(section);
             if (element) {
@@ -66,20 +58,15 @@ const Index = () => {
               }
             }
           }
-
           if (current && current !== activeSection) {
             setActiveSection(current);
           }
-
           ticking = false;
         });
-
         ticking = true;
       }
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (frameId) cancelAnimationFrame(frameId);
@@ -92,28 +79,22 @@ const Index = () => {
       rootMargin: '0px',
       threshold: [0.1, 0.2, 0.3, 0.4, 0.5]
     };
-
-    const observerCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+    const observerCallback = (entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setTimeout(() => {
             entry.target.classList.add('animate-fade-in');
           }, Math.random() * 100);
-
           observer.unobserve(entry.target);
         }
       });
     };
-
     const observer = new IntersectionObserver(observerCallback, observerOptions);
-
     const targetElements = document.querySelectorAll('section, h1, h2, .glass-card');
-
     targetElements.forEach(el => {
       el.classList.add('opacity-0');
       observer.observe(el);
     });
-
     return () => {
       observer.disconnect();
     };
@@ -136,6 +117,52 @@ const Index = () => {
         <Testimonials />
         <BookNow />
         <Contact />
+
+        {/* Contact Section Added */}
+        <div className="max-w-5xl mx-auto p-6 mt-12 mb-12 bg-gaming-darker/80 rounded-xl border border-neon-blue/30 text-center">
+          <p className="text-lg font-semibold mb-4">Can't book online or want to speak directly?</p>
+
+          {/* Old WhatsApp Chatbot Number */}
+          <div className="mb-4">
+            <a
+              href={`https://wa.me/918637625155?text=${encodeURIComponent("Hi! I'd like to book a slot at Cuephoria. [Monthly Membership Offer]")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-5 py-3 rounded-md bg-neon-pink/90 text-white hover:bg-neon-pink transition-all duration-300 text-base font-medium"
+            >
+              Chat with Cuephoria Assistant (Chatbot)
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+            <p className="mt-1 text-sm text-gray-400">
+              WhatsApp AI Assistant (automated support) – <strong>+91 86376 25155</strong>
+            </p>
+          </div>
+
+          {/* New WhatsApp Real Agent Number */}
+          <div className="mb-6">
+            <a
+              href={`https://wa.me/917550025155?text=${encodeURIComponent("Hi! I'd like to speak with a real Cuephoria agent regarding bookings.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-5 py-3 rounded-md bg-neon-blue/90 text-white hover:bg-neon-blue transition-all duration-300 text-base font-medium"
+            >
+              Talk to a Real Agent on WhatsApp
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+            <p className="mt-1 text-sm text-gray-400">
+              Direct WhatsApp with a human agent – <strong>+91 75500 25155</strong>
+            </p>
+          </div>
+
+          {/* Call Information */}
+          <div className="text-gray-300 text-base">
+            📞 Call us:
+            <br />
+            <span className="block">+91 86376 25155 (Primary)</span>
+            <span className="block">+91 75500 25155 (Secondary)</span>
+          </div>
+        </div>
+
         <Footer />
       </main>
       
@@ -164,5 +191,4 @@ const Index = () => {
     </div>
   );
 };
-
 export default Index;
