@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowUpRight, Instagram } from 'lucide-react';
 import VisitorStats from './VisitorStats';
@@ -104,10 +103,22 @@ const Footer = () => {
               <h4 className="text-white font-semibold mb-4">Contact</h4>
               <ul className="space-y-2">
                 <li className="text-gray-400">
-                  <span className="block text-sm text-neon-pink">Phone</span>
+                  <span className="block text-sm text-neon-pink">Phone (Chatbot)</span>
                   <a href="tel:+918637625155" className="hover:text-neon-blue transition-colors">
                     +91 86376 25155
                   </a>
+                  <p className="text-xs text-gray-400 mt-1">
+                    Automated WhatsApp support (chatbot)
+                  </p>
+                </li>
+                <li className="text-gray-400">
+                  <span className="block text-sm text-neon-pink">Phone (Human Agent)</span>
+                  <a href="tel:+917550025155" className="hover:text-neon-blue transition-colors">
+                    +91 75500 25155
+                  </a>
+                  <p className="text-xs text-gray-400 mt-1">
+                    Real agent available on WhatsApp and call
+                  </p>
                 </li>
                 <li className="text-gray-400">
                   <span className="block text-sm text-neon-pink">Email</span>
@@ -170,5 +181,4 @@ const Footer = () => {
     </footer>
   );
 };
-
 export default Footer;
