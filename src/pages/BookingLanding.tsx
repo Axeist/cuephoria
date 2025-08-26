@@ -342,48 +342,30 @@ const BookingLanding = () => {
                   </div>
                 </div>
               </div>
-        {/* Lazy load visitor stats component */}
-<div className="mt-4">
-  <Suspense fallback={<div className="h-16 md:h-20 bg-gaming-accent/10 animate-pulse rounded-lg"></div>}>
-    <VisitorStats />
-  </Suspense>
-</div>
-
-{/* Enhanced WhatsApp Contact Information with Neon Effect */}
-<div className="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-8 text-gray-200 text-sm md:text-base mb-8">
-  <p className="font-semibold text-center text-lg md:text-xl text-white">Need help with your booking?</p>
-  
-  {/* Contact Options */}
-  <div className="flex gap-6">
-    {/* Chatbot Button */}
-    <a 
-      href={`https://wa.me/918637625155?text=${encodeURIComponent("Hi! I'd like to book a slot at Cuephoria. [Monthly Membership Offer]")}`}
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-neon-blue to-neon-pink text-white rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
-    >
-      <span className="font-medium">Chat with Bot</span>
-      <ArrowRight className="ml-2 h-4 w-4" />
-    </a>
-    
-    {/* Real Agent Button */}
-    <a 
-      href={`https://wa.me/917550025155?text=${encodeURIComponent("Hi! I'd like to speak with a real agent about booking a slot at Cuephoria.")}`}
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-neon-pink to-neon-blue text-white rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
-    >
-      <span className="font-medium">Talk to Real Agent</span>
-      <ArrowRight className="ml-2 h-4 w-4" />
-    </a>
-  </div>
-
-  {/* Optional Divider Text */}
-  <p className="text-center text-gray-400 text-xs md:text-sm mt-4">
-    <span>Get quick responses via our Chatbot or connect with our real agents directly!</span>
-  </p>
-</div>
-
+              
+              {/* Lazy load visitor stats component */}
+              <div className="mt-4">
+                <Suspense fallback={<div className="h-16 md:h-20 bg-gaming-accent/10 animate-pulse rounded-lg"></div>}>
+                  <VisitorStats />
+                </Suspense>
+              </div>
+              
+              <div className="text-center mt-6 md:mt-8">
+                <p className="text-xs md:text-sm text-gray-400 mb-3 md:mb-4">
+                  Can't book online right now?
+                </p>
+                <a 
+                  href={`https://wa.me/918637625155?text=${encodeURIComponent("Hi! I'd like to book a slot at Cuephoria. [Monthly Membership Offer]")}`}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 md:px-6 md:py-3 rounded-md bg-neon-pink/90 text-white hover:bg-neon-pink transition-all duration-300 text-sm md:text-base"
+                >
+                  WhatsApp Us Directly
+                  <ArrowRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
           
           {/* Return to main site button */}
           <div className="mt-6 md:mt-8 text-center">
