@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import SEOMetadata from '../components/SEOMetadata';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
 import { useIsMobile } from '../hooks/use-mobile';
-
 // Lazy load VisitorStats to reduce initial load time
 const VisitorStats = lazy(() => import('../components/VisitorStats'));
 
@@ -17,40 +16,40 @@ const BookingLanding = () => {
     end.setMinutes(end.getMinutes() + randomMinutes);
     return end;
   });
-  
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0
   });
-  
+
   const isMobile = useIsMobile();
   const navigate = useNavigate();
-  
+
   // Separate useEffect for the countdown timer to ensure it runs independently
   useEffect(() => {
     // Countdown timer
     const updateCountdown = () => {
       const now = new Date().getTime();
       const distance = countdownEnds.getTime() - now;
-      
+
       if (distance < 0) {
         // If time expired, reset to a new random time
         const newEnd = new Date();
         const newRandomMinutes = Math.floor(Math.random() * (30 - 15 + 1)) + 15;
         newEnd.setMinutes(newEnd.getMinutes() + newRandomMinutes);
-        
+
         setTimeLeft({
           days: 0,
           hours: 0,
           minutes: newRandomMinutes,
           seconds: 0
         });
-        
+
         return;
       }
-      
+
       setTimeLeft({
         days: Math.floor(distance / (1000 * 60 * 60 * 24)),
         hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
@@ -58,13 +57,13 @@ const BookingLanding = () => {
         seconds: Math.floor((distance % (1000 * 60)) / 1000)
       });
     };
-    
+
     // Run immediately once
     updateCountdown();
-    
+
     // Then update every second
     const timer = setInterval(updateCountdown, 1000);
-    
+
     return () => clearInterval(timer);
   }, [countdownEnds]);
 
@@ -75,14 +74,14 @@ const BookingLanding = () => {
         description="Book your PS5 gaming session or 8-ball pool table at Cuephoria - Special discounts for college & school students in Trichy! Best hangout place for students with exclusive offers."
         keywords="student gaming trichy, college hangout trichy, student discount gaming, ps5 gaming student discount, pool table student offers trichy"
       />
-      
+
       {/* Hero Section with CTA */}
       <section className="relative py-12 md:py-24 overflow-hidden">
         {/* Background elements */}
         <div className="absolute inset-0 bg-gaming-darker">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(157,78,221,0.1)_0,rgba(15,25,40,0.5)_100%)]"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-10">
             <div className="inline-block animate-pulse-neon mb-4">
@@ -93,12 +92,12 @@ const BookingLanding = () => {
                 loading="eager" // Load this important image eagerly
               />
             </div>
-            
+
             <h1 className="text-3xl md:text-5xl font-bold mb-6">
               <span className="block neon-text-blue">BOOK YOUR SPOT</span>
               <span className="block text-xl md:text-3xl mt-2 text-white">PS5 Gaming & Pool Tables</span>
             </h1>
-            
+
             <div className="bg-gaming-darker/80 backdrop-blur-md p-3 md:p-4 rounded-lg border border-neon-pink/30 mb-4 md:mb-6">
               <p className="text-lg md:text-xl text-neon-pink font-bold mb-1 md:mb-2 animate-blink-slow flex items-center justify-center gap-2">
                 <Siren className="h-5 w-5 text-red-500 animate-pulse" />
@@ -109,7 +108,7 @@ const BookingLanding = () => {
                 Get <span className="text-neon-blue font-bold">25% OFF</span> on your total bill with online bookings!
               </p>
             </div>
-            
+
             {/* Enhanced Countdown Timer with Blinking Effect - mobile optimized */}
             <div className="mb-6 md:mb-8">
               <p className="text-gray-300 mb-2 flex items-center justify-center gap-2 animate-blink-slow">
@@ -120,7 +119,7 @@ const BookingLanding = () => {
               <div className="relative">
                 {/* Pulsing background for urgency - enhanced */}
                 <div className="absolute inset-0 bg-red-600/15 rounded-lg animate-pulse"></div>
-                
+
                 {/* Timer display - enhanced with mobile optimization */}
                 <div className="flex justify-center gap-2 md:gap-3 relative z-10 p-3 md:p-4">
                   {Object.entries(timeLeft).map(([unit, value]) => (
@@ -132,25 +131,25 @@ const BookingLanding = () => {
                     </div>
                   ))}
                 </div>
-                
+
                 {/* Enhanced border effect with animation */}
                 <div className="absolute -inset-px rounded-lg bg-gradient-to-r from-neon-pink via-neon-blue to-neon-pink opacity-50 blur-[2px] animate-pulse -z-10"></div>
               </div>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 md:gap-4 mb-4 md:mb-6">
               <div className="flex items-center space-x-1 md:space-x-2 text-gray-200 text-sm md:text-base">
                 <Clock className="h-4 w-4 md:h-5 md:w-5 text-neon-pink" />
                 <span>11:00 AM - 11:00 PM</span>
               </div>
-              
+
               <div className="flex items-center space-x-1 md:space-x-2 text-gray-200 text-sm md:text-base">
                 <MapPin className="h-4 w-4 md:h-5 md:w-5 text-neon-blue" />
                 <span>Thiruverumbur, Trichy</span>
               </div>
             </div>
           </div>
-          
+
           {/* Live Occupancy Status Section - Improved for mobile */}
           <div className="max-w-5xl mx-auto mb-6 md:mb-8">
             <div className="bg-gaming-darker/70 backdrop-blur-lg border border-neon-blue/30 rounded-xl overflow-hidden shadow-lg shadow-neon-blue/10">
@@ -163,7 +162,7 @@ const BookingLanding = () => {
                   Check real-time availability of Pool Tables and PS5 controllers
                 </p>
               </div>
-              
+
               {/* Iframe with loading skeleton - height adjusted for mobile */}
               <div className="relative w-full" style={{ height: isMobile ? "400px" : "500px" }}>
                 {/* Loading skeleton */}
@@ -171,7 +170,7 @@ const BookingLanding = () => {
                   <div className="w-10 h-10 md:w-12 md:h-12 border-4 border-neon-blue rounded-full border-t-transparent animate-spin mb-3 md:mb-4"></div>
                   <p className="text-neon-blue text-sm md:text-base">Loading occupancy data...</p>
                 </div>
-                
+
                 {/* Iframe for the occupancy view - height adjusted for mobile */}
                 <iframe 
                   src="https://admin.cuephoria.in/public/stations" 
@@ -186,7 +185,7 @@ const BookingLanding = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Two Column Layout - mobile optimized */}
           <div className="flex flex-col lg:flex-row bg-gaming-darker/50 backdrop-blur-lg rounded-xl overflow-hidden border border-neon-blue/30">
             {/* Booking Widget Column */}
@@ -194,7 +193,7 @@ const BookingLanding = () => {
               <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center text-neon-blue">
                 Book Your Session Now
               </h2>
-              
+
               {/* Cuephoria Booking Website */}
               <div className="w-full rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50">
                 <iframe 
@@ -209,7 +208,7 @@ const BookingLanding = () => {
                 />
               </div>
             </div>
-            
+
             {/* Info Column */}
             <div className="w-full lg:w-5/12 p-3 md:p-4 lg:p-8 bg-gaming-accent/10">
               <div className="mb-6 md:mb-8">
@@ -244,14 +243,14 @@ const BookingLanding = () => {
                   </li>
                 </ul>
               </div>
-              
+
               {/* Updated Quick Pricing Section with Table - Mobile optimized */}
               <div className="mb-6 md:mb-8">
                 <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
                   <Table2 className="h-4 w-4 md:h-5 md:w-5 text-neon-blue mr-2" />
                   Quick Pricing
                 </h3>
-                
+
                 <div className="rounded-lg overflow-hidden border border-gaming-accent/30">
                   <div className="overflow-x-auto">
                     <Table className="w-full">
@@ -267,7 +266,7 @@ const BookingLanding = () => {
                             </div>
                           </TableCell>
                         </TableRow>
-                        
+
                         <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
                           <TableCell className="py-2 md:py-3 text-left font-medium text-white text-sm md:text-base">
                             Pool Table (per hour)
@@ -284,14 +283,14 @@ const BookingLanding = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Monthly Memberships Section */}
               <div className="mb-6 md:mb-8">
                 <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
                   <Award className="h-4 w-4 md:h-5 md:w-5 text-neon-pink mr-2" />
                   Monthly Memberships - 50% OFF
                 </h3>
-                
+
                 <div className="rounded-lg overflow-hidden border border-gaming-accent/30">
                   <div className="overflow-x-auto">
                     <Table className="w-full">
@@ -307,7 +306,7 @@ const BookingLanding = () => {
                             <span className="font-bold text-neon-blue">₹199</span>
                           </TableCell>
                         </TableRow>
-                        
+
                         <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
                           <TableCell className="py-2 md:py-3 text-left text-sm md:text-base">
                             <div className="flex items-center">
@@ -319,7 +318,7 @@ const BookingLanding = () => {
                             <span className="font-bold text-neon-pink">₹349</span>
                           </TableCell>
                         </TableRow>
-                        
+
                         <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
                           <TableCell className="py-2 md:py-3 text-left font-medium text-white text-sm md:text-base">
                             Extra players (per hour)
@@ -328,7 +327,7 @@ const BookingLanding = () => {
                             <span className="font-bold text-neon-blue">₹49</span>
                           </TableCell>
                         </TableRow>
-                        
+
                         <TableRow className="hover:bg-gaming-accent/10">
                           <TableCell className="py-2 md:py-3 text-left font-medium text-white text-sm md:text-base">
                             Loyalty (members)
@@ -342,31 +341,63 @@ const BookingLanding = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Lazy load visitor stats component */}
               <div className="mt-4">
                 <Suspense fallback={<div className="h-16 md:h-20 bg-gaming-accent/10 animate-pulse rounded-lg"></div>}>
                   <VisitorStats />
                 </Suspense>
               </div>
-              
+
+              {/* Contact Options Section - New additions keeping old and new numbers */}
               <div className="text-center mt-6 md:mt-8">
                 <p className="text-xs md:text-sm text-gray-400 mb-3 md:mb-4">
-                  Can't book online right now?
+                  Can't book online right now? Reach us directly:
                 </p>
-                <a 
-                  href={`https://wa.me/918637625155?text=${encodeURIComponent("Hi! I'd like to book a slot at Cuephoria. [Monthly Membership Offer]")}`}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 md:px-6 md:py-3 rounded-md bg-neon-pink/90 text-white hover:bg-neon-pink transition-all duration-300 text-sm md:text-base"
-                >
-                  WhatsApp Us Directly
-                  <ArrowRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />
-                </a>
+
+                {/* Old WhatsApp chatbot button */}
+                <div className="mb-4">
+                  <a 
+                    href={`https://wa.me/918637625155?text=${encodeURIComponent("Hi! I'd like to book a slot at Cuephoria. [Monthly Membership Offer]")}`}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 rounded-md bg-neon-pink/90 text-white hover:bg-neon-pink transition-all duration-300 text-sm md:text-base"
+                  >
+                    Chat with Cuephoria Assistant (Chatbot)
+                    <ArrowRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />
+                  </a>
+                  <p className="text-[11px] md:text-xs text-gray-400 mt-1">
+                    WhatsApp AI Assistant (automated support) – <strong>+91 86376 25155</strong>
+                  </p>
+                </div>
+
+                {/* New WhatsApp real agent button */}
+                <div className="mb-4">
+                  <a 
+                    href={`https://wa.me/917550025155?text=${encodeURIComponent("Hi! I'd like to speak with a real Cuephoria agent regarding bookings.")}`}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 rounded-md bg-neon-blue/90 text-white hover:bg-neon-blue transition-all duration-300 text-sm md:text-base"
+                  >
+                    Talk to a Real Agent on WhatsApp
+                    <ArrowRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />
+                  </a>
+                  <p className="text-[11px] md:text-xs text-gray-400 mt-1">
+                    Direct WhatsApp with a human agent – <strong>+91 75500 25155</strong>
+                  </p>
+                </div>
+
+                {/* Call Option for both numbers */}
+                <div className="mt-4 text-gray-300 text-sm md:text-base">
+                  📞 Call us:
+                  <br />
+                  <span className="block">+91 86376 25155 (Primary)</span>
+                  <span className="block">+91 75500 25155 (Secondary)</span>
+                </div>
               </div>
             </div>
           </div>
-          
+
           {/* Return to main site button */}
           <div className="mt-6 md:mt-8 text-center">
             <button 
@@ -378,7 +409,7 @@ const BookingLanding = () => {
           </div>
         </div>
       </section>
-      
+
       <Footer />
     </div>
   );
