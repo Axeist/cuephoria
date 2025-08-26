@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowRight, Clock, MapPin, Gamepad2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -85,13 +84,25 @@ const Hero = ({ className = '' }) => {
                 Book a Slot
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
+              
+              {/* WhatsApp Buttons - Chatbot and Human Agent */}
               <a 
                 href={`https://wa.me/918637625155?text=${encodeURIComponent("Hello! I'd like to inquire about Cuephoria gaming lounge and pool club in Trichy.")}`}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="px-8 py-3 rounded-md bg-transparent border-2 border-neon-pink text-white font-semibold hover:bg-neon-pink/10 transition-all duration-300 flex items-center justify-center"
+                title="WhatsApp Assistant (Chatbot)"
               >
-                WhatsApp Inquiry
+                WhatsApp Assistant
+              </a>
+              <a
+                href={`https://wa.me/917550025155?text=${encodeURIComponent("Hello! I'd like to speak with a real Cuephoria agent regarding gaming lounge and pool club.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 rounded-md bg-transparent border-2 border-neon-blue text-white font-semibold hover:bg-neon-blue/10 transition-all duration-300 flex items-center justify-center"
+                title="WhatsApp Human Agent"
+              >
+                WhatsApp Human Agent
               </a>
             </div>
           </div>
@@ -134,5 +145,4 @@ const Hero = ({ className = '' }) => {
     </section>
   );
 };
-
 export default Hero;
