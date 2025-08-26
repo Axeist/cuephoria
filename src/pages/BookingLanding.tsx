@@ -3,7 +3,7 @@ import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2, Siren, Activi
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import SEOMetadata from '../components/SEOMetadata';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
+import { Table, TableBody, TableCell, TableRow } from "../components/ui/table";
 import { useIsMobile } from '../hooks/use-mobile';
 
 // Lazy load VisitorStats to reduce initial load time
@@ -118,10 +118,8 @@ const BookingLanding = () => {
                 <Clock className="h-4 w-4 md:h-5 md:w-5 text-red-500 animate-pulse" />
               </p>
               <div className="relative">
-                {/* Pulsing background for urgency - enhanced */}
                 <div className="absolute inset-0 bg-red-600/15 rounded-lg animate-pulse"></div>
                 
-                {/* Timer display - enhanced with mobile optimization */}
                 <div className="flex justify-center gap-2 md:gap-3 relative z-10 p-3 md:p-4">
                   {Object.entries(timeLeft).map(([unit, value]) => (
                     <div key={unit} className="text-center">
@@ -133,7 +131,6 @@ const BookingLanding = () => {
                   ))}
                 </div>
                 
-                {/* Enhanced border effect with animation */}
                 <div className="absolute -inset-px rounded-lg bg-gradient-to-r from-neon-pink via-neon-blue to-neon-pink opacity-50 blur-[2px] animate-pulse -z-10"></div>
               </div>
             </div>
@@ -151,51 +148,36 @@ const BookingLanding = () => {
             </div>
           </div>
           
-          {/* Live Occupancy Status Section - Improved for mobile */}
-          <div className="max-w-5xl mx-auto mb-6 md:mb-8">
-            <div className="bg-gaming-darker/70 backdrop-blur-lg border border-neon-blue/30 rounded-xl overflow-hidden shadow-lg shadow-neon-blue/10">
-              <div className="p-3 md:p-4 border-b border-neon-blue/20 text-center">
-                <h2 className="text-xl md:text-2xl font-bold flex items-center justify-center gap-1 md:gap-2">
-                  <ActivitySquare className="text-neon-pink h-5 w-5 md:h-6 md:w-6" />
-                  <span className="text-neon-blue">Live Occupancy Status</span>
-                </h2>
-                <p className="text-center text-gray-300 text-xs md:text-sm">
-                  Check real-time availability of Pool Tables and PS5 controllers
-                </p>
-              </div>
-              
-              {/* Iframe with loading skeleton - height adjusted for mobile */}
-              <div className="relative w-full" style={{ height: isMobile ? "400px" : "500px" }}>
-                {/* Loading skeleton */}
-                <div className="absolute inset-0 bg-gaming-darker/70 flex flex-col items-center justify-center z-10 animate-pulse" id="occupancy-loader">
-                  <div className="w-10 h-10 md:w-12 md:h-12 border-4 border-neon-blue rounded-full border-t-transparent animate-spin mb-3 md:mb-4"></div>
-                  <p className="text-neon-blue text-sm md:text-base">Loading occupancy data...</p>
-                </div>
-                
-                {/* Iframe for the occupancy view - height adjusted for mobile */}
-                <iframe 
-                  src="https://admin.cuephoria.in/public/stations" 
-                  className="w-full h-full border-0"
-                  style={{ minHeight: isMobile ? "400px" : "500px" }}
-                  title="Cuephoria Live Occupancy"
-                  onLoad={() => {
-                    const loader = document.getElementById('occupancy-loader');
-                    if (loader) loader.style.display = 'none';
-                  }}
-                ></iframe>
-              </div>
+          {/* Updated WhatsApp Contact Information */}
+          <div className="flex justify-center items-center text-gray-200 text-sm md:text-base mb-6">
+            <p className="mr-4">For assistance:</p>
+            <div className="flex gap-2">
+              <a 
+                href={`https://wa.me/918637625155?text=${encodeURIComponent("Hi! I'd like to book a slot at Cuephoria. [Monthly Membership Offer]")}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-neon-pink hover:text-neon-blue"
+              >
+                Chat with Chatbot
+              </a>
+              <span className="text-gray-400">|</span>
+              <a 
+                href={`https://wa.me/917550025155?text=${encodeURIComponent("Hi! I'd like to speak with a real agent about booking a slot at Cuephoria.")}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-neon-pink hover:text-neon-blue"
+              >
+                Chat with Real Agent
+              </a>
             </div>
           </div>
-          
-          {/* Two Column Layout - mobile optimized */}
+
+          {/* Booking Widget Section */}
           <div className="flex flex-col lg:flex-row bg-gaming-darker/50 backdrop-blur-lg rounded-xl overflow-hidden border border-neon-blue/30">
-            {/* Booking Widget Column */}
             <div className="w-full lg:w-7/12 p-3 md:p-4 lg:p-8 relative">
               <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center text-neon-blue">
                 Book Your Session Now
               </h2>
-              
-              {/* Cuephoria Booking Website */}
               <div className="w-full rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50">
                 <iframe 
                   width="100%" 
@@ -210,7 +192,7 @@ const BookingLanding = () => {
               </div>
             </div>
             
-            {/* Info Column */}
+            {/* Info Section */}
             <div className="w-full lg:w-5/12 p-3 md:p-4 lg:p-8 bg-gaming-accent/10">
               <div className="mb-6 md:mb-8">
                 <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
@@ -244,142 +226,13 @@ const BookingLanding = () => {
                   </li>
                 </ul>
               </div>
-              
-              {/* Updated Quick Pricing Section with Table - Mobile optimized */}
-              <div className="mb-6 md:mb-8">
-                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
-                  <Table2 className="h-4 w-4 md:h-5 md:w-5 text-neon-blue mr-2" />
-                  Quick Pricing
-                </h3>
-                
-                <div className="rounded-lg overflow-hidden border border-gaming-accent/30">
-                  <div className="overflow-x-auto">
-                    <Table className="w-full">
-                      <TableBody>
-                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left font-medium text-white text-sm md:text-base">
-                            PS5 Gaming (per controller)
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right">
-                            <div className="flex items-center justify-end">
-                              <span className="font-bold text-gray-400 line-through mr-1 md:mr-2 text-sm md:text-base">₹150</span>
-                              <span className="font-bold text-neon-blue text-lg md:text-xl">₹113</span>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                        
-                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left font-medium text-white text-sm md:text-base">
-                            Pool Table (per hour)
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right">
-                            <div className="flex items-center justify-end">
-                              <span className="font-bold text-gray-400 line-through mr-1 md:mr-2 text-sm md:text-base">₹300</span>
-                              <span className="font-bold text-neon-blue text-lg md:text-xl">₹225</span>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Monthly Memberships Section */}
-              <div className="mb-6 md:mb-8">
-                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
-                  <Award className="h-4 w-4 md:h-5 md:w-5 text-neon-pink mr-2" />
-                  Monthly Memberships - 50% OFF
-                </h3>
-                
-                <div className="rounded-lg overflow-hidden border border-gaming-accent/30">
-                  <div className="overflow-x-auto">
-                    <Table className="w-full">
-                      <TableBody>
-                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left text-sm md:text-base">
-                            <div className="flex items-center">
-                              <span className="font-medium text-white">💎 Silver Membership</span>
-                            </div>
-                            <p className="text-xs text-gray-400">Up to 2 players</p>
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right text-sm md:text-base">
-                            <span className="font-bold text-neon-blue">₹199</span>
-                          </TableCell>
-                        </TableRow>
-                        
-                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left text-sm md:text-base">
-                            <div className="flex items-center">
-                              <span className="font-medium text-white">🌟 Gold Membership</span>
-                            </div>
-                            <p className="text-xs text-gray-400">Up to 4 players</p>
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right text-sm md:text-base">
-                            <span className="font-bold text-neon-pink">₹349</span>
-                          </TableCell>
-                        </TableRow>
-                        
-                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left font-medium text-white text-sm md:text-base">
-                            Extra players (per hour)
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right">
-                            <span className="font-bold text-neon-blue">₹49</span>
-                          </TableCell>
-                        </TableRow>
-                        
-                        <TableRow className="hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left font-medium text-white text-sm md:text-base">
-                            Loyalty (members)
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right">
-                            <span className="font-bold text-neon-pink">5 pts per ₹100</span>
-                          </TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Lazy load visitor stats component */}
-              <div className="mt-4">
-                <Suspense fallback={<div className="h-16 md:h-20 bg-gaming-accent/10 animate-pulse rounded-lg"></div>}>
-                  <VisitorStats />
-                </Suspense>
-              </div>
-              
-              <div className="text-center mt-6 md:mt-8">
-                <p className="text-xs md:text-sm text-gray-400 mb-3 md:mb-4">
-                  Can't book online right now?
-                </p>
-                <a 
-                  href={`https://wa.me/918637625155?text=${encodeURIComponent("Hi! I'd like to book a slot at Cuephoria. [Monthly Membership Offer]")}`}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 md:px-6 md:py-3 rounded-md bg-neon-pink/90 text-white hover:bg-neon-pink transition-all duration-300 text-sm md:text-base"
-                >
-                  WhatsApp Us Directly
-                  <ArrowRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />
-                </a>
-              </div>
             </div>
           </div>
           
-          {/* Return to main site button */}
-          <div className="mt-6 md:mt-8 text-center">
-            <button 
-              onClick={() => navigate('/')}
-              className="text-gray-400 hover:text-neon-blue transition-colors text-sm md:text-base"
-            >
-              Return to main site
-            </button>
-          </div>
+          {/* Footer Section */}
+          <Footer />
         </div>
       </section>
-      
-      <Footer />
     </div>
   );
 };
