@@ -180,45 +180,72 @@ const BookingLanding = () => {
           </div>
 
           {/* Two Column Layout */}
-          <div className="flex flex-col lg:flex-row bg-gaming-darker/50 backdrop-blur-lg rounded-xl overflow-hidden border border-neon-blue/30">
+          <div className="flex flex-col lg:flex-row bg-gaming-darker/50 backdrop-blur-lg rounded-xl overflow-hidden border border-neon-blue/30 max-w-7xl mx-auto">
             {/* Booking Widget Column */}
             <div className="w-full lg:w-7/12 p-3 md:p-4 lg:p-8 relative">
-              <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center text-neon-blue">
-                Book Your Session Now
-              </h2>
-              
-              {/* Booking Controls */}
-              <div className="mb-3 text-center p-2 bg-gaming-accent/10 rounded-lg text-sm md:text-base text-white">
-                <strong>Cuephoria Booking:</strong> PS5 or Pool Table slots.<br />
-                Need more space? <span className="font-bold text-neon-blue">Expand</span> or <span className="font-bold text-neon-blue">open in new tab</span>.
+              {/* Header Section with Better Alignment */}
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4 md:mb-6">
+                <h2 className="text-xl md:text-2xl font-bold text-center lg:text-left text-neon-blue mb-3 lg:mb-0">
+                  Book Your Session Now
+                </h2>
+                
+                {/* Desktop: Align buttons to the right of the header */}
+                <div className="hidden lg:flex items-center gap-3">
+                  <button
+                    aria-label={iframeExpanded ? "Collapse booking" : "Expand booking"}
+                    className="px-4 py-2 rounded-md bg-neon-blue/80 text-white font-semibold hover:bg-neon-blue transition flex items-center gap-2 text-sm whitespace-nowrap"
+                    onClick={() => setIframeExpanded(e => !e)}
+                  >
+                    <Expand className="h-4 w-4" />
+                    {iframeExpanded ? "Collapse" : "Expand"}
+                  </button>
+                  <a
+                    href="https://admin.cuephoria.in/public/booking"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open in new tab"
+                    className="px-4 py-2 rounded-md bg-gaming-accent text-white font-semibold hover:bg-neon-pink/80 flex items-center gap-2 transition text-sm whitespace-nowrap"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    New Tab
+                  </a>
+                </div>
               </div>
               
-              <div className="flex justify-end gap-2 mb-3">
-                <button
-                  aria-label={iframeExpanded ? "Collapse booking" : "Expand booking"}
-                  className="px-3 md:px-4 py-2 rounded-md bg-neon-blue/80 text-white font-semibold hover:bg-neon-blue transition flex items-center gap-1 text-sm md:text-base"
-                  onClick={() => setIframeExpanded(e => !e)}
-                >
-                  <Expand className="h-4 w-4" />
-                  {iframeExpanded ? "Collapse" : "Expand"}
-                </button>
-                <a
-                  href="https://admin.cuephoria.in/public/booking"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Open in new tab"
-                  className="px-3 md:px-4 py-2 rounded-md bg-gaming-accent text-white font-semibold hover:bg-neon-pink/80 flex items-center gap-1 transition text-sm md:text-base"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  <span>New Tab</span>
-                </a>
+              {/* Mobile: Show info banner and controls below header */}
+              <div className="lg:hidden">
+                <div className="mb-3 text-center p-3 bg-gaming-accent/10 rounded-lg text-sm text-white">
+                  <strong>Cuephoria Booking:</strong> PS5 or Pool Table slots.<br />
+                  Need more space? <span className="font-bold text-neon-blue">Expand</span> or <span className="font-bold text-neon-blue">open in new tab</span>.
+                </div>
+                
+                <div className="flex justify-center gap-2 mb-4">
+                  <button
+                    aria-label={iframeExpanded ? "Collapse booking" : "Expand booking"}
+                    className="px-4 py-2 rounded-md bg-neon-blue/80 text-white font-semibold hover:bg-neon-blue transition flex items-center gap-2 text-sm"
+                    onClick={() => setIframeExpanded(e => !e)}
+                  >
+                    <Expand className="h-4 w-4" />
+                    {iframeExpanded ? "Collapse" : "Expand"}
+                  </button>
+                  <a
+                    href="https://admin.cuephoria.in/public/booking"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open in new tab"
+                    className="px-4 py-2 rounded-md bg-gaming-accent text-white font-semibold hover:bg-neon-pink/80 flex items-center gap-2 transition text-sm"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    New Tab
+                  </a>
+                </div>
               </div>
 
               {/* Cuephoria Booking Website */}
               <div 
                 className="w-full rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50 transition-all duration-300"
                 style={{
-                  height: iframeExpanded ? "90vh" : "1000px",
+                  height: iframeExpanded ? (isMobile ? "85vh" : "90vh") : "1000px",
                   maxHeight: "95vh"
                 }}
               >
@@ -233,7 +260,7 @@ const BookingLanding = () => {
                   loading="lazy"
                   aria-label="Cuephoria session booking"
                   style={{
-                    minHeight: iframeExpanded ? "90vh" : "1000px"
+                    minHeight: iframeExpanded ? (isMobile ? "85vh" : "90vh") : "1000px"
                   }}
                 />
               </div>
