@@ -46,7 +46,7 @@ const blogPosts = [
     date: '2025-07-05',
     readTime: '4 min read',
     category: 'Gaming Culture',
-    image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: 'https://i.postimg.cc/k5MD0GM3/generated-image-2.png',
     icon: Gamepad2,
     gradient: 'from-purple-500 via-indigo-500 to-blue-500'
   },
