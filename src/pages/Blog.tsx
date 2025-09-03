@@ -95,40 +95,40 @@ const Blog = () => {
       
       <section className="relative py-12 md:py-24 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
-          {/* Clean Professional Logo */}
-          <div className="text-center mb-16 md:mb-20">
-            <div className="flex justify-center mb-12">
-              <div className="relative">
-                {/* Simple light purple glow */}
-                <div className="absolute -inset-6 bg-purple-400/20 rounded-full blur-2xl animate-pulse"></div>
-                
-                {/* Clean logo container */}
-                <div className="relative bg-gaming-darker/30 backdrop-blur-sm rounded-xl p-6 border border-purple-400/20 hover:scale-105 transition-all duration-500">
-                  <img 
-                    src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
-                    alt="Cuephoria Logo" 
-                    className="h-16 md:h-20 w-auto"
-                  />
-                </div>
-              </div>
-            </div>
-            
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-neon-pink/10 rounded-full border border-neon-pink/30">
-              <Sparkles className="h-4 w-4 text-neon-pink animate-pulse" />
-              <span className="text-neon-pink font-semibold text-sm">Fresh Stories from Trichy</span>
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 relative">
-              <span className="bg-gradient-to-r from-neon-blue via-purple-400 to-neon-pink bg-clip-text text-transparent animate-pulse">
-                Cuephoria Chronicles
-              </span>
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-neon-pink/20 rounded-full blur-xl animate-bounce delay-500"></div>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              Real stories from Trichy's premier gaming destination - our journey, our community, and the experiences that make us special since <span className="text-neon-blue font-bold">May 2025</span>.
-            </p>
-          </div>
+          {/* Clean Professional Logo - INCREASED SIZE */}
+<div className="text-center mb-16 md:mb-20">
+  <div className="flex justify-center mb-12">
+    <div className="relative">
+      {/* Simple light purple glow */}
+      <div className="absolute -inset-8 bg-purple-400/20 rounded-full blur-2xl animate-pulse"></div>
+      
+      {/* Clean logo container with larger size */}
+      <div className="relative bg-gaming-darker/30 backdrop-blur-sm rounded-xl p-8 border border-purple-400/20 hover:scale-105 transition-all duration-500">
+        <img 
+          src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
+          alt="Cuephoria Logo" 
+          className="h-32 md:h-40 w-auto"
+        />
+      </div>
+    </div>
+  </div>
+  
+  <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-neon-pink/10 rounded-full border border-neon-pink/30">
+    <Sparkles className="h-4 w-4 text-neon-pink animate-pulse" />
+    <span className="text-neon-pink font-semibold text-sm">Fresh Stories from Trichy</span>
+  </div>
+  
+  <h1 className="text-5xl md:text-7xl font-bold mb-6 relative">
+    <span className="bg-gradient-to-r from-neon-blue via-purple-400 to-neon-pink bg-clip-text text-transparent animate-pulse">
+      Cuephoria Chronicles
+    </span>
+    <div className="absolute -top-4 -right-4 w-8 h-8 bg-neon-pink/20 rounded-full blur-xl animate-bounce delay-500"></div>
+  </h1>
+  
+  <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+    Real stories from Trichy's premier gaming destination - our journey, our community, and the experiences that make us special since <span className="text-neon-blue font-bold">May 2025</span>.
+  </p>
+</div>
 
           {/* Enhanced Featured Post */}
           {featuredPost && (
