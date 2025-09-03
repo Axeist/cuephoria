@@ -12,7 +12,7 @@ const blogPosts = [
     date: '2025-08-15',
     readTime: '5 min read',
     category: 'Our Story',
-    image: 'https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: 'https://i.postimg.cc/HxCs9LJ7/Cuephoria-begining.png',
     icon: Heart,
     featured: true,
     gradient: 'from-pink-500 via-red-500 to-yellow-500'
