@@ -35,7 +35,7 @@ const blogPosts = [
     date: '2025-07-20',
     readTime: '6 min read',
     category: 'Player Stories',
-    image: 'https://images.unsplash.com/photo-1594736797933-d0871e6f0fc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2026&q=80',
+    image: 'https://i.postimg.cc/8zS7bwqC/generated-image-1.png',
     icon: Target,
     gradient: 'from-green-500 via-teal-500 to-blue-500'
   },
