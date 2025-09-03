@@ -95,51 +95,21 @@ const Blog = () => {
       
       <section className="relative py-12 md:py-24 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
-          {/* Enhanced Header with Real Cuephoria Logo */}
+          {/* Clean Professional Logo */}
           <div className="text-center mb-16 md:mb-20">
-            {/* Animated Cuephoria Logo */}
             <div className="flex justify-center mb-12">
               <div className="relative">
-                {/* Background glow effects */}
-                <div className="absolute -inset-8 bg-gradient-to-r from-neon-pink/20 via-purple-500/20 to-neon-blue/20 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute -inset-4 bg-gradient-to-r from-neon-blue/30 via-purple-400/30 to-neon-pink/30 rounded-full blur-2xl animate-pulse delay-500"></div>
+                {/* Simple light purple glow */}
+                <div className="absolute -inset-6 bg-purple-400/20 rounded-full blur-2xl animate-pulse"></div>
                 
-                {/* Logo container with animations */}
-                <div className="relative bg-gaming-darker/50 backdrop-blur-xl rounded-2xl p-8 border border-neon-blue/30 shadow-2xl hover:scale-105 transition-all duration-700 group">
-                  {/* Animated border gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-neon-pink via-purple-500 to-neon-blue opacity-20 rounded-2xl animate-pulse group-hover:opacity-40 transition-opacity duration-700"></div>
-                  
-                  {/* Real Cuephoria Logo */}
-                  <div className="relative z-10 flex flex-col items-center">
-                    <div className="mb-4">
-                      <img 
-                        src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
-                        alt="Cuephoria Logo" 
-                        className="h-20 md:h-24 w-auto animate-pulse hover:animate-bounce transition-all duration-300 filter drop-shadow-2xl"
-                      />
-                    </div>
-                    
-                    {/* Tagline */}
-                    <div className="text-lg md:text-xl font-bold text-white/80 tracking-wider animate-fade-in">
-                      <span className="bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                        8-BALL CLUB & GAMING
-                      </span>
-                    </div>
-                    
-                    {/* Floating particles */}
-                    <div className="absolute -top-4 left-1/4 w-2 h-2 bg-neon-pink/60 rounded-full animate-ping delay-700"></div>
-                    <div className="absolute -bottom-4 right-1/4 w-2 h-2 bg-neon-blue/60 rounded-full animate-ping delay-1000"></div>
-                    <div className="absolute top-1/2 -left-6 w-1 h-1 bg-purple-400/60 rounded-full animate-ping delay-1300"></div>
-                    <div className="absolute top-1/2 -right-6 w-1 h-1 bg-yellow-400/60 rounded-full animate-ping delay-1600"></div>
-                  </div>
-                  
-                  {/* Rotating ring animation */}
-                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-neon-pink via-transparent to-neon-blue animate-spin opacity-20"></div>
+                {/* Clean logo container */}
+                <div className="relative bg-gaming-darker/30 backdrop-blur-sm rounded-xl p-6 border border-purple-400/20 hover:scale-105 transition-all duration-500">
+                  <img 
+                    src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
+                    alt="Cuephoria Logo" 
+                    className="h-16 md:h-20 w-auto"
+                  />
                 </div>
-                
-                {/* Additional glow effects */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-neon-blue/10 rounded-full blur-3xl animate-pulse delay-200"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-neon-pink/10 rounded-full blur-2xl animate-pulse delay-700"></div>
               </div>
             </div>
             
@@ -226,7 +196,7 @@ const Blog = () => {
             </div>
           )}
 
-          {/* Enhanced Blog Posts Grid - FIXED: Entire tile is clickable again */}
+          {/* Enhanced Blog Posts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10">
             {regularPosts.map((post, index) => (
               <Link
@@ -276,7 +246,6 @@ const Blog = () => {
                           </div>
                         </div>
                         
-                        {/* "Read More" button - still visible but entire tile is clickable */}
                         <div className="text-neon-blue hover:text-neon-pink font-bold text-sm flex items-center gap-2 transition-all duration-300 group/link">
                           Read More
                           <ArrowRight className="h-4 w-4 group-hover/link:translate-x-1 transition-transform duration-300" />
