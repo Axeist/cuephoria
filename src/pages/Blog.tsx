@@ -68,7 +68,7 @@ const blogPosts = [
     date: '2025-06-05',
     readTime: '7 min read',
     category: 'Pool Mastery',
-    image: 'https://images.unsplash.com/photo-1604167719670-2a7703469f8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    image: 'https://i.postimg.cc/ry5c9ccS/generated-image-4.png',
     icon: Trophy,
     gradient: 'from-yellow-500 via-orange-500 to-red-500'
   }
