@@ -1,5 +1,5 @@
 import React, { useEffect, useState, lazy, Suspense, useCallback, useMemo } from 'react';
-import { ArrowRight, Clock, MapPin, Star, Award, Table2, Siren, ActivitySquare, Expand, ExternalLink, Minimize2 } from 'lucide-react';
+import { ArrowRight, Clock, MapPin, Star, Award, Table2, Siren, ActivitySquare, Expand, ExternalLink } from 'lucide-react';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import SEOMetadata from '../components/SEOMetadata';
@@ -45,15 +45,6 @@ const BookingLanding = () => {
   const [iframeExpanded, setIframeExpanded] = useState(false);
   const isMobile = useIsMobile();
   const navigate = useNavigate();
-
-  // Define height based on device and expanded state
-  const getIframeHeight = () => {
-    if (iframeExpanded) {
-      return isMobile ? '95vh' : '85vh'; // Nearly full screen when expanded
-    } else {
-      return isMobile ? '500px' : '600px'; // Much smaller when collapsed
-    }
-  };
 
   useEffect(() => {
     const updateCountdown = () => {
@@ -203,9 +194,9 @@ const BookingLanding = () => {
                   <button
                     aria-label={iframeExpanded ? "Collapse booking" : "Expand booking"}
                     className="px-4 py-2 rounded-md bg-neon-blue/80 text-white font-semibold hover:bg-neon-blue transition flex items-center gap-2 text-sm whitespace-nowrap"
-                    onClick={() => setIframeExpanded(!iframeExpanded)}
+                    onClick={() => setIframeExpanded(e => !e)}
                   >
-                    {iframeExpanded ? <Minimize2 className="h-4 w-4" /> : <Expand className="h-4 w-4" />}
+                    <Expand className="h-4 w-4" />
                     {iframeExpanded ? "Collapse" : "Expand"}
                   </button>
                   <a
@@ -225,18 +216,16 @@ const BookingLanding = () => {
               <div className="lg:hidden">
                 <div className="mb-3 text-center p-3 bg-gaming-accent/10 rounded-lg text-sm text-white">
                   <strong>Cuephoria Booking:</strong> PS5 or Pool Table slots.<br />
-                  <span className="text-gray-300">
-                    {iframeExpanded ? "Full screen view active" : "Need more space? Tap Expand!"}
-                  </span>
+                  Need more space? <span className="font-bold text-neon-blue">Expand</span> or <span className="font-bold text-neon-blue">open in new tab</span>.
                 </div>
                 
                 <div className="flex justify-center gap-2 mb-4">
                   <button
                     aria-label={iframeExpanded ? "Collapse booking" : "Expand booking"}
                     className="px-4 py-2 rounded-md bg-neon-blue/80 text-white font-semibold hover:bg-neon-blue transition flex items-center gap-2 text-sm"
-                    onClick={() => setIframeExpanded(!iframeExpanded)}
+                    onClick={() => setIframeExpanded(e => !e)}
                   >
-                    {iframeExpanded ? <Minimize2 className="h-4 w-4" /> : <Expand className="h-4 w-4" />}
+                    <Expand className="h-4 w-4" />
                     {iframeExpanded ? "Collapse" : "Expand"}
                   </button>
                   <a
@@ -252,22 +241,14 @@ const BookingLanding = () => {
                 </div>
               </div>
 
-              {/* Cuephoria Booking Website with dramatic height differences */}
+              {/* Cuephoria Booking Website */}
               <div 
-                className={`w-full rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50 transition-all duration-500 ${
-                  iframeExpanded ? 'shadow-2xl shadow-neon-blue/20' : 'shadow-md'
-                }`}
+                className="w-full rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50 transition-all duration-300"
                 style={{
-                  height: getIframeHeight(),
-                  maxHeight: iframeExpanded ? '95vh' : 'none'
+                  height: iframeExpanded ? (isMobile ? "85vh" : "90vh") : "1000px",
+                  maxHeight: "95vh"
                 }}
               >
-                {/* Show a loading overlay when expanding for better UX */}
-                {iframeExpanded && (
-                  <div className="absolute top-2 right-2 z-10 bg-neon-blue/80 text-white px-2 py-1 rounded text-xs">
-                    Full Screen Mode
-                  </div>
-                )}
                 <iframe 
                   width="100%" 
                   height="100%"
@@ -279,7 +260,7 @@ const BookingLanding = () => {
                   loading="lazy"
                   aria-label="Cuephoria session booking"
                   style={{
-                    minHeight: getIframeHeight()
+                    minHeight: iframeExpanded ? (isMobile ? "85vh" : "90vh") : "1000px"
                   }}
                 />
               </div>
