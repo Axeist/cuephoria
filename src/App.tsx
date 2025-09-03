@@ -1,88 +1,52 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
-import ScrollToTop from './components/ScrollToTop';
+import "./App.css";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Index from "./pages/Index";
+import NotFound from "./pages/NotFound";
+import BookingLanding from "./pages/BookingLanding";
 
-// Import all your main components
-import Index from './pages/Index';
-import About from './components/About';
-import BookNow from './components/BookNow';
-import Contact from './components/Contact';
-import Gallery from './components/Gallery';
-import Games from './components/Games';
-import Hero from './components/Hero';
-import Testimonials from './components/Testimonials';
-import Terms from './components/Terms';
-import Navbar from './components/Navbar';
-import NewsTicker from './components/NewsTicker';
-import PromotionalPopup from './components/PromotionalPopup';
-import Chatbot from './components/Chatbot';
-import Footer from './components/Footer';
+// Blog imports
+import Blog from "./pages/Blog";
+import BlogPost1 from "./pages/BlogPost1";
+import BlogPost2 from "./pages/BlogPost2";
+import BlogPost3 from "./pages/BlogPost3";
+import BlogPost4 from "./pages/BlogPost4";
+import BlogPost5 from "./pages/BlogPost5";
+import BlogPost6 from "./pages/BlogPost6";
 
-// Blog-related imports
-import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
+import React from "react";
 
-// Individual Blog Page Components (create these)
-import WhyWeStartedCuephoria from './pages/blog/WhyWeStartedCuephoria';
-import UltimateStudentHangout from './pages/blog/UltimateStudentHangout';
-import NervousBeginnerToPoolPro from './pages/blog/NervousBeginnerToPoolPro';
-import LateNightGamingSessions from './pages/blog/LateNightGamingSessions';
-import ParentsAskWhatsSpecial from './pages/blog/ParentsAskWhatsSpecial';
-import ArtOfPerfectBreak from './pages/blog/ArtOfPerfectBreak';
-
-function App() {
+const App = () => {
+  const queryClient = new QueryClient();
   return (
-    <HelmetProvider>
-      <Router>
-        {/* IMPORTANT: ScrollToTop must be inside Router but outside Routes */}
-        <ScrollToTop />
-        
-        {/* Global Components that appear on all pages */}
-        <Navbar />
-        <NewsTicker />
-        <Chatbot />
-        <PromotionalPopup />
-        
-        <Routes>
-          {/* Main homepage route */}
-          <Route path="/" element={<Index />} />
-          
-          {/* Individual component routes */}
-          <Route path="/about" element={<About />} />
-          <Route path="/book" element={<BookNow />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/games" element={<Games />} />
-          <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/terms" element={<Terms />} />
-          
-          {/* Blog routes */}
-          <Route path="/blog" element={<Blog />} />
-          
-          {/* Dynamic blog post route - handles any blog post ID */}
-          <Route path="/blog/:postId" element={<BlogPost />} />
-          
-          {/* Individual static blog post routes (optional - for SEO/direct access) */}
-          <Route path="/blog/why-we-started-cuephoria" element={<WhyWeStartedCuephoria />} />
-          <Route path="/blog/ultimate-student-hangout" element={<UltimateStudentHangout />} />
-          <Route path="/blog/nervous-beginner-to-pool-pro" element={<NervousBeginnerToPoolPro />} />
-          <Route path="/blog/late-night-gaming-sessions" element={<LateNightGamingSessions />} />
-          <Route path="/blog/parents-ask-whats-special" element={<ParentsAskWhatsSpecial />} />
-          <Route path="/blog/art-of-perfect-break" element={<ArtOfPerfectBreak />} />
-          
-          {/* Additional utility routes */}
-          <Route path="/hero" element={<Hero />} />
-          
-          {/* Catch-all route for 404 - redirects to homepage */}
-          <Route path="*" element={<Index />} />
-        </Routes>
-        
-        {/* Global Footer */}
-        <Footer />
-      </Router>
-    </HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/book" element={<BookingLanding />} />
+            
+            {/* Blog Routes */}
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/why-we-started-cuephoria" element={<BlogPost1 />} />
+            <Route path="/blog/ultimate-student-hangout" element={<BlogPost2 />} />
+            <Route path="/blog/nervous-beginner-to-pool-pro" element={<BlogPost3 />} />
+            <Route path="/blog/late-night-gaming-sessions" element={<BlogPost4 />} />
+            <Route path="/blog/parents-ask-whats-special" element={<BlogPost5 />} />
+            <Route path="/blog/art-of-perfect-break" element={<BlogPost6 />} />
+            
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
   );
-}
+};
 
 export default App;
