@@ -24,7 +24,7 @@ const blogPosts = [
     date: '2025-08-01',
     readTime: '4 min read',
     category: 'Student Life',
-    image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80',
+    image: 'https://i.postimg.cc/zfTRr6KK/Ultimate-Student-Hangout.png',
     icon: Users,
     gradient: 'from-blue-500 via-purple-500 to-pink-500'
   },
