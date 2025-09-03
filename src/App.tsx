@@ -11,11 +11,6 @@ import BookingLanding from "./pages/BookingLanding";
 // Blog imports
 import Blog from "./pages/Blog";
 import BlogPost1 from "./pages/BlogPost1";
-import BlogPost2 from "./pages/BlogPost2";
-import BlogPost3 from "./pages/BlogPost3";
-import BlogPost4 from "./pages/BlogPost4";
-import BlogPost5 from "./pages/BlogPost5";
-import BlogPost6 from "./pages/BlogPost6";
 
 import React from "react";
 
