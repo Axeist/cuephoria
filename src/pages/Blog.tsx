@@ -95,8 +95,54 @@ const Blog = () => {
       
       <section className="relative py-12 md:py-24 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
-          {/* Enhanced Header */}
+          {/* Enhanced Header with Real Cuephoria Logo */}
           <div className="text-center mb-16 md:mb-20">
+            {/* Animated Cuephoria Logo */}
+            <div className="flex justify-center mb-12">
+              <div className="relative">
+                {/* Background glow effects */}
+                <div className="absolute -inset-8 bg-gradient-to-r from-neon-pink/20 via-purple-500/20 to-neon-blue/20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute -inset-4 bg-gradient-to-r from-neon-blue/30 via-purple-400/30 to-neon-pink/30 rounded-full blur-2xl animate-pulse delay-500"></div>
+                
+                {/* Logo container with animations */}
+                <div className="relative bg-gaming-darker/50 backdrop-blur-xl rounded-2xl p-8 border border-neon-blue/30 shadow-2xl hover:scale-105 transition-all duration-700 group">
+                  {/* Animated border gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-neon-pink via-purple-500 to-neon-blue opacity-20 rounded-2xl animate-pulse group-hover:opacity-40 transition-opacity duration-700"></div>
+                  
+                  {/* Real Cuephoria Logo */}
+                  <div className="relative z-10 flex flex-col items-center">
+                    <div className="mb-4">
+                      <img 
+                        src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
+                        alt="Cuephoria Logo" 
+                        className="h-20 md:h-24 w-auto animate-pulse hover:animate-bounce transition-all duration-300 filter drop-shadow-2xl"
+                      />
+                    </div>
+                    
+                    {/* Tagline */}
+                    <div className="text-lg md:text-xl font-bold text-white/80 tracking-wider animate-fade-in">
+                      <span className="bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                        8-BALL CLUB & GAMING
+                      </span>
+                    </div>
+                    
+                    {/* Floating particles */}
+                    <div className="absolute -top-4 left-1/4 w-2 h-2 bg-neon-pink/60 rounded-full animate-ping delay-700"></div>
+                    <div className="absolute -bottom-4 right-1/4 w-2 h-2 bg-neon-blue/60 rounded-full animate-ping delay-1000"></div>
+                    <div className="absolute top-1/2 -left-6 w-1 h-1 bg-purple-400/60 rounded-full animate-ping delay-1300"></div>
+                    <div className="absolute top-1/2 -right-6 w-1 h-1 bg-yellow-400/60 rounded-full animate-ping delay-1600"></div>
+                  </div>
+                  
+                  {/* Rotating ring animation */}
+                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-neon-pink via-transparent to-neon-blue animate-spin opacity-20"></div>
+                </div>
+                
+                {/* Additional glow effects */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-neon-blue/10 rounded-full blur-3xl animate-pulse delay-200"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-neon-pink/10 rounded-full blur-2xl animate-pulse delay-700"></div>
+              </div>
+            </div>
+            
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-neon-pink/10 rounded-full border border-neon-pink/30">
               <Sparkles className="h-4 w-4 text-neon-pink animate-pulse" />
               <span className="text-neon-pink font-semibold text-sm">Fresh Stories from Trichy</span>
@@ -117,129 +163,129 @@ const Blog = () => {
           {/* Enhanced Featured Post */}
           {featuredPost && (
             <div className="mb-20">
-              <div className="relative bg-gaming-darker/30 backdrop-blur-xl rounded-3xl overflow-hidden border border-neon-blue/30 shadow-2xl hover:shadow-neon-blue/40 transition-all duration-700 group">
-                {/* Animated Border */}
-                <div className="absolute inset-0 bg-gradient-to-r from-neon-pink via-purple-500 to-neon-blue opacity-20 blur-sm group-hover:opacity-40 transition-opacity duration-700"></div>
-                
-                <div className="relative bg-gaming-darker/90 backdrop-blur-xl rounded-3xl overflow-hidden">
-                  <div className="flex flex-col lg:flex-row">
-                    <div className="lg:w-1/2 p-8 lg:p-12 relative">
-                      {/* Floating Icons */}
-                      <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-neon-pink/20 to-purple-500/20 rounded-full flex items-center justify-center animate-pulse">
-                        <featuredPost.icon className="h-8 w-8 text-neon-pink" />
-                      </div>
-                      
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-neon-pink/20 to-purple-500/20 rounded-full">
-                          <Trophy className="h-4 w-4 text-neon-pink animate-pulse" />
-                          <span className="text-neon-pink font-bold text-sm uppercase tracking-wider">Featured Story</span>
+              <Link to={`/blog/${featuredPost.id}`} className="block">
+                <div className="relative bg-gaming-darker/30 backdrop-blur-xl rounded-3xl overflow-hidden border border-neon-blue/30 shadow-2xl hover:shadow-neon-blue/40 transition-all duration-700 group cursor-pointer">
+                  {/* Animated Border */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-neon-pink via-purple-500 to-neon-blue opacity-20 blur-sm group-hover:opacity-40 transition-opacity duration-700"></div>
+                  
+                  <div className="relative bg-gaming-darker/90 backdrop-blur-xl rounded-3xl overflow-hidden">
+                    <div className="flex flex-col lg:flex-row">
+                      <div className="lg:w-1/2 p-8 lg:p-12 relative">
+                        {/* Floating Icons */}
+                        <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-neon-pink/20 to-purple-500/20 rounded-full flex items-center justify-center animate-pulse">
+                          <featuredPost.icon className="h-8 w-8 text-neon-pink" />
+                        </div>
+                        
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-neon-pink/20 to-purple-500/20 rounded-full">
+                            <Trophy className="h-4 w-4 text-neon-pink animate-pulse" />
+                            <span className="text-neon-pink font-bold text-sm uppercase tracking-wider">Featured Story</span>
+                          </div>
+                        </div>
+                        
+                        <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-white leading-tight">
+                          {featuredPost.title}
+                        </h2>
+                        
+                        <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed">
+                          {featuredPost.excerpt}
+                        </p>
+                        
+                        <div className="flex items-center gap-8 mb-10 text-sm text-gray-400">
+                          <div className="flex items-center gap-2">
+                            <Calendar className="h-4 w-4" />
+                            <span>{new Date(featuredPost.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Clock className="h-4 w-4" />
+                            <span>{featuredPost.readTime}</span>
+                          </div>
+                        </div>
+                        
+                        <div className="inline-flex items-center gap-3 bg-gradient-to-r from-neon-pink via-purple-500 to-neon-blue p-[2px] rounded-full group-hover:scale-105 transition-all duration-300">
+                          <div className="bg-gaming-darker px-8 py-4 rounded-full flex items-center gap-3">
+                            <span className="font-bold text-white">Read Full Story</span>
+                            <ArrowRight className="h-5 w-5 text-neon-pink group-hover:translate-x-1 transition-transform duration-300" />
+                          </div>
                         </div>
                       </div>
                       
-                      <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-white hover:text-neon-blue transition-colors duration-500 leading-tight">
-                        {featuredPost.title}
-                      </h2>
-                      
-                      <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed">
-                        {featuredPost.excerpt}
-                      </p>
-                      
-                      <div className="flex items-center gap-8 mb-10 text-sm text-gray-400">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
-                          <span>{new Date(featuredPost.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Clock className="h-4 w-4" />
-                          <span>{featuredPost.readTime}</span>
-                        </div>
+                      <div className="lg:w-1/2 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-neon-pink/30 to-neon-blue/30 z-10"></div>
+                        <img
+                          src={featuredPost.image}
+                          alt={featuredPost.title}
+                          className="w-full h-full min-h-[400px] object-cover"
+                        />
+                        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gaming-darker/80 to-transparent z-20"></div>
                       </div>
-                      
-                      <Link
-                        to={`/blog/${featuredPost.id}`}
-                        className="inline-flex items-center gap-3 bg-gradient-to-r from-neon-pink via-purple-500 to-neon-blue p-[2px] rounded-full hover:scale-105 transition-all duration-300"
-                      >
-                        <div className="bg-gaming-darker px-8 py-4 rounded-full flex items-center gap-3">
-                          <span className="font-bold text-white">Read Full Story</span>
-                          <ArrowRight className="h-5 w-5 text-neon-pink group-hover:translate-x-1 transition-transform duration-300" />
-                        </div>
-                      </Link>
-                    </div>
-                    
-                    <div className="lg:w-1/2 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-neon-pink/30 to-neon-blue/30 z-10"></div>
-                      <img
-                        src={featuredPost.image}
-                        alt={featuredPost.title}
-                        className="w-full h-full min-h-[400px] object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gaming-darker/80 to-transparent z-20"></div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           )}
 
-          {/* Enhanced Blog Posts Grid */}
+          {/* Enhanced Blog Posts Grid - FIXED: Entire tile is clickable again */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10">
             {regularPosts.map((post, index) => (
-              <article
+              <Link
                 key={post.id}
-                className="bg-gaming-darker/20 backdrop-blur-xl rounded-2xl overflow-hidden border border-gaming-accent/30 shadow-lg hover:shadow-2xl transition-all duration-700 hover:scale-105 group relative"
+                to={`/blog/${post.id}`}
+                className="block"
               >
-                {/* Gradient Border Animation */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${post.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-700 rounded-2xl`}></div>
-                
-                <div className="relative">
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker/60 to-transparent"></div>
-                    
-                    {/* Category Badge */}
-                    <div className="absolute top-4 left-4 flex items-center gap-2 bg-gaming-darker/80 backdrop-blur-sm px-4 py-2 rounded-full border border-neon-blue/30">
-                      <post.icon className="h-4 w-4 text-neon-blue animate-pulse" />
-                      <span className="text-xs font-bold text-neon-blue uppercase tracking-wider">{post.category}</span>
-                    </div>
-                    
-                    {/* Reading Time */}
-                    <div className="absolute top-4 right-4 bg-gaming-darker/80 backdrop-blur-sm px-3 py-1 rounded-full">
-                      <span className="text-xs text-gray-300">{post.readTime}</span>
-                    </div>
-                  </div>
+                <article className="bg-gaming-darker/20 backdrop-blur-xl rounded-2xl overflow-hidden border border-gaming-accent/30 shadow-lg hover:shadow-2xl transition-all duration-700 hover:scale-105 group relative cursor-pointer">
+                  {/* Gradient Border Animation */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${post.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-700 rounded-2xl`}></div>
                   
-                  <div className="p-6 lg:p-8">
-                    <h3 className="text-xl lg:text-2xl font-bold mb-4 text-white group-hover:text-neon-blue transition-colors duration-300 line-clamp-2 leading-tight">
-                      {post.title}
-                    </h3>
-                    
-                    <p className="text-gray-300 mb-6 line-clamp-3 leading-relaxed">
-                      {post.excerpt}
-                    </p>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4 text-xs text-gray-400">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          <span>{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                        </div>
+                  <div className="relative">
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker/60 to-transparent"></div>
+                      
+                      {/* Category Badge */}
+                      <div className="absolute top-4 left-4 flex items-center gap-2 bg-gaming-darker/80 backdrop-blur-sm px-4 py-2 rounded-full border border-neon-blue/30">
+                        <post.icon className="h-4 w-4 text-neon-blue animate-pulse" />
+                        <span className="text-xs font-bold text-neon-blue uppercase tracking-wider">{post.category}</span>
                       </div>
                       
-                      <Link
-                        to={`/blog/${post.id}`}
-                        className="text-neon-blue hover:text-neon-pink font-bold text-sm flex items-center gap-2 transition-all duration-300 group/link"
-                      >
-                        Read More
-                        <ArrowRight className="h-4 w-4 group-hover/link:translate-x-1 transition-transform duration-300" />
-                      </Link>
+                      {/* Reading Time */}
+                      <div className="absolute top-4 right-4 bg-gaming-darker/80 backdrop-blur-sm px-3 py-1 rounded-full">
+                        <span className="text-xs text-gray-300">{post.readTime}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="p-6 lg:p-8">
+                      <h3 className="text-xl lg:text-2xl font-bold mb-4 text-white line-clamp-2 leading-tight">
+                        {post.title}
+                      </h3>
+                      
+                      <p className="text-gray-300 mb-6 line-clamp-3 leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-4 text-xs text-gray-400">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3" />
+                            <span>{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                          </div>
+                        </div>
+                        
+                        {/* "Read More" button - still visible but entire tile is clickable */}
+                        <div className="text-neon-blue hover:text-neon-pink font-bold text-sm flex items-center gap-2 transition-all duration-300 group/link">
+                          Read More
+                          <ArrowRight className="h-4 w-4 group-hover/link:translate-x-1 transition-transform duration-300" />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </article>
+                </article>
+              </Link>
             ))}
           </div>
 
