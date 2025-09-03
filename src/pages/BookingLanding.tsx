@@ -1,415 +1,328 @@
-import React, { useEffect, useState, lazy, Suspense } from 'react';
-import { ArrowRight, Clock, MapPin, Star, Calendar, Award, Table2, Siren, ActivitySquare } from 'lucide-react';
+import React, { useEffect, useState, lazy, Suspense, useCallback, useMemo } from 'react';
+import { ArrowRight, Clock, MapPin, Star, Award, Table2, Siren, ActivitySquare } from 'lucide-react';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import SEOMetadata from '../components/SEOMetadata';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
+import { Table, TableBody, TableCell, TableRow } from "../components/ui/table";
 import { useIsMobile } from '../hooks/use-mobile';
-// Lazy load VisitorStats to reduce initial load time
+
 const VisitorStats = lazy(() => import('../components/VisitorStats'));
 
+const RANDOM_MINUTES_RANGE = [15, 30];
+const WHATSAPP_CHATBOT_NUMBER = '918637625155';
+const WHATSAPP_AGENT_NUMBER = '917550025155';
+
+const getRandomMinutes = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+const createWhatsAppLink = (phoneNumber, message) => 
+  `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+const features = [
+  "Latest PS5 games with 4K display",
+  "Professional pool tables",
+  "Comfortable gaming environment",
+  "Monthly memberships with 50% savings",
+];
+
+const pricing = [
+  { label: "PS5 Gaming (per controller)", original: 150, discounted: 113 },
+  { label: "Pool Table (per hour)", original: 300, discounted: 225 },
+];
+
+const memberships = [
+  { name: "💎 Silver Membership", description: "Up to 2 players", price: 199, priceColor: "text-neon-blue" },
+  { name: "🌟 Gold Membership", description: "Up to 4 players", price: 349, priceColor: "text-neon-pink" },
+  { name: "Extra players (per hour)", price: 49, priceColor: "text-neon-blue" },
+  { name: "Loyalty (members)", description: "5 pts per ₹100", priceColor: "text-neon-pink" }
+];
+
 const BookingLanding = () => {
-  const [countdownEnds] = useState(() => {
-    // Set countdown to end with a random time between 15-30 minutes
+  const [countdownEnds, setCountdownEnds] = useState(() => {
     const end = new Date();
-    const randomMinutes = Math.floor(Math.random() * (30 - 15 + 1)) + 15; // Random between 15-30
-    end.setMinutes(end.getMinutes() + randomMinutes);
+    end.setMinutes(end.getMinutes() + getRandomMinutes(...RANDOM_MINUTES_RANGE));
     return end;
   });
 
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
-
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const isMobile = useIsMobile();
   const navigate = useNavigate();
 
-  // Separate useEffect for the countdown timer to ensure it runs independently
+  // Countdown timer update
   useEffect(() => {
-    // Countdown timer
     const updateCountdown = () => {
-      const now = new Date().getTime();
+      const now = Date.now();
       const distance = countdownEnds.getTime() - now;
-
       if (distance < 0) {
-        // If time expired, reset to a new random time
+        // Reset countdown
         const newEnd = new Date();
-        const newRandomMinutes = Math.floor(Math.random() * (30 - 15 + 1)) + 15;
-        newEnd.setMinutes(newEnd.getMinutes() + newRandomMinutes);
-
-        setTimeLeft({
-          days: 0,
-          hours: 0,
-          minutes: newRandomMinutes,
-          seconds: 0
-        });
-
+        newEnd.setMinutes(newEnd.getMinutes() + getRandomMinutes(...RANDOM_MINUTES_RANGE));
+        setCountdownEnds(newEnd);
         return;
       }
-
       setTimeLeft({
         days: Math.floor(distance / (1000 * 60 * 60 * 24)),
         hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
         minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        seconds: Math.floor((distance % (1000 * 60)) / 1000),
       });
     };
-
-    // Run immediately once
     updateCountdown();
-
-    // Then update every second
     const timer = setInterval(updateCountdown, 1000);
-
     return () => clearInterval(timer);
   }, [countdownEnds]);
 
+  // Memoize WhatsApp URLs to avoid recalculating on every render
+  const chatbotLink = useMemo(() =>
+    createWhatsAppLink(WHATSAPP_CHATBOT_NUMBER, "Hi! I'd like to book a slot at Cuephoria. [Monthly Membership Offer]"), []);
+
+  const agentLink = useMemo(() =>
+    createWhatsAppLink(WHATSAPP_AGENT_NUMBER, "Hi! I'd like to speak with a real Cuephoria agent regarding bookings."), []);
+
+  // Render mapping functions
+  const renderTimeUnit = useCallback(([unit, value]) => (
+    <div key={unit} className="text-center">
+      <div className="bg-gaming-accent/30 backdrop-blur-sm px-2 md:px-4 py-2 md:py-3 rounded-md border border-neon-pink/50 shadow-[0_0_15px_rgba(255,45,239,0.4)]">
+        <span className="text-lg md:text-3xl font-bold text-white">{value.toString().padStart(2, '0')}</span>
+      </div>
+      <span className="text-[10px] md:text-xs font-medium text-neon-blue mt-1 block uppercase tracking-wider">{unit}</span>
+    </div>
+  ), []);
+
   return (
     <div className="min-h-screen bg-gaming-darker text-white">
-      <SEOMetadata 
-        title="Book Now | Student Discount Gaming & Pool in Trichy | Cuephoria" 
+      <SEOMetadata
+        title="Book Now | Student Discount Gaming & Pool in Trichy | Cuephoria"
         description="Book your PS5 gaming session or 8-ball pool table at Cuephoria - Special discounts for college & school students in Trichy! Best hangout place for students with exclusive offers."
         keywords="student gaming trichy, college hangout trichy, student discount gaming, ps5 gaming student discount, pool table student offers trichy"
       />
-
-      {/* Hero Section with CTA */}
       <section className="relative py-12 md:py-24 overflow-hidden">
-        {/* Background elements */}
         <div className="absolute inset-0 bg-gaming-darker">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(157,78,221,0.1)_0,rgba(15,25,40,0.5)_100%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(157,78,221,0.1)_0,rgba(15,25,40,0.5)_100%)]" />
         </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center mb-10">
-            <div className="inline-block animate-pulse-neon mb-4">
-              <img 
-                src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
-                alt="Cuephoria Logo"
-                className="h-14 md:h-20 mx-auto"
-                loading="eager" // Load this important image eagerly
+        <div className="container mx-auto px-4 relative z-10 max-w-3xl mx-auto text-center mb-10">
+          <div className="inline-block animate-pulse-neon mb-4">
+            <img
+              src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png"
+              alt="Cuephoria Logo"
+              className="h-14 md:h-20 mx-auto"
+              loading="eager"
+            />
+          </div>
+          <h1 className="text-3xl md:text-5xl font-bold mb-6">
+            <span className="block neon-text-blue">BOOK YOUR SPOT</span>
+            <span className="block text-xl md:text-3xl mt-2 text-white">PS5 Gaming & Pool Tables</span>
+          </h1>
+          <div className="bg-gaming-darker/80 backdrop-blur-md p-3 md:p-4 rounded-lg border border-neon-pink/30 mb-4 md:mb-6">
+            <p className="text-lg md:text-xl text-neon-pink font-bold mb-1 md:mb-2 animate-blink-slow flex items-center justify-center gap-2">
+              <Siren className="h-5 w-5 text-red-500 animate-pulse" />
+              MONTHLY MEMBERSHIP - 50% OFF!
+              <Siren className="h-5 w-5 text-red-500 animate-pulse" />
+            </p>
+            <p className="text-base md:text-lg text-white">
+              Get <span className="text-neon-blue font-bold">25% OFF</span> on your total bill with online bookings!
+            </p>
+          </div>
+          <div className="mb-6 md:mb-8">
+            <p className="text-gray-300 mb-2 flex items-center justify-center gap-2 animate-blink-slow">
+              <Clock className="h-4 w-4 md:h-5 md:w-5 text-red-500 animate-pulse" />
+              <span className="text-sm md:text-base uppercase tracking-wider font-semibold">OFFER ENDING SOON:</span>
+              <Clock className="h-4 w-4 md:h-5 md:w-5 text-red-500 animate-pulse" />
+            </p>
+            <div className="relative">
+              <div className="absolute inset-0 bg-red-600/15 rounded-lg animate-pulse" />
+              <div className="flex justify-center gap-2 md:gap-3 relative z-10 p-3 md:p-4">
+                {Object.entries(timeLeft).map(renderTimeUnit)}
+              </div>
+              <div className="absolute -inset-px rounded-lg bg-gradient-to-r from-neon-pink via-neon-blue to-neon-pink opacity-50 blur-[2px] animate-pulse -z-10" />
+            </div>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 md:gap-4 mb-4 md:mb-6 text-gray-200 text-sm md:text-base">
+            <div className="flex items-center space-x-2">
+              <Clock className="h-4 w-4 md:h-5 md:w-5 text-neon-pink" />
+              <span>11:00 AM - 11:00 PM</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <MapPin className="h-4 w-4 md:h-5 md:w-5 text-neon-blue" />
+              <span>Thiruverumbur, Trichy</span>
+            </div>
+          </div>
+        </div>
+        <div className="max-w-5xl mx-auto mb-6 md:mb-8">
+          <div className="bg-gaming-darker/70 backdrop-blur-lg border border-neon-blue/30 rounded-xl overflow-hidden shadow-lg shadow-neon-blue/10">
+            <div className="p-3 md:p-4 border-b border-neon-blue/20 text-center">
+              <h2 className="text-xl md:text-2xl font-bold flex items-center justify-center gap-2 md:gap-3">
+                <ActivitySquare className="text-neon-pink h-5 w-5 md:h-6 md:w-6" />
+                <span className="text-neon-blue">Live Occupancy Status</span>
+              </h2>
+              <p className="text-center text-gray-300 text-xs md:text-sm">
+                Check real-time availability of Pool Tables and PS5 controllers
+              </p>
+            </div>
+            <div className="relative w-full" style={{ height: isMobile ? "400px" : "500px" }}>
+              <div
+                className="absolute inset-0 bg-gaming-darker/70 flex flex-col items-center justify-center z-10 animate-pulse"
+                id="occupancy-loader"
+              >
+                <div className="w-10 h-10 md:w-12 md:h-12 border-4 border-neon-blue rounded-full border-t-transparent animate-spin mb-3 md:mb-4" />
+                <p className="text-neon-blue text-sm md:text-base">Loading occupancy data...</p>
+              </div>
+              <iframe
+                src="https://admin.cuephoria.in/public/stations"
+                className="w-full h-full border-0"
+                style={{ minHeight: isMobile ? "400px" : "500px" }}
+                title="Cuephoria Live Occupancy"
+                onLoad={() => {
+                  const loader = document.getElementById('occupancy-loader');
+                  if (loader) loader.style.display = 'none';
+                }}
+                aria-label="Live occupancy status for Cuephoria pool tables and PS5 controllers"
               />
             </div>
-
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">
-              <span className="block neon-text-blue">BOOK YOUR SPOT</span>
-              <span className="block text-xl md:text-3xl mt-2 text-white">PS5 Gaming & Pool Tables</span>
-            </h1>
-
-            <div className="bg-gaming-darker/80 backdrop-blur-md p-3 md:p-4 rounded-lg border border-neon-pink/30 mb-4 md:mb-6">
-              <p className="text-lg md:text-xl text-neon-pink font-bold mb-1 md:mb-2 animate-blink-slow flex items-center justify-center gap-2">
-                <Siren className="h-5 w-5 text-red-500 animate-pulse" />
-                MONTHLY MEMBERSHIP - 50% OFF!
-                <Siren className="h-5 w-5 text-red-500 animate-pulse" />
-              </p>
-              <p className="text-base md:text-lg text-white">
-                Get <span className="text-neon-blue font-bold">25% OFF</span> on your total bill with online bookings!
-              </p>
-            </div>
-
-            {/* Enhanced Countdown Timer with Blinking Effect - mobile optimized */}
-            <div className="mb-6 md:mb-8">
-              <p className="text-gray-300 mb-2 flex items-center justify-center gap-2 animate-blink-slow">
-                <Clock className="h-4 w-4 md:h-5 md:w-5 text-red-500 animate-pulse" />
-                <span className="text-sm md:text-base uppercase tracking-wider font-semibold">OFFER ENDING SOON:</span>
-                <Clock className="h-4 w-4 md:h-5 md:w-5 text-red-500 animate-pulse" />
-              </p>
-              <div className="relative">
-                {/* Pulsing background for urgency - enhanced */}
-                <div className="absolute inset-0 bg-red-600/15 rounded-lg animate-pulse"></div>
-
-                {/* Timer display - enhanced with mobile optimization */}
-                <div className="flex justify-center gap-2 md:gap-3 relative z-10 p-3 md:p-4">
-                  {Object.entries(timeLeft).map(([unit, value]) => (
-                    <div key={unit} className="text-center">
-                      <div className="bg-gaming-accent/30 backdrop-blur-sm px-2 md:px-4 py-2 md:py-3 rounded-md border border-neon-pink/50 shadow-[0_0_15px_rgba(255,45,239,0.4)]">
-                        <span className="text-lg md:text-3xl font-bold text-white">{value.toString().padStart(2, '0')}</span>
-                      </div>
-                      <span className="text-[10px] md:text-xs font-medium text-neon-blue mt-1 block uppercase tracking-wider">{unit}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Enhanced border effect with animation */}
-                <div className="absolute -inset-px rounded-lg bg-gradient-to-r from-neon-pink via-neon-blue to-neon-pink opacity-50 blur-[2px] animate-pulse -z-10"></div>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 md:gap-4 mb-4 md:mb-6">
-              <div className="flex items-center space-x-1 md:space-x-2 text-gray-200 text-sm md:text-base">
-                <Clock className="h-4 w-4 md:h-5 md:w-5 text-neon-pink" />
-                <span>11:00 AM - 11:00 PM</span>
-              </div>
-
-              <div className="flex items-center space-x-1 md:space-x-2 text-gray-200 text-sm md:text-base">
-                <MapPin className="h-4 w-4 md:h-5 md:w-5 text-neon-blue" />
-                <span>Thiruverumbur, Trichy</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Live Occupancy Status Section - Improved for mobile */}
-          <div className="max-w-5xl mx-auto mb-6 md:mb-8">
-            <div className="bg-gaming-darker/70 backdrop-blur-lg border border-neon-blue/30 rounded-xl overflow-hidden shadow-lg shadow-neon-blue/10">
-              <div className="p-3 md:p-4 border-b border-neon-blue/20 text-center">
-                <h2 className="text-xl md:text-2xl font-bold flex items-center justify-center gap-1 md:gap-2">
-                  <ActivitySquare className="text-neon-pink h-5 w-5 md:h-6 md:w-6" />
-                  <span className="text-neon-blue">Live Occupancy Status</span>
-                </h2>
-                <p className="text-center text-gray-300 text-xs md:text-sm">
-                  Check real-time availability of Pool Tables and PS5 controllers
-                </p>
-              </div>
-
-              {/* Iframe with loading skeleton - height adjusted for mobile */}
-              <div className="relative w-full" style={{ height: isMobile ? "400px" : "500px" }}>
-                {/* Loading skeleton */}
-                <div className="absolute inset-0 bg-gaming-darker/70 flex flex-col items-center justify-center z-10 animate-pulse" id="occupancy-loader">
-                  <div className="w-10 h-10 md:w-12 md:h-12 border-4 border-neon-blue rounded-full border-t-transparent animate-spin mb-3 md:mb-4"></div>
-                  <p className="text-neon-blue text-sm md:text-base">Loading occupancy data...</p>
-                </div>
-
-                {/* Iframe for the occupancy view - height adjusted for mobile */}
-                <iframe 
-                  src="https://admin.cuephoria.in/public/stations" 
-                  className="w-full h-full border-0"
-                  style={{ minHeight: isMobile ? "400px" : "500px" }}
-                  title="Cuephoria Live Occupancy"
-                  onLoad={() => {
-                    const loader = document.getElementById('occupancy-loader');
-                    if (loader) loader.style.display = 'none';
-                  }}
-                ></iframe>
-              </div>
-            </div>
-          </div>
-
-          {/* Two Column Layout - mobile optimized */}
-          <div className="flex flex-col lg:flex-row bg-gaming-darker/50 backdrop-blur-lg rounded-xl overflow-hidden border border-neon-blue/30">
-            {/* Booking Widget Column */}
-            <div className="w-full lg:w-7/12 p-3 md:p-4 lg:p-8 relative">
-              <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center text-neon-blue">
-                Book Your Session Now
-              </h2>
-
-              {/* Cuephoria Booking Website */}
-              <div className="w-full rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50">
-                <iframe 
-                  width="100%" 
-                  height="1000px" 
-                  src="https://admin.cuephoria.in/public/booking" 
-                  frameBorder="0" 
-                  allowFullScreen
-                  className="w-full h-[1000px] rounded-lg"
-                  title="Cuephoria Booking Website"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            {/* Info Column */}
-            <div className="w-full lg:w-5/12 p-3 md:p-4 lg:p-8 bg-gaming-accent/10">
-              <div className="mb-6 md:mb-8">
-                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
-                  <Star className="h-4 w-4 md:h-5 md:w-5 text-neon-pink mr-2" />
-                  Why Cuephoria?
-                </h3>
-                <ul className="space-y-2 md:space-y-3 text-gray-200 text-sm md:text-base">
-                  <li className="flex items-start">
-                    <div className="h-4 w-4 md:h-5 md:w-5 rounded-full bg-neon-pink/20 flex items-center justify-center mr-2 mt-1">
-                      <span className="text-neon-pink text-xs">✓</span>
-                    </div>
-                    <span>Latest PS5 games with 4K display</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="h-4 w-4 md:h-5 md:w-5 rounded-full bg-neon-pink/20 flex items-center justify-center mr-2 mt-1">
-                      <span className="text-neon-pink text-xs">✓</span>
-                    </div>
-                    <span>Professional pool tables</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="h-4 w-4 md:h-5 md:w-5 rounded-full bg-neon-pink/20 flex items-center justify-center mr-2 mt-1">
-                      <span className="text-neon-pink text-xs">✓</span>
-                    </div>
-                    <span>Comfortable gaming environment</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="h-4 w-4 md:h-5 md:w-5 rounded-full bg-neon-pink/20 flex items-center justify-center mr-2 mt-1">
-                      <span className="text-neon-pink text-xs">✓</span>
-                    </div>
-                    <span>Monthly memberships with 50% savings</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Updated Quick Pricing Section with Table - Mobile optimized */}
-              <div className="mb-6 md:mb-8">
-                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
-                  <Table2 className="h-4 w-4 md:h-5 md:w-5 text-neon-blue mr-2" />
-                  Quick Pricing
-                </h3>
-
-                <div className="rounded-lg overflow-hidden border border-gaming-accent/30">
-                  <div className="overflow-x-auto">
-                    <Table className="w-full">
-                      <TableBody>
-                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left font-medium text-white text-sm md:text-base">
-                            PS5 Gaming (per controller)
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right">
-                            <div className="flex items-center justify-end">
-                              <span className="font-bold text-gray-400 line-through mr-1 md:mr-2 text-sm md:text-base">₹150</span>
-                              <span className="font-bold text-neon-blue text-lg md:text-xl">₹113</span>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-
-                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left font-medium text-white text-sm md:text-base">
-                            Pool Table (per hour)
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right">
-                            <div className="flex items-center justify-end">
-                              <span className="font-bold text-gray-400 line-through mr-1 md:mr-2 text-sm md:text-base">₹300</span>
-                              <span className="font-bold text-neon-blue text-lg md:text-xl">₹225</span>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </div>
-                </div>
-              </div>
-
-              {/* Monthly Memberships Section */}
-              <div className="mb-6 md:mb-8">
-                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
-                  <Award className="h-4 w-4 md:h-5 md:w-5 text-neon-pink mr-2" />
-                  Monthly Memberships - 50% OFF
-                </h3>
-
-                <div className="rounded-lg overflow-hidden border border-gaming-accent/30">
-                  <div className="overflow-x-auto">
-                    <Table className="w-full">
-                      <TableBody>
-                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left text-sm md:text-base">
-                            <div className="flex items-center">
-                              <span className="font-medium text-white">💎 Silver Membership</span>
-                            </div>
-                            <p className="text-xs text-gray-400">Up to 2 players</p>
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right text-sm md:text-base">
-                            <span className="font-bold text-neon-blue">₹199</span>
-                          </TableCell>
-                        </TableRow>
-
-                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left text-sm md:text-base">
-                            <div className="flex items-center">
-                              <span className="font-medium text-white">🌟 Gold Membership</span>
-                            </div>
-                            <p className="text-xs text-gray-400">Up to 4 players</p>
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right text-sm md:text-base">
-                            <span className="font-bold text-neon-pink">₹349</span>
-                          </TableCell>
-                        </TableRow>
-
-                        <TableRow className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left font-medium text-white text-sm md:text-base">
-                            Extra players (per hour)
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right">
-                            <span className="font-bold text-neon-blue">₹49</span>
-                          </TableCell>
-                        </TableRow>
-
-                        <TableRow className="hover:bg-gaming-accent/10">
-                          <TableCell className="py-2 md:py-3 text-left font-medium text-white text-sm md:text-base">
-                            Loyalty (members)
-                          </TableCell>
-                          <TableCell className="py-2 md:py-3 text-right">
-                            <span className="font-bold text-neon-pink">5 pts per ₹100</span>
-                          </TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </div>
-                </div>
-              </div>
-
-              {/* Lazy load visitor stats component */}
-              <div className="mt-4">
-                <Suspense fallback={<div className="h-16 md:h-20 bg-gaming-accent/10 animate-pulse rounded-lg"></div>}>
-                  <VisitorStats />
-                </Suspense>
-              </div>
-
-              {/* Contact Options Section - New additions keeping old and new numbers */}
-              <div className="text-center mt-6 md:mt-8">
-                <p className="text-xs md:text-sm text-gray-400 mb-3 md:mb-4">
-                  Can't book online right now? Reach us directly:
-                </p>
-
-                {/* Old WhatsApp chatbot button */}
-                <div className="mb-4">
-                  <a 
-                    href={`https://wa.me/918637625155?text=${encodeURIComponent("Hi! I'd like to book a slot at Cuephoria. [Monthly Membership Offer]")}`}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 rounded-md bg-neon-pink/90 text-white hover:bg-neon-pink transition-all duration-300 text-sm md:text-base"
-                  >
-                    Chat with Cuephoria Assistant (Chatbot)
-                    <ArrowRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />
-                  </a>
-                  <p className="text-[11px] md:text-xs text-gray-400 mt-1">
-                    WhatsApp AI Assistant (automated support) – <strong>+91 86376 25155</strong>
-                  </p>
-                </div>
-
-                {/* New WhatsApp real agent button */}
-                <div className="mb-4">
-                  <a 
-                    href={`https://wa.me/917550025155?text=${encodeURIComponent("Hi! I'd like to speak with a real Cuephoria agent regarding bookings.")}`}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 rounded-md bg-neon-blue/90 text-white hover:bg-neon-blue transition-all duration-300 text-sm md:text-base"
-                  >
-                    Talk to a Real Agent on WhatsApp
-                    <ArrowRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />
-                  </a>
-                  <p className="text-[11px] md:text-xs text-gray-400 mt-1">
-                    Direct WhatsApp with a human agent – <strong>+91 75500 25155</strong>
-                  </p>
-                </div>
-
-                {/* Call Option for both numbers */}
-                <div className="mt-4 text-gray-300 text-sm md:text-base">
-                  📞 Call us:
-                  <br />
-                  <span className="block">+91 86376 25155 (Primary)</span>
-                  <span className="block">+91 75500 25155 (Secondary)</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Return to main site button */}
-          <div className="mt-6 md:mt-8 text-center">
-            <button 
-              onClick={() => navigate('/')}
-              className="text-gray-400 hover:text-neon-blue transition-colors text-sm md:text-base"
-            >
-              Return to main site
-            </button>
           </div>
         </div>
+        <div className="flex flex-col lg:flex-row bg-gaming-darker/50 backdrop-blur-lg rounded-xl overflow-hidden border border-neon-blue/30 max-w-7xl mx-auto">
+          <div className="w-full lg:w-7/12 p-4 lg:p-8 relative">
+            <h2 className="text-xl md:text-2xl font-bold mb-6 text-center text-neon-blue">
+              Book Your Session Now
+            </h2>
+            <div className="w-full rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50">
+              <iframe
+                width="100%"
+                height="1000px"
+                src="https://admin.cuephoria.in/public/booking"
+                frameBorder="0"
+                allowFullScreen
+                className="w-full h-[1000px] rounded-lg"
+                title="Cuephoria Booking Website"
+                loading="lazy"
+                aria-label="Cuephoria session booking"
+              />
+            </div>
+          </div>
+          <div className="w-full lg:w-5/12 p-4 lg:p-8 bg-gaming-accent/10">
+            <div className="mb-8">
+              <h3 className="text-lg md:text-xl font-bold mb-4 flex items-center">
+                <Star className="h-5 w-5 text-neon-pink mr-2" />
+                Why Cuephoria?
+              </h3>
+              <ul className="space-y-2 md:space-y-3 text-gray-200 text-base">
+                {features.map((feature, index) => (
+                  <li key={index} className="flex items-start">
+                    <div className="h-5 w-5 rounded-full bg-neon-pink/20 flex items-center justify-center mr-2 mt-1">
+                      <span className="text-neon-pink text-xs">✓</span>
+                    </div>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mb-8">
+              <h3 className="text-lg md:text-xl font-bold mb-4 flex items-center">
+                <Table2 className="h-5 w-5 text-neon-blue mr-2" />
+                Quick Pricing
+              </h3>
+              <div className="rounded-lg overflow-hidden border border-gaming-accent/30 overflow-x-auto">
+                <Table className="w-full">
+                  <TableBody>
+                    {pricing.map(({ label, original, discounted }, idx) => (
+                      <TableRow
+                        key={idx}
+                        className="border-b border-gaming-accent/30 hover:bg-gaming-accent/10"
+                      >
+                        <TableCell className="py-3 text-left font-medium text-white text-base">{label}</TableCell>
+                        <TableCell className="py-3 text-right">
+                          <div className="flex items-center justify-end">
+                            <span className="font-bold text-gray-400 line-through mr-2 text-base">{`₹${original}`}</span>
+                            <span className="font-bold text-neon-blue text-xl">{`₹${discounted}`}</span>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+            <div className="mb-8">
+              <h3 className="text-lg md:text-xl font-bold mb-4 flex items-center">
+                <Award className="h-5 w-5 text-neon-pink mr-2" />
+                Monthly Memberships - 50% OFF
+              </h3>
+              <div className="rounded-lg overflow-hidden border border-gaming-accent/30 overflow-x-auto">
+                <Table className="w-full">
+                  <TableBody>
+                    {memberships.map(({ name, description, price, priceColor }, idx) => (
+                      <TableRow
+                        key={idx}
+                        className={`${idx !== memberships.length - 1 ? 'border-b border-gaming-accent/30' : ''} hover:bg-gaming-accent/10`}
+                      >
+                        <TableCell className="py-3 text-left text-base">
+                          <div className="flex items-center">
+                            <span className="font-medium text-white">{name}</span>
+                          </div>
+                          {description && <p className="text-xs text-gray-400">{description}</p>}
+                        </TableCell>
+                        <TableCell className={`py-3 text-right text-base ${priceColor || ''}`}>
+                          <span className="font-bold">{price !== undefined ? `₹${price}` : null}</span>
+                          {!price && priceColor === 'text-neon-pink' && description ? description : null}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+            <div className="mt-4">
+              <Suspense fallback={<div className="h-20 bg-gaming-accent/10 animate-pulse rounded-lg" />}>
+                <VisitorStats />
+              </Suspense>
+            </div>
+            <div className="text-center mt-8 text-gray-400 text-base">
+              <p className="mb-4">Can't book online right now? Reach us directly:</p>
+              <div className="mb-4">
+                <a
+                  href={chatbotLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-neon-pink/90 text-white hover:bg-neon-pink transition duration-300 text-base"
+                  aria-label="Chat with Cuephoria Assistant Chatbot on WhatsApp"
+                >
+                  Chat with Cuephoria Assistant (Chatbot)
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+                <p className="text-xs mt-1">WhatsApp AI Assistant (automated support) – <strong>+91 86376 25155</strong></p>
+              </div>
+              <div className="mb-4">
+                <a
+                  href={agentLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-neon-blue/90 text-white hover:bg-neon-blue transition duration-300 text-base"
+                  aria-label="Talk to a Real Agent on WhatsApp"
+                >
+                  Talk to a Real Agent on WhatsApp
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+                <p className="text-xs mt-1">Direct WhatsApp with a human agent – <strong>+91 75500 25155</strong></p>
+              </div>
+              <div className="mt-6 text-gray-300 text-base">
+                📞 Call us:
+                <br />
+                <span className="block">+91 86376 25155 (Primary)</span>
+                <span className="block">+91 75500 25155 (Secondary)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mt-8 text-center">
+          <button
+            onClick={() => navigate('/')}
+            className="text-gray-400 hover:text-neon-blue transition-colors text-base"
+            aria-label="Return to main site"
+          >
+            Return to main site
+          </button>
+        </div>
       </section>
-
       <Footer />
     </div>
   );
