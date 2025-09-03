@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Clock, Heart, MapPin, Users, Gamepad2, Sparkles, Target } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, Heart, MapPin, Users, Gamepad2, Sparkles, Target, Code, Coffee, Network } from 'lucide-react';
 import SEOMetadata from '../components/SEOMetadata';
 import Footer from '../components/Footer';
 
@@ -9,8 +9,8 @@ const BlogPost1 = () => {
     <div className="min-h-screen bg-gaming-darker text-white overflow-hidden">
       <SEOMetadata
         title="Why We Started Cuephoria: A Story from the Heart of Trichy"
-        description="The inspiring story behind Cuephoria's founding - from a broken controller moment to becoming Trichy's premier gaming destination."
-        keywords="Cuephoria story, gaming lounge founding story, Trichy gaming history, why Cuephoria started"
+        description="The inspiring story behind Cuephoria's founding - from a broken controller moment to becoming Trichy's premier gaming destination, built by three passionate entrepreneurs."
+        keywords="Cuephoria story, gaming lounge founding story, Trichy gaming history, why Cuephoria started, Ranjith Kumar, Krishna M Bajaj, Faiyaz Ahamed"
       />
       
       {/* Animated Background */}
@@ -80,10 +80,10 @@ const BlogPost1 = () => {
                 The Dream That Started with a Broken Controller
               </h2>
               <p className="text-gray-300 leading-relaxed mb-4 text-lg">
-                You know that feeling when you're at a friend's place, deep into an intense FIFA match, and suddenly their controller starts acting up? The left joystick drifts, the R2 button sticks, and your perfectly timed shot goes wide. That was me, in early May 2025, sitting in a cramped room with five other guys, trying to enjoy what should have been an epic gaming session.
+                You know that feeling when you're at a friend's place, deep into an intense FIFA match, and suddenly their controller starts acting up? The left joystick drifts, the R2 button sticks, and your perfectly timed shot goes wide. That was me, Ranjith, in early May 2025, sitting in a cramped room with five other guys, trying to enjoy what should have been an epic gaming session.
               </p>
               <p className="text-gray-300 leading-relaxed mb-4">
-                "There has to be a better way," I remember thinking. "Why isn't there a place in Trichy where we can game properly?"
+                "There has to be a better way," I remember thinking. "Why isn't there a place in Trichy where we can game properly?" As someone who's loved competitive gaming since childhood and spent 6+ years in the quality domain, I couldn't accept subpar gaming experiences as the norm.
               </p>
               <p className="text-gray-300 leading-relaxed">
                 That night, sketching ideas on the back of my notebook, the concept of Cuephoria was born. Not just another gaming café, but a real community space where students and friends could hang out without worrying about broken equipment, noisy neighbors, or time limits imposed by annoyed roommates.
@@ -92,24 +92,101 @@ const BlogPost1 = () => {
 
             <div className="bg-gradient-to-l from-gaming-darker/50 to-gaming-darker/30 backdrop-blur-xl rounded-2xl p-8 border border-neon-pink/30 mb-8 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-32 h-32 bg-neon-pink/10 rounded-full blur-2xl"></div>
-              <h2 className="text-2xl md:text-3xl font-bold text-neon-pink mb-6">The Reality Check</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-neon-pink mb-6 flex items-center gap-3">
+                <Users className="h-8 w-8 animate-pulse" />
+                Three Minds, One Vision
+              </h2>
+              <p className="text-gray-300 leading-relaxed mb-6 text-lg">
+                But this wasn't a solo journey. The best ideas happen when different perspectives collide, and I was lucky to have two incredible partners who shared the vision but brought completely different skills to the table.
+              </p>
+              
+              <div className="space-y-6 mb-6">
+                <div className="bg-gaming-darker/50 rounded-lg p-6 border border-blue-500/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Code className="h-6 w-6 text-blue-400" />
+                    <h4 className="text-blue-400 font-bold">Ranjith Kumar S - The Tech Perfectionist</h4>
+                  </div>
+                  <p className="text-gray-300 mb-3">
+                    That's me - the guy who spent nights analyzing market competition, building our booking systems, and obsessing over every detail of our digital presence. With 6+ years in quality domain experience, I became our jack-of-all-trades, handling everything from tech infrastructure to marketing strategy.
+                  </p>
+                  <div className="text-sm text-gray-400">
+                    <strong>Superpower:</strong> Can spot a pixel out of place from across the room and has never met a problem that couldn't be solved with the right system.
+                  </div>
+                </div>
+                
+                <div className="bg-gaming-darker/50 rounded-lg p-6 border border-green-500/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Network className="h-6 w-6 text-green-400" />
+                    <h4 className="text-green-400 font-bold">Krishna M Bajaj - The Networking Wizard</h4>
+                  </div>
+                  <p className="text-gray-300 mb-3">
+                    Our operations mastermind who brought real business experience to the table. Already running TipNTop snooker parlour in Thillai Nagar and Bamboo Garden multi-cuisine restaurant, Krishna is the guy who can make one phone call and solve problems that would take others weeks to figure out. He's the exact opposite of my perfectionist nature - super chill but incredibly effective.
+                  </p>
+                  <div className="text-sm text-gray-400">
+                    <strong>Superpower:</strong> Can network his way into any situation and somehow knows exactly the right person for every challenge.
+                  </div>
+                </div>
+                
+                <div className="bg-gaming-darker/50 rounded-lg p-6 border border-orange-500/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Coffee className="h-6 w-6 text-orange-400" />
+                    <h4 className="text-orange-400 font-bold">Faiyaz Ahamed - The Hospitality Expert</h4>
+                  </div>
+                  <p className="text-gray-300 mb-3">
+                    The heart of our café operations. Having previously run a successful canteen at PSG Engineering College in Coimbatore-Trichy, Faiyaz brought invaluable expertise in food service and customer experience. While we handled the gaming side, he ensured that every snack, every coffee, every interaction felt welcoming and professional.
+                  </p>
+                  <div className="text-sm text-gray-400">
+                    <strong>Superpower:</strong> Can make anyone feel at home and somehow remembers every regular customer's favorite order.
+                  </div>
+                </div>
+              </div>
+              
+              <blockquote className="border-l-4 border-neon-pink pl-6 italic text-gray-300 text-lg">
+                "Three different personalities, three different skill sets, but one shared belief: Trichy deserved a gaming space that actually cared about the community."
+              </blockquote>
+            </div>
+
+            <div className="bg-gradient-to-r from-gaming-darker/50 to-gaming-darker/30 backdrop-blur-xl rounded-2xl p-8 border border-neon-blue/30 mb-8 relative overflow-hidden">
+              <div className="absolute bottom-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl"></div>
+              <h2 className="text-2xl md:text-3xl font-bold text-neon-blue mb-6">The Reality Check</h2>
               <p className="text-gray-300 leading-relaxed mb-4 text-lg">
                 Starting a gaming lounge in Trichy wasn't exactly what you'd call a "safe" business decision. Everyone kept asking - "Will people really pay to play games they could play at home?" But here's what they didn't understand: it was never just about the games.
+              </p>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                Krishna's experience with TipNTop had already shown him the power of social gaming spaces. Faiyaz understood how food and atmosphere could transform a simple hangout into a memorable experience. And my tech background told me we could create systems that would make booking and playing seamless.
               </p>
               <p className="text-gray-300 leading-relaxed">
                 It was about that moment when a shy engineering student finally beats their overconfident friend at pool and the whole place erupts in cheers. It was about giving college groups a place to celebrate project submissions with a proper gaming tournament. It was about creating memories that last way longer than any high score.
               </p>
             </div>
 
-            <div className="bg-gradient-to-r from-gaming-darker/50 to-gaming-darker/30 backdrop-blur-xl rounded-2xl p-8 border border-neon-blue/30 mb-8 relative overflow-hidden">
-              <div className="absolute bottom-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl"></div>
+            <div className="bg-gradient-to-l from-gaming-darker/50 to-gaming-darker/30 backdrop-blur-xl rounded-2xl p-8 border border-neon-blue/30 mb-8 relative overflow-hidden">
+              <div className="absolute bottom-0 right-0 w-44 h-44 bg-neon-blue/10 rounded-full blur-2xl"></div>
               <h2 className="text-2xl md:text-3xl font-bold text-neon-blue mb-6">What Makes Us Different</h2>
               <p className="text-gray-300 leading-relaxed mb-4 text-lg">
-                We obsess over the little things. Every PS5 controller gets checked daily. Our pool tables are leveled weekly. We even have backup controllers charged and ready because we know how frustrating it is when gear fails during a crucial moment.
+                We obsess over the little things. Every PS5 controller gets checked daily (thanks to my quality domain experience). Our pool tables are leveled weekly (Krishna's operations expertise). We even have backup controllers charged and ready because we know how frustrating it is when gear fails during a crucial moment.
               </p>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed mb-6">
                 But more than that, we've built something special with our pricing. When we saw how much students were struggling with entertainment budgets, we introduced our membership system. ₹199 gets you a whole month of 50% off everything - that's less than what you'd spend on one night out, but it covers an entire month of gaming and pool.
               </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-gaming-darker/30 rounded-lg p-4 text-center">
+                  <Code className="h-8 w-8 text-blue-400 mx-auto mb-3" />
+                  <h4 className="text-blue-400 font-bold mb-2">Tech Excellence</h4>
+                  <p className="text-gray-300 text-sm">Professional booking systems and perfectly maintained equipment</p>
+                </div>
+                <div className="bg-gaming-darker/30 rounded-lg p-4 text-center">
+                  <Network className="h-8 w-8 text-green-400 mx-auto mb-3" />
+                  <h4 className="text-green-400 font-bold mb-2">Smart Operations</h4>
+                  <p className="text-gray-300 text-sm">Efficient logistics and seamless customer experience</p>
+                </div>
+                <div className="bg-gaming-darker/30 rounded-lg p-4 text-center">
+                  <Coffee className="h-8 w-8 text-orange-400 mx-auto mb-3" />
+                  <h4 className="text-orange-400 font-bold mb-2">Café Culture</h4>
+                  <p className="text-gray-300 text-sm">Hospitality expertise that makes everyone feel welcome</p>
+                </div>
+              </div>
             </div>
 
             <div className="bg-gradient-to-l from-gaming-darker/50 to-gaming-darker/30 backdrop-blur-xl rounded-2xl p-8 border border-neon-pink/30 mb-8 relative overflow-hidden">
@@ -121,6 +198,9 @@ const BlogPost1 = () => {
               <p className="text-gray-300 leading-relaxed mb-4 text-lg">
                 Choosing Thiruverumbur wasn't random. This area is buzzing with students, young professionals, and families who wanted something better than cramped gaming setups or expensive entertainment options in the city center. We're right here in your neighborhood, open until 11 PM because we know some of the best gaming happens after dinner when the day's stress melts away.
               </p>
+              <p className="text-gray-300 leading-relaxed">
+                Krishna's local connections helped us understand the community needs perfectly, while Faiyaz's experience with college crowds told us exactly what kind of atmosphere would work. My market analysis confirmed what we felt intuitively - Trichy was ready for this.
+              </p>
             </div>
 
             <div className="bg-gradient-to-r from-gaming-darker/50 to-gaming-darker/30 backdrop-blur-xl rounded-2xl p-8 border border-neon-blue/30 mb-8 relative overflow-hidden">
@@ -129,8 +209,11 @@ const BlogPost1 = () => {
               <p className="text-gray-300 leading-relaxed mb-4 text-lg">
                 Every day, watching friends bond over 8-ball pool or seeing someone discover their new favorite PS5 game reminds us why we started this journey. Cuephoria isn't just our business - it's our contribution to making Trichy a more fun place to live.
               </p>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                The three of us bring different strengths, but we share the same vision: creating a space where gaming isn't just entertainment, it's community building. Where technology meets hospitality, where competition breeds friendship, and where every visit feels like hanging out with friends who happen to run a really cool place.
+              </p>
               <p className="text-gray-300 leading-relaxed">
-                Come by sometime. Grab a controller, challenge someone to pool, and become part of the story we're still writing.
+                Come by sometime. Grab a controller, challenge someone to pool, and become part of the story we're still writing. You'll probably meet all three of us - Ranjith tweaking systems in the background, Krishna chatting with regulars, and Faiyaz making sure your coffee is perfect.
               </p>
             </div>
           </div>
@@ -141,7 +224,7 @@ const BlogPost1 = () => {
             <div className="relative z-10">
               <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Be Part of Our Story?</h3>
               <p className="text-gray-300 mb-8 text-lg max-w-2xl mx-auto">
-                Visit Cuephoria and create your own gaming memories in the heart of Trichy. Since May 3rd, 2025, we've been building something special.
+                Visit Cuephoria and create your own gaming memories in the heart of Trichy. Since May 3rd, 2025, we've been building something special - and you're invited to join the journey.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link
