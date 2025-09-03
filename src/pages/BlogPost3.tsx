@@ -60,7 +60,7 @@ const BlogPost3 = () => {
             
             <div className="relative rounded-3xl overflow-hidden mb-8 group">
               <img
-                src="https://images.unsplash.com/photo-1594736797933-d0871e6f0fc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2026&q=80"
+                src="https://i.postimg.cc/8zS7bwqC/generated-image-1.png"
                 alt="Pool players at Cuephoria showing skill progression"
                 className="w-full h-64 md:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
               />
