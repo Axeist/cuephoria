@@ -4,10 +4,10 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import BookingLanding from "./pages/BookingLanding";
-
 // Blog imports
 import Blog from "./pages/Blog";
 import BlogPost1 from "./pages/BlogPost1";
@@ -16,17 +16,18 @@ import BlogPost3 from "./pages/BlogPost3";
 import BlogPost4 from "./pages/BlogPost4";
 import BlogPost5 from "./pages/BlogPost5";
 import BlogPost6 from "./pages/BlogPost6";
-
 import React from "react";
 
 const App = () => {
   const queryClient = new QueryClient();
+  
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/book" element={<BookingLanding />} />
