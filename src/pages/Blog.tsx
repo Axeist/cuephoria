@@ -95,21 +95,19 @@ const Blog = () => {
       
       <section className="relative py-12 md:py-24 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
-          {/* Clean Professional Logo - INCREASED SIZE */}
+         {/* Clean Logo Only - NO CONTAINER OR BORDERS */}
 <div className="text-center mb-16 md:mb-20">
   <div className="flex justify-center mb-12">
     <div className="relative">
       {/* Simple light purple glow */}
       <div className="absolute -inset-8 bg-purple-400/20 rounded-full blur-2xl animate-pulse"></div>
       
-      {/* Clean logo container with larger size */}
-      <div className="relative bg-gaming-darker/30 backdrop-blur-sm rounded-xl p-8 border border-purple-400/20 hover:scale-105 transition-all duration-500">
-        <img 
-          src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
-          alt="Cuephoria Logo" 
-          className="h-32 md:h-40 w-auto"
-        />
-      </div>
+      {/* Just the logo - no container, no padding, no borders */}
+      <img 
+        src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
+        alt="Cuephoria Logo" 
+        className="h-32 md:h-40 w-auto hover:scale-105 transition-all duration-500 relative z-10"
+      />
     </div>
   </div>
   
