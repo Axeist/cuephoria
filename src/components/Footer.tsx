@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook```essageCircle, Gamepa``` Target, Users, Coffee, Trophy, BookOpen, Home, X```from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home, X } from 'lucide-react';
 
 const Footer = () => {
   const [modal, setModal] = useState(null); // 'terms', 'privacy', 'contact', or null
@@ -21,10 +21,12 @@ const Footer = () => {
             {/* Logo & Description */}
             <div className="space-y-6">
               <div className="flex items-center space-x-3">
-                <div className="relative```                  <div className="absolute inset-0 bg-neon-blue/20 rounded-full blur-lg"></div>
+                <div className="relative">
+                  <div className="absolute inset-0 bg-neon-blue/20 rounded-full blur-lg"></div>
                   <img 
                     src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
-                    alt="Cuephoria Logo" ```                  className="h-12 w-12 relative z-10"
+                    alt="Cuephoria Logo" 
+                    className="h-12 w-12 relative z-10"
                   />
                 </div>
                 <div>
@@ -33,13 +35,13 @@ const Footer = () => {
                 </div>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Trichy&apos;s premier gaming lounge```mbining the thrill of billiards, sn```er, and PS5 gaming. 
-                Perfect for students, friends, and gaming```thusiasts.
+                Trichy&apos;s premier gaming lounge combining the thrill of billiards, snooker, and PS5 gaming. 
+                Perfect for students, friends, and gaming enthusiasts.
               </p>
               {/* Social Media Links */}
               <div className="flex space-x-4">
                 <a 
-                  href="https://www```stagram.com/cuephoriaclub" 
+                  href="https://www.instagram.com/cuephoriaclub" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-neon-pink transition-colors duration-300"
@@ -55,7 +57,7 @@ const Footer = () => {
                   <MessageCircle className="h-5 w-5" />
                 </a>
                 <a 
-                  href="https://www```cebook.com/profile.php?id=61574215405586&sk=about" 
+                  href="https://www.facebook.com/profile.php?id=61574215405586&sk=about" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-blue-500 transition-colors duration-300"
@@ -70,32 +72,34 @@ const Footer = () => {
               <h4 className="text-lg font-bold text-white">Quick Links</h4>
               <nav className="space-y-3">
                 <a 
-                  href="https://www.cuephoria.in```ome"
+                  href="https://www.cuephoria.in/#home"
                   target="_blank"
-                  rel="noopener noreferrer"```                className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
                 >
                   <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                   <span>Home</span>
                 </a>
                 <a 
-                  href="https://www.cuephoria.in/```k"
+                  href="https://www.cuephoria.in/book"
                   target="_blank"
-                  rel="noopener nor```rrer"
+                  rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
                 >
                   <Target className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                   <span>Book Now</span>
                 </a>
                 <a 
-                  href="https://www.```phoria.in/blog"
+                  href="https://www.cuephoria.in/blog"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
                 >
                   <BookOpen className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
-                  <span>Blog</span>```              </a>
+                  <span>Blog</span>
+                </a>
                 <a 
-                  href="https://www.cuephoria.```#games"
+                  href="https://www.cuephoria.in/#games"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
@@ -104,15 +108,16 @@ const Footer = () => {
                   <span>Games</span>
                 </a>
                 <a 
-                  href="https://www.cueph```a.in/#gallery"
+                  href="https://www.cuephoria.in/#gallery"
                   target="_blank"
-                  rel="noopener noreferrer```                 className="flex items```nter space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
                 >
                   <Coffee className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                   <span>Gallery</span>
                 </a>
                 <a 
-                  href="https://www.cu```oria.in/#testimonials"
+                  href="https://www.cuephoria.in/#testimonials"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
@@ -121,12 +126,14 @@ const Footer = () => {
                   <span>Reviews</span>
                 </a>
                 <a 
-                  href="https://www.cuephoria.```#about"
+                  href="https://www.cuephoria.in/#about"
                   target="_blank"
-                  rel="noopener noreferrer"```                className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
                 >
-                  <Users className="h```w-4 group-hover:scale-110 transition-transform duration-300" />
-                  <span>About</span```               </a>
+                  <Users className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
+                  <span>About</span>
+                </a>
               </nav>
             </div>
 
@@ -135,7 +142,7 @@ const Footer = () => {
               <h4 className="text-lg font-bold text-white">Contact Info</h4>
               <div className="space-y-4">
                 <a 
-                  href="https://maps.app```o.gl/vUNCsMkiMEgHfbVPA" 
+                  href="https://maps.app.goo.gl/vUNCsMkiMEgHfbVPA" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
@@ -143,7 +150,7 @@ const Footer = () => {
                   <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
                   <span className="text-sm leading-relaxed">
                     Roof Top, No.1, Shivani Complex,<br />
-                    Vaithiyalingam St,```thu Nagar,<br```
+                    Vaithiyalingam St, Muthu Nagar,<br />
                     Thiruverumbur, Tamil Nadu 620013
                   </span>
                 </a>
@@ -153,8 +160,8 @@ const Footer = () => {
                   href="tel:+918637625155" 
                   className="flex items-center space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
                 >
-                  <Phone className="h```w-5 group-hover:scale-110 transition-transform duration-300" />
-                  <div className="text```">
+                  <Phone className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                  <div className="text-sm">
                     <div>+91 86376 25155</div>
                     <div className="text-xs text-gray-500">WhatsApp Bot/Calls</div>
                   </div>
@@ -173,15 +180,16 @@ const Footer = () => {
                 </a>
                 
                 <a 
-                  href="mailto:contact@cuephoria.in"```                 className="flex items```nter space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+                  href="mailto:contact@cuephoria.in" 
+                  className="flex items-center space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
                 >
                   <Mail className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
                   <span className="text-sm">contact@cuephoria.in</span>
                 </a>
                 
                 <div className="flex items-center space-x-3 text-gray-400">
-                  <Clock className="h```w-5" />
-                  <span className="```t-sm">11:00 AM - 11:00 PM, Every day</span>
+                  <Clock className="h-5 w-5" />
+                  <span className="text-sm">11:00 AM - 11:00 PM, Every day</span>
                 </div>
               </div>
             </div>
@@ -189,7 +197,7 @@ const Footer = () => {
             {/* Special Offers */}
             <div className="space-y-6">
               <h4 className="text-lg font-bold text-white">Special Offers</h4>
-              <div className="space```4">
+              <div className="space-y-4">
                 <div className="p-4 bg-gradient-to-r from-neon-blue/10 to-purple-500/10 rounded-lg border border-neon-blue/20">
                   <h5 className="text-neon-blue font-semibold text-sm mb-2">NIT50 Discount</h5>
                   <p className="text-xs text-gray-300 leading-relaxed">
@@ -200,14 +208,15 @@ const Footer = () => {
                 <div className="p-4 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-lg border border-amber-500/20">
                   <h5 className="text-amber-400 font-semibold text-sm mb-2">NIT99 Happy Hours</h5>
                   <p className="text-xs text-gray-300 leading-relaxed">
-                    Play pool for just```9 from 11 AM to 3 PM
+                    Play pool for just ₹99 from 11 AM to 3 PM
                   </p>
                 </div>
                 
                 <a 
-                  href="https://www.cuephoria.in/book```                 target="_blank"
-                  rel="noopener nor```rrer"
-                  className="inline```ex items-center space-x-2 text-neon-pink hover:text-neon-blue transition-colors duration-300 text-sm font-medium group"
+                  href="https://www.cuephoria.in/book"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 text-neon-pink hover:text-neon-blue transition-colors duration-300 text-sm font-medium group"
                 >
                   <span>Book Now</span>
                   <Target className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -220,10 +229,10 @@ const Footer = () => {
           <div className="border-t border-gaming-accent/30 mt-12 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="text-gray-400 text-sm">
-                © 2025 Cuephoria. All rights reserved. Made with ❤️ for```ichy gamers.
+                © 2025 Cuephoria. All rights reserved. Made with ❤️ for Trichy gamers.
               </div>
               
-              <div className="flex items```nter space-x-6">
+              <div className="flex items-center space-x-6">
                 <button 
                   onClick={() => setModal('terms')}
                   className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm"
@@ -274,37 +283,37 @@ const Footer = () => {
                   <div>
                     <h3 className="text-xl font-semibold text-neon-blue mb-4">Welcome to Cuephoria</h3>
                     <p className="leading-relaxed">
-                      By accessing and using Cuephoria&```s;s services, you agree to comply```th and be bound by the following terms and conditions.```ease read them carefully.
+                      By accessing and using Cuephoria&apos;s services, you agree to comply with and be bound by the following terms and conditions. Please read them carefully.
                     </p>
                   </div>
 
                   <div>
                     <h4 className="text-lg font-semibold text-white mb-3">1. Booking & Reservations</h4>
                     <ul className="space-y-2 list-disc list-inside">
-                      <li>All bookings are subject to availability and must``` confirmed in advance</li>
-                      <li>Valid student ID required for all student```scounts (NIT50, NIT99)</li>
-                      <li>Cancellations must be made at least ```hours prior to avoid charges</li>
-                      <li>No-shows will be charged the full session```ount</li>
+                      <li>All bookings are subject to availability and must be confirmed in advance</li>
+                      <li>Valid student ID required for all student discounts (NIT50, NIT99)</li>
+                      <li>Cancellations must be made at least 24 hours prior to avoid charges</li>
+                      <li>No-shows will be charged the full session amount</li>
                     </ul>
                   </div>
 
                   <div>
                     <h4 className="text-lg font-semibold text-white mb-3">2. Club Rules & Conduct</h4>
                     <ul className="space-y-2 list-disc list-inside">
-                      <li>Respectful behavior towards staff and other players is```ndatory</li>
-                      <li>Players must follow proper pool/snooker etiquette at```l times</li>
-                      <li>Smoking and alcohol are strictly```ohibited on premises</li>
-                      <li>Loud or disruptive behavior will result in immediate```moval</li>
-                      <li>Players are responsible for any equipment damage during their```ssion</li>
+                      <li>Respectful behavior towards staff and other players is mandatory</li>
+                      <li>Players must follow proper pool/snooker etiquette at all times</li>
+                      <li>Smoking and alcohol are strictly prohibited on premises</li>
+                      <li>Loud or disruptive behavior will result in immediate removal</li>
+                      <li>Players are responsible for any equipment damage during their session</li>
                     </ul>
                   </div>
 
                   <div>
                     <h4 className="text-lg font-semibold text-white mb-3">3. Payment & Pricing</h4>
                     <ul className="space-y-2 list-disc list-inside">
-                      <li>All prices are clearly```splayed and subject to change</li>
-                      <li>Payment must be completed before or```mediately after the session</li>
-                      <li>Student discounts require```lid ID verification</li>
+                      <li>All prices are clearly displayed and subject to change</li>
+                      <li>Payment must be completed before or immediately after the session</li>
+                      <li>Student discounts require valid ID verification</li>
                       <li>Happy hour rates (NIT99) apply only during specified times</li>
                     </ul>
                   </div>
@@ -312,16 +321,16 @@ const Footer = () => {
                   <div>
                     <h4 className="text-lg font-semibold text-white mb-3">4. Management Rights</h4>
                     <ul className="space-y-2 list-disc list-inside">
-                      <li>Management reserves the right to refuse service to anyone```i>
+                      <li>Management reserves the right to refuse service to anyone</li>
                       <li>Rules and policies may be updated without prior notice</li>
-                      <li>Final decisions on disputes rest with management```i>
-                      <li>Security cameras are in```eration for safety purposes</li>
+                      <li>Final decisions on disputes rest with management</li>
+                      <li>Security cameras are in operation for safety purposes</li>
                     </ul>
                   </div>
 
-                  <div className="bg```on-blue/10 border border-neon-blue/30 rounded-lg p-4">
+                  <div className="bg-neon-blue/10 border border-neon-blue/30 rounded-lg p-4">
                     <p className="text-sm">
-                      <strong className="text-neon-blue">Note:</strong> By using our facilities```ou acknowledge that you have read,```derstood, and agree to these terms and conditions.
+                      <strong className="text-neon-blue">Note:</strong> By using our facilities, you acknowledge that you have read, understood, and agree to these terms and conditions.
                     </p>
                   </div>
                 </div>
@@ -332,38 +341,39 @@ const Footer = () => {
                   <div>
                     <h3 className="text-xl font-semibold text-neon-blue mb-4">Your Privacy Matters</h3>
                     <p className="leading-relaxed">
-                      At Cuephoria, we are```mmitted to protecting your privacy an```nsuring the security of your personal information. This```licy explains how we collect, use, an```afeguard your data.```                  </p>
+                      At Cuephoria, we are committed to protecting your privacy and ensuring the security of your personal information. This policy explains how we collect, use, and safeguard your data.
+                    </p>
                   </div>
 
                   <div>
                     <h4 className="text-lg font-semibold text-white mb-3">1. Information We Collect</h4>
                     <ul className="space-y-2 list-disc list-inside">
                       <li>Basic contact information (name, phone number, email) for bookings</li>
-                      <li>Student ID information for discount verification```i>
+                      <li>Student ID information for discount verification</li>
                       <li>Payment information (processed securely through third-party providers)</li>
-                      <li>Usage data to```prove our services and user experience</li>
-                      <li>Cookies and website analytics```r better service delivery</li>
+                      <li>Usage data to improve our services and user experience</li>
+                      <li>Cookies and website analytics for better service delivery</li>
                     </ul>
                   </div>
 
                   <div>
                     <h4 className="text-lg font-semibold text-white mb-3">2. How We Use Your Information</h4>
                     <ul className="space-y-2 list-disc list-inside">
-                      <li>Process bookings and provide```r gaming services</li>
-                      <li>Verify student status for discount```igibility</li>
-                      <li>Send important updates about```okings and services</li>
-                      <li>Improve our facilities based on usage```tterns</li>
-                      <li>Ensure security and safety of our```emises</li>
+                      <li>Process bookings and provide our gaming services</li>
+                      <li>Verify student status for discount eligibility</li>
+                      <li>Send important updates about bookings and services</li>
+                      <li>Improve our facilities based on usage patterns</li>
+                      <li>Ensure security and safety of our premises</li>
                     </ul>
                   </div>
 
                   <div>
                     <h4 className="text-lg font-semibold text-white mb-3">3. Data Protection & Security</h4>
                     <ul className="space-y-2 list-disc list-inside">
-                      <li>All personal data is stored securely and encrypte```li>
-                      <li>We never share your information with third parties without```nsent</li>
-                      <li>Payment processing uses industry```andard security measures</li>
-                      <li>Access to your data is limited to authorized personnel```ly</li>
+                      <li>All personal data is stored securely and encrypted</li>
+                      <li>We never share your information with third parties without consent</li>
+                      <li>Payment processing uses industry-standard security measures</li>
+                      <li>Access to your data is limited to authorized personnel only</li>
                       <li>Regular security audits ensure data protection standards</li>
                     </ul>
                   </div>
@@ -371,25 +381,27 @@ const Footer = () => {
                   <div>
                     <h4 className="text-lg font-semibold text-white mb-3">4. Your Rights</h4>
                     <ul className="space-y-2 list-disc list-inside">
-                      <li>Request access to your personal data``` any time</li>
-                      <li>Ask for correction``` inaccurate information</li>```                    <li>Request deletion of your data (subject to legal requirements)</li>
+                      <li>Request access to your personal data at any time</li>
+                      <li>Ask for correction of inaccurate information</li>
+                      <li>Request deletion of your data (subject to legal requirements)</li>
                       <li>Opt out of marketing communications</li>
-                      <li>File complaints with data protection authorities if needed</li>```                  </ul>
+                      <li>File complaints with data protection authorities if needed</li>
+                    </ul>
                   </div>
 
                   <div>
                     <h4 className="text-lg font-semibold text-white mb-3">5. Cookies & Website Usage</h4>
                     <ul className="space-y-2 list-disc list-inside">
-                      <li>Essential```okies for website functionality</li>
-                      <li>Analytics cookies to understan```ser behavior</li>
-                      <li>You can disable cookies in your browser settings```i>
+                      <li>Essential cookies for website functionality</li>
+                      <li>Analytics cookies to understand user behavior</li>
+                      <li>You can disable cookies in your browser settings</li>
                       <li>Some features may not work without certain cookies</li>
                     </ul>
                   </div>
 
-                  <div className="bg```ber-500/10 border border-amber-500/30 rounded-lg p-4">
+                  <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4">
                     <p className="text-sm">
-                      <strong className="text```ber-400">Questions?</strong> For any privacy concerns or data requests, contact us at <a href="mailto:contact```ephoria.in" className="text-neon-blue hover:underline">contact@cuephoria.in</a>``` call +91 75500 25155.
+                      <strong className="text-amber-400">Questions?</strong> For any privacy concerns or data requests, contact us at <a href="mailto:contact@cuephoria.in" className="text-neon-blue hover:underline">contact@cuephoria.in</a> or call +91 75500 25155.
                     </p>
                   </div>
                 </div>
@@ -400,24 +412,25 @@ const Footer = () => {
                   <div>
                     <h3 className="text-xl font-semibold text-neon-blue mb-4">Get in Touch</h3>
                     <p className="leading-relaxed">
-                      Have questions,```ggestions, or need assistance? We&```s;re here to help!```ach out to us through any of these convenient```annels.
+                      Have questions, suggestions, or need assistance? We&apos;re here to help! Reach out to us through any of these convenient channels.
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
                       <h4 className="text-lg font-semibold text-white">📍 Visit Us</h4>
-                      <div className="bg```ming-accent/10 border border-gaming-accent/30 rounded-lg p-4">
-                        <p className="```t-semibold text-neon-blue mb-2">Cuephoria Gaming Lounge</p>
+                      <div className="bg-gaming-accent/10 border border-gaming-accent/30 rounded-lg p-4">
+                        <p className="font-semibold text-neon-blue mb-2">Cuephoria Gaming Lounge</p>
                         <p className="text-sm leading-relaxed">
                           Roof Top, No.1, Shivani Complex,<br />
-                          Vaithiyalingam St, Muthu```gar,<br />
+                          Vaithiyalingam St, Muthu Nagar,<br />
                           Thiruverumbur, Tamil Nadu 620013
                         </p>
                         <a 
-                          href="https://```s.app.goo.gl/vUNCsMkiMEgH```PA"
-                          target="_blank"```                        rel="noopener noreferrer"
-                          className```nline-flex items-center gap-2 text-neon-blue hover:text-neon-pink transition-colors mt-2"
+                          href="https://maps.app.goo.gl/vUNCsMkiMEgHfbVPA"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-neon-blue hover:text-neon-pink transition-colors mt-2"
                         >
                           <MapPin className="h-4 w-4" />
                           Get Directions
@@ -429,7 +442,7 @@ const Footer = () => {
                       <h4 className="text-lg font-semibold text-white">📞 Call Us</h4>
                       <div className="space-y-3">
                         <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4">
-                          <p className="```t-semibold text-green-400 mb-1">WhatsApp Bot/Calls</p>
+                          <p className="font-semibold text-green-400 mb-1">WhatsApp Bot/Calls</p>
                           <a href="tel:+918637625155" className="text-white hover:text-green-400 transition-colors">
                             +91 86376 25155
                           </a>
@@ -450,12 +463,13 @@ const Footer = () => {
                     <h4 className="text-lg font-semibold text-white mb-3">📧 Email Us</h4>
                     <div className="bg-neon-blue/10 border border-neon-blue/30 rounded-lg p-4">
                       <a 
-                        href="mailto:contact```ephoria.in" 
+                        href="mailto:contact@cuephoria.in" 
                         className="text-neon-blue hover:text-neon-pink transition-colors font-semibold"
                       >
-                        contact@cuephoria.```                      </a>
+                        contact@cuephoria.in
+                      </a>
                       <p className="text-sm text-gray-400 mt-2">
-                        We typically```spond within 24 hours
+                        We typically respond within 24 hours
                       </p>
                     </div>
                   </div>
@@ -473,18 +487,20 @@ const Footer = () => {
 
                   <div>
                     <h4 className="text-lg font-semibold text-white mb-3">🌐 Follow Us</h4>
-                    <div className="flex space```4">
+                    <div className="flex space-x-4">
                       <a 
-                        href="https://www.instagram```m/cuephoriaclub" 
-                        target="_blank"```                      rel="noopener noreferrer"
+                        href="https://www.instagram.com/cuephoriaclub" 
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex items-center gap-2 bg-pink-500/10 border border-pink-500/30 rounded-lg px-4 py-2 text-pink-400 hover:text-pink-300 transition-colors"
                       >
-                        <Instagram className="``` w-5" />
+                        <Instagram className="h-5 w-5" />
                         Instagram
                       </a>
                       <a 
-                        href="https://www.facebook.com/profile```p?id=61574215405586&sk=about" 
-                        target="_blank"```                      rel="noopener noreferrer"
+                        href="https://www.facebook.com/profile.php?id=61574215405586&sk=about" 
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 rounded-lg px-4 py-2 text-blue-400 hover:text-blue-300 transition-colors"
                       >
                         <Facebook className="h-5 w-5" />
@@ -504,7 +520,7 @@ const Footer = () => {
 
                   <div className="bg-neon-pink/10 border border-neon-pink/30 rounded-lg p-4">
                     <p className="text-sm">
-                      <strong className="text```on-pink">Quick Tip:</strong> For fastest```sponse, use WhatsApp (+91 86376 25155) or call our human agent (+91 75500 25155) during operating hours.
+                      <strong className="text-neon-pink">Quick Tip:</strong> For fastest response, use WhatsApp (+91 86376 25155) or call our human agent (+91 75500 25155) during operating hours.
                     </p>
                   </div>
                 </div>
