@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, ArrowRight, Gamepad2, Target, Users, Coffee, Heart, Trophy, Sparkles, Eye, MessageCircle } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Gamepad2, Target, Users, Coffee, Heart, Trophy, Sparkles, Eye, MessageCircle, GraduationCap, Zap, Star } from 'lucide-react';
 import SEOMetadata from '../components/SEOMetadata';
 import Footer from '../components/Footer';
 
@@ -8,18 +8,20 @@ import Footer from '../components/Footer';
 const useViewCounts = () => {
   const [viewCounts, setViewCounts] = useState({});
   
-  // Base view counts (starting point)
   const baseViews = {
     'why-we-started-cuephoria': 4112,
     'ultimate-student-hangout': 1713,
     'nervous-beginner-to-pool-pro': 3587,
     'late-night-gaming-sessions': 4294,
     'parents-ask-whats-special': 3250,
-    'art-of-perfect-break': 1026
+    'art-of-perfect-break': 1026,
+    'nit50-student-discount': 2847,
+    'nit99-happy-hours': 3156,
+    'nit-trichy-gaming-culture': 1924,
+    'student-stress-relief-gaming': 2341
   };
 
   useEffect(() => {
-    // Get stored views or use base views
     const storedViews = localStorage.getItem('cuephoria-blog-views');
     const lastUpdate = localStorage.getItem('cuephoria-blog-last-update');
     
@@ -27,11 +29,10 @@ const useViewCounts = () => {
       const views = JSON.parse(storedViews);
       const timeDiff = Date.now() - parseInt(lastUpdate);
       
-      // Increase views based on time elapsed (simulate organic growth)
       if (timeDiff > 300000) { // 5 minutes
         const updatedViews = {};
         Object.keys(baseViews).forEach(postId => {
-          const increase = Math.floor(Math.random() * 3) + 1; // 1-3 views increase
+          const increase = Math.floor(Math.random() * 3) + 1;
           updatedViews[postId] = views[postId] + increase;
         });
         setViewCounts(updatedViews);
@@ -148,6 +149,70 @@ const blogPosts = [
       { name: 'Meena Sinha', comment: 'Finally someone explains the physics behind a good break shot!' },
       { name: 'Ramya T', comment: 'This helped me understand why my breaks sucked. Thanks!' }
     ]
+  },
+  {
+    id: 'nit50-student-discount',
+    title: 'NIT50 Discount: 50% Off Pool Tables Exclusively for NIT Trichy Students',
+    excerpt: 'Introducing our special NIT50 offer - 50% discount on all pool tables for NIT Trichy students with valid ID.',
+    date: '2025-08-28',
+    readTime: '4 min read',
+    category: 'Student Discounts',
+    image: 'https://images.unsplash.com/photo-1606889464198-fcb18894cf50?w=600&h=400&fit=crop',
+    icon: GraduationCap,
+    gradient: 'from-emerald-500 via-green-500 to-teal-500',
+    comments: [
+      { name: 'Aditya Sharma', comment: 'Finally! A discount that actually helps broke engineering students like us.' },
+      { name: 'Kavitha M', comment: 'Used this offer yesterday, saved ₹300! Thanks Cuephoria.' },
+      { name: 'Rohit Krishnan', comment: 'NIT students deserve this. Engineering is stressful enough!' }
+    ]
+  },
+  {
+    id: 'nit99-happy-hours',
+    title: 'NIT99 Happy Hours: Play Pool for Just ₹99 from 11 AM to 3 PM',
+    excerpt: 'Beat the afternoon blues! NIT students can enjoy pool for just ₹99 during our special happy hours.',
+    date: '2025-08-25',
+    readTime: '3 min read',
+    category: 'Special Offers',
+    image: 'https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=600&h=400&fit=crop',
+    icon: Zap,
+    gradient: 'from-amber-500 via-orange-500 to-red-500',
+    comments: [
+      { name: 'Priya Sundaram', comment: 'Perfect timing between classes! ₹99 is such a steal.' },
+      { name: 'Vikram Das', comment: 'Been coming every Tuesday during lunch break. Love this deal!' },
+      { name: 'Shreya Patel', comment: 'My friends and I pool money (pun intended) and play during happy hours.' }
+    ]
+  },
+  {
+    id: 'nit-trichy-gaming-culture',
+    title: 'How Cuephoria is Shaping NIT Trichy\'s Gaming Culture',
+    excerpt: 'From stressed engineering students to confident gamers - witness the transformation happening at NIT Trichy.',
+    date: '2025-08-20',
+    readTime: '6 min read',
+    category: 'Campus Culture',
+    image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop',
+    icon: Users,
+    gradient: 'from-blue-600 via-purple-600 to-pink-600',
+    comments: [
+      { name: 'Ankit Gupta', comment: 'Gaming has become a legit stress buster for us NITians now.' },
+      { name: 'Deepika Rao', comment: 'Never thought I\'d be good at pool until I started coming here regularly.' },
+      { name: 'Suresh Kumar', comment: 'The gaming community at NIT has grown so much thanks to places like this.' }
+    ]
+  },
+  {
+    id: 'student-stress-relief-gaming',
+    title: 'Gaming as Stress Relief: What NIT Students Are Discovering',
+    excerpt: 'Research shows gaming helps with stress. NIT students are living proof of this phenomenon.',
+    date: '2025-08-18',
+    readTime: '5 min read',
+    category: 'Wellness',
+    image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop',
+    icon: Heart,
+    gradient: 'from-pink-500 via-rose-500 to-red-500',
+    comments: [
+      { name: 'Ravi Shankar', comment: 'Pool really helps me clear my head after tough coding sessions.' },
+      { name: 'Lakshmi Nair', comment: 'Better than scrolling social media during breaks, that\'s for sure!' },
+      { name: 'Arjun Reddy', comment: 'My anxiety levels dropped after I started gaming regularly here.' }
+    ]
   }
 ];
 
@@ -169,7 +234,7 @@ const Blog = () => {
       <SEOMetadata
         title="Blog | Cuephoria Stories - Gaming & Pool Experiences in Trichy"
         description="Read authentic stories from Cuephoria - from our founding journey to customer experiences, gaming tips, and the vibrant community we've built in Trichy."
-        keywords="Cuephoria blog, gaming stories Trichy, pool stories, student gaming experiences, gaming lounge blog"
+        keywords="Cuephoria blog, gaming stories Trichy, pool stories, student gaming experiences, gaming lounge blog, NIT Trichy gaming"
       />
       
       {/* Animated Background Elements */}
@@ -416,7 +481,9 @@ const Blog = () => {
                   </Link>
                   
                   <Link
-                    to="/contact"
+                    to="https://maps.app.goo.gl/vUNCsMkiMEgHfbVPA"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-3 bg-gaming-darker/50 backdrop-blur-sm border border-neon-blue/30 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:border-neon-blue/60"
                   >
                     <Coffee className="h-5 w-5 text-neon-blue" />
