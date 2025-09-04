@@ -1,8 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, ArrowRight, Gamepad2, Target, Users, Coffee, Heart, Trophy, Sparkles } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Gamepad2, Target, Users, Coffee, Heart, Trophy, Sparkles, Eye, MessageCircle } from 'lucide-react';
 import SEOMetadata from '../components/SEOMetadata';
 import Footer from '../components/Footer';
+
+// Dynamic view count system
+const useViewCounts = () => {
+  const [viewCounts, setViewCounts] = useState({});
+  
+  // Base view counts (starting point)
+  const baseViews = {
+    'why-we-started-cuephoria': 4112,
+    'ultimate-student-hangout': 1713,
+    'nervous-beginner-to-pool-pro': 3587,
+    'late-night-gaming-sessions': 4294,
+    'parents-ask-whats-special': 3250,
+    'art-of-perfect-break': 1026
+  };
+
+  useEffect(() => {
+    // Get stored views or use base views
+    const storedViews = localStorage.getItem('cuephoria-blog-views');
+    const lastUpdate = localStorage.getItem('cuephoria-blog-last-update');
+    
+    if (storedViews && lastUpdate) {
+      const views = JSON.parse(storedViews);
+      const timeDiff = Date.now() - parseInt(lastUpdate);
+      
+      // Increase views based on time elapsed (simulate organic growth)
+      if (timeDiff > 300000) { // 5 minutes
+        const updatedViews = {};
+        Object.keys(baseViews).forEach(postId => {
+          const increase = Math.floor(Math.random() * 3) + 1; // 1-3 views increase
+          updatedViews[postId] = views[postId] + increase;
+        });
+        setViewCounts(updatedViews);
+        localStorage.setItem('cuephoria-blog-views', JSON.stringify(updatedViews));
+        localStorage.setItem('cuephoria-blog-last-update', Date.now().toString());
+      } else {
+        setViewCounts(views);
+      }
+    } else {
+      setViewCounts(baseViews);
+      localStorage.setItem('cuephoria-blog-views', JSON.stringify(baseViews));
+      localStorage.setItem('cuephoria-blog-last-update', Date.now().toString());
+    }
+  }, []);
+
+  return viewCounts;
+};
 
 const blogPosts = [
   {
@@ -15,7 +61,13 @@ const blogPosts = [
     image: 'https://i.postimg.cc/HxCs9LJ7/Cuephoria-begining.png',
     icon: Heart,
     featured: true,
-    gradient: 'from-pink-500 via-red-500 to-yellow-500'
+    gradient: 'from-pink-500 via-red-500 to-yellow-500',
+    comments: [
+      { name: 'Arjun Kumar', comment: 'Bro, this place is actually amazing! Went there last weekend.' },
+      { name: 'Sneha Patel', comment: 'Finally someone opened a proper gaming lounge in Trichy!' },
+      { name: 'Vikram Singh', comment: 'Love the story behind it. Can relate to the gaming struggles.' },
+      { name: 'Priya Menon', comment: 'The passion really shows. Keep it up guys!' }
+    ]
   },
   {
     id: 'ultimate-student-hangout',
@@ -26,7 +78,12 @@ const blogPosts = [
     category: 'Student Life',
     image: 'https://i.postimg.cc/zfTRr6KK/Ultimate-Student-Hangout.png',
     icon: Users,
-    gradient: 'from-blue-500 via-purple-500 to-pink-500'
+    gradient: 'from-blue-500 via-purple-500 to-pink-500',
+    comments: [
+      { name: 'Divya Reddy', comment: 'Perfect after those long lectures! And it fits my budget too.' },
+      { name: 'Suresh Balan', comment: 'Gaming + pool = dream combo. What more do you need?' },
+      { name: 'Meera Shah', comment: 'The snacks are actually good too. Not overpriced like other places.' }
+    ]
   },
   {
     id: 'nervous-beginner-to-pool-pro',
@@ -37,7 +94,12 @@ const blogPosts = [
     category: 'Player Stories',
     image: 'https://i.postimg.cc/8zS7bwqC/generated-image-1.png',
     icon: Target,
-    gradient: 'from-green-500 via-teal-500 to-blue-500'
+    gradient: 'from-green-500 via-teal-500 to-blue-500',
+    comments: [
+      { name: 'Karthik Venkat', comment: 'Dude I was exactly like this when I started. Now I can pot some decent shots.' },
+      { name: 'Anjali Joshi', comment: 'The way you describe the first game is so accurate lol' },
+      { name: 'Ramesh Dutta', comment: 'Practice makes perfect. This place definitely helped me improve.' }
+    ]
   },
   {
     id: 'late-night-gaming-sessions',
@@ -48,7 +110,12 @@ const blogPosts = [
     category: 'Gaming Culture',
     image: 'https://i.postimg.cc/k5MD0GM3/generated-image-2.png',
     icon: Gamepad2,
-    gradient: 'from-purple-500 via-indigo-500 to-blue-500'
+    gradient: 'from-purple-500 via-indigo-500 to-blue-500',
+    comments: [
+      { name: 'Pooja Nair', comment: 'Late night gaming hits different! The vibe is just unmatched.' },
+      { name: 'Sanjay Rao', comment: 'Been coming here past midnight for weeks. Never gets old.' },
+      { name: 'Deepa S', comment: 'Perfect way to unwind after work. Much needed stress buster.' }
+    ]
   },
   {
     id: 'parents-ask-whats-special',
@@ -59,7 +126,12 @@ const blogPosts = [
     category: 'Family & Gaming',
     image: 'https://i.postimg.cc/xjNqDWQC/generated-image-3.png',
     icon: Coffee,
-    gradient: 'from-orange-500 via-red-500 to-pink-500'
+    gradient: 'from-orange-500 via-red-500 to-pink-500',
+    comments: [
+      { name: 'Rahul Iyer', comment: 'Haha this is literally every conversation with my parents about gaming' },
+      { name: 'Nisha Mukherjee', comment: 'Showed this to my mom. She finally gets why I spend time here.' },
+      { name: 'Rakesh K', comment: 'The generation gap is real. But places like this help bridge it.' }
+    ]
   },
   {
     id: 'art-of-perfect-break',
@@ -70,13 +142,27 @@ const blogPosts = [
     category: 'Pool Mastery',
     image: 'https://i.postimg.cc/ry5c9ccS/generated-image-4.png',
     icon: Trophy,
-    gradient: 'from-yellow-500 via-orange-500 to-red-500'
+    gradient: 'from-yellow-500 via-orange-500 to-red-500',
+    comments: [
+      { name: 'Ganesh P', comment: 'The technique breakdown is really detailed. Gonna try this tonight.' },
+      { name: 'Meena Sinha', comment: 'Finally someone explains the physics behind a good break shot!' },
+      { name: 'Ramya T', comment: 'This helped me understand why my breaks sucked. Thanks!' }
+    ]
   }
 ];
 
 const Blog = () => {
+  const viewCounts = useViewCounts();
   const featuredPost = blogPosts.find(post => post.featured);
   const regularPosts = blogPosts.filter(post => !post.featured);
+
+  const formatViews = (postId) => {
+    const views = viewCounts[postId] || 0;
+    if (views >= 1000) {
+      return `${(views / 1000).toFixed(1)}k`;
+    }
+    return views.toString();
+  };
 
   return (
     <div className="min-h-screen bg-gaming-darker text-white overflow-hidden">
@@ -95,38 +181,38 @@ const Blog = () => {
       
       <section className="relative py-12 md:py-24 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
-         {/* Clean Logo Only - NO CONTAINER OR BORDERS */}
-<div className="text-center mb-16 md:mb-20">
-  <div className="flex justify-center mb-12">
-    <div className="relative">
-      {/* Simple light purple glow */}
-      <div className="absolute -inset-8 bg-purple-400/20 rounded-full blur-2xl animate-pulse"></div>
-      
-      {/* Just the logo - no container, no padding, no borders */}
-      <img 
-        src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
-        alt="Cuephoria Logo" 
-        className="h-32 md:h-40 w-auto hover:scale-105 transition-all duration-500 relative z-10"
-      />
-    </div>
-  </div>
-  
-  <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-neon-pink/10 rounded-full border border-neon-pink/30">
-    <Sparkles className="h-4 w-4 text-neon-pink animate-pulse" />
-    <span className="text-neon-pink font-semibold text-sm">Fresh Stories from Trichy</span>
-  </div>
-  
-  <h1 className="text-5xl md:text-7xl font-bold mb-6 relative">
-    <span className="bg-gradient-to-r from-neon-blue via-purple-400 to-neon-pink bg-clip-text text-transparent animate-pulse">
-      Cuephoria Chronicles
-    </span>
-    <div className="absolute -top-4 -right-4 w-8 h-8 bg-neon-pink/20 rounded-full blur-xl animate-bounce delay-500"></div>
-  </h1>
-  
-  <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-    Real stories from Trichy's premier gaming destination - our journey, our community, and the experiences that make us special since <span className="text-neon-blue font-bold">May 2025</span>.
-  </p>
-</div>
+          {/* Clean Logo Only - NO CONTAINER OR BORDERS */}
+          <div className="text-center mb-16 md:mb-20">
+            <div className="flex justify-center mb-12">
+              <div className="relative">
+                {/* Simple light purple glow */}
+                <div className="absolute -inset-8 bg-purple-400/20 rounded-full blur-2xl animate-pulse"></div>
+                
+                {/* Just the logo - no container, no padding, no borders */}
+                <img 
+                  src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
+                  alt="Cuephoria Logo" 
+                  className="h-32 md:h-40 w-auto hover:scale-105 transition-all duration-500 relative z-10"
+                />
+              </div>
+            </div>
+            
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-neon-pink/10 rounded-full border border-neon-pink/30">
+              <Sparkles className="h-4 w-4 text-neon-pink animate-pulse" />
+              <span className="text-neon-pink font-semibold text-sm">Fresh Stories from Trichy</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 relative">
+              <span className="bg-gradient-to-r from-neon-blue via-purple-400 to-neon-pink bg-clip-text text-transparent animate-pulse">
+                Cuephoria Chronicles
+              </span>
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-neon-pink/20 rounded-full blur-xl animate-bounce delay-500"></div>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+              Real stories from Trichy's premier gaming destination - our journey, our community, and the experiences that make us special since <span className="text-neon-blue font-bold">May 2025</span>.
+            </p>
+          </div>
 
           {/* Enhanced Featured Post */}
           {featuredPost && (
@@ -159,7 +245,7 @@ const Blog = () => {
                           {featuredPost.excerpt}
                         </p>
                         
-                        <div className="flex items-center gap-8 mb-10 text-sm text-gray-400">
+                        <div className="flex items-center gap-8 mb-6 text-sm text-gray-400">
                           <div className="flex items-center gap-2">
                             <Calendar className="h-4 w-4" />
                             <span>{new Date(featuredPost.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
@@ -168,6 +254,25 @@ const Blog = () => {
                             <Clock className="h-4 w-4" />
                             <span>{featuredPost.readTime}</span>
                           </div>
+                          <div className="flex items-center gap-2">
+                            <Eye className="h-4 w-4" />
+                            <span>{formatViews(featuredPost.id)} views</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <MessageCircle className="h-4 w-4" />
+                            <span>{featuredPost.comments.length} comments</span>
+                          </div>
+                        </div>
+                        
+                        {/* Comments Preview */}
+                        <div className="mb-8 p-4 bg-gaming-darker/50 rounded-lg border border-purple-500/20">
+                          <div className="text-xs text-gray-400 mb-3">Latest Comments:</div>
+                          {featuredPost.comments.slice(0, 2).map((comment, index) => (
+                            <div key={index} className="mb-2 last:mb-0">
+                              <span className="text-neon-blue font-semibold text-sm">{comment.name}</span>
+                              <span className="text-gray-300 text-sm ml-2">"{comment.comment}"</span>
+                            </div>
+                          ))}
                         </div>
                         
                         <div className="inline-flex items-center gap-3 bg-gradient-to-r from-neon-pink via-purple-500 to-neon-blue p-[2px] rounded-full group-hover:scale-105 transition-all duration-300">
@@ -221,9 +326,18 @@ const Blog = () => {
                         <span className="text-xs font-bold text-neon-blue uppercase tracking-wider">{post.category}</span>
                       </div>
                       
-                      {/* Reading Time */}
+                      {/* Stats Badge */}
                       <div className="absolute top-4 right-4 bg-gaming-darker/80 backdrop-blur-sm px-3 py-1 rounded-full">
-                        <span className="text-xs text-gray-300">{post.readTime}</span>
+                        <div className="flex items-center gap-3 text-xs text-gray-300">
+                          <div className="flex items-center gap-1">
+                            <Eye className="h-3 w-3" />
+                            <span>{formatViews(post.id)}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <MessageCircle className="h-3 w-3" />
+                            <span>{post.comments.length}</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     
@@ -236,11 +350,24 @@ const Blog = () => {
                         {post.excerpt}
                       </p>
                       
+                      {/* Comments Preview */}
+                      <div className="mb-6 p-3 bg-gaming-darker/30 rounded-lg border border-purple-500/10">
+                        <div className="text-xs text-gray-400 mb-2">Recent comment:</div>
+                        <div className="text-sm">
+                          <span className="text-neon-blue font-semibold">{post.comments[0]?.name}</span>
+                          <span className="text-gray-300 ml-2">"{post.comments[0]?.comment}"</span>
+                        </div>
+                      </div>
+                      
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4 text-xs text-gray-400">
                           <div className="flex items-center gap-1">
                             <Calendar className="h-3 w-3" />
                             <span>{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Clock className="h-3 w-3" />
+                            <span>{post.readTime}</span>
                           </div>
                         </div>
                         
