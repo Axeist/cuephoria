@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Clock, Instagram, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -33,23 +33,32 @@ const Footer = () => {
               Trichy's premier gaming lounge combining the thrill of billiards, snooker, and PS5 gaming. 
               Perfect for students, friends, and gaming enthusiasts.
             </p>
+            {/* Social Media Links - Updated with Correct URLs */}
             <div className="flex space-x-4">
-              <Link 
-                to="https://instagram.com/cuephoria" 
+              <a 
+                href="https://www.instagram.com/cuephoriaclub" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-neon-pink transition-colors duration-300"
               >
                 <Instagram className="h-5 w-5" />
-              </Link>
-              <Link 
-                to="https://wa.me/918637625155" 
+              </a>
+              <a 
+                href="https://wa.me/918637625155" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-green-400 transition-colors duration-300"
               >
                 <MessageCircle className="h-5 w-5" />
-              </Link>
+              </a>
+              <a 
+                href="https://www.facebook.com/profile.php?id=61574215405586&sk=about" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-blue-500 transition-colors duration-300"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
             </div>
           </div>
 
@@ -57,69 +66,69 @@ const Footer = () => {
           <div className="space-y-6">
             <h4 className="text-lg font-bold text-white">Quick Links</h4>
             <nav className="space-y-3">
-              <Link 
-                to="https://www.cuephoria.in/#home"
+              <a 
+                href="https://www.cuephoria.in/#home"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
               >
                 <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                 <span>Home</span>
-              </Link>
-              <Link 
-                to="https://www.cuephoria.in/book"
+              </a>
+              <a 
+                href="https://www.cuephoria.in/book"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
               >
                 <Target className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                 <span>Book Now</span>
-              </Link>
-              <Link 
-                to="https://www.cuephoria.in/blog"
+              </a>
+              <a 
+                href="https://www.cuephoria.in/blog"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
               >
                 <BookOpen className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                 <span>Blog</span>
-              </Link>
-              <Link 
-                to="https://www.cuephoria.in/#games"
+              </a>
+              <a 
+                href="https://www.cuephoria.in/#games"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
               >
                 <Gamepad2 className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                 <span>Games</span>
-              </Link>
-              <Link 
-                to="https://www.cuephoria.in/#gallery"
+              </a>
+              <a 
+                href="https://www.cuephoria.in/#gallery"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
               >
                 <Coffee className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                 <span>Gallery</span>
-              </Link>
-              <Link 
-                to="https://www.cuephoria.in/#testimonials"
+              </a>
+              <a 
+                href="https://www.cuephoria.in/#testimonials"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
               >
                 <Trophy className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                 <span>Reviews</span>
-              </Link>
-              <Link 
-                to="https://www.cuephoria.in/#about"
+              </a>
+              <a 
+                href="https://www.cuephoria.in/#about"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
               >
                 <Users className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                 <span>About</span>
-              </Link>
+              </a>
             </nav>
           </div>
 
@@ -127,8 +136,8 @@ const Footer = () => {
           <div className="space-y-6">
             <h4 className="text-lg font-bold text-white">Contact Info</h4>
             <div className="space-y-4">
-              <Link 
-                to="https://maps.app.goo.gl/vUNCsMkiMEgHfbVPA" 
+              <a 
+                href="https://maps.app.goo.gl/vUNCsMkiMEgHfbVPA" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-start space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
@@ -139,23 +148,39 @@ const Footer = () => {
                   Vaithiyalingam St, Muthu Nagar,<br />
                   Thiruverumbur, Tamil Nadu 620013
                 </span>
-              </Link>
+              </a>
               
-              <Link 
-                to="tel:+918637625155" 
+              {/* WhatsApp Bot Number */}
+              <a 
+                href="tel:+918637625155" 
                 className="flex items-center space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
               >
                 <Phone className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                <span className="text-sm">+91 86376 25155</span>
-              </Link>
+                <div className="text-sm">
+                  <div>+91 86376 25155</div>
+                  <div className="text-xs text-gray-500">WhatsApp Bot/Calls</div>
+                </div>
+              </a>
               
-              <Link 
-                to="mailto:contact@cuephoria.in" 
+              {/* Real Agent Number */}
+              <a 
+                href="tel:+917550025155" 
+                className="flex items-center space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+              >
+                <Phone className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                <div className="text-sm">
+                  <div>+91 75500 25155</div>
+                  <div className="text-xs text-gray-500">Human Agent</div>
+                </div>
+              </a>
+              
+              <a 
+                href="mailto:contact@cuephoria.in" 
                 className="flex items-center space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
               >
                 <Mail className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
                 <span className="text-sm">contact@cuephoria.in</span>
-              </Link>
+              </a>
               
               <div className="flex items-center space-x-3 text-gray-400">
                 <Clock className="h-5 w-5" />
@@ -182,15 +207,15 @@ const Footer = () => {
                 </p>
               </div>
               
-              <Link 
-                to="https://www.cuephoria.in/book"
+              <a 
+                href="https://www.cuephoria.in/book"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 text-neon-pink hover:text-neon-blue transition-colors duration-300 text-sm font-medium group"
               >
                 <span>Book Now</span>
                 <Target className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -203,30 +228,24 @@ const Footer = () => {
             </div>
             
             <div className="flex items-center space-x-6">
-              <Link 
-                to="https://www.cuephoria.in/terms"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button 
+                onClick={() => {/* Add popup logic here */}}
                 className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm"
               >
                 Terms & Conditions
-              </Link>
-              <Link 
-                to="https://www.cuephoria.in/privacy"
-                target="_blank"
-                rel="noopener noreferrer"
+              </button>
+              <button 
+                onClick={() => {/* Add popup logic here */}}
                 className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm"
               >
                 Privacy Policy
-              </Link>
-              <Link 
-                to="https://www.cuephoria.in/#contact"
-                target="_blank"
-                rel="noopener noreferrer"
+              </button>
+              <button 
+                onClick={() => {/* Add popup logic here */}}
                 className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm"
               >
                 Contact
-              </Link>
+              </button>
             </div>
           </div>
         </div>
