@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, ArrowRight, Gamepad2, Target, Users, Coffee, Heart, Trophy, Sparkles, Eye, MessageCircle, GraduationCap, Zap, Star } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Gamepad2, Target, Users, Coffee, Heart, Trophy, Sparkles, Eye, MessageCircle, GraduationCap, Zap, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import SEOMetadata from '../components/SEOMetadata';
 import Footer from '../components/Footer';
 
@@ -33,7 +33,7 @@ const useViewCounts = () => {
         const updatedViews = {};
         Object.keys(baseViews).forEach(postId => {
           const increase = Math.floor(Math.random() * 3) + 1;
-          updatedViews[postId] = views[postId] + increase;
+          updatedViews[postId] = (views[postId] || baseViews[postId]) + increase;
         });
         setViewCounts(updatedViews);
         localStorage.setItem('cuephoria-blog-views', JSON.stringify(updatedViews));
@@ -67,7 +67,10 @@ const blogPosts = [
       { name: 'Arjun Kumar', comment: 'Bro, this place is actually amazing! Went there last weekend.' },
       { name: 'Sneha Patel', comment: 'Finally someone opened a proper gaming lounge in Trichy!' },
       { name: 'Vikram Singh', comment: 'Love the story behind it. Can relate to the gaming struggles.' },
-      { name: 'Priya Menon', comment: 'The passion really shows. Keep it up guys!' }
+      { name: 'Priya Menon', comment: 'The passion really shows. Keep it up guys!' },
+      { name: 'Rahul Krishnan', comment: 'Been waiting for something like this in Trichy for years!' },
+      { name: 'Meera Iyer', comment: 'The dedication to building a gaming community is inspiring.' },
+      { name: 'Anand Sharma', comment: 'Great to see local entrepreneurs supporting gaming culture.' }
     ]
   },
   {
@@ -83,7 +86,10 @@ const blogPosts = [
     comments: [
       { name: 'Divya Reddy', comment: 'Perfect after those long lectures! And it fits my budget too.' },
       { name: 'Suresh Balan', comment: 'Gaming + pool = dream combo. What more do you need?' },
-      { name: 'Meera Shah', comment: 'The snacks are actually good too. Not overpriced like other places.' }
+      { name: 'Meera Shah', comment: 'The snacks are actually good too. Not overpriced like other places.' },
+      { name: 'Kiran Patel', comment: 'My go-to spot for unwinding after stressful exams.' },
+      { name: 'Aishwarya M', comment: 'Love how student-friendly the pricing is here.' },
+      { name: 'Ravi Kumar', comment: 'Finally a place that understands college students\' needs!' }
     ]
   },
   {
@@ -99,7 +105,10 @@ const blogPosts = [
     comments: [
       { name: 'Karthik Venkat', comment: 'Dude I was exactly like this when I started. Now I can pot some decent shots.' },
       { name: 'Anjali Joshi', comment: 'The way you describe the first game is so accurate lol' },
-      { name: 'Ramesh Dutta', comment: 'Practice makes perfect. This place definitely helped me improve.' }
+      { name: 'Ramesh Dutta', comment: 'Practice makes perfect. This place definitely helped me improve.' },
+      { name: 'Priyanka Nair', comment: 'Started as a complete noob, now I\'m teaching my friends!' },
+      { name: 'Suraj Singh', comment: 'The patient staff really helped me learn the basics.' },
+      { name: 'Kavya Menon', comment: 'From missing every shot to winning games - what a journey!' }
     ]
   },
   {
@@ -115,7 +124,10 @@ const blogPosts = [
     comments: [
       { name: 'Pooja Nair', comment: 'Late night gaming hits different! The vibe is just unmatched.' },
       { name: 'Sanjay Rao', comment: 'Been coming here past midnight for weeks. Never gets old.' },
-      { name: 'Deepa S', comment: 'Perfect way to unwind after work. Much needed stress buster.' }
+      { name: 'Deepa S', comment: 'Perfect way to unwind after work. Much needed stress buster.' },
+      { name: 'Arjun Reddy', comment: 'Night owl gamers unite! This is our sanctuary.' },
+      { name: 'Nisha Gupta', comment: 'The late night crowd here is so chill and friendly.' },
+      { name: 'Vikram Das', comment: 'Nothing beats post-midnight FIFA matches with the crew.' }
     ]
   },
   {
@@ -131,7 +143,10 @@ const blogPosts = [
     comments: [
       { name: 'Rahul Iyer', comment: 'Haha this is literally every conversation with my parents about gaming' },
       { name: 'Nisha Mukherjee', comment: 'Showed this to my mom. She finally gets why I spend time here.' },
-      { name: 'Rakesh K', comment: 'The generation gap is real. But places like this help bridge it.' }
+      { name: 'Rakesh K', comment: 'The generation gap is real. But places like this help bridge it.' },
+      { name: 'Shreya Patel', comment: 'Finally have the right words to explain gaming culture to family!' },
+      { name: 'Arun Sharma', comment: 'My dad actually visited after reading this. He was impressed!' },
+      { name: 'Priya Sundaram', comment: 'This article helped my parents understand my gaming passion.' }
     ]
   },
   {
@@ -147,7 +162,10 @@ const blogPosts = [
     comments: [
       { name: 'Ganesh P', comment: 'The technique breakdown is really detailed. Gonna try this tonight.' },
       { name: 'Meena Sinha', comment: 'Finally someone explains the physics behind a good break shot!' },
-      { name: 'Ramya T', comment: 'This helped me understand why my breaks sucked. Thanks!' }
+      { name: 'Ramya T', comment: 'This helped me understand why my breaks sucked. Thanks!' },
+      { name: 'Suresh Kumar', comment: 'Been playing for years but learned new techniques from this.' },
+      { name: 'Kavitha M', comment: 'The step-by-step approach is perfect for beginners like me.' },
+      { name: 'Ravi Shankar', comment: 'Applied these tips and my break game improved dramatically!' }
     ]
   },
   {
@@ -163,7 +181,11 @@ const blogPosts = [
     comments: [
       { name: 'Aditya Sharma', comment: 'Finally! A discount that actually helps broke engineering students like us.' },
       { name: 'Kavitha M', comment: 'Used this offer yesterday, saved ₹300! Thanks Cuephoria.' },
-      { name: 'Rohit Krishnan', comment: 'NIT students deserve this. Engineering is stressful enough!' }
+      { name: 'Rohit Krishnan', comment: 'NIT students deserve this. Engineering is stressful enough!' },
+      { name: 'Sneha Reddy', comment: 'This makes pool gaming actually affordable for students.' },
+      { name: 'Arjun Patel', comment: 'Showed my student ID and the staff was super friendly about it.' },
+      { name: 'Priya Nair', comment: 'Finally can play pool without worrying about the cost!' },
+      { name: 'Vikram Singh', comment: 'NIT50 is a game-changer for us budget-conscious students.' }
     ]
   },
   {
@@ -179,7 +201,10 @@ const blogPosts = [
     comments: [
       { name: 'Priya Sundaram', comment: 'Perfect timing between classes! ₹99 is such a steal.' },
       { name: 'Vikram Das', comment: 'Been coming every Tuesday during lunch break. Love this deal!' },
-      { name: 'Shreya Patel', comment: 'My friends and I pool money (pun intended) and play during happy hours.' }
+      { name: 'Shreya Patel', comment: 'My friends and I pool money (pun intended) and play during happy hours.' },
+      { name: 'Kiran Sharma', comment: 'Best way to spend those long afternoon breaks between lectures.' },
+      { name: 'Anita Reddy', comment: '₹99 for premium gaming? This is unbelievable value!' },
+      { name: 'Suresh Balan', comment: 'Happy hours have become my favorite part of the day.' }
     ]
   },
   {
@@ -195,7 +220,10 @@ const blogPosts = [
     comments: [
       { name: 'Ankit Gupta', comment: 'Gaming has become a legit stress buster for us NITians now.' },
       { name: 'Deepika Rao', comment: 'Never thought I\'d be good at pool until I started coming here regularly.' },
-      { name: 'Suresh Kumar', comment: 'The gaming community at NIT has grown so much thanks to places like this.' }
+      { name: 'Suresh Kumar', comment: 'The gaming community at NIT has grown so much thanks to places like this.' },
+      { name: 'Meera Shah', comment: 'From academic pressure to gaming passion - what a transformation!' },
+      { name: 'Ravi Krishnan', comment: 'Cuephoria has become the unofficial NIT student hangout spot.' },
+      { name: 'Kavya Menon', comment: 'The social aspect of gaming here helped me make so many friends.' }
     ]
   },
   {
@@ -211,7 +239,10 @@ const blogPosts = [
     comments: [
       { name: 'Ravi Shankar', comment: 'Pool really helps me clear my head after tough coding sessions.' },
       { name: 'Lakshmi Nair', comment: 'Better than scrolling social media during breaks, that\'s for sure!' },
-      { name: 'Arjun Reddy', comment: 'My anxiety levels dropped after I started gaming regularly here.' }
+      { name: 'Arjun Reddy', comment: 'My anxiety levels dropped after I started gaming regularly here.' },
+      { name: 'Pooja Sharma', comment: 'Gaming therapy is real! This place proves it.' },
+      { name: 'Karthik Venkat', comment: 'From exam stress to gaming joy - the transformation is real.' },
+      { name: 'Nisha Gupta', comment: 'Who knew pool could be better than meditation for stress relief?' }
     ]
   }
 ];
@@ -220,6 +251,20 @@ const Blog = () => {
   const viewCounts = useViewCounts();
   const featuredPost = blogPosts.find(post => post.featured);
   const regularPosts = blogPosts.filter(post => !post.featured);
+  const [currentCommentIndex, setCurrentCommentIndex] = useState(0);
+
+  // Auto-rotate comments in featured post
+  useEffect(() => {
+    if (!featuredPost) return;
+    
+    const interval = setInterval(() => {
+      setCurrentCommentIndex(prev => 
+        prev >= featuredPost.comments.length - 2 ? 0 : prev + 1
+      );
+    }, 4000); // Change every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [featuredPost]);
 
   const formatViews = (postId) => {
     const views = viewCounts[postId] || 0;
@@ -227,6 +272,20 @@ const Blog = () => {
       return `${(views / 1000).toFixed(1)}k`;
     }
     return views.toString();
+  };
+
+  const nextComment = () => {
+    if (!featuredPost) return;
+    setCurrentCommentIndex(prev => 
+      prev >= featuredPost.comments.length - 2 ? 0 : prev + 1
+    );
+  };
+
+  const prevComment = () => {
+    if (!featuredPost) return;
+    setCurrentCommentIndex(prev => 
+      prev <= 0 ? featuredPost.comments.length - 2 : prev - 1
+    );
   };
 
   return (
@@ -246,14 +305,11 @@ const Blog = () => {
       
       <section className="relative py-12 md:py-24 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
-          {/* Clean Logo Only - NO CONTAINER OR BORDERS */}
+          {/* Logo Section */}
           <div className="text-center mb-16 md:mb-20">
             <div className="flex justify-center mb-12">
               <div className="relative">
-                {/* Simple light purple glow */}
                 <div className="absolute -inset-8 bg-purple-400/20 rounded-full blur-2xl animate-pulse"></div>
-                
-                {/* Just the logo - no container, no padding, no borders */}
                 <img 
                   src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
                   alt="Cuephoria Logo" 
@@ -284,13 +340,11 @@ const Blog = () => {
             <div className="mb-20">
               <Link to={`/blog/${featuredPost.id}`} className="block">
                 <div className="relative bg-gaming-darker/30 backdrop-blur-xl rounded-3xl overflow-hidden border border-neon-blue/30 shadow-2xl hover:shadow-neon-blue/40 transition-all duration-700 group cursor-pointer">
-                  {/* Animated Border */}
                   <div className="absolute inset-0 bg-gradient-to-r from-neon-pink via-purple-500 to-neon-blue opacity-20 blur-sm group-hover:opacity-40 transition-opacity duration-700"></div>
                   
                   <div className="relative bg-gaming-darker/90 backdrop-blur-xl rounded-3xl overflow-hidden">
                     <div className="flex flex-col lg:flex-row">
-                      <div className="lg:w-1/2 p-8 lg:p-12 relative">
-                        {/* Floating Icons */}
+                      <div className="lg:w-1/2 p-4 sm:p-6 lg:p-12 relative">
                         <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-neon-pink/20 to-purple-500/20 rounded-full flex items-center justify-center animate-pulse">
                           <featuredPost.icon className="h-8 w-8 text-neon-pink" />
                         </div>
@@ -302,58 +356,90 @@ const Blog = () => {
                           </div>
                         </div>
                         
-                        <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-white leading-tight">
+                        <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-6 text-white leading-tight">
                           {featuredPost.title}
                         </h2>
                         
-                        <p className="text-gray-300 text-lg md:text-xl mb-8 leading-relaxed">
+                        <p className="text-gray-300 text-base sm:text-lg md:text-xl mb-6 sm:mb-8 leading-relaxed">
                           {featuredPost.excerpt}
                         </p>
                         
-                        <div className="flex items-center gap-8 mb-6 text-sm text-gray-400">
-                          <div className="flex items-center gap-2">
-                            <Calendar className="h-4 w-4" />
-                            <span>{new Date(featuredPost.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                        {/* Mobile-Responsive Metadata */}
+                        <div className="flex flex-wrap items-center gap-3 sm:gap-6 mb-6 text-xs sm:text-sm text-gray-400">
+                          <div className="flex items-center gap-2 min-w-0">
+                            <Calendar className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                            <span className="truncate">{new Date(featuredPost.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <Clock className="h-4 w-4" />
-                            <span>{featuredPost.readTime}</span>
+                          <div className="flex items-center gap-2 min-w-0">
+                            <Clock className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                            <span className="whitespace-nowrap">{featuredPost.readTime}</span>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <Eye className="h-4 w-4" />
-                            <span>{formatViews(featuredPost.id)} views</span>
+                          <div className="flex items-center gap-2 min-w-0">
+                            <Eye className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                            <span className="whitespace-nowrap">{formatViews(featuredPost.id)} views</span>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <MessageCircle className="h-4 w-4" />
-                            <span>{featuredPost.comments.length} comments</span>
+                          <div className="flex items-center gap-2 min-w-0">
+                            <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                            <span className="whitespace-nowrap">{featuredPost.comments.length} comments</span>
                           </div>
                         </div>
                         
-                        {/* Comments Preview */}
-                        <div className="mb-8 p-4 bg-gaming-darker/50 rounded-lg border border-purple-500/20">
-                          <div className="text-xs text-gray-400 mb-3">Latest Comments:</div>
-                          {featuredPost.comments.slice(0, 2).map((comment, index) => (
-                            <div key={index} className="mb-2 last:mb-0">
-                              <span className="text-neon-blue font-semibold text-sm">{comment.name}</span>
-                              <span className="text-gray-300 text-sm ml-2">"{comment.comment}"</span>
+                        {/* Comments Carousel */}
+                        <div className="mb-6 sm:mb-8 p-4 bg-gaming-darker/50 rounded-lg border border-purple-500/20 relative">
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="text-xs text-gray-400">Latest Comments:</div>
+                            <div className="flex items-center gap-2">
+                              <button 
+                                onClick={(e) => {e.preventDefault(); prevComment();}}
+                                className="p-1 rounded-full bg-purple-500/20 hover:bg-purple-500/30 transition-colors"
+                              >
+                                <ChevronLeft className="h-3 w-3 text-purple-400" />
+                              </button>
+                              <button 
+                                onClick={(e) => {e.preventDefault(); nextComment();}}
+                                className="p-1 rounded-full bg-purple-500/20 hover:bg-purple-500/30 transition-colors"
+                              >
+                                <ChevronRight className="h-3 w-3 text-purple-400" />
+                              </button>
                             </div>
-                          ))}
+                          </div>
+                          
+                          <div className="space-y-2">
+                            {featuredPost.comments.slice(currentCommentIndex, currentCommentIndex + 2).map((comment, index) => (
+                              <div key={index} className="text-xs sm:text-sm">
+                                <span className="text-neon-blue font-semibold">{comment.name}</span>
+                                <span className="text-gray-300 ml-2 break-words">"{comment.comment}"</span>
+                              </div>
+                            ))}
+                          </div>
+                          
+                          {/* Comment indicators */}
+                          <div className="flex justify-center mt-3 gap-1">
+                            {Array.from({ length: Math.max(1, featuredPost.comments.length - 1) }).map((_, index) => (
+                              <div 
+                                key={index}
+                                className={`w-2 h-2 rounded-full transition-colors ${
+                                  index === currentCommentIndex ? 'bg-purple-400' : 'bg-purple-400/30'
+                                }`}
+                              />
+                            ))}
+                          </div>
                         </div>
                         
                         <div className="inline-flex items-center gap-3 bg-gradient-to-r from-neon-pink via-purple-500 to-neon-blue p-[2px] rounded-full group-hover:scale-105 transition-all duration-300">
-                          <div className="bg-gaming-darker px-8 py-4 rounded-full flex items-center gap-3">
-                            <span className="font-bold text-white">Read Full Story</span>
-                            <ArrowRight className="h-5 w-5 text-neon-pink group-hover:translate-x-1 transition-transform duration-300" />
+                          <div className="bg-gaming-darker px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center gap-3">
+                            <span className="font-bold text-white text-sm sm:text-base">Read Full Story</span>
+                            <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 text-neon-pink group-hover:translate-x-1 transition-transform duration-300" />
                           </div>
                         </div>
                       </div>
                       
-                      <div className="lg:w-1/2 relative overflow-hidden">
+                      <div className="lg:w-1/2 relative overflow-hidden min-h-[300px] lg:min-h-[400px]">
                         <div className="absolute inset-0 bg-gradient-to-br from-neon-pink/30 to-neon-blue/30 z-10"></div>
                         <img
                           src={featuredPost.image}
                           alt={featuredPost.title}
-                          className="w-full h-full min-h-[400px] object-cover"
+                          className="w-full h-full object-cover"
                         />
                         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gaming-darker/80 to-transparent z-20"></div>
                       </div>
@@ -373,7 +459,6 @@ const Blog = () => {
                 className="block"
               >
                 <article className="bg-gaming-darker/20 backdrop-blur-xl rounded-2xl overflow-hidden border border-gaming-accent/30 shadow-lg hover:shadow-2xl transition-all duration-700 hover:scale-105 group relative cursor-pointer">
-                  {/* Gradient Border Animation */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${post.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-700 rounded-2xl`}></div>
                   
                   <div className="relative">
@@ -385,13 +470,11 @@ const Blog = () => {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker/60 to-transparent"></div>
                       
-                      {/* Category Badge */}
                       <div className="absolute top-4 left-4 flex items-center gap-2 bg-gaming-darker/80 backdrop-blur-sm px-4 py-2 rounded-full border border-neon-blue/30">
                         <post.icon className="h-4 w-4 text-neon-blue animate-pulse" />
                         <span className="text-xs font-bold text-neon-blue uppercase tracking-wider">{post.category}</span>
                       </div>
                       
-                      {/* Stats Badge */}
                       <div className="absolute top-4 right-4 bg-gaming-darker/80 backdrop-blur-sm px-3 py-1 rounded-full">
                         <div className="flex items-center gap-3 text-xs text-gray-300">
                           <div className="flex items-center gap-1">
@@ -415,12 +498,11 @@ const Blog = () => {
                         {post.excerpt}
                       </p>
                       
-                      {/* Comments Preview */}
                       <div className="mb-6 p-3 bg-gaming-darker/30 rounded-lg border border-purple-500/10">
                         <div className="text-xs text-gray-400 mb-2">Recent comment:</div>
                         <div className="text-sm">
                           <span className="text-neon-blue font-semibold">{post.comments[0]?.name}</span>
-                          <span className="text-gray-300 ml-2">"{post.comments[0]?.comment}"</span>
+                          <span className="text-gray-300 ml-2 break-words">"{post.comments[0]?.comment}"</span>
                         </div>
                       </div>
                       
@@ -450,8 +532,7 @@ const Blog = () => {
 
           {/* Enhanced Call to Action */}
           <div className="text-center mt-20">
-            <div className="relative bg-gaming-darker/30 backdrop-blur-xl rounded-3xl p-12 border border-neon-pink/30 overflow-hidden">
-              {/* Background Animation */}
+            <div className="relative bg-gaming-darker/30 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border border-neon-pink/30 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-neon-pink/10 via-purple-500/10 to-neon-blue/10 animate-pulse"></div>
               
               <div className="relative z-10">
@@ -460,11 +541,11 @@ const Blog = () => {
                   <span className="text-neon-blue font-semibold text-sm">Join Our Community</span>
                 </div>
                 
-                <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-white">
                   Be Part of Our Story
                 </h3>
                 
-                <p className="text-gray-300 mb-10 max-w-2xl mx-auto text-lg leading-relaxed">
+                <p className="text-gray-300 mb-10 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
                   Every visit to Cuephoria adds a new chapter to our community story. Come create your own gaming memories in the heart of Trichy.
                 </p>
                 
@@ -473,7 +554,7 @@ const Blog = () => {
                     to="/book"
                     className="inline-flex items-center gap-3 bg-gradient-to-r from-neon-blue via-purple-500 to-neon-pink p-[2px] rounded-full hover:scale-105 transition-all duration-300"
                   >
-                    <div className="bg-gaming-darker px-8 py-4 rounded-full flex items-center gap-3">
+                    <div className="bg-gaming-darker px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center gap-3">
                       <Gamepad2 className="h-5 w-5 text-neon-blue" />
                       <span className="font-bold text-white">Book Your Session</span>
                       <ArrowRight className="h-4 w-4 text-neon-pink" />
@@ -484,7 +565,7 @@ const Blog = () => {
                     to="https://maps.app.goo.gl/vUNCsMkiMEgHfbVPA"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 bg-gaming-darker/50 backdrop-blur-sm border border-neon-blue/30 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:border-neon-blue/60"
+                    className="inline-flex items-center gap-3 bg-gaming-darker/50 backdrop-blur-sm border border-neon-blue/30 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:border-neon-blue/60"
                   >
                     <Coffee className="h-5 w-5 text-neon-blue" />
                     <span className="text-white">Visit Our Lounge</span>
