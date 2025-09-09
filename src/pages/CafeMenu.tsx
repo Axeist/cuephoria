@@ -24,6 +24,7 @@ const CafeMenu = () => {
         periPeriOriginalPrice: 200,
         periPeriPrice: 140,
         description: "Golden crispy potato fries cut to perfect 7mm thickness with a fluffy inside and crunchy outside. Perfectly salted for a classic taste, and available with a spicy Peri Peri seasoning that adds a fiery kick with authentic Portuguese spice blend. Served hot and fresh, these fries are the perfect gaming fuel.",
+        tvDescription: "Golden crispy 7mm potato fries with fluffy inside and crunchy outside. Available with spicy Peri Peri seasoning.",
         icon: "🍟",
         image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -33,6 +34,7 @@ const CafeMenu = () => {
         originalPrice: 150,
         price: 100,
         description: "Delightfully crispy potato smileys that are guaranteed to brighten your mood and gaming session. These bite-sized golden treats come with a satisfying crunch and mild seasoning that's perfect for all ages. Each piece is shaped like a cheerful smile, making them Instagram-worthy and delicious.",
+        tvDescription: "Crispy potato smileys that brighten your mood. Bite-sized golden treats with satisfying crunch.",
         icon: "😊",
         image: "https://images.unsplash.com/photo-1541592106381-b31e8e095584?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -44,6 +46,7 @@ const CafeMenu = () => {
         schezwanOriginalPrice: 180,
         schezwanPrice: 125,
         description: "Crispy, golden-battered onion rings made from fresh medium-sized onions, served piping hot with a perfect crunch. Choose between the classic standard seasoning for a mild flavor or enjoy our signature Schezwan twist that adds layers of tangy and spicy notes for an extra flavor adventure.",
+        tvDescription: "Crispy golden-battered onion rings with perfect crunch. Choose standard or spicy Schezwan twist.",
         icon: "🧅",
         image: "https://images.unsplash.com/photo-1639024471283-03518883512d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -53,6 +56,7 @@ const CafeMenu = () => {
         originalPrice: 200,
         price: 140,
         description: "Crunchy and intensely flavorful chicken pops infused with fresh garlic and a perfect hint of chili that creates an ideal balance of heat and aromatic satisfaction. These bite-sized pieces are marinated with special spices and cooked to perfection - ideal for spice lovers who want both flavor and fire.",
+        tvDescription: "Crunchy chicken pops with fresh garlic and chili. Perfect balance of heat and flavor.",
         icon: "🔥",
         image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -62,6 +66,7 @@ const CafeMenu = () => {
         originalPrice: 150,
         price: 100,
         description: "A delicious medley of fresh vegetables formed into perfectly golden nuggets with a crispy exterior and tender interior. Made with a blend of seasonal vegetables and served with creamy dip options including mayo duo that perfectly complements their savory and wholesome flavor profile.",
+        tvDescription: "Golden vegetable nuggets with crispy exterior. Served with creamy dip options.",
         icon: "🥬",
         image: "https://images.unsplash.com/photo-1562967916-eb82221dfb92?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -71,6 +76,7 @@ const CafeMenu = () => {
         originalPrice: 200,
         price: 140,
         description: "Fresh jalapeño peppers stuffed with creamy cheese filling, coated in a crispy golden batter and fried to perfection. Each bite delivers a burst of fiery creaminess that balances the heat of jalapeños with the cooling effect of melted cheese - a perfect harmony of flavors.",
+        tvDescription: "Jalapeño peppers stuffed with creamy cheese in crispy batter. Fiery creaminess in every bite.",
         icon: "🌶️",
         image: "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -80,6 +86,7 @@ const CafeMenu = () => {
         originalPrice: 220,
         price: 160,
         description: "Tiny, tender chicken pieces marinated in special spices and coated with a light, crispy batter that pops with flavor in every bite. These golden morsels are incredibly light, crunchy, and absolutely addictive - perfect for continuous munching during long gaming sessions without feeling heavy.",
+        tvDescription: "Tiny tender chicken pieces with light crispy batter. Addictive golden morsels.",
         icon: "🍿",
         image: "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -89,6 +96,7 @@ const CafeMenu = () => {
         originalPrice: 200,
         price: 140,
         description: "Classic chicken nuggets made from tender chicken breast pieces, coated in seasoned breadcrumbs and fried to golden perfection. Soft and juicy inside with a satisfying crispy exterior, served with your choice of ketchup, mayo, or spicy Peri Peri sauce for the ultimate dipping experience.",
+        tvDescription: "Classic chicken nuggets with seasoned breadcrumbs. Served with choice of dipping sauces.",
         icon: "🍗",
         image: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       }
@@ -101,6 +109,7 @@ const CafeMenu = () => {
         price: 110,
         quantity: "5 pieces",
         description: "Traditional vegetable momos filled with a flavorful mix of fresh cabbage, carrots, onions, and aromatic spices, then fried to achieve a perfect golden crispy exterior while maintaining a juicy, flavorful interior. Served with our signature tangy Schezwan sauce that adds the perfect spicy kick to complement the vegetables.",
+        tvDescription: "Fried vegetable momos with crispy exterior and juicy interior. Served with tangy Schezwan sauce.",
         icon: "🥟",
         image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -111,6 +120,7 @@ const CafeMenu = () => {
         price: 130,
         quantity: "5 pieces",
         description: "Soft, handcrafted momos stuffed with fresh cottage cheese (paneer) marinated in Indian spices and herbs, creating a delightful fusion of traditional momo-making with authentic Indian flavors. Each piece bursts with creamy paneer goodness and is served with our special Schezwan dip for an extra punch of flavor.",
+        tvDescription: "Paneer-stuffed momos with Indian spices. Creamy cottage cheese with Schezwan dip.",
         icon: "🧀",
         image: "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -121,6 +131,7 @@ const CafeMenu = () => {
         price: 120,
         quantity: "5 pieces",
         description: "Innovative momos filled with a delicious combination of sweet corn kernels and molten cheese that creates an explosion of flavors in every bite. The crispy momo shell encases the creamy, cheesy corn filling that stretches beautifully when bitten. Served with mayo duo sauce for a creamy complement to the rich filling.",
+        tvDescription: "Cheese and corn filled momos with molten cheese explosion. Served with mayo duo sauce.",
         icon: "🌽",
         image: "https://images.unsplash.com/photo-1585032226651-759b368d7246?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -131,6 +142,7 @@ const CafeMenu = () => {
         price: 130,
         quantity: "5 pieces",
         description: "Authentic chicken momos made with tender minced chicken marinated in traditional Tibetan spices and wrapped in thin, soft dough. These steamed-then-fried momos offer the perfect balance of juicy chicken filling and crispy exterior. Served hot with your choice of spicy Schezwan sauce or creamy mayo duo for the perfect desi street food experience.",
+        tvDescription: "Authentic chicken momos with traditional Tibetan spices. Choice of Schezwan or mayo duo.",
         icon: "🍖",
         image: "https://images.unsplash.com/photo-1563379091339-03246963d7d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -141,6 +153,7 @@ const CafeMenu = () => {
         price: 140,
         quantity: "5 pieces",
         description: "For those who love heat! These special momos are stuffed with tender chicken that's pre-marinated in authentic Schezwan sauce, creating a double dose of spiciness. The filling itself is infused with Schezwan flavors, and they're served with extra Schezwan sauce on the side. Perfect for spice enthusiasts who can handle the intense heat and bold flavors.",
+        tvDescription: "Double spicy chicken momos with Schezwan marinade and extra sauce. For heat lovers.",
         icon: "🔥",
         image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -151,6 +164,7 @@ const CafeMenu = () => {
         price: 150,
         quantity: "5 pieces",
         description: "The ultimate fusion momo experience combining succulent chicken pieces with gooey melted cheese in every bite. The chicken is marinated with herbs and spices, then combined with premium cheese that melts beautifully when cooked. These indulgent momos offer a rich, creamy texture with savory chicken flavors, served with mayo duo for extra creaminess.",
+        tvDescription: "Fusion chicken and cheese momos with gooey melted cheese. Rich and creamy texture.",
         icon: "🧀",
         image: "https://images.unsplash.com/photo-1563379091339-03246963d7d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -161,6 +175,7 @@ const CafeMenu = () => {
         price: 140,
         quantity: "5 pieces",
         description: "A unique Indian-Chinese fusion featuring chicken tikka pieces as the filling, marinated in yogurt and traditional tandoor spices for that authentic smoky flavor. These momos bring together the best of Indian tikka preparation with Chinese momo techniques, creating a smoky, spicy, and absolutely sensational taste experience served with Schezwan sauce.",
+        tvDescription: "Indian-Chinese fusion with chicken tikka filling and tandoor spices. Smoky and spicy.",
         icon: "🍖",
         image: "https://images.unsplash.com/photo-1563379091339-03246963d7d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -171,6 +186,7 @@ const CafeMenu = () => {
         price: 90,
         quantity: "1 roll",
         description: "A wholesome vegetable roll featuring a crispy vegetable patty wrapped in soft, fresh roti with crunchy lettuce, onions, and creamy mayo duo sauce. This portable snack is perfect for on-the-go gaming sessions, offering a satisfying combination of textures and flavors that won't weigh you down during intense gameplay.",
+        tvDescription: "Vegetable patty wrapped in fresh roti with lettuce and mayo duo. Perfect portable snack.",
         icon: "🌯",
         image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -181,6 +197,7 @@ const CafeMenu = () => {
         price: 105,
         quantity: "1 roll",
         description: "An elevated version of our classic veggie roll, featuring the same crispy vegetable patty but with an added kick of authentic Peri Peri seasoning that transforms the entire flavor profile. The Portuguese-inspired spice blend adds heat and complexity, making this roll perfect for those who want their vegetables with some serious attitude.",
+        tvDescription: "Spicy veggie roll with authentic Peri Peri seasoning. Portuguese-inspired heat and complexity.",
         icon: "🌯",
         image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -191,6 +208,7 @@ const CafeMenu = () => {
         price: 120,
         quantity: "1 roll",
         description: "Tender, marinated paneer cubes grilled to perfection and wrapped in soft roti with fresh vegetables and creamy mayo duo sauce. The paneer is seasoned with aromatic Indian spices that complement its natural creamy texture, creating a satisfying and protein-rich wrap that's both filling and flavorful for vegetarian gamers.",
+        tvDescription: "Grilled paneer cubes in soft roti with fresh vegetables and mayo duo sauce.",
         icon: "🧀",
         image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       }
@@ -202,6 +220,7 @@ const CafeMenu = () => {
         originalPrice: 180,
         price: 129,
         description: "A visually stunning blue-colored lemonade that's as refreshing as it is Instagram-worthy. Made with premium Blue Curacao syrup, fresh lemon juice, and sparkling soda water, this drink delivers a perfect balance of citrusy tang and sweet refreshment. The vibrant blue color comes from natural food coloring, making it the perfect companion for your gaming sessions.",
+        tvDescription: "Stunning blue lemonade with Blue Curacao syrup and fresh lemon juice. Instagram-worthy refreshment.",
         icon: "🌊",
         image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -211,6 +230,7 @@ const CafeMenu = () => {
         originalPrice: 170,
         price: 119,
         description: "The ultimate refreshing drink featuring fresh mint leaves muddled to release their essential oils, combined with zesty lime juice, mojito syrup, and topped with sparkling soda water. This alcohol-free version of the classic Cuban cocktail provides the perfect cooling effect and invigorating taste that helps you stay refreshed during intense gaming marathons.",
+        tvDescription: "Fresh mint mojito with lime juice and sparkling soda. Ultimate refreshing gaming companion.",
         icon: "🌿",
         image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -220,6 +240,7 @@ const CafeMenu = () => {
         originalPrice: 190,
         price: 139,
         description: "A tropical twist on the classic mojito, combining the sweetness of ripe mango syrup with the cooling freshness of mint leaves and lime. This fusion drink captures summer vibes all year round, offering a sweet-tangy flavor profile that's both refreshing and energizing. Perfect for when you want something fruity yet refreshing during your gaming sessions.",
+        tvDescription: "Tropical mango mojito with mint and lime. Sweet-tangy summer vibes all year round.",
         icon: "🥭",
         image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -229,6 +250,7 @@ const CafeMenu = () => {
         originalPrice: 180,
         price: 129,
         description: "A citrus lover's dream combining the zesty brightness of orange syrup with fresh mint leaves and lime juice, topped with sparkling soda. This vibrant orange-colored drink offers a perfect balance of sweet citrus flavors and refreshing mint, creating a drink that's both energizing and cooling - ideal for maintaining focus during competitive gaming.",
+        tvDescription: "Zesty orange mojito with mint and lime. Perfect citrus balance for competitive gaming focus.",
         icon: "🍊",
         image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -238,6 +260,7 @@ const CafeMenu = () => {
         originalPrice: 190,
         price: 139,
         description: "An electrifying drink that lives up to its name with shocking blue color and an even more shocking taste experience. Made with Blue Curacao syrup, fresh lemon juice, and a special soda blend that creates a unique fizzy sensation. This tangy and electrifying beverage provides the perfect energy boost with its vibrant appearance and invigorating taste.",
+        tvDescription: "Electrifying blue drink with special soda blend. Shocking taste and vibrant energy boost.",
         icon: "⚡",
         image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -247,6 +270,7 @@ const CafeMenu = () => {
         originalPrice: 200,
         price: 149,
         description: "A tropical interpretation of the classic mule, featuring rich mango syrup combined with fresh lime juice and spicy ginger ale that creates a perfect sweet-spicy balance. The natural sweetness of mango pairs beautifully with the warming kick of ginger, creating a sophisticated drink that's both refreshing and energizing for extended gaming sessions.",
+        tvDescription: "Tropical mango mule with ginger ale. Perfect sweet-spicy balance for gaming sessions.",
         icon: "🍹",
         image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -256,6 +280,7 @@ const CafeMenu = () => {
         originalPrice: 180,
         price: 129,
         description: "Inspired by beautiful sunrise colors, this refreshing orange cooler combines premium orange syrup with soda water and a hint of lemon for added zestiness. The drink's gradient appearance mimics a sunrise, while its refreshing and energizing taste helps you start or continue your gaming sessions with renewed vigor and a cool, satisfied feeling.",
+        tvDescription: "Sunrise-inspired orange cooler with premium syrup and lemon zest. Refreshing gaming energy.",
         icon: "🌅",
         image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       }
@@ -269,6 +294,7 @@ const CafeMenu = () => {
         discountedPrice: 239,
         hasMocktail: true,
         description: "Perfect for couples or close friends who want to share a light yet satisfying snack experience. This combo pairs our signature golden crispy potato fries with a refreshing Virgin Mojito that perfectly balances the saltiness of the fries with its cool, minty freshness. The combination offers complementary flavors and textures - crispy meets refreshing, salty meets sweet. With this combo, you save ₹60 compared to ordering individually, making it an excellent value for a casual gaming session for two.",
+        tvDescription: "Golden fries with refreshing Virgin Mojito. Perfect balance of crispy and minty freshness for two.",
         icon: "👥",
         image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -280,6 +306,7 @@ const CafeMenu = () => {
         discountedPrice: 239,
         hasMocktail: true,
         description: "Designed for momo lovers who appreciate the perfect pairing of spicy and refreshing flavors. This combo features our popular fried vegetable momos with their crispy exterior and flavorful vegetable filling, served with tangy Schezwan sauce, alongside our visually stunning Blue Lagoon Lemonade. The cool, citrusy drink provides the perfect cooling contrast to the spicy momos, while the vibrant blue color makes for great social media content. Save ₹60 with this combo that's perfect for sharing between two people during a casual gaming session.",
+        tvDescription: "Spicy vegetable momos with stunning Blue Lagoon Lemonade. Perfect spicy-refreshing combo for two.",
         icon: "🥟",
         image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -291,30 +318,9 @@ const CafeMenu = () => {
         discountedPrice: 259,
         hasMocktail: false,
         description: "A protein-packed combo for serious snackers who want variety and substance in their gaming fuel. This combination brings together our classic Golden Chicken Nuggets with their crispy exterior and tender interior, alongside our intensely flavorful Garlic Fire Pops that pack a spicy punch. The contrast between the mild, familiar taste of nuggets and the bold, garlicky heat of the pops creates an exciting flavor journey. Perfect for two people who want to try different textures and spice levels, with a total savings of ₹81 compared to individual ordering.",
+        tvDescription: "Classic chicken nuggets with spicy Garlic Fire Pops. Exciting mild-to-spicy flavor journey.",
         icon: "🍗",
         image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        name: "Roller's Duo",
-        includes: "Paneer Wrap + Veggie Roll",
-        suitableFor: "2 people",
-        originalPrice: 240,
-        discountedPrice: 219,
-        hasMocktail: false,
-        description: "A wholesome vegetarian combo that combines two different wrap experiences for variety-loving vegetarians. The Paneer Wrap Delight features marinated cottage cheese with Indian spices, while the Veggie Roll-Up offers a crispy vegetable patty experience. Both are served with fresh vegetables and creamy sauces, providing different textures and flavors in portable, easy-to-eat formats. This combo is perfect for two people who want filling, satisfying food that won't interfere with their gaming performance, saving ₹21 in the process.",
-        icon: "🌯",
-        image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        name: "Mock & Munch Duo",
-        includes: "Cheese Burst Momos + Mango Mint Mojito",
-        suitableFor: "2 people",
-        originalPrice: 309,
-        discountedPrice: 259,
-        hasMocktail: true,
-        description: "An indulgent combination that pairs rich, cheesy flavors with tropical refreshment. The Cheese Burst Momos offer a delightful cheese-corn filling that stretches beautifully with each bite, while the Mango Mint Mojito provides a sweet-tropical cooling effect with its mango sweetness balanced by fresh mint. This combo is designed for those who enjoy rich, comfort food flavors balanced with refreshing beverages. The pairing works especially well as the creamy cheese and sweet mango complement each other, saving you ₹50 compared to individual ordering.",
-        icon: "🧀",
-        image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
       {
         name: "Quad Feast Value",
@@ -324,28 +330,7 @@ const CafeMenu = () => {
         discountedPrice: 479,
         hasMocktail: true,
         description: "A premium group sharing experience designed for squads who want variety, quality, and excellent value. This feast includes our spicy Peri Peri Potato Waves that bring Portuguese fire to classic fries, complemented by Jalapeño Cheese Poppers that offer creamy relief with their molten cheese centers. Four servings of our tropical Mango Mint Mojito ensure everyone stays refreshed while enjoying the spicy snacks. The combination creates a perfect balance of heat, creaminess, and cooling refreshment. This combo is ideal for group gaming sessions, birthday celebrations, or tournament viewing parties, offering massive savings of ₹120 compared to individual orders.",
-        icon: "👨‍👩‍👧‍👦",
-        image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        name: "Lazy Gamers Quad",
-        includes: "Chicken Momos + Happy Faces",
-        suitableFor: "4 people",
-        originalPrice: 509,
-        discountedPrice: 439,
-        hasMocktail: false,
-        description: "Perfect for extended gaming sessions where you want satisfying food that's easy to eat without taking attention away from the game. This combo combines our Classic Chicken Momos with their juicy filling and crispy exterior, alongside cheerful Happy Face smiley fries that are perfectly sized for continuous munching. Both items are designed for easy one-handed eating, making them ideal for gamers who don't want to pause their gameplay. The variety ensures no one gets bored, while the substantial quantity keeps everyone satisfied throughout long gaming marathons. Save ₹70 with this strategically designed combo for serious gamers.",
-        icon: "🎮",
-        image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        name: "Family Snack Pack",
-        includes: "Onion Rings + Jalapeño Poppers + Fries",
-        suitableFor: "4 people",
-        originalPrice: 570,
-        discountedPrice: 479,
-        hasMocktail: false,
-        description: "A comprehensive snack spread that offers three different crispy textures and flavor profiles for family groups or friend circles with varying taste preferences. The combo includes our golden Onion Tornado Rings with their sweet onion interior, spicy Jalapeño Cheese Poppers that deliver heat and creaminess, and classic Crispy Potato Waves for those who prefer familiar flavors. This variety pack ensures everyone finds something they love while providing enough quantity to satisfy a group of four. The different textures and flavors create an engaging snacking experience that pairs perfectly with group gaming or movie watching, saving ₹91 compared to individual purchases.",
+        tvDescription: "Spicy Peri Peri fries, creamy jalapeño poppers, and tropical Mango Mint Mojito for four people.",
         icon: "👨‍👩‍👧‍👦",
         image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       },
@@ -357,70 +342,52 @@ const CafeMenu = () => {
         discountedPrice: 489,
         hasMocktail: true,
         description: "The ultimate gaming fuel combo designed specifically for competitive gamers and tournament participants. This power-packed combination features our classic Golden Chicken Nuggets that provide familiar comfort food satisfaction, paired with fiery Schezwan Momos that deliver an exciting spicy kick to keep energy levels high. Four servings of refreshing Orange Cooler ensure everyone stays hydrated and alert during intense gaming sessions. The protein from chicken helps maintain sustained energy, while the spicy momos provide excitement and the citrus drinks offer mental clarity. This combo is scientifically designed for peak gaming performance, offering incredible value with ₹120 in savings while fueling your team to victory.",
+        tvDescription: "Ultimate gaming combo: chicken nuggets, spicy Schezwan momos, and Orange Cooler for peak performance.",
         icon: "🎮",
-        image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        name: "Basic Snack Quad",
-        includes: "Happy Faces + Onion Rings + Veg Nuggets",
-        suitableFor: "4 people",
-        originalPrice: 480,
-        discountedPrice: 439,
-        hasMocktail: false,
-        description: "An economical yet satisfying combo that provides three different vegetarian snacking experiences without overwhelming flavors or excessive spice. This combination includes cheerful Happy Face smiley fries for fun, crispy Onion Tornado Rings for a mild onion flavor, and Golden Veg Bites for a wholesome vegetable experience. All items are prepared with standard seasoning, making this combo perfect for groups with sensitive palates, younger gamers, or anyone who prefers milder flavors. Despite being budget-friendly, this combo doesn't compromise on quality or quantity, providing substantial snacking for four people while saving ₹41 compared to individual ordering.",
-        icon: "👥",
-        image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        name: "Friends' Momo Box",
-        includes: "Schezwan Chicken Momos + Paneer Momos + Tikka Thunder Momos",
-        suitableFor: "5 people",
-        originalPrice: 600,
-        discountedPrice: 479,
-        hasMocktail: false,
-        description: "A momo enthusiast's dream featuring three premium momo varieties that showcase different flavor profiles and preparation styles. This extensive combo includes our Fiery Schezwan Momos with their double-dose of spicy sauce, Paneer Twist Momos that bring Indian cottage cheese flavors, and our signature Tikka Thunder Momos with their smoky tandoor-inspired taste. With 15 pieces total (5 of each variety), this combo ensures everyone gets to try all three unique flavors while having enough quantity for a group of five. Perfect for momo lovers who want variety and those looking to explore different fusion flavors, offering substantial savings of ₹121 compared to individual orders.",
-        icon: "🥟",
-        image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        name: "Group Chill Pack",
-        includes: "Garlic Pops + Popcorn Chicken + Sunrise Cooler (5 servings)",
-        suitableFor: "5 people",
-        originalPrice: 685,
-        discountedPrice: 479,
-        hasMocktail: true,
-        description: "The ultimate relaxation combo for larger groups who want to chill out with great food and drinks while gaming or socializing. This premium package combines our intensely flavorful Garlic Fire Pops with their perfect garlic-chili balance, alongside addictive Popcorn Chicken pieces that are impossible to stop eating once you start. Five servings of our beautiful Sunrise Orange Cooler ensure everyone stays refreshed while enjoying the bold flavors. The combination is designed for extended social gaming sessions, providing both bold flavors to keep things exciting and cooling beverages to balance the intensity. This combo offers exceptional value with massive savings of ₹206, making it perfect for celebrations, tournaments, or group hangout sessions.",
-        icon: "👥",
-        image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        name: "Big Game Snack Box Lite",
-        includes: "Fries + Nuggets + Mocktail Sampler (8 mixed servings)",
-        suitableFor: "8 people",
-        originalPrice: 799,
-        discountedPrice: 499,
-        hasMocktail: true,
-        description: "The ultimate party combo designed for large groups, tournaments, birthday parties, or major gaming events. This comprehensive package includes generous portions of our classic Crispy Potato Waves and Golden Chicken Nuggets, ensuring familiar favorites that appeal to all taste preferences. The mocktail sampler provides 8 mixed servings of our most popular beverages, allowing everyone to try different flavors including Blue Lagoon Lemonade, Virgin Mojito, and Orange Cooler varieties. This combo is strategically designed to feed a crowd without breaking the budget, perfect for esports tournaments, birthday celebrations, or any large gathering. With incredible savings of ₹300 compared to individual ordering, this combo proves that group gaming can be both delicious and economical.",
-        icon: "🎉",
         image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       }
     ]
   };
 
-  // All slides for TV mode carousel
-  const allSlides = [
-    { type: 'category', title: '🍽️ Savory Snacks & Seasoning Impact', items: menuData.savorySnacks },
-    { type: 'category', title: '🥟 Momos & Rolls', items: menuData.momosRolls },
-    { type: 'category', title: '🍹 Syrup-Based Beverages', items: menuData.beverages },
-    { type: 'category', title: '🎉 Combos (10% Discount Applied)', items: menuData.combos }
-  ];
+  // Create TV slides with max 8 items per slide
+  const createTVSlides = () => {
+    const slides = [];
+    
+    // Split each category into chunks of 8 items
+    Object.entries(menuData).forEach(([categoryKey, items]) => {
+      const categoryTitles = {
+        savorySnacks: '🍽️ Savory Snacks & Seasoning Impact',
+        momosRolls: '🥟 Momos & Rolls',
+        beverages: '🍹 Syrup-Based Beverages',
+        combos: '🎉 Combos (10% Discount Applied)'
+      };
+      
+      const chunkSize = 8;
+      for (let i = 0; i < items.length; i += chunkSize) {
+        const chunk = items.slice(i, i + chunkSize);
+        const slideNumber = Math.floor(i / chunkSize) + 1;
+        const totalSlides = Math.ceil(items.length / chunkSize);
+        
+        slides.push({
+          type: 'category',
+          title: totalSlides > 1 ? `${categoryTitles[categoryKey]} (${slideNumber}/${totalSlides})` : categoryTitles[categoryKey],
+          items: chunk,
+          isCombo: categoryKey === 'combos'
+        });
+      }
+    });
+    
+    return slides;
+  };
 
-  // Slower TV Mode Auto-play (10 seconds per slide)
+  const allSlides = createTVSlides();
+
+  // Slower TV Mode Auto-play (12 seconds per slide)
   useEffect(() => {
     if (tvMode && isAutoPlaying) {
       const interval = setInterval(() => {
         setCurrentSlide((prev) => (prev + 1) % allSlides.length);
-      }, 10000); // 10 seconds per slide
+      }, 12000); // 12 seconds per slide
       return () => clearInterval(interval);
     }
   }, [tvMode, isAutoPlaying, allSlides.length]);
@@ -441,7 +408,102 @@ const CafeMenu = () => {
     setIsAutoPlaying(true);
   }, []);
 
-  // Subtle menu item card with no order button
+  // TV Mode Menu Card - Compact version
+  const TVMenuCard = ({ item, type = 'default' }) => (
+    <div className="bg-gaming-darker/95 border border-neon-blue/30 rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105">
+      {/* Food Image - Smaller for TV */}
+      {item.image && (
+        <div className="relative h-32 overflow-hidden">
+          <img 
+            src={item.image} 
+            alt={item.name}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker/80 via-transparent to-transparent" />
+          
+          {/* Opening Offer Badge */}
+          <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+            <Gift className="h-2 w-2" />
+            OPENING OFFER
+          </div>
+          
+          {/* Price Badge */}
+          <div className="absolute top-2 right-2 bg-neon-pink/90 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-center">
+            {type === 'combo' ? (
+              <>
+                <div className="text-xs line-through text-gray-200">₹{item.originalPrice}</div>
+                <div className="text-sm font-bold">₹{item.discountedPrice}</div>
+              </>
+            ) : (
+              <>
+                <div className="text-xs line-through text-gray-200">₹{item.originalPrice}</div>
+                <div className="text-sm font-bold">₹{item.price}</div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+      
+      <div className="p-3">
+        <div className="flex items-start gap-2 mb-2">
+          <span className="text-lg mt-0.5">{item.icon}</span>
+          <div className="flex-1 min-w-0">
+            <h4 className="text-sm font-semibold text-white leading-tight mb-1 truncate">
+              {item.name}
+            </h4>
+            {item.quantity && (
+              <p className="text-xs text-neon-blue mb-1">{item.quantity}</p>
+            )}
+            {item.suitableFor && (
+              <p className="text-xs text-neon-pink mb-1">👥 {item.suitableFor}</p>
+            )}
+          </div>
+        </div>
+        
+        <p className="text-gray-300 text-xs leading-relaxed mb-2 line-clamp-2">
+          {item.tvDescription || item.description}
+        </p>
+        
+        {/* Pricing Details - Compact */}
+        <div className="space-y-1">
+          {type === 'combo' ? (
+            <div className="bg-gaming-accent/10 p-2 rounded text-center">
+              <div className="text-xs text-green-400 font-semibold mb-1">
+                💰 Save ₹{item.originalPrice - item.discountedPrice}!
+              </div>
+              {item.hasMocktail && (
+                <span className="inline-block text-xs bg-neon-blue/20 text-neon-blue px-2 py-0.5 rounded-full">
+                  🍹 Includes Mocktail
+                </span>
+              )}
+            </div>
+          ) : (
+            <div className="bg-gaming-accent/10 p-2 rounded text-center">
+              <div className="text-xs text-green-400 font-semibold mb-1">
+                💰 Save ₹{item.originalPrice - item.price}!
+              </div>
+              
+              {/* Extra variants - Compact */}
+              {item.periPeriPrice && (
+                <div className="text-xs text-red-400 mb-1">
+                  🌶️ Peri Peri: ₹{item.periPeriPrice}
+                </div>
+              )}
+              
+              {item.schezwanPrice && (
+                <div className="text-xs text-orange-400">
+                  🔥 Schezwan: ₹{item.schezwanPrice}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
+  // Regular Menu Card for non-TV mode (unchanged)
   const MenuItemCard = ({ item, type = 'default' }) => (
     <div className="group relative bg-gaming-darker/90 backdrop-blur-sm border border-neon-blue/20 rounded-lg p-6 mb-6 shadow-sm hover:shadow-md hover:border-neon-blue/40 transition-all duration-300">
       {/* Food Image */}
@@ -556,24 +618,24 @@ const CafeMenu = () => {
     </div>
   );
 
-  // TV Mode Carousel Slide with smooth transition
+  // TV Mode Carousel Slide with 4x2 grid (8 items max)
   const CarouselSlide = ({ slide }) => (
-    <div className="min-h-screen bg-gaming-darker p-8 flex flex-col transition-all duration-1000 ease-in-out">
+    <div className="min-h-screen bg-gaming-darker px-8 py-20 flex flex-col">
       <div className="text-center mb-8">
-        <h2 className="text-4xl md:text-6xl font-bold neon-text-blue mb-4">
+        <h2 className="text-4xl md:text-5xl font-bold neon-text-blue mb-4">
           {slide.title}
         </h2>
         <div className="w-32 h-1 bg-gradient-to-r from-neon-pink to-neon-blue mx-auto rounded-full" />
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 flex-1">
+      {/* 4x2 Grid Layout for TV (8 items max) */}
+      <div className="grid grid-cols-4 gap-6 flex-1 max-h-[70vh]">
         {slide.items.map((item, index) => (
-          <div key={index} className="transform transition-all duration-500" style={{animationDelay: `${index * 0.1}s`}}>
-            <MenuItemCard 
-              item={item} 
-              type={slide.title.includes('Combos') ? 'combo' : 'default'} 
-            />
-          </div>
+          <TVMenuCard 
+            key={index} 
+            item={item} 
+            type={slide.isCombo ? 'combo' : 'default'} 
+          />
         ))}
       </div>
     </div>
@@ -587,44 +649,51 @@ const CafeMenu = () => {
           description="Digital menu display for Cuephoria - Gaming cafe menu in TV mode"
         />
         
-        {/* TV Mode Header */}
-        <div className="absolute top-4 left-4 right-4 z-50 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <Monitor className="h-6 w-6 text-neon-blue" />
-            <span className="text-neon-blue font-semibold">TV MODE ACTIVE</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-              className="px-4 py-2 bg-neon-blue/80 text-white rounded-lg hover:bg-neon-blue transition flex items-center gap-2"
-            >
-              {isAutoPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-              {isAutoPlaying ? 'Pause' : 'Play'}
-            </button>
-            <button
-              onClick={exitTvMode}
-              className="px-4 py-2 bg-red-500/80 text-white rounded-lg hover:bg-red-500 transition"
-            >
-              Exit TV Mode
-            </button>
+        {/* Fixed TV Mode Header - No overlap */}
+        <div className="fixed top-0 left-0 right-0 z-50 bg-gaming-dark/90 backdrop-blur-sm border-b border-neon-blue/30">
+          <div className="flex justify-between items-center px-6 py-3">
+            <div className="flex items-center gap-3">
+              <Monitor className="h-5 w-5 text-neon-blue" />
+              <span className="text-neon-blue font-semibold text-sm">TV MODE ACTIVE</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+                className="px-3 py-2 bg-neon-blue/80 text-white rounded-lg hover:bg-neon-blue transition flex items-center gap-2 text-sm"
+              >
+                {isAutoPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                {isAutoPlaying ? 'Pause' : 'Play'}
+              </button>
+              <button
+                onClick={exitTvMode}
+                className="px-3 py-2 bg-red-500/80 text-white rounded-lg hover:bg-red-500 transition text-sm"
+              >
+                Exit TV Mode
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Carousel with smooth transitions */}
-        <div className="relative">
+        <div className="relative pt-16">
           <CarouselSlide slide={allSlides[currentSlide]} />
           
           {/* Slide Indicators */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
+          <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2">
             {allSlides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide ? 'bg-neon-pink shadow-lg' : 'bg-white/30'
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentSlide ? 'bg-neon-pink shadow-lg w-6' : 'bg-white/30'
                 }`}
               />
             ))}
+          </div>
+          
+          {/* Slide counter */}
+          <div className="fixed bottom-6 right-6 text-sm text-gray-400">
+            {currentSlide + 1} / {allSlides.length}
           </div>
         </div>
       </div>
