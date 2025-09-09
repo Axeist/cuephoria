@@ -14,44 +14,43 @@ const CafeMenu = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [showTVHeader, setShowTVHeader] = useState(false);
 
-  // News Ticker Component - Only for TV Mode
+  // Themed News Ticker Component - Matches gaming theme
   const NewsTicker = () => (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 border-t-4 border-white shadow-lg overflow-hidden">
-      <div className="relative h-14 flex items-center">
-        {/* Animated background pattern */}
-        <div className="absolute inset-0 bg-gradient-to-r from-red-600 via-yellow-500 via-orange-500 to-red-600 animate-pulse opacity-90"></div>
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-neon-blue via-neon-pink to-neon-blue border-t-2 border-neon-blue/50 shadow-2xl overflow-hidden">
+      <div className="relative h-12 flex items-center">
+        {/* Gaming-themed animated background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/20 via-neon-pink/20 to-neon-blue/20 animate-pulse"></div>
         
-        {/* Ticker content */}
-        <div className="relative z-10 flex items-center whitespace-nowrap animate-marquee">
-          <div className="flex items-center space-x-8 text-white font-bold text-2xl">
-            <span className="flex items-center space-x-2">
-              <Gift className="h-6 w-6 animate-bounce" />
-              <span>🎉 OPENING OFFER 🎉</span>
-            </span>
-            <span className="text-yellow-100">All Starters and Momos at Flat ₹99/-</span>
-            <span className="text-red-100">*Terms & Conditions Applied</span>
-            <span className="flex items-center space-x-2">
-              <Sparkles className="h-6 w-6 animate-spin" />
-              <span>Limited Time Only!</span>
+        {/* Seamless continuous ticker content */}
+        <div className="relative z-10 flex items-center whitespace-nowrap animate-seamless-scroll">
+          <div className="flex items-center text-white font-bold text-xl">
+            {/* First instance */}
+            <span className="flex items-center space-x-6">
+              <Gift className="h-5 w-5 animate-bounce text-neon-pink" />
+              <span className="text-neon-blue">🎉 OPENING OFFER 🎉</span>
+              <span className="text-white">All Starters and Momos at Flat ₹99/-</span>
+              <span className="text-neon-pink">*Terms & Conditions Applied</span>
+              <Sparkles className="h-5 w-5 animate-spin text-neon-blue" />
+              <span className="text-white">Limited Time Only!</span>
+              <span className="text-neon-pink mx-8">•</span>
             </span>
             
-            {/* Repeat the message for continuous scroll */}
-            <span className="flex items-center space-x-2 ml-16">
-              <Gift className="h-6 w-6 animate-bounce" />
-              <span>🎉 OPENING OFFER 🎉</span>
-            </span>
-            <span className="text-yellow-100">All Starters and Momos at Flat ₹99/-</span>
-            <span className="text-red-100">*Terms & Conditions Applied</span>
-            <span className="flex items-center space-x-2">
-              <Sparkles className="h-6 w-6 animate-spin" />
-              <span>Limited Time Only!</span>
+            {/* Second instance for seamless loop */}
+            <span className="flex items-center space-x-6">
+              <Gift className="h-5 w-5 animate-bounce text-neon-pink" />
+              <span className="text-neon-blue">🎉 OPENING OFFER 🎉</span>
+              <span className="text-white">All Starters and Momos at Flat ₹99/-</span>
+              <span className="text-neon-pink">*Terms & Conditions Applied</span>
+              <Sparkles className="h-5 w-5 animate-spin text-neon-blue" />
+              <span className="text-white">Limited Time Only!</span>
+              <span className="text-neon-pink mx-8">•</span>
             </span>
           </div>
         </div>
         
-        {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-red-600 to-transparent z-20"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-red-600 to-transparent z-20"></div>
+        {/* Gaming-themed fade edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-neon-blue to-transparent z-20"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-neon-blue to-transparent z-20"></div>
       </div>
     </div>
   );
@@ -429,9 +428,14 @@ const CafeMenu = () => {
     setIsAutoPlaying(true);
   }, []);
 
-  // Perfectly sized TV Mode Menu Card - No hover animation, better spacing
+  // Enhanced TV Mode Menu Card - Better alignment, prominent variants, subtle glow
   const TVMenuCard = ({ item, type = 'default' }) => (
-    <div className="bg-gaming-darker/95 border border-neon-blue/30 rounded-xl overflow-hidden shadow-xl transition-all duration-300" style={{ width: '420px', height: '400px' }}>
+    <div className="bg-gaming-darker/95 border border-neon-blue/40 rounded-xl overflow-hidden shadow-2xl transition-all duration-300 relative" 
+         style={{ width: '420px', height: '400px', boxShadow: '0 0 20px rgba(59, 130, 246, 0.3)' }}>
+      
+      {/* Subtle background glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 via-transparent to-neon-pink/5 rounded-xl"></div>
+      
       {/* Optimally sized Food Image */}
       {item.image && (
         <div className="relative h-40 overflow-hidden">
@@ -451,12 +455,12 @@ const CafeMenu = () => {
         </div>
       )}
       
-      <div className="p-3 relative" style={{ height: 'calc(400px - 160px)' }}>
-        {/* Title and Icon */}
+      <div className="p-3 relative z-10" style={{ height: 'calc(400px - 160px)' }}>
+        {/* Title and Icon - Better aligned */}
         <div className="flex items-start gap-2 mb-2">
           <span className="text-xl flex-shrink-0">{item.icon}</span>
           <div className="flex-1 min-w-0">
-            <h4 className="text-base font-bold text-white leading-tight mb-1 truncate">
+            <h4 className="text-base font-bold text-white leading-tight mb-1">
               {item.name}
             </h4>
             {item.quantity && (
@@ -468,13 +472,13 @@ const CafeMenu = () => {
           </div>
         </div>
         
-        {/* Description - Shorter for TV */}
+        {/* Description - Compact for TV */}
         <p className="text-gray-300 text-xs leading-relaxed mb-3 line-clamp-2">
           {item.tvDescription || item.description}
         </p>
         
-        {/* Prominent Pricing Section - Compact but visible */}
-        <div className="bg-gaming-accent/20 rounded-lg p-2 border border-neon-blue/20">
+        {/* Enhanced Pricing Section with better variant visibility */}
+        <div className="bg-gaming-accent/30 rounded-lg p-2 border border-neon-blue/30">
           {type === 'combo' ? (
             <>
               {/* Combo Pricing */}
@@ -485,14 +489,14 @@ const CafeMenu = () => {
                 <div className="text-2xl font-bold text-neon-pink mb-1">
                   ₹{item.discountedPrice}
                 </div>
-                <div className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs font-semibold">
+                <div className="bg-green-500/30 text-green-400 px-2 py-1 rounded text-xs font-semibold">
                   💰 Save ₹{item.originalPrice - item.discountedPrice}!
                 </div>
               </div>
               
               {item.hasMocktail && (
                 <div className="text-center">
-                  <span className="inline-block text-xs bg-neon-blue/20 text-neon-blue px-2 py-1 rounded-full">
+                  <span className="inline-block text-xs bg-neon-blue/30 text-neon-blue px-2 py-1 rounded-full">
                     🍹 Includes Mocktail
                   </span>
                 </div>
@@ -508,18 +512,18 @@ const CafeMenu = () => {
                 <div className="text-2xl font-bold text-neon-blue mb-1">
                   ₹{item.price}
                 </div>
-                <div className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs font-semibold">
+                <div className="bg-green-500/30 text-green-400 px-2 py-1 rounded text-xs font-semibold">
                   💰 Save ₹{item.originalPrice - item.price}!
                 </div>
               </div>
               
-              {/* Extra variants - More compact */}
+              {/* Prominent Extra Variants */}
               {item.periPeriPrice && (
-                <div className="bg-red-500/10 border border-red-500/20 rounded p-1 mb-1">
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-red-400 font-semibold">🌶️ Peri Peri</span>
+                <div className="bg-red-500/20 border border-red-500/40 rounded-lg p-2 mb-1 shadow-sm">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-red-300 font-bold">🌶️ Peri Peri Special</span>
                     <div className="text-right">
-                      <div className="line-through text-gray-400">₹{item.periPeriOriginalPrice}</div>
+                      <div className="text-xs line-through text-gray-400">₹{item.periPeriOriginalPrice}</div>
                       <div className="text-lg font-bold text-red-400">₹{item.periPeriPrice}</div>
                     </div>
                   </div>
@@ -527,11 +531,11 @@ const CafeMenu = () => {
               )}
               
               {item.schezwanPrice && (
-                <div className="bg-orange-500/10 border border-orange-500/20 rounded p-1">
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-orange-400 font-semibold">🔥 Schezwan</span>
+                <div className="bg-orange-500/20 border border-orange-500/40 rounded-lg p-2 shadow-sm">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-orange-300 font-bold">🔥 Schezwan Special</span>
                     <div className="text-right">
-                      <div className="line-through text-gray-400">₹{item.schezwanOriginalPrice}</div>
+                      <div className="text-xs line-through text-gray-400">₹{item.schezwanOriginalPrice}</div>
                       <div className="text-lg font-bold text-orange-400">₹{item.schezwanPrice}</div>
                     </div>
                   </div>
@@ -659,9 +663,9 @@ const CafeMenu = () => {
     </div>
   );
 
-  // TV Mode Carousel Slide - Perfect fit with better spacing
+  // TV Mode Carousel Slide - Perfect alignment
   const CarouselSlide = ({ slide }) => (
-    <div className="fixed inset-0 bg-gaming-darker flex flex-col" style={{ paddingTop: '80px', paddingBottom: '70px' }}>
+    <div className="fixed inset-0 bg-gaming-darker flex flex-col" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
       <div className="text-center mb-4">
         <h2 className="text-3xl md:text-4xl font-bold neon-text-blue mb-2">
           {slide.title}
@@ -669,15 +673,16 @@ const CafeMenu = () => {
         <div className="w-24 h-1 bg-gradient-to-r from-neon-pink to-neon-blue mx-auto rounded-full" />
       </div>
       
-      {/* Perfect 4x2 Grid Layout with better spacing */}
-      <div className="flex-1 flex items-center justify-center px-8">
-        <div className="grid grid-cols-4 gap-6" style={{ width: '1760px', height: '820px' }}>
+      {/* Perfect 4x2 Grid Layout with proper alignment */}
+      <div className="flex-1 flex items-center justify-center px-6">
+        <div className="grid grid-cols-4 gap-5" style={{ width: '1760px', height: '820px' }}>
           {slide.items.slice(0, 8).map((item, index) => (
-            <TVMenuCard 
-              key={index} 
-              item={item} 
-              type={slide.isCombo ? 'combo' : 'default'} 
-            />
+            <div key={index} className="flex justify-center items-center">
+              <TVMenuCard 
+                item={item} 
+                type={slide.isCombo ? 'combo' : 'default'} 
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -737,7 +742,7 @@ const CafeMenu = () => {
           <CarouselSlide slide={allSlides[currentSlide]} />
           
           {/* Slide Indicators */}
-          <div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 flex gap-2">
+          <div className="fixed bottom-16 left-1/2 transform -translate-x-1/2 flex gap-2">
             {allSlides.map((_, index) => (
               <button
                 key={index}
@@ -750,27 +755,41 @@ const CafeMenu = () => {
           </div>
           
           {/* Slide counter */}
-          <div className="fixed bottom-20 right-6 bg-gaming-darker/80 backdrop-blur-sm text-sm text-gray-300 px-3 py-1 rounded-lg">
+          <div className="fixed bottom-16 right-6 bg-gaming-darker/80 backdrop-blur-sm text-sm text-gray-300 px-3 py-1 rounded-lg">
             {currentSlide + 1} / {allSlides.length}
           </div>
         </div>
 
-        {/* News Ticker - Only in TV Mode */}
+        {/* Themed News Ticker - Matches gaming aesthetic */}
         <NewsTicker />
 
-        {/* Custom CSS for marquee animation */}
+        {/* Custom CSS for seamless marquee animation */}
         <style jsx>{`
-          @keyframes marquee {
+          @keyframes seamless-scroll {
             0% {
-              transform: translateX(100%);
+              transform: translateX(0%);
             }
             100% {
-              transform: translateX(-100%);
+              transform: translateX(-50%);
             }
           }
           
-          .animate-marquee {
-            animation: marquee 20s linear infinite;
+          .animate-seamless-scroll {
+            animation: seamless-scroll 25s linear infinite;
+          }
+          
+          /* Gaming theme colors */
+          .neon-text-blue {
+            color: #3b82f6;
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+          }
+          
+          .neon-blue {
+            color: #3b82f6;
+          }
+          
+          .neon-pink {
+            color: #ec4899;
           }
         `}</style>
       </div>
