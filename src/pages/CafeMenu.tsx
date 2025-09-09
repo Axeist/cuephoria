@@ -14,7 +14,49 @@ const CafeMenu = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [showTVHeader, setShowTVHeader] = useState(false);
 
-  // Enhanced Menu Data with detailed descriptions (keeping all existing data unchanged)
+  // News Ticker Component - Only for TV Mode
+  const NewsTicker = () => (
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 border-t-4 border-white shadow-lg overflow-hidden">
+      <div className="relative h-14 flex items-center">
+        {/* Animated background pattern */}
+        <div className="absolute inset-0 bg-gradient-to-r from-red-600 via-yellow-500 via-orange-500 to-red-600 animate-pulse opacity-90"></div>
+        
+        {/* Ticker content */}
+        <div className="relative z-10 flex items-center whitespace-nowrap animate-marquee">
+          <div className="flex items-center space-x-8 text-white font-bold text-2xl">
+            <span className="flex items-center space-x-2">
+              <Gift className="h-6 w-6 animate-bounce" />
+              <span>🎉 OPENING OFFER 🎉</span>
+            </span>
+            <span className="text-yellow-100">All Starters and Momos at Flat ₹99/-</span>
+            <span className="text-red-100">*Terms & Conditions Applied</span>
+            <span className="flex items-center space-x-2">
+              <Sparkles className="h-6 w-6 animate-spin" />
+              <span>Limited Time Only!</span>
+            </span>
+            
+            {/* Repeat the message for continuous scroll */}
+            <span className="flex items-center space-x-2 ml-16">
+              <Gift className="h-6 w-6 animate-bounce" />
+              <span>🎉 OPENING OFFER 🎉</span>
+            </span>
+            <span className="text-yellow-100">All Starters and Momos at Flat ₹99/-</span>
+            <span className="text-red-100">*Terms & Conditions Applied</span>
+            <span className="flex items-center space-x-2">
+              <Sparkles className="h-6 w-6 animate-spin" />
+              <span>Limited Time Only!</span>
+            </span>
+          </div>
+        </div>
+        
+        {/* Fade edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-red-600 to-transparent z-20"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-red-600 to-transparent z-20"></div>
+      </div>
+    </div>
+  );
+
+  // Enhanced Menu Data (keeping all existing data unchanged)
   const menuData = {
     savorySnacks: [
       {
@@ -387,12 +429,12 @@ const CafeMenu = () => {
     setIsAutoPlaying(true);
   }, []);
 
-  // Perfectly sized TV Mode Menu Card - Fits exactly on screen
+  // Perfectly sized TV Mode Menu Card - No hover animation, better spacing
   const TVMenuCard = ({ item, type = 'default' }) => (
-    <div className="bg-gaming-darker/95 border border-neon-blue/30 rounded-xl overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105 hover:border-neon-pink/50" style={{ width: '440px', height: '420px' }}>
+    <div className="bg-gaming-darker/95 border border-neon-blue/30 rounded-xl overflow-hidden shadow-xl transition-all duration-300" style={{ width: '420px', height: '400px' }}>
       {/* Optimally sized Food Image */}
       {item.image && (
-        <div className="relative h-44 overflow-hidden">
+        <div className="relative h-40 overflow-hidden">
           <img 
             src={item.image} 
             alt={item.name}
@@ -409,7 +451,7 @@ const CafeMenu = () => {
         </div>
       )}
       
-      <div className="p-3 relative" style={{ height: 'calc(420px - 176px)' }}>
+      <div className="p-3 relative" style={{ height: 'calc(400px - 160px)' }}>
         {/* Title and Icon */}
         <div className="flex items-start gap-2 mb-2">
           <span className="text-xl flex-shrink-0">{item.icon}</span>
@@ -617,9 +659,9 @@ const CafeMenu = () => {
     </div>
   );
 
-  // TV Mode Carousel Slide - Perfect fit with no scroll
+  // TV Mode Carousel Slide - Perfect fit with better spacing
   const CarouselSlide = ({ slide }) => (
-    <div className="fixed inset-0 bg-gaming-darker flex flex-col" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+    <div className="fixed inset-0 bg-gaming-darker flex flex-col" style={{ paddingTop: '80px', paddingBottom: '70px' }}>
       <div className="text-center mb-4">
         <h2 className="text-3xl md:text-4xl font-bold neon-text-blue mb-2">
           {slide.title}
@@ -627,9 +669,9 @@ const CafeMenu = () => {
         <div className="w-24 h-1 bg-gradient-to-r from-neon-pink to-neon-blue mx-auto rounded-full" />
       </div>
       
-      {/* Perfect 4x2 Grid Layout - No gaps, exact fit */}
+      {/* Perfect 4x2 Grid Layout with better spacing */}
       <div className="flex-1 flex items-center justify-center px-8">
-        <div className="grid grid-cols-4 gap-4" style={{ width: '1824px', height: '860px' }}>
+        <div className="grid grid-cols-4 gap-6" style={{ width: '1760px', height: '820px' }}>
           {slide.items.slice(0, 8).map((item, index) => (
             <TVMenuCard 
               key={index} 
@@ -695,7 +737,7 @@ const CafeMenu = () => {
           <CarouselSlide slide={allSlides[currentSlide]} />
           
           {/* Slide Indicators */}
-          <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+          <div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 flex gap-2">
             {allSlides.map((_, index) => (
               <button
                 key={index}
@@ -708,10 +750,29 @@ const CafeMenu = () => {
           </div>
           
           {/* Slide counter */}
-          <div className="fixed bottom-4 right-6 bg-gaming-darker/80 backdrop-blur-sm text-sm text-gray-300 px-3 py-1 rounded-lg">
+          <div className="fixed bottom-20 right-6 bg-gaming-darker/80 backdrop-blur-sm text-sm text-gray-300 px-3 py-1 rounded-lg">
             {currentSlide + 1} / {allSlides.length}
           </div>
         </div>
+
+        {/* News Ticker - Only in TV Mode */}
+        <NewsTicker />
+
+        {/* Custom CSS for marquee animation */}
+        <style jsx>{`
+          @keyframes marquee {
+            0% {
+              transform: translateX(100%);
+            }
+            100% {
+              transform: translateX(-100%);
+            }
+          }
+          
+          .animate-marquee {
+            animation: marquee 20s linear infinite;
+          }
+        `}</style>
       </div>
     );
   }
