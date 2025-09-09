@@ -12,6 +12,7 @@ const CafeMenu = () => {
   const [showPin, setShowPin] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [showTVHeader, setShowTVHeader] = useState(false);
 
   // Enhanced Menu Data with detailed descriptions
   const menuData = {
@@ -188,28 +189,6 @@ const CafeMenu = () => {
         description: "A wholesome vegetable roll featuring a crispy vegetable patty wrapped in soft, fresh roti with crunchy lettuce, onions, and creamy mayo duo sauce. This portable snack is perfect for on-the-go gaming sessions, offering a satisfying combination of textures and flavors that won't weigh you down during intense gameplay.",
         tvDescription: "Vegetable patty wrapped in fresh roti with lettuce and mayo duo. Perfect portable snack.",
         icon: "🌯",
-        image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        name: "Peri Peri Veggie Roll-Up",
-        original: "Veg Roll + Peri Peri",
-        originalPrice: 150,
-        price: 105,
-        quantity: "1 roll",
-        description: "An elevated version of our classic veggie roll, featuring the same crispy vegetable patty but with an added kick of authentic Peri Peri seasoning that transforms the entire flavor profile. The Portuguese-inspired spice blend adds heat and complexity, making this roll perfect for those who want their vegetables with some serious attitude.",
-        tvDescription: "Spicy veggie roll with authentic Peri Peri seasoning. Portuguese-inspired heat and complexity.",
-        icon: "🌯",
-        image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        name: "Paneer Wrap Delight",
-        original: "Paneer Roll (Veg)",
-        originalPrice: 160,
-        price: 120,
-        quantity: "1 roll",
-        description: "Tender, marinated paneer cubes grilled to perfection and wrapped in soft roti with fresh vegetables and creamy mayo duo sauce. The paneer is seasoned with aromatic Indian spices that complement its natural creamy texture, creating a satisfying and protein-rich wrap that's both filling and flavorful for vegetarian gamers.",
-        tvDescription: "Grilled paneer cubes in soft roti with fresh vegetables and mayo duo sauce.",
-        icon: "🧀",
         image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
       }
     ],
@@ -408,72 +387,70 @@ const CafeMenu = () => {
     setIsAutoPlaying(true);
   }, []);
 
-  // Improved TV Mode Menu Card - Better layout and pricing
+  // Enhanced TV Mode Menu Card - Bigger images, better pricing
   const TVMenuCard = ({ item, type = 'default' }) => (
-    <div className="bg-gaming-darker/95 border border-neon-blue/30 rounded-xl overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105 hover:border-neon-pink/50 relative">
-      {/* Larger Food Image */}
+    <div className="bg-gaming-darker/95 border border-neon-blue/30 rounded-xl overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105 hover:border-neon-pink/50">
+      {/* Bigger Food Image */}
       {item.image && (
         <div className="relative h-48 overflow-hidden">
           <img 
             src={item.image} 
             alt={item.name}
-            className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+            className="w-full h-full object-cover"
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker/90 via-transparent to-transparent" />
           
-          {/* Opening Offer Badge - Top Left */}
-          <div className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1.5 rounded-full text-sm font-bold flex items-center gap-1 shadow-lg animate-pulse">
+          {/* Opening Offer Badge - Better positioned */}
+          <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg">
             <Gift className="h-3 w-3" />
             OPENING OFFER
           </div>
         </div>
       )}
       
-      {/* Content Section */}
-      <div className="p-4">
-        {/* Header with Icon and Title */}
-        <div className="flex items-start gap-3 mb-3">
-          <span className="text-2xl mt-1 animate-bounce">{item.icon}</span>
+      <div className="p-4 relative">
+        {/* Title and Icon */}
+        <div className="flex items-start gap-2 mb-3">
+          <span className="text-2xl flex-shrink-0">{item.icon}</span>
           <div className="flex-1 min-w-0">
             <h4 className="text-lg font-bold text-white leading-tight mb-1">
               {item.name}
             </h4>
             {item.quantity && (
-              <p className="text-sm text-neon-blue font-medium">{item.quantity}</p>
+              <p className="text-sm text-neon-blue mb-1">{item.quantity}</p>
             )}
             {item.suitableFor && (
-              <p className="text-sm text-neon-pink font-medium">👥 {item.suitableFor}</p>
+              <p className="text-sm text-neon-pink">👥 {item.suitableFor}</p>
             )}
           </div>
         </div>
         
-        {/* Description */}
-        <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">
+        {/* Description - Shorter for TV */}
+        <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-2">
           {item.tvDescription || item.description}
         </p>
         
-        {/* Enhanced Pricing Section */}
-        <div className="space-y-3">
+        {/* Prominent Pricing Section */}
+        <div className="bg-gaming-accent/20 rounded-lg p-3 border border-neon-blue/20">
           {type === 'combo' ? (
             <>
-              {/* Main Price Display */}
-              <div className="bg-gradient-to-r from-neon-pink/20 to-neon-blue/20 p-4 rounded-lg border border-neon-pink/30">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-lg text-gray-400 line-through font-semibold">₹{item.originalPrice}</span>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold text-neon-blue">₹{item.discountedPrice}</div>
-                  </div>
+              {/* Combo Pricing */}
+              <div className="text-center mb-3">
+                <div className="text-sm text-gray-400 line-through mb-1">
+                  Regular: ₹{item.originalPrice}
                 </div>
-                <div className="bg-green-500/30 text-green-300 px-3 py-1 rounded-full text-sm font-bold text-center">
-                  💰 SAVE ₹{item.originalPrice - item.discountedPrice}!
+                <div className="text-3xl font-bold text-neon-pink mb-2">
+                  ₹{item.discountedPrice}
+                </div>
+                <div className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-sm font-semibold">
+                  💰 Save ₹{item.originalPrice - item.discountedPrice}!
                 </div>
               </div>
               
-              {/* Combo Details */}
               {item.hasMocktail && (
                 <div className="text-center">
-                  <span className="inline-block bg-neon-blue/20 text-neon-blue px-3 py-1 rounded-full text-sm font-semibold">
+                  <span className="inline-block text-xs bg-neon-blue/20 text-neon-blue px-2 py-1 rounded-full">
                     🍹 Includes Mocktail
                   </span>
                 </div>
@@ -481,58 +458,45 @@ const CafeMenu = () => {
             </>
           ) : (
             <>
-              {/* Main Price Display */}
-              <div className="bg-gradient-to-r from-neon-pink/20 to-neon-blue/20 p-4 rounded-lg border border-neon-pink/30">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-lg text-gray-400 line-through font-semibold">₹{item.originalPrice}</span>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold text-neon-blue">₹{item.price}</div>
-                  </div>
+              {/* Regular Item Pricing */}
+              <div className="text-center mb-3">
+                <div className="text-sm text-gray-400 line-through mb-1">
+                  Regular: ₹{item.originalPrice}
                 </div>
-                <div className="bg-green-500/30 text-green-300 px-3 py-1 rounded-full text-sm font-bold text-center">
-                  💰 SAVE ₹{item.originalPrice - item.price}!
+                <div className="text-3xl font-bold text-neon-blue mb-2">
+                  ₹{item.price}
+                </div>
+                <div className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-sm font-semibold">
+                  💰 Save ₹{item.originalPrice - item.price}!
                 </div>
               </div>
               
-              {/* Extra variants */}
-              <div className="space-y-2">
-                {item.periPeriPrice && (
-                  <div className="bg-red-500/20 p-3 rounded-lg border border-red-500/30">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-red-400 font-semibold flex items-center gap-1">
-                        🌶️ Peri Peri Option
-                      </span>
-                      <div className="text-right">
-                        <div className="text-xs line-through text-gray-400">₹{item.periPeriOriginalPrice}</div>
-                        <div className="text-xl font-bold text-red-400">₹{item.periPeriPrice}</div>
-                      </div>
+              {/* Extra variants - More prominent */}
+              {item.periPeriPrice && (
+                <div className="bg-red-500/10 border border-red-500/20 rounded p-2 mb-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-red-400 font-semibold">🌶️ Peri Peri</span>
+                    <div className="text-right">
+                      <div className="text-xs line-through text-gray-400">₹{item.periPeriOriginalPrice}</div>
+                      <div className="text-xl font-bold text-red-400">₹{item.periPeriPrice}</div>
                     </div>
                   </div>
-                )}
-                
-                {item.schezwanPrice && (
-                  <div className="bg-orange-500/20 p-3 rounded-lg border border-orange-500/30">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-orange-400 font-semibold flex items-center gap-1">
-                        🔥 Schezwan Option
-                      </span>
-                      <div className="text-right">
-                        <div className="text-xs line-through text-gray-400">₹{item.schezwanOriginalPrice}</div>
-                        <div className="text-xl font-bold text-orange-400">₹{item.schezwanPrice}</div>
-                      </div>
+                </div>
+              )}
+              
+              {item.schezwanPrice && (
+                <div className="bg-orange-500/10 border border-orange-500/20 rounded p-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-orange-400 font-semibold">🔥 Schezwan</span>
+                    <div className="text-right">
+                      <div className="text-xs line-through text-gray-400">₹{item.schezwanOriginalPrice}</div>
+                      <div className="text-xl font-bold text-orange-400">₹{item.schezwanPrice}</div>
                     </div>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </>
           )}
-        </div>
-      </div>
-      
-      {/* Floating Price Badge - Bottom Right */}
-      <div className="absolute bottom-3 right-3 bg-neon-pink text-white px-3 py-2 rounded-full shadow-lg">
-        <div className="text-lg font-bold">
-          ₹{type === 'combo' ? item.discountedPrice : item.price}
         </div>
       </div>
     </div>
@@ -653,9 +617,9 @@ const CafeMenu = () => {
     </div>
   );
 
-  // TV Mode Carousel Slide with 4x2 grid (8 items max)
+  // TV Mode Carousel Slide - Exactly 8 items in 4x2 grid
   const CarouselSlide = ({ slide }) => (
-    <div className="min-h-screen bg-gaming-darker px-6 py-20 flex flex-col">
+    <div className="min-h-screen bg-gaming-darker px-8 py-20 flex flex-col">
       <div className="text-center mb-8">
         <h2 className="text-4xl md:text-5xl font-bold neon-text-blue mb-4">
           {slide.title}
@@ -663,9 +627,9 @@ const CafeMenu = () => {
         <div className="w-32 h-1 bg-gradient-to-r from-neon-pink to-neon-blue mx-auto rounded-full" />
       </div>
       
-      {/* 4x2 Grid Layout for TV (8 items max) with better spacing */}
-      <div className="grid grid-cols-4 gap-4 flex-1 max-h-[75vh]">
-        {slide.items.map((item, index) => (
+      {/* Strict 4x2 Grid Layout for TV - Only 8 items */}
+      <div className="grid grid-cols-4 gap-6 flex-1 max-w-screen-xl mx-auto">
+        {slide.items.slice(0, 8).map((item, index) => (
           <TVMenuCard 
             key={index} 
             item={item} 
@@ -678,14 +642,18 @@ const CafeMenu = () => {
 
   if (tvMode) {
     return (
-      <div className="min-h-screen bg-gaming-dark text-white relative overflow-hidden">
+      <div className="min-h-screen bg-gaming-dark text-white relative overflow-hidden"
+           onMouseMove={() => setShowTVHeader(true)}
+           onMouseLeave={() => setShowTVHeader(false)}>
         <SEOMetadata 
           title="Cafe Menu TV Display | Cuephoria Gaming Lounge Trichy" 
           description="Digital menu display for Cuephoria - Gaming cafe menu in TV mode"
         />
         
-        {/* Fixed TV Mode Header - No overlap */}
-        <div className="fixed top-0 left-0 right-0 z-50 bg-gaming-dark/90 backdrop-blur-sm border-b border-neon-blue/30">
+        {/* Auto-hiding Collapsible TV Header */}
+        <div className={`fixed top-0 left-0 right-0 z-50 bg-gaming-dark/95 backdrop-blur-sm border-b border-neon-blue/30 transition-transform duration-300 ${
+          showTVHeader ? 'transform translate-y-0' : 'transform -translate-y-full'
+        }`}>
           <div className="flex justify-between items-center px-6 py-3">
             <div className="flex items-center gap-3">
               <Monitor className="h-5 w-5 text-neon-blue" />
@@ -694,14 +662,14 @@ const CafeMenu = () => {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                className="px-3 py-2 bg-neon-blue/80 text-white rounded-lg hover:bg-neon-blue transition flex items-center gap-2 text-sm"
+                className="px-4 py-2 bg-neon-blue/80 text-white rounded-lg hover:bg-neon-blue transition flex items-center gap-2 text-sm font-medium"
               >
                 {isAutoPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
                 {isAutoPlaying ? 'Pause' : 'Play'}
               </button>
               <button
                 onClick={exitTvMode}
-                className="px-3 py-2 bg-red-500/80 text-white rounded-lg hover:bg-red-500 transition text-sm"
+                className="px-4 py-2 bg-red-500/80 text-white rounded-lg hover:bg-red-500 transition text-sm font-medium"
               >
                 Exit TV Mode
               </button>
@@ -710,7 +678,7 @@ const CafeMenu = () => {
         </div>
 
         {/* Carousel with smooth transitions */}
-        <div className="relative pt-16">
+        <div className="relative">
           <CarouselSlide slide={allSlides[currentSlide]} />
           
           {/* Slide Indicators */}
@@ -719,15 +687,15 @@ const CafeMenu = () => {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentSlide ? 'bg-neon-pink shadow-lg w-6' : 'bg-white/30'
+                className={`h-3 rounded-full transition-all duration-300 ${
+                  index === currentSlide ? 'bg-neon-pink shadow-lg w-8' : 'bg-white/30 w-3'
                 }`}
               />
             ))}
           </div>
           
           {/* Slide counter */}
-          <div className="fixed bottom-6 right-6 text-sm text-gray-400">
+          <div className="fixed bottom-6 right-6 bg-gaming-darker/80 backdrop-blur-sm text-sm text-gray-300 px-3 py-1 rounded-lg">
             {currentSlide + 1} / {allSlides.length}
           </div>
         </div>
