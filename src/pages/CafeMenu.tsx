@@ -408,96 +408,131 @@ const CafeMenu = () => {
     setIsAutoPlaying(true);
   }, []);
 
-  // TV Mode Menu Card - Compact version
+  // Improved TV Mode Menu Card - Better layout and pricing
   const TVMenuCard = ({ item, type = 'default' }) => (
-    <div className="bg-gaming-darker/95 border border-neon-blue/30 rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105">
-      {/* Food Image - Smaller for TV */}
+    <div className="bg-gaming-darker/95 border border-neon-blue/30 rounded-xl overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105 hover:border-neon-pink/50 relative">
+      {/* Larger Food Image */}
       {item.image && (
-        <div className="relative h-32 overflow-hidden">
+        <div className="relative h-48 overflow-hidden">
           <img 
             src={item.image} 
             alt={item.name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker/90 via-transparent to-transparent" />
           
-          {/* Opening Offer Badge */}
-          <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-            <Gift className="h-2 w-2" />
+          {/* Opening Offer Badge - Top Left */}
+          <div className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1.5 rounded-full text-sm font-bold flex items-center gap-1 shadow-lg animate-pulse">
+            <Gift className="h-3 w-3" />
             OPENING OFFER
-          </div>
-          
-          {/* Price Badge */}
-          <div className="absolute top-2 right-2 bg-neon-pink/90 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-center">
-            {type === 'combo' ? (
-              <>
-                <div className="text-xs line-through text-gray-200">₹{item.originalPrice}</div>
-                <div className="text-sm font-bold">₹{item.discountedPrice}</div>
-              </>
-            ) : (
-              <>
-                <div className="text-xs line-through text-gray-200">₹{item.originalPrice}</div>
-                <div className="text-sm font-bold">₹{item.price}</div>
-              </>
-            )}
           </div>
         </div>
       )}
       
-      <div className="p-3">
-        <div className="flex items-start gap-2 mb-2">
-          <span className="text-lg mt-0.5">{item.icon}</span>
+      {/* Content Section */}
+      <div className="p-4">
+        {/* Header with Icon and Title */}
+        <div className="flex items-start gap-3 mb-3">
+          <span className="text-2xl mt-1 animate-bounce">{item.icon}</span>
           <div className="flex-1 min-w-0">
-            <h4 className="text-sm font-semibold text-white leading-tight mb-1 truncate">
+            <h4 className="text-lg font-bold text-white leading-tight mb-1">
               {item.name}
             </h4>
             {item.quantity && (
-              <p className="text-xs text-neon-blue mb-1">{item.quantity}</p>
+              <p className="text-sm text-neon-blue font-medium">{item.quantity}</p>
             )}
             {item.suitableFor && (
-              <p className="text-xs text-neon-pink mb-1">👥 {item.suitableFor}</p>
+              <p className="text-sm text-neon-pink font-medium">👥 {item.suitableFor}</p>
             )}
           </div>
         </div>
         
-        <p className="text-gray-300 text-xs leading-relaxed mb-2 line-clamp-2">
+        {/* Description */}
+        <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">
           {item.tvDescription || item.description}
         </p>
         
-        {/* Pricing Details - Compact */}
-        <div className="space-y-1">
+        {/* Enhanced Pricing Section */}
+        <div className="space-y-3">
           {type === 'combo' ? (
-            <div className="bg-gaming-accent/10 p-2 rounded text-center">
-              <div className="text-xs text-green-400 font-semibold mb-1">
-                💰 Save ₹{item.originalPrice - item.discountedPrice}!
+            <>
+              {/* Main Price Display */}
+              <div className="bg-gradient-to-r from-neon-pink/20 to-neon-blue/20 p-4 rounded-lg border border-neon-pink/30">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-lg text-gray-400 line-through font-semibold">₹{item.originalPrice}</span>
+                  <div className="text-right">
+                    <div className="text-3xl font-bold text-neon-blue">₹{item.discountedPrice}</div>
+                  </div>
+                </div>
+                <div className="bg-green-500/30 text-green-300 px-3 py-1 rounded-full text-sm font-bold text-center">
+                  💰 SAVE ₹{item.originalPrice - item.discountedPrice}!
+                </div>
               </div>
+              
+              {/* Combo Details */}
               {item.hasMocktail && (
-                <span className="inline-block text-xs bg-neon-blue/20 text-neon-blue px-2 py-0.5 rounded-full">
-                  🍹 Includes Mocktail
-                </span>
+                <div className="text-center">
+                  <span className="inline-block bg-neon-blue/20 text-neon-blue px-3 py-1 rounded-full text-sm font-semibold">
+                    🍹 Includes Mocktail
+                  </span>
+                </div>
               )}
-            </div>
+            </>
           ) : (
-            <div className="bg-gaming-accent/10 p-2 rounded text-center">
-              <div className="text-xs text-green-400 font-semibold mb-1">
-                💰 Save ₹{item.originalPrice - item.price}!
+            <>
+              {/* Main Price Display */}
+              <div className="bg-gradient-to-r from-neon-pink/20 to-neon-blue/20 p-4 rounded-lg border border-neon-pink/30">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-lg text-gray-400 line-through font-semibold">₹{item.originalPrice}</span>
+                  <div className="text-right">
+                    <div className="text-3xl font-bold text-neon-blue">₹{item.price}</div>
+                  </div>
+                </div>
+                <div className="bg-green-500/30 text-green-300 px-3 py-1 rounded-full text-sm font-bold text-center">
+                  💰 SAVE ₹{item.originalPrice - item.price}!
+                </div>
               </div>
               
-              {/* Extra variants - Compact */}
-              {item.periPeriPrice && (
-                <div className="text-xs text-red-400 mb-1">
-                  🌶️ Peri Peri: ₹{item.periPeriPrice}
-                </div>
-              )}
-              
-              {item.schezwanPrice && (
-                <div className="text-xs text-orange-400">
-                  🔥 Schezwan: ₹{item.schezwanPrice}
-                </div>
-              )}
-            </div>
+              {/* Extra variants */}
+              <div className="space-y-2">
+                {item.periPeriPrice && (
+                  <div className="bg-red-500/20 p-3 rounded-lg border border-red-500/30">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-red-400 font-semibold flex items-center gap-1">
+                        🌶️ Peri Peri Option
+                      </span>
+                      <div className="text-right">
+                        <div className="text-xs line-through text-gray-400">₹{item.periPeriOriginalPrice}</div>
+                        <div className="text-xl font-bold text-red-400">₹{item.periPeriPrice}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                {item.schezwanPrice && (
+                  <div className="bg-orange-500/20 p-3 rounded-lg border border-orange-500/30">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-orange-400 font-semibold flex items-center gap-1">
+                        🔥 Schezwan Option
+                      </span>
+                      <div className="text-right">
+                        <div className="text-xs line-through text-gray-400">₹{item.schezwanOriginalPrice}</div>
+                        <div className="text-xl font-bold text-orange-400">₹{item.schezwanPrice}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </>
           )}
+        </div>
+      </div>
+      
+      {/* Floating Price Badge - Bottom Right */}
+      <div className="absolute bottom-3 right-3 bg-neon-pink text-white px-3 py-2 rounded-full shadow-lg">
+        <div className="text-lg font-bold">
+          ₹{type === 'combo' ? item.discountedPrice : item.price}
         </div>
       </div>
     </div>
@@ -620,7 +655,7 @@ const CafeMenu = () => {
 
   // TV Mode Carousel Slide with 4x2 grid (8 items max)
   const CarouselSlide = ({ slide }) => (
-    <div className="min-h-screen bg-gaming-darker px-8 py-20 flex flex-col">
+    <div className="min-h-screen bg-gaming-darker px-6 py-20 flex flex-col">
       <div className="text-center mb-8">
         <h2 className="text-4xl md:text-5xl font-bold neon-text-blue mb-4">
           {slide.title}
@@ -628,8 +663,8 @@ const CafeMenu = () => {
         <div className="w-32 h-1 bg-gradient-to-r from-neon-pink to-neon-blue mx-auto rounded-full" />
       </div>
       
-      {/* 4x2 Grid Layout for TV (8 items max) */}
-      <div className="grid grid-cols-4 gap-6 flex-1 max-h-[70vh]">
+      {/* 4x2 Grid Layout for TV (8 items max) with better spacing */}
+      <div className="grid grid-cols-4 gap-4 flex-1 max-h-[75vh]">
         {slide.items.map((item, index) => (
           <TVMenuCard 
             key={index} 
