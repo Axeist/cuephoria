@@ -9,6 +9,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import BookingLanding from "./pages/BookingLanding";
+import CafeMenu from "./pages/CafeMenu";  // <-- Added import for CafeMenu
 
 // Blog imports
 import Blog from "./pages/Blog";
@@ -25,7 +26,6 @@ import BlogPost10 from "./pages/BlogPost10";
 
 const App = () => {
   const queryClient = new QueryClient();
-  
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -36,6 +36,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/book" element={<BookingLanding />} />
+            <Route path="/cafemenu" element={<CafeMenu />} />  {/* <-- Added route here */}
             
             {/* Blog Routes */}
             <Route path="/blog" element={<Blog />} />
@@ -49,7 +50,7 @@ const App = () => {
             <Route path="/blog/nit99-happy-hours" element={<BlogPost8 />} />
             <Route path="/blog/nit-trichy-gaming-culture" element={<BlogPost9 />} />
             <Route path="/blog/student-stress-relief-gaming" element={<BlogPost10 />} />
-            
+
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -58,5 +59,4 @@ const App = () => {
     </QueryClientProvider>
   );
 };
-
 export default App;
