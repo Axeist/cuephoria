@@ -14,7 +14,7 @@ const CafeMenu = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [showTVHeader, setShowTVHeader] = useState(false);
 
-  // Enhanced Menu Data with detailed descriptions
+  // Enhanced Menu Data with detailed descriptions (keeping all existing data unchanged)
   const menuData = {
     savorySnacks: [
       {
@@ -387,12 +387,12 @@ const CafeMenu = () => {
     setIsAutoPlaying(true);
   }, []);
 
-  // Enhanced TV Mode Menu Card - Bigger images, better pricing
+  // Perfectly sized TV Mode Menu Card - Fits exactly on screen
   const TVMenuCard = ({ item, type = 'default' }) => (
-    <div className="bg-gaming-darker/95 border border-neon-blue/30 rounded-xl overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105 hover:border-neon-pink/50">
-      {/* Bigger Food Image */}
+    <div className="bg-gaming-darker/95 border border-neon-blue/30 rounded-xl overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105 hover:border-neon-pink/50" style={{ width: '440px', height: '420px' }}>
+      {/* Optimally sized Food Image */}
       {item.image && (
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative h-44 overflow-hidden">
           <img 
             src={item.image} 
             alt={item.name}
@@ -402,48 +402,48 @@ const CafeMenu = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker/90 via-transparent to-transparent" />
           
           {/* Opening Offer Badge - Better positioned */}
-          <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg">
+          <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg">
             <Gift className="h-3 w-3" />
             OPENING OFFER
           </div>
         </div>
       )}
       
-      <div className="p-4 relative">
+      <div className="p-3 relative" style={{ height: 'calc(420px - 176px)' }}>
         {/* Title and Icon */}
-        <div className="flex items-start gap-2 mb-3">
-          <span className="text-2xl flex-shrink-0">{item.icon}</span>
+        <div className="flex items-start gap-2 mb-2">
+          <span className="text-xl flex-shrink-0">{item.icon}</span>
           <div className="flex-1 min-w-0">
-            <h4 className="text-lg font-bold text-white leading-tight mb-1">
+            <h4 className="text-base font-bold text-white leading-tight mb-1 truncate">
               {item.name}
             </h4>
             {item.quantity && (
-              <p className="text-sm text-neon-blue mb-1">{item.quantity}</p>
+              <p className="text-xs text-neon-blue mb-1">{item.quantity}</p>
             )}
             {item.suitableFor && (
-              <p className="text-sm text-neon-pink">👥 {item.suitableFor}</p>
+              <p className="text-xs text-neon-pink">👥 {item.suitableFor}</p>
             )}
           </div>
         </div>
         
         {/* Description - Shorter for TV */}
-        <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-2">
+        <p className="text-gray-300 text-xs leading-relaxed mb-3 line-clamp-2">
           {item.tvDescription || item.description}
         </p>
         
-        {/* Prominent Pricing Section */}
-        <div className="bg-gaming-accent/20 rounded-lg p-3 border border-neon-blue/20">
+        {/* Prominent Pricing Section - Compact but visible */}
+        <div className="bg-gaming-accent/20 rounded-lg p-2 border border-neon-blue/20">
           {type === 'combo' ? (
             <>
               {/* Combo Pricing */}
-              <div className="text-center mb-3">
-                <div className="text-sm text-gray-400 line-through mb-1">
+              <div className="text-center mb-2">
+                <div className="text-xs text-gray-400 line-through mb-1">
                   Regular: ₹{item.originalPrice}
                 </div>
-                <div className="text-3xl font-bold text-neon-pink mb-2">
+                <div className="text-2xl font-bold text-neon-pink mb-1">
                   ₹{item.discountedPrice}
                 </div>
-                <div className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-sm font-semibold">
+                <div className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs font-semibold">
                   💰 Save ₹{item.originalPrice - item.discountedPrice}!
                 </div>
               </div>
@@ -459,38 +459,38 @@ const CafeMenu = () => {
           ) : (
             <>
               {/* Regular Item Pricing */}
-              <div className="text-center mb-3">
-                <div className="text-sm text-gray-400 line-through mb-1">
+              <div className="text-center mb-2">
+                <div className="text-xs text-gray-400 line-through mb-1">
                   Regular: ₹{item.originalPrice}
                 </div>
-                <div className="text-3xl font-bold text-neon-blue mb-2">
+                <div className="text-2xl font-bold text-neon-blue mb-1">
                   ₹{item.price}
                 </div>
-                <div className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-sm font-semibold">
+                <div className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs font-semibold">
                   💰 Save ₹{item.originalPrice - item.price}!
                 </div>
               </div>
               
-              {/* Extra variants - More prominent */}
+              {/* Extra variants - More compact */}
               {item.periPeriPrice && (
-                <div className="bg-red-500/10 border border-red-500/20 rounded p-2 mb-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-red-400 font-semibold">🌶️ Peri Peri</span>
+                <div className="bg-red-500/10 border border-red-500/20 rounded p-1 mb-1">
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="text-red-400 font-semibold">🌶️ Peri Peri</span>
                     <div className="text-right">
-                      <div className="text-xs line-through text-gray-400">₹{item.periPeriOriginalPrice}</div>
-                      <div className="text-xl font-bold text-red-400">₹{item.periPeriPrice}</div>
+                      <div className="line-through text-gray-400">₹{item.periPeriOriginalPrice}</div>
+                      <div className="text-lg font-bold text-red-400">₹{item.periPeriPrice}</div>
                     </div>
                   </div>
                 </div>
               )}
               
               {item.schezwanPrice && (
-                <div className="bg-orange-500/10 border border-orange-500/20 rounded p-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-orange-400 font-semibold">🔥 Schezwan</span>
+                <div className="bg-orange-500/10 border border-orange-500/20 rounded p-1">
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="text-orange-400 font-semibold">🔥 Schezwan</span>
                     <div className="text-right">
-                      <div className="text-xs line-through text-gray-400">₹{item.schezwanOriginalPrice}</div>
-                      <div className="text-xl font-bold text-orange-400">₹{item.schezwanPrice}</div>
+                      <div className="line-through text-gray-400">₹{item.schezwanOriginalPrice}</div>
+                      <div className="text-lg font-bold text-orange-400">₹{item.schezwanPrice}</div>
                     </div>
                   </div>
                 </div>
@@ -617,25 +617,27 @@ const CafeMenu = () => {
     </div>
   );
 
-  // TV Mode Carousel Slide - Exactly 8 items in 4x2 grid
+  // TV Mode Carousel Slide - Perfect fit with no scroll
   const CarouselSlide = ({ slide }) => (
-    <div className="min-h-screen bg-gaming-darker px-8 py-20 flex flex-col">
-      <div className="text-center mb-8">
-        <h2 className="text-4xl md:text-5xl font-bold neon-text-blue mb-4">
+    <div className="fixed inset-0 bg-gaming-darker flex flex-col" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+      <div className="text-center mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold neon-text-blue mb-2">
           {slide.title}
         </h2>
-        <div className="w-32 h-1 bg-gradient-to-r from-neon-pink to-neon-blue mx-auto rounded-full" />
+        <div className="w-24 h-1 bg-gradient-to-r from-neon-pink to-neon-blue mx-auto rounded-full" />
       </div>
       
-      {/* Strict 4x2 Grid Layout for TV - Only 8 items */}
-      <div className="grid grid-cols-4 gap-6 flex-1 max-w-screen-xl mx-auto">
-        {slide.items.slice(0, 8).map((item, index) => (
-          <TVMenuCard 
-            key={index} 
-            item={item} 
-            type={slide.isCombo ? 'combo' : 'default'} 
-          />
-        ))}
+      {/* Perfect 4x2 Grid Layout - No gaps, exact fit */}
+      <div className="flex-1 flex items-center justify-center px-8">
+        <div className="grid grid-cols-4 gap-4" style={{ width: '1824px', height: '860px' }}>
+          {slide.items.slice(0, 8).map((item, index) => (
+            <TVMenuCard 
+              key={index} 
+              item={item} 
+              type={slide.isCombo ? 'combo' : 'default'} 
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -650,26 +652,37 @@ const CafeMenu = () => {
           description="Digital menu display for Cuephoria - Gaming cafe menu in TV mode"
         />
         
-        {/* Auto-hiding Collapsible TV Header */}
+        {/* Auto-hiding Collapsible TV Header with Logo */}
         <div className={`fixed top-0 left-0 right-0 z-50 bg-gaming-dark/95 backdrop-blur-sm border-b border-neon-blue/30 transition-transform duration-300 ${
           showTVHeader ? 'transform translate-y-0' : 'transform -translate-y-full'
         }`}>
-          <div className="flex justify-between items-center px-6 py-3">
-            <div className="flex items-center gap-3">
-              <Monitor className="h-5 w-5 text-neon-blue" />
-              <span className="text-neon-blue font-semibold text-sm">TV MODE ACTIVE</span>
+          <div className="flex justify-between items-center px-6 py-2">
+            {/* Left side with Logo and TV Mode indicator */}
+            <div className="flex items-center gap-4">
+              <img
+                src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png"
+                alt="Cuephoria Logo"
+                className="h-8 w-auto"
+                loading="eager"
+              />
+              <div className="flex items-center gap-2">
+                <Monitor className="h-4 w-4 text-neon-blue" />
+                <span className="text-neon-blue font-semibold text-sm">TV MODE ACTIVE</span>
+              </div>
             </div>
+            
+            {/* Right side controls */}
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                className="px-4 py-2 bg-neon-blue/80 text-white rounded-lg hover:bg-neon-blue transition flex items-center gap-2 text-sm font-medium"
+                className="px-3 py-1.5 bg-neon-blue/80 text-white rounded-lg hover:bg-neon-blue transition flex items-center gap-2 text-sm font-medium"
               >
-                {isAutoPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                {isAutoPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
                 {isAutoPlaying ? 'Pause' : 'Play'}
               </button>
               <button
                 onClick={exitTvMode}
-                className="px-4 py-2 bg-red-500/80 text-white rounded-lg hover:bg-red-500 transition text-sm font-medium"
+                className="px-3 py-1.5 bg-red-500/80 text-white rounded-lg hover:bg-red-500 transition text-sm font-medium"
               >
                 Exit TV Mode
               </button>
@@ -677,25 +690,25 @@ const CafeMenu = () => {
           </div>
         </div>
 
-        {/* Carousel with smooth transitions */}
+        {/* Carousel with perfect screen fit */}
         <div className="relative">
           <CarouselSlide slide={allSlides[currentSlide]} />
           
           {/* Slide Indicators */}
-          <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2">
+          <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
             {allSlides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide ? 'bg-neon-pink shadow-lg w-8' : 'bg-white/30 w-3'
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === currentSlide ? 'bg-neon-pink shadow-lg w-6' : 'bg-white/30 w-2'
                 }`}
               />
             ))}
           </div>
           
           {/* Slide counter */}
-          <div className="fixed bottom-6 right-6 bg-gaming-darker/80 backdrop-blur-sm text-sm text-gray-300 px-3 py-1 rounded-lg">
+          <div className="fixed bottom-4 right-6 bg-gaming-darker/80 backdrop-blur-sm text-sm text-gray-300 px-3 py-1 rounded-lg">
             {currentSlide + 1} / {allSlides.length}
           </div>
         </div>
@@ -761,7 +774,7 @@ const CafeMenu = () => {
         </div>
       )}
 
-      {/* Main Menu Content */}
+      {/* Main Menu Content - Same as before */}
       <div className="relative overflow-hidden">
         {/* Subtle Background */}
         <div className="absolute inset-0 bg-gaming-darker">
@@ -845,6 +858,7 @@ const CafeMenu = () => {
             </div>
           </div>
 
+          {/* All sections remain the same */}
           {/* Savory Snacks Section */}
           <section className="mb-20">
             <div className="text-center mb-12">
