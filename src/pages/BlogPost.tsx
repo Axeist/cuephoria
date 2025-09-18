@@ -1,11 +1,11 @@
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import WhyWeStartedCuephoria from './blog/WhyWeStartedCuephoria';
-import UltimateStudentHangout from './blog/UltimateStudentHangout';
-import NervousBeginnerToPoolPro from './blog/NervousBeginnerToPoolPro';
-import LateNightGamingSessions from './blog/LateNightGamingSessions';
-import ParentsAskWhatsSpecial from './blog/ParentsAskWhatsSpecial';
-import ArtOfPerfectBreak from './blog/ArtOfPerfectBreak';
+import WhyWeStartedCuephoria from './BlogPost1';
+import UltimateStudentHangout from './BlogPost2';
+import NervousBeginnerToPoolPro from './BlogPost3';
+import LateNightGamingSessions from './BlogPost4';
+import ParentsAskWhatsSpecial from './BlogPost5';
+import ArtOfPerfectBreak from './BlogPost6';
 
 const BlogPost = () => {
   const { postId } = useParams<{ postId: string }>();

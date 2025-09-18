@@ -5,7 +5,7 @@ import { useTestimonials } from '../hooks/useTestimonials';
 import { Button } from './ui/button';
 
 const Testimonials = () => {
-  const { testimonials, isLoading } = useTestimonials();
+  const { testimonials, isLoading, reviewStats } = useTestimonials();
   const [api, setApi] = useState<any>();
   const [current, setCurrent] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);

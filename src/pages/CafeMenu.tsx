@@ -764,7 +764,7 @@ const CafeMenu = () => {
         <NewsTicker />
 
         {/* Custom CSS for seamless marquee animation */}
-        <style jsx>{`
+        <style>{`
           @keyframes seamless-scroll {
             0% {
               transform: translateX(0%);
