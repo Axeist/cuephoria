@@ -37,7 +37,7 @@ const memberships = [
 const BookingLanding = () => {
   const [countdownEnds, setCountdownEnds] = useState(() => {
     const end = new Date();
-    end.setMinutes(end.getMinutes() + getRandomMinutes(RANDOM_MINUTES_RANGE[0], RANDOM_MINUTES_RANGE[1]));
+    end.setMinutes(end.getMinutes() + getRandomMinutes(...RANDOM_MINUTES_RANGE));
     return end;
   });
 
@@ -52,7 +52,7 @@ const BookingLanding = () => {
       const distance = countdownEnds.getTime() - now;
       if (distance < 0) {
         const newEnd = new Date();
-        newEnd.setMinutes(newEnd.getMinutes() + getRandomMinutes(RANDOM_MINUTES_RANGE[0], RANDOM_MINUTES_RANGE[1]));
+        newEnd.setMinutes(newEnd.getMinutes() + getRandomMinutes(...RANDOM_MINUTES_RANGE));
         setCountdownEnds(newEnd);
         return;
       }
