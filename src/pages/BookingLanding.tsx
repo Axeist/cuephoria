@@ -1,9 +1,10 @@
 import React, { useEffect, useState, lazy, Suspense, useCallback, useMemo } from 'react';
-import { ArrowRight, Clock, MapPin, Star, Award, Table2, Siren, ActivitySquare, Expand, ExternalLink, Percent, Gift, Zap, Sparkles, Copy, Target } from 'lucide-react';
+import { ArrowRight, Clock, MapPin, Star, Award, Table2, Siren, ActivitySquare, Expand, ExternalLink, Percent, Gift, Zap, Sparkles, Copy, Target, X } from 'lucide-react';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import SEOMetadata from '../components/SEOMetadata';
 import { Table, TableBody, TableCell, TableRow } from "../components/ui/table";
+import { Dialog, DialogContent } from "../components/ui/dialog";
 import { useIsMobile } from '../hooks/use-mobile';
 import { useToast } from '../hooks/use-toast';
 
@@ -44,7 +45,7 @@ const BookingLanding = () => {
   });
 
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [iframeExpanded, setIframeExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const isMobile = useIsMobile();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -267,12 +268,12 @@ const BookingLanding = () => {
                 {/* Desktop: Align buttons to the right of the header */}
                 <div className="hidden lg:flex items-center gap-3">
                   <button
-                    aria-label={iframeExpanded ? "Collapse booking" : "Expand booking"}
+                    aria-label="Expand booking in fullscreen modal"
                     className="px-4 py-2 rounded-md bg-neon-blue/80 text-white font-semibold hover:bg-neon-blue transition flex items-center gap-2 text-sm whitespace-nowrap"
-                    onClick={() => setIframeExpanded(e => !e)}
+                    onClick={() => setIsModalOpen(true)}
                   >
                     <Expand className="h-4 w-4" />
-                    {iframeExpanded ? "Collapse" : "Expand"}
+                    Expand
                   </button>
                   <a
                     href="https://admin.cuephoria.in/public/booking"
@@ -296,12 +297,12 @@ const BookingLanding = () => {
                 
                 <div className="flex justify-center gap-2 mb-4">
                   <button
-                    aria-label={iframeExpanded ? "Collapse booking" : "Expand booking"}
+                    aria-label="Expand booking in fullscreen modal"
                     className="px-4 py-2 rounded-md bg-neon-blue/80 text-white font-semibold hover:bg-neon-blue transition flex items-center gap-2 text-sm"
-                    onClick={() => setIframeExpanded(e => !e)}
+                    onClick={() => setIsModalOpen(true)}
                   >
                     <Expand className="h-4 w-4" />
-                    {iframeExpanded ? "Collapse" : "Expand"}
+                    Expand
                   </button>
                   <a
                     href="https://admin.cuephoria.in/public/booking"
@@ -320,7 +321,7 @@ const BookingLanding = () => {
               <div 
                 className="w-full rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50 transition-all duration-300"
                 style={{
-                  height: iframeExpanded ? (isMobile ? "85vh" : "90vh") : "1000px",
+                  height: "1000px",
                   maxHeight: "95vh"
                 }}
               >
@@ -335,7 +336,7 @@ const BookingLanding = () => {
                   loading="lazy"
                   aria-label="Cuephoria session booking"
                   style={{
-                    minHeight: iframeExpanded ? (isMobile ? "85vh" : "90vh") : "1000px"
+                    minHeight: "1000px"
                   }}
                 />
               </div>
@@ -543,6 +544,68 @@ const BookingLanding = () => {
           </div>
         </div>
       </section>
+      
+      {/* Fullscreen Booking Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent 
+          className="max-w-[98vw] max-h-[98vh] w-[98vw] h-[98vh] p-0 bg-gaming-darker border border-neon-blue/30 rounded-lg overflow-hidden !translate-x-[-50%] !translate-y-[-50%] !left-1/2 !top-1/2"
+          style={{
+            maxWidth: '98vw',
+            maxHeight: '98vh',
+            width: '98vw',
+            height: '98vh'
+          }}
+        >
+          <div className="flex flex-col h-full w-full">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-4 md:p-6 border-b border-neon-blue/30 bg-gaming-darker/80 flex-shrink-0">
+              <div className="flex items-center gap-3">
+                <h2 className="text-xl md:text-2xl font-bold text-neon-blue">
+                  Cuephoria Booking
+                </h2>
+                <span className="text-xs md:text-sm text-gray-400 hidden md:inline">
+                  Fullscreen booking experience
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <a
+                  href="https://admin.cuephoria.in/public/booking"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-2 rounded-md bg-neon-blue/80 text-white font-semibold hover:bg-neon-blue transition flex items-center gap-2 text-sm"
+                  aria-label="Open in new tab"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  <span className="hidden sm:inline">New Tab</span>
+                </a>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="p-2 rounded-md bg-gaming-accent/50 hover:bg-gaming-accent text-white transition-colors"
+                  aria-label="Close modal"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+            
+            {/* Modal Content - Fullscreen Iframe */}
+            <div className="flex-1 relative overflow-hidden bg-gaming-darker" style={{ minHeight: 0 }}>
+              <iframe 
+                width="100%" 
+                height="100%"
+                src="https://admin.cuephoria.in/public/booking" 
+                frameBorder="0" 
+                allowFullScreen
+                className="w-full h-full"
+                title="Cuephoria Booking Website - Fullscreen"
+                loading="eager"
+                aria-label="Cuephoria session booking in fullscreen"
+              />
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+      
       <Footer />
     </div>
   );
