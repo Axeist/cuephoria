@@ -1,11 +1,52 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home, X } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home, X, Percent, Gift, Zap, Sparkles, Copy } from 'lucide-react';
 
 const Footer = () => {
   const [modal, setModal] = useState(null); // 'terms', 'privacy', 'contact', or null
+  const currentYear = new Date().getFullYear();
 
   const closeModal = () => setModal(null);
+
+  const copyCouponCode = (code: string) => {
+    navigator.clipboard.writeText(code);
+    // You can add a toast notification here if needed
+  };
+
+  const footerCoupons = [
+    {
+      code: "CUEPHORIA20",
+      discount: "20% OFF",
+      icon: <Percent className="h-4 w-4 text-neon-blue" />,
+      textColor: "text-neon-blue",
+      bgColor: "bg-neon-blue/20",
+      borderColor: "border-neon-blue/30"
+    },
+    {
+      code: "CUEPHORIA35",
+      discount: "35% OFF",
+      icon: <Gift className="h-4 w-4 text-purple-400" />,
+      textColor: "text-purple-400",
+      bgColor: "bg-purple-500/20",
+      borderColor: "border-purple-500/30"
+    },
+    {
+      code: "HH99",
+      discount: "₹99 FIXED",
+      icon: <Zap className="h-4 w-4 text-amber-400" />,
+      textColor: "text-amber-400",
+      bgColor: "bg-amber-500/20",
+      borderColor: "border-amber-500/30"
+    },
+    {
+      code: "NIT35",
+      discount: "35% OFF",
+      icon: <Sparkles className="h-4 w-4 text-green-400" />,
+      textColor: "text-green-400",
+      bgColor: "bg-green-500/20",
+      borderColor: "border-green-500/30"
+    }
+  ];
 
   return (
     <>
@@ -17,7 +58,7 @@ const Footer = () => {
         </div>
         
         <div className="container mx-auto px-4 py-12 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {/* Logo & Description */}
             <div className="space-y-6">
               <div className="flex items-center space-x-3">
@@ -194,13 +235,41 @@ const Footer = () => {
               </div>
             </div>
 
+            {/* Coupon Codes */}
+            <div className="space-y-6">
+              <h4 className="text-lg font-bold text-white">Special Offers</h4>
+              <div className="space-y-3">
+                {footerCoupons.map((coupon, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => copyCouponCode(coupon.code)}
+                    className={`group relative p-3 ${coupon.bgColor} rounded-lg border ${coupon.borderColor} transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:shadow-lg`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className={`p-1 ${coupon.bgColor} rounded`}>
+                          {coupon.icon}
+                        </div>
+                        <span className={`${coupon.textColor} font-bold text-sm`}>{coupon.code}</span>
+                      </div>
+                      <span className={`${coupon.textColor} text-xs font-semibold`}>{coupon.discount}</span>
+                    </div>
+                    <div className="mt-2 flex items-center gap-1 text-[10px] text-gray-400 group-hover:text-gray-300 transition-colors">
+                      <Copy className="h-3 w-3" />
+                      <span>Click to copy</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
 
           {/* Bottom Section with Popup Buttons */}
           <div className="border-t border-gaming-accent/30 mt-12 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="text-gray-400 text-sm">
-                © 2025 Cuephoria. All rights reserved. Made with ❤️ for Trichy gamers.
+                © {currentYear} Cuephoria. All rights reserved. Made with ❤️ for Trichy gamers.
               </div>
               
               <div className="flex items-center space-x-6">

@@ -27,7 +27,7 @@ const features = [
 const pricing = [
   { label: "PS5 Gaming (per controller)", original: 150, discounted: 150 },
   { label: "Pool Table (per hour)", original: 300, discounted: 300 },
-  { label: "VR Station (per hour)", original: 150, discounted: 150 },
+  { label: "VR Station (per session)", original: 150, discounted: 150 },
 ];
 
 const memberships = [
