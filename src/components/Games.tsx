@@ -277,6 +277,83 @@ const Games = () => {
           ))}
         </div>
         
+        {/* Featured Games Section */}
+        <div className="mt-16">
+          <div className="glass-card rounded-xl p-6 md:p-10 border border-neon-pink/30 shadow-2xl relative overflow-hidden">
+            {/* Animated background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-neon-pink/10 via-purple-500/10 to-neon-blue/10"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-pink via-purple-500 to-neon-blue animate-shimmer"></div>
+            
+            <div className="relative z-10">
+              <div className="text-center mb-8">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
+                  <span className="neon-text-pink glow-text animate-pulse-neon">Featured</span>{" "}
+                  <span className="text-white">Latest Games</span>
+                </h3>
+                <p className="text-gray-300 text-sm md:text-base">
+                  Experience the newest releases in gaming
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                {/* FC 26 Featured */}
+                <div className="group relative overflow-hidden rounded-xl bg-gaming-darker/80 border border-neon-blue/30 hover:border-neon-blue/60 transition-all duration-300 hover:shadow-2xl hover:shadow-neon-blue/30">
+                  <div className="relative h-48 md:h-64 overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800&h=600&fit=crop&q=80" 
+                      alt="FC 26 - EA Sports Football Game"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                      width="800"
+                      height="600"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker via-gaming-darker/50 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="px-2 py-1 bg-neon-pink/20 text-neon-pink text-xs font-bold rounded border border-neon-pink/30">
+                          NEW
+                        </span>
+                        <span className="px-2 py-1 bg-neon-blue/20 text-neon-blue text-xs font-bold rounded border border-neon-blue/30">
+                          LATEST
+                        </span>
+                      </div>
+                      <h4 className="text-2xl md:text-3xl font-bold text-white mb-1">FC 26</h4>
+                      <p className="text-gray-300 text-sm md:text-base">EA Sports Football - The Ultimate Football Experience</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* NBA 2K26 Featured */}
+                <div className="group relative overflow-hidden rounded-xl bg-gaming-darker/80 border border-neon-pink/30 hover:border-neon-pink/60 transition-all duration-300 hover:shadow-2xl hover:shadow-neon-pink/30">
+                  <div className="relative h-48 md:h-64 overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&h=600&fit=crop&q=80" 
+                      alt="NBA 2K26 - Basketball Game"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                      width="800"
+                      height="600"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker via-gaming-darker/50 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="px-2 py-1 bg-neon-pink/20 text-neon-pink text-xs font-bold rounded border border-neon-pink/30">
+                          NEW
+                        </span>
+                        <span className="px-2 py-1 bg-neon-blue/20 text-neon-blue text-xs font-bold rounded border border-neon-blue/30">
+                          LATEST
+                        </span>
+                      </div>
+                      <h4 className="text-2xl md:text-3xl font-bold text-white mb-1">NBA 2K26</h4>
+                      <p className="text-gray-300 text-sm md:text-base">The Most Realistic Basketball Experience</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <div className="mt-16">
           <div className="glass-card rounded-xl p-6 md:p-10 border border-neon-blue/30 shadow-2xl relative overflow-hidden">
             {/* Animated background gradient */}
@@ -310,18 +387,30 @@ const Games = () => {
                       </h4>
                     </div>
                     <div className="grid grid-cols-2 gap-2 md:gap-3">
-                      {category.titles.map((title, j) => (
-                        <div 
-                          key={j} 
-                          className="group/item relative bg-gaming-accent/40 backdrop-blur-sm px-3 py-2.5 md:px-4 md:py-3 rounded-lg text-white text-xs md:text-sm font-medium hover:bg-gradient-to-r hover:from-neon-blue/30 hover:to-purple-500/30 transition-all duration-300 cursor-default border border-transparent hover:border-neon-blue/50 hover:shadow-lg hover:shadow-neon-blue/20 hover:scale-105 transform"
-                        >
-                          <span className="relative z-10">{title}</span>
-                          <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/0 via-neon-blue/20 to-neon-blue/0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 rounded-lg"></div>
-                        </div>
-                      ))}
-                    </div>
+                      {category.titles.map((title, j) => {
+                        const isFeatured = title === "FC 26" || title === "NBA 2K26";
+                        return (
+                          <div 
+                            key={j} 
+                            className={`group/item relative backdrop-blur-sm px-3 py-2.5 md:px-4 md:py-3 rounded-lg text-white text-xs md:text-sm font-medium transition-all duration-300 cursor-default border transform ${
+                              isFeatured 
+                                ? "bg-gradient-to-br from-neon-pink/30 to-neon-blue/30 border-neon-pink/50 hover:border-neon-blue/70 hover:shadow-lg hover:shadow-neon-pink/30 hover:scale-105" 
+                                : "bg-gaming-accent/40 border-transparent hover:bg-gradient-to-r hover:from-neon-blue/30 hover:to-purple-500/30 hover:border-neon-blue/50 hover:shadow-lg hover:shadow-neon-blue/20 hover:scale-105"
+                            }`}
+                          >
+                            {isFeatured && (
+                              <span className="absolute -top-1 -right-1 px-1.5 py-0.5 bg-neon-pink text-white text-[10px] font-bold rounded-full border border-neon-pink/50">
+                                NEW
+                              </span>
+                            )}
+                            <span className="relative z-10 font-semibold">{title}</span>
+                            <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/0 via-neon-blue/20 to-neon-blue/0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                          </div>
+                        );
+                      })}
                   </div>
-                ))}
+                </div>
+              ))}
               </div>
             </div>
           </div>
