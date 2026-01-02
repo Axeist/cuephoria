@@ -169,7 +169,7 @@ const BookingLanding = () => {
         <div className="absolute inset-0 bg-gaming-darker">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(157,78,221,0.1)_0,rgba(15,25,40,0.5)_100%)]" />
         </div>
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative z-10 max-w-[98vw] lg:max-w-[1600px]">
           <div className="max-w-3xl mx-auto text-center mb-10">
             <div className="inline-block animate-pulse-neon mb-4">
               <img
@@ -220,7 +220,7 @@ const BookingLanding = () => {
           </div>
 
           {/* Live Occupancy Status Section */}
-          <div className="max-w-5xl mx-auto mb-6 md:mb-8">
+          <div className="max-w-[95vw] lg:max-w-[1400px] mx-auto mb-6 md:mb-8">
             <div className="bg-gaming-darker/70 backdrop-blur-lg border border-neon-blue/30 rounded-xl overflow-hidden shadow-lg shadow-neon-blue/10">
               <div className="p-3 md:p-4 border-b border-neon-blue/20 text-center">
                 <h2 className="text-xl md:text-2xl font-bold flex items-center justify-center gap-2">
@@ -255,9 +255,9 @@ const BookingLanding = () => {
           </div>
 
           {/* Two Column Layout */}
-          <div className="flex flex-col lg:flex-row bg-gaming-darker/50 backdrop-blur-lg rounded-xl overflow-hidden border border-neon-blue/30 max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row bg-gaming-darker/50 backdrop-blur-lg rounded-xl overflow-hidden border border-neon-blue/30 max-w-[95vw] lg:max-w-[98vw] xl:max-w-[1400px] mx-auto">
             {/* Booking Widget Column */}
-            <div className="w-full lg:w-7/12 p-3 md:p-4 lg:p-8 relative">
+            <div className="w-full lg:w-8/12 xl:w-7/12 p-3 md:p-4 lg:p-8 relative">
               {/* Header Section with Better Alignment */}
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4 md:mb-6">
                 <h2 className="text-xl md:text-2xl font-bold text-center lg:text-left text-neon-blue mb-3 lg:mb-0">
@@ -342,7 +342,7 @@ const BookingLanding = () => {
             </div>
 
             {/* Info Column */}
-            <div className="w-full lg:w-5/12 p-3 md:p-4 lg:p-8 bg-gaming-accent/10">
+            <div className="w-full lg:w-4/12 xl:w-5/12 p-3 md:p-4 lg:p-8 bg-gaming-accent/10">
               <div className="mb-6 md:mb-8">
                 <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
                   <Star className="h-4 w-4 md:h-5 md:w-5 text-neon-pink mr-2" />
