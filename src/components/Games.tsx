@@ -46,7 +46,7 @@ const games = [
   },
   {
     name: "VR Gaming",
-    image: "/lovable-uploads/2663021f-e6d3-4c75-8f66-b2672cc5f988.png",
+    image: "https://iili.io/fjTcX1V.jpg",
     description: "Step into the future with Meta Quest 3S VR - experience mixed reality and cutting-edge VR games.",
     icon: <Box className="h-6 w-6" />,
     detailedDescription: "Experience the next level of gaming with our Meta Quest 3S VR stations at Cuephoria. The latest generation VR headset offers stunning mixed reality experiences, allowing you to blend virtual worlds with your physical environment. Enjoy an extensive library of the latest VR games, from action-packed adventures to immersive simulations. Our VR stations feature premium headsets, dedicated play areas, and expert guidance to ensure you have the ultimate virtual reality experience.",
@@ -248,7 +248,7 @@ const Games = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
           {games.map((game, index) => (
             <GameCard key={index} game={game} index={index} />
           ))}
