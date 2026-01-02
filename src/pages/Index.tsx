@@ -1,19 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense, lazy } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
-import Games from '../components/Games';
-import Tournaments from '../components/Tournaments';
-import Gallery from '../components/Gallery';
-import BookNow from '../components/BookNow';
-import Contact from '../components/Contact';
-import Footer from '../components/Footer';
-import PromotionalPopup from '../components/PromotionalPopup';
-import Chatbot from '../components/Chatbot';
 import SEOMetadata from '../components/SEOMetadata';
-import Testimonials from '../components/Testimonials';
 import { ChevronUp, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+// Lazy load below-the-fold components for better initial performance
+const Games = lazy(() => import('../components/Games'));
+const Tournaments = lazy(() => import('../components/Tournaments'));
+const Gallery = lazy(() => import('../components/Gallery'));
+const Testimonials = lazy(() => import('../components/Testimonials'));
+const BookNow = lazy(() => import('../components/BookNow'));
+const Contact = lazy(() => import('../components/Contact'));
+const Footer = lazy(() => import('../components/Footer'));
+const PromotionalPopup = lazy(() => import('../components/PromotionalPopup'));
+const Chatbot = lazy(() => import('../components/Chatbot'));
+
+// Loading fallback component
+const SectionLoader = () => (
+  <div className="min-h-[400px] flex items-center justify-center">
+    <div className="w-8 h-8 border-t-2 border-neon-blue rounded-full animate-spin"></div>
+  </div>
+);
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -39,11 +48,9 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    let frameId = null;
-    let lastScrollY = window.scrollY;
+    let frameId: number | null = null;
     let ticking = false;
     const handleScroll = () => {
-      lastScrollY = window.scrollY;
       if (!ticking) {
         frameId = requestAnimationFrame(() => {
           const sections = ['home', 'about', 'games', 'tournaments', 'gallery', 'testimonials', 'book-now', 'contact'];
@@ -69,22 +76,23 @@ const Index = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (frameId) cancelAnimationFrame(frameId);
+      if (frameId !== null) cancelAnimationFrame(frameId);
     };
   }, [activeSection]);
 
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: [0.1, 0.2, 0.3, 0.4, 0.5]
+      rootMargin: '50px', // Start animation slightly before element is visible
+      threshold: 0.1 // Only trigger when 10% visible for better performance
     };
-    const observerCallback = (entries, observer) => {
+    const observerCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
+          // Use requestAnimationFrame for smoother animations
+          requestAnimationFrame(() => {
             entry.target.classList.add('animate-fade-in');
-          }, Math.random() * 100);
+          });
           observer.unobserve(entry.target);
         }
       });
@@ -111,12 +119,24 @@ const Index = () => {
         <h1 className="sr-only">Cuephoria - Best PS5 Gaming, 8-Ball Pool, Snooker and Student Hangout Place in Trichy</h1>
         <Hero className="mt-8 md:mt-[-2rem]" />
         <About />
-        <Games />
-        <Tournaments />
-        <Gallery />
-        <Testimonials />
-        <BookNow />
-        <Contact />
+        <Suspense fallback={<SectionLoader />}>
+          <Games />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <Tournaments />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <Gallery />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <Testimonials />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <BookNow />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <Contact />
+        </Suspense>
 
         {/* Contact Section Added */}
         <div className="max-w-5xl mx-auto p-6 mt-12 mb-12 bg-gaming-darker/80 rounded-xl border border-neon-blue/30 text-center">
@@ -163,11 +183,17 @@ const Index = () => {
           </div>
         </div>
 
-        <Footer />
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
       </main>
       
-      <PromotionalPopup delayInSeconds={30} reappearInSeconds={120} />
-      <Chatbot />
+      <Suspense fallback={null}>
+        <PromotionalPopup delayInSeconds={30} reappearInSeconds={120} />
+      </Suspense>
+      <Suspense fallback={null}>
+        <Chatbot />
+      </Suspense>
       
       <Link 
         to="/book"

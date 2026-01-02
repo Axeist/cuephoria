@@ -94,6 +94,9 @@ const Gallery = () => {
                           alt={image.alt}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           onLoad={() => handleImageLoad(index)}
+                          loading={index === 0 ? "eager" : "lazy"}
+                          decoding="async"
+                          fetchPriority={index === 0 ? "high" : "auto"}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
                         
@@ -143,6 +146,9 @@ const Gallery = () => {
                   alt={`Thumbnail ${index + 1}`}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
+                  width="80"
+                  height="64"
                 />
               </button>
             ))}
@@ -183,6 +189,8 @@ const Gallery = () => {
               src={galleryImages[currentImage].src}
               alt={galleryImages[currentImage].alt}
               className="w-full h-full object-contain"
+              loading="eager"
+              decoding="async"
             />
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
               <h3 className="text-2xl md:text-3xl font-bold text-white neon-text-blue">

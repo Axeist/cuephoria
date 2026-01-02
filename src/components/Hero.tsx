@@ -12,36 +12,37 @@ const Hero = ({ className = '' }) => {
       <div className="absolute inset-0 bg-gaming-darker">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(157,78,221,0.1)_0,rgba(15,25,40,0.5)_100%)]"></div>
         
-        {/* Animated gaming icons */}
+        {/* Animated gaming icons - reduced count for better performance */}
         <div className="absolute inset-0 overflow-hidden opacity-10">
-          {Array.from({ length: 20 }).map((_, i) => (
+          {Array.from({ length: 12 }).map((_, i) => (
             <div 
               key={i}
               className="absolute animate-float"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`
+                left: `${(i * 8.33) % 100}%`,
+                top: `${(i * 7.5) % 100}%`,
+                animationDelay: `${i * 0.4}s`,
+                willChange: 'transform'
               }}
             >
               <Gamepad2 
-                size={Math.random() * 30 + 20} 
+                size={24} 
                 className="text-white opacity-50"
               />
             </div>
           ))}
         </div>
         
-        {/* Animated horizontal lines */}
+        {/* Animated horizontal lines - reduced count for better performance */}
         <div className="absolute inset-0">
-          {Array.from({ length: 10 }).map((_, i) => (
+          {Array.from({ length: 6 }).map((_, i) => (
             <div 
               key={i}
               className="absolute h-px bg-neon-blue/30 w-full"
               style={{
-                top: `${i * 10 + Math.random() * 5}%`,
-                opacity: Math.random() * 0.5 + 0.1,
-                height: `${Math.random() * 1 + 0.5}px`
+                top: `${i * 16.67}%`,
+                opacity: 0.2,
+                willChange: 'opacity'
               }}
             ></div>
           ))}
@@ -128,6 +129,10 @@ const Hero = ({ className = '' }) => {
                   src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
                   alt="Cuephoria Logo - 8-Ball Pool Club & Gaming Lounge in Trichy" 
                   className="w-full h-full object-contain animate-float"
+                  width="320"
+                  height="320"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
             </div>

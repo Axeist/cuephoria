@@ -19,4 +19,37 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Optimize chunk splitting for better caching
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'ui-vendor': [
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-tabs',
+            '@radix-ui/react-tooltip',
+            '@radix-ui/react-accordion',
+          ],
+          'utils-vendor': ['@tanstack/react-query', 'date-fns'],
+        },
+      },
+    },
+    // Increase chunk size warning limit
+    chunkSizeWarningLimit: 1000,
+    // Enable source maps for production debugging (optional)
+    sourcemap: false,
+    // Optimize for production (using esbuild which is faster)
+    minify: 'esbuild',
+  },
+  // Optimize dependencies
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      '@tanstack/react-query',
+    ],
+  },
 }));

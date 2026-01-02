@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Cuephoria | Best PS5 Gaming & Pool Club for Students in Trichy</title>
     <meta name="description" content="Visit Cuephoria - Trichy's #1 gaming lounge with student discounts! Enjoy PS5 games, 8-ball pool, snooker & the perfect college hangout spot. Book online for exclusive student offers!" />
     <meta name="keywords" content="Cuephoria, gaming lounge Trichy, PS5 gaming Trichy, 8-ball pool Trichy, snooker Trichy, pool table Trichy, PlayStation games Trichy, VR games, hangout place Trichy, chill out spot Trichy, billiards Trichy, gaming center Trichy, student gaming Trichy, college hangout Trichy, gaming cafe near college Trichy" />
@@ -35,15 +35,25 @@
     <link rel="icon" href="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" type="image/png">
     <link rel="apple-touch-icon" href="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png">
     
-    <!-- Fonts -->
+    <!-- DNS Prefetch and Preconnect for external resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://assets.calendly.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Calendly widget CSS -->
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <!-- Fonts with display=swap for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
-    <!-- FormSubmit for email handling -->
+    <!-- Preload critical logo image -->
+    <link rel="preload" href="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" as="image" fetchpriority="high">
+    
+    <!-- Calendly widget CSS - deferred -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"></noscript>
+    
+    <!-- FormSubmit for email handling - deferred -->
     <script src="https://formsubmit.co/js/formsubmit.js" defer></script>
     
     <!-- Schema.org structured data -->
@@ -152,7 +162,7 @@
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Calendly widget JavaScript -->
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <!-- Calendly widget JavaScript - deferred until needed -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" defer></script>
   </body>
 </html>

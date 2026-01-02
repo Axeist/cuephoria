@@ -89,6 +89,9 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
             alt={`${game.name} at Cuephoria Gaming Lounge in Trichy`} 
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
+            decoding="async"
+            width="400"
+            height="300"
           />
         </div>
         
@@ -158,6 +161,10 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
                 src={game.image} 
                 alt={`${game.name} at Cuephoria Gaming Lounge in Trichy`} 
                 className="w-full h-full object-cover"
+                loading="eager"
+                decoding="async"
+                width="600"
+                height="450"
               />
             </div>
             
