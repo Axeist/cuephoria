@@ -86,7 +86,7 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             ? "bg-gaming-darker/80 backdrop-blur-md shadow-lg py-1.5" 
             : "bg-transparent py-2 md:py-5"
         )}
-        style={{ top: '60px' }}
+        style={{ top: '40px' }}
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
           <a href="/" className="flex items-center space-x-2">
@@ -136,7 +136,7 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
       {/* News Ticker positioned just below the header */}
       <div 
         className="fixed left-0 right-0 z-40 transition-all duration-300 w-full"
-        style={isScrolled ? { top: '106px' } : { top: '110px' }}
+        style={isScrolled ? { top: '86px' } : { top: '90px' }}
       >
         <NewsTicker />
       </div>
