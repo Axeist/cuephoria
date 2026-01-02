@@ -59,11 +59,34 @@ const games = [
   }
 ];
 
-// Updated game menu with specific titles
+// Updated game menu with specific titles - Latest Games
 const gameTitles = [
-  { category: "PS5 Games", titles: ["FIFA 24", "Call of Duty: Modern Warfare", "GTA V", "God of War Ragnarök", "Spider-Man 2", "Elden Ring", "Hogwarts Legacy", "Mortal Kombat 1"] },
-  { category: "Multiplayer Favorites", titles: ["Fortnite", "Rocket League", "Fall Guys", "It Takes Two", "Overcooked 2", "Tekken 8", "Street Fighter 6", "NBA 2K24"] },
-  { category: "VR Games", titles: ["Beat Saber", "Superhot VR", "Half-Life: Alyx", "The Walking Dead: Saints & Sinners", "Resident Evil 4 VR", "Blade & Sorcery", "Pistol Whip", "Population: One"] },
+  { 
+    category: "PS5 Games", 
+    titles: [
+      "FC 26", "NBA 2K26", "F1 25", "Cricket 25", 
+      "Hogwarts Legacy", "Cyberpunk 2077", "God of War: Ragnarök", 
+      "Dirt 5", "Need for Speed", "Spider-Man 2", "Elden Ring", 
+      "Call of Duty: Modern Warfare", "GTA V", "Mortal Kombat 1"
+    ] 
+  },
+  { 
+    category: "Multiplayer Favorites", 
+    titles: [
+      "Fortnite", "Rocket League", "Fall Guys", "It Takes Two", 
+      "Overcooked 2", "Tekken 8", "Street Fighter 6", "Apex Legends",
+      "Warzone", "Rainbow Six Siege", "Valorant", "Among Us"
+    ] 
+  },
+  { 
+    category: "VR Games", 
+    titles: [
+      "Beat Saber", "Superhot VR", "Half-Life: Alyx", 
+      "The Walking Dead: Saints & Sinners", "Resident Evil 4 VR", 
+      "Blade & Sorcery", "Pistol Whip", "Population: One",
+      "Asgard's Wrath 2", "Assassin's Creed Nexus VR"
+    ] 
+  },
 ];
 
 // Updated pricing information with new membership structure
@@ -255,27 +278,51 @@ const Games = () => {
         </div>
         
         <div className="mt-16">
-          <div className="glass-card rounded-lg p-6 md:p-8">
-            <h3 className="text-2xl font-bold mb-6 text-center text-white">
-              Available <span className="neon-text-blue">Game Titles</span>
-            </h3>
+          <div className="glass-card rounded-xl p-6 md:p-10 border border-neon-blue/30 shadow-2xl relative overflow-hidden">
+            {/* Animated background gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/10 via-purple-500/5 to-neon-pink/10 animate-pulse"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-neon-blue to-transparent animate-shimmer"></div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {gameTitles.map((category, i) => (
-                <div key={i} className="space-y-4">
-                  <h4 className="text-xl font-semibold neon-text-pink">{category.category}</h4>
-                  <div className="grid grid-cols-2 gap-2">
-                    {category.titles.map((title, j) => (
-                      <div 
-                        key={j} 
-                        className="bg-gaming-accent/30 px-3 py-2 rounded-md text-white hover:bg-neon-blue/20 transition-colors cursor-default"
-                      >
-                        {title}
-                      </div>
-                    ))}
+            <div className="relative z-10">
+              {/* Enhanced Title */}
+              <div className="text-center mb-8 md:mb-12">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3">
+                  <span className="text-white">Available</span>{" "}
+                  <span className="neon-text-blue glow-text animate-pulse-neon">Game Titles</span>
+                </h3>
+                <p className="text-gray-300 text-sm md:text-base mt-2">
+                  Experience the latest and greatest games in gaming
+                </p>
+              </div>
+              
+              {/* Game Categories Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                {gameTitles.map((category, i) => (
+                  <div 
+                    key={i} 
+                    className="space-y-4 group"
+                    style={{ animationDelay: `${i * 0.1}s` }}
+                  >
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="h-1 w-8 bg-gradient-to-r from-neon-pink to-neon-blue rounded-full"></div>
+                      <h4 className="text-xl md:text-2xl font-bold neon-text-pink group-hover:scale-105 transition-transform duration-300">
+                        {category.category}
+                      </h4>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 md:gap-3">
+                      {category.titles.map((title, j) => (
+                        <div 
+                          key={j} 
+                          className="group/item relative bg-gaming-accent/40 backdrop-blur-sm px-3 py-2.5 md:px-4 md:py-3 rounded-lg text-white text-xs md:text-sm font-medium hover:bg-gradient-to-r hover:from-neon-blue/30 hover:to-purple-500/30 transition-all duration-300 cursor-default border border-transparent hover:border-neon-blue/50 hover:shadow-lg hover:shadow-neon-blue/20 hover:scale-105 transform"
+                        >
+                          <span className="relative z-10">{title}</span>
+                          <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/0 via-neon-blue/20 to-neon-blue/0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
