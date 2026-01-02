@@ -212,7 +212,7 @@ const BookNow = () => {
                               <p className="text-sm text-gray-400">Up to 2 players • Priority bookings</p>
                             </div>
                           </TableCell>
-                          <TableCell className="py-4 text-right text-neon-blue font-semibold">₹199</TableCell>
+                          <TableCell className="py-4 text-right text-neon-blue font-semibold">₹299</TableCell>
                         </TableRow>
                         <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
                           <TableCell className="py-4">
@@ -221,7 +221,7 @@ const BookNow = () => {
                               <p className="text-sm text-gray-400">Up to 4 players • Priority bookings</p>
                             </div>
                           </TableCell>
-                          <TableCell className="py-4 text-right text-neon-pink font-semibold">₹349</TableCell>
+                          <TableCell className="py-4 text-right text-neon-pink font-semibold">₹499</TableCell>
                         </TableRow>
                         <TableRow className="hover:bg-gaming-accent/10">
                           <TableCell className="py-3 text-gray-300">Extra players (per hour)</TableCell>

@@ -32,8 +32,8 @@ const pricing = [
 ];
 
 const memberships = [
-  { name: "💎 Silver Membership", description: "Up to 2 players", price: 199, priceColor: "text-neon-blue" },
-  { name: "🌟 Gold Membership", description: "Up to 4 players", price: 349, priceColor: "text-neon-pink" },
+  { name: "💎 Silver Membership", description: "Up to 2 players", price: 299, priceColor: "text-neon-blue" },
+  { name: "🌟 Gold Membership", description: "Up to 4 players", price: 499, priceColor: "text-neon-pink" },
   { name: "Extra players (per hour)", price: 49, priceColor: "text-neon-blue" },
   { name: "Loyalty (members)", description: "5 pts per ₹100", priceColor: "text-neon-pink" }
 ];

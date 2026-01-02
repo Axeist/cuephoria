@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home, X, Percent, Gift, Zap, Sparkles, Copy } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home, X, Percent, Gift, Zap, Sparkles, Copy, Code, ExternalLink } from 'lucide-react';
 
 const Footer = () => {
   const [modal, setModal] = useState(null); // 'terms', 'privacy', 'contact', or null
@@ -293,6 +293,20 @@ const Footer = () => {
                   Contact
                 </button>
               </div>
+            </div>
+            
+            {/* Cuephoria Tech Tag */}
+            <div className="mt-6 flex justify-center">
+              <a
+                href="https://cuephoriatech.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/40 rounded-lg text-green-400 hover:bg-green-500/30 hover:border-green-500/60 transition-all duration-300 hover:scale-105 shadow-lg shadow-green-500/10 hover:shadow-green-500/20"
+              >
+                <Code className="h-4 w-4" />
+                <span className="font-semibold text-sm">Cuephoria Tech</span>
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
             </div>
           </div>
         </div>

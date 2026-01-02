@@ -94,13 +94,13 @@ const gameTitles = [
 const pricingOptions = [
   { 
     name: "💎 Silver Membership",
-    price: "₹199",
+    price: "₹299",
     description: "Up to 2 players • 50% OFF for entire month • Priority bookings • Premium membership card",
     features: ["PS5, VR Gaming & 8-Ball Pool at half price", "Priority bookings", "Premium membership card", "₹49 per extra player/hour"]
   },
   { 
     name: "🌟 Gold Membership",
-    price: "₹349", 
+    price: "₹499", 
     description: "Up to 4 players • 50% OFF for entire month • Priority bookings • Premium membership card",
     features: ["PS5, VR Gaming & 8-Ball Pool at half price", "Priority bookings", "Premium membership card", "₹49 per extra player/hour"]
   }
