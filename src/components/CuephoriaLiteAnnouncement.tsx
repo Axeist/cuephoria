@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Clock, Sparkles, ExternalLink, X } from 'lucide-react';
+import { MapPin, Clock, Sparkles, ExternalLink, X, Star, Moon, Zap, Users, Gift, Percent, Crown } from 'lucide-react';
 import { useState } from 'react';
 
 interface CuephoriaLiteAnnouncementProps {
@@ -25,14 +25,23 @@ const CuephoriaLiteAnnouncement = ({
   const liteInfo = {
     logo: "https://iili.io/fjuZYga.jpg",
     name: "Cuephoria Lite",
-    openingDate: "Mid-January 2025",
+    openingDate: "Date Will Be Announced Soon",
+    openingDateNote: "Opening in Mid-January 2026",
     location: "QR64+CRV Electronics Bus Stop, Valavandankottai, Tamil Nadu 620015",
     gmapLink: "https://maps.app.goo.gl/nvTtK6SG4nGQXenGA",
+    tagline: "Premium Gaming Experience, Student-Friendly Prices - Same Authentic Cuephoria Luxury, More Affordable!",
+    description: "Experience the authentic Cuephoria luxury you love, now more affordable and closer to campus! All the premium gaming, VR, and pool action at prices that won't break your budget. Perfect for those late-night study breaks, post-exam celebrations, and weekend gaming marathons.",
     features: [
-      "Opposite NIT Trichy",
-      "Exclusive NIT Student Discounts",
-      "Late Night Hours"
-    ]
+      { icon: <MapPin className="h-4 w-4" />, text: "Right Opposite NIT Trichy - Walkable Distance!", highlight: true },
+      { icon: <Crown className="h-4 w-4" />, text: "Same Authentic Cuephoria Luxury Experience - Premium Quality!", highlight: true },
+      { icon: <Percent className="h-4 w-4" />, text: "More Affordable Pricing - Same Premium Equipment & Service!", highlight: true },
+      { icon: <Gift className="h-4 w-4" />, text: "Exclusive NIT Student Discounts - Special Rates Just For You!", highlight: true },
+      { icon: <Moon className="h-4 w-4" />, text: "Late Night Hours - Game Till You Drop!", highlight: true },
+      { icon: <Zap className="h-4 w-4" />, text: "Same Premium Equipment - PS5, VR & Professional Pool Tables", highlight: false },
+      { icon: <Users className="h-4 w-4" />, text: "Perfect Hangout Spot for NIT Students - Budget-Friendly Fun!", highlight: false }
+    ],
+    openingDiscount: "Exclusive Opening Day Offer: Up to 60% OFF for Existing Cuephoria Customers!",
+    cta: "Be Among The First To Experience Premium Gaming at Student-Friendly Prices!"
   };
 
   if (variant === 'compact') {
@@ -52,12 +61,12 @@ const CuephoriaLiteAnnouncement = ({
             </div>
           </div>
           <p className="text-xs md:text-sm text-white flex-1">
-            <span className="font-bold text-amber-400 animate-pulse-slow inline-block">New Branch Coming Soon:</span>{' '}
+            <span className="font-bold text-amber-400 animate-pulse-slow inline-block">🎮 Epic News:</span>{' '}
             <span className="text-amber-300 font-semibold relative inline-block">
               Cuephoria Lite
               <span className="absolute -inset-1 bg-amber-400/20 blur-md opacity-50 animate-pulse"></span>
             </span>
-            {' '}- Opening Mid-January near <span className="text-amber-400 font-semibold">NIT Trichy</span>
+            {' '}- More Affordable, Same Luxury! Opening date announced soon, right opposite <span className="text-amber-400 font-semibold">NIT Trichy</span>! 🚀
           </p>
           <a
             href={liteInfo.gmapLink}
@@ -76,7 +85,11 @@ const CuephoriaLiteAnnouncement = ({
 
   if (variant === 'card') {
     return (
-      <div className="glass-card rounded-xl p-6 border-2 border-amber-500/40 bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-amber-500/10 relative overflow-hidden">
+      <div className="glass-card rounded-xl p-6 md:p-8 border-2 border-amber-500/50 bg-gradient-to-br from-amber-500/15 via-orange-500/15 to-amber-500/15 relative overflow-hidden group">
+        {/* Animated background effects */}
+        <div className="absolute inset-0 bg-gradient-to-r from-amber-400/0 via-amber-400/10 to-amber-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-300/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-2000 ease-in-out"></div>
+        
         {showCloseButton && (
           <button
             onClick={handleClose}
@@ -86,49 +99,109 @@ const CuephoriaLiteAnnouncement = ({
             <X className="h-5 w-5" />
           </button>
         )}
-        <div className="flex flex-col md:flex-row items-center gap-6">
-          <div className="flex-shrink-0">
+        <div className="relative flex flex-col md:flex-row items-center gap-6 md:gap-8">
+          {/* Logo Section with Glow */}
+          <div className="flex-shrink-0 relative">
+            <div className="absolute inset-0 bg-amber-400/20 rounded-lg blur-md animate-pulse"></div>
             <img
               src={liteInfo.logo}
               alt="Cuephoria Lite Logo"
-              className="w-24 h-24 md:w-32 md:h-32 object-contain rounded-lg border border-amber-500/30 bg-white/5 p-2"
+              className="w-28 h-28 md:w-36 md:h-36 object-contain rounded-lg border-2 border-amber-500/50 bg-white/10 p-3 relative z-10 shadow-lg shadow-amber-500/20"
             />
           </div>
+          
+          {/* Content Section */}
           <div className="flex-1 text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-              <Sparkles className="h-5 w-5 text-amber-400 animate-pulse" />
-              <h3 className="text-2xl md:text-3xl font-bold text-white">
-                <span className="text-amber-400">Cuephoria Lite</span>
+            {/* Header */}
+            <div className="flex items-center justify-center md:justify-start gap-2 md:gap-3 mb-3 flex-wrap">
+              <div className="relative">
+                <Sparkles className="h-6 w-6 text-amber-400 animate-pulse" />
+                <div className="absolute inset-0">
+                  <Sparkles className="h-6 w-6 text-amber-300 animate-ping opacity-50" />
+                </div>
+              </div>
+              <h3 className="text-2xl md:text-4xl font-bold text-white">
+                <span className="text-amber-400 relative inline-block">
+                  Cuephoria Lite
+                  <span className="absolute -inset-2 bg-amber-400/20 blur-lg opacity-50 animate-pulse"></span>
+                </span>
               </h3>
-              <span className="px-3 py-1 bg-amber-500/20 text-amber-300 text-xs font-bold rounded-full border border-amber-500/40 animate-pulse">
+              <span className="px-3 py-1.5 bg-gradient-to-r from-amber-500/30 to-orange-500/30 text-amber-200 text-xs md:text-sm font-bold rounded-full border border-amber-500/50 animate-pulse shadow-lg shadow-amber-500/20">
                 COMING SOON
               </span>
             </div>
-            <p className="text-lg text-amber-300 font-semibold mb-3">
-              Opening {liteInfo.openingDate}
+            
+            {/* Tagline */}
+            <p className="text-base md:text-lg text-amber-300 font-semibold mb-2 italic">
+              {liteInfo.tagline}
             </p>
-            <div className="space-y-2 mb-4">
+            
+            {/* Opening Date */}
+            <p className="text-sm md:text-base text-gray-300 mb-2 flex items-center justify-center md:justify-start gap-2">
+              <Clock className="h-4 w-4 md:h-5 md:w-5 text-amber-400 animate-pulse-slow" />
+              <span className="font-semibold">{liteInfo.openingDate}</span>
+            </p>
+            <p className="text-xs md:text-sm text-amber-400 mb-4 italic">
+              {liteInfo.openingDateNote}
+            </p>
+            
+            {/* Description */}
+            <p className="text-sm md:text-base text-gray-300 mb-4 leading-relaxed">
+              {liteInfo.description}
+            </p>
+            
+            {/* Opening Discount Banner */}
+            <div className="bg-gradient-to-r from-red-500/20 via-orange-500/20 to-amber-500/20 border-2 border-red-500/40 rounded-lg p-3 mb-4 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 animate-pulse"></div>
+              <div className="relative flex items-center gap-2">
+                <Gift className="h-5 w-5 text-red-400 animate-pulse" />
+                <p className="text-sm md:text-base font-bold text-red-300">
+                  {liteInfo.openingDiscount}
+                </p>
+              </div>
+            </div>
+            
+            {/* Features */}
+            <div className="space-y-2.5 mb-5">
               {liteInfo.features.map((feature, idx) => (
-                <div key={idx} className="flex items-center gap-2 text-gray-300">
-                  <div className="h-1.5 w-1.5 rounded-full bg-amber-400"></div>
-                  <span className="text-sm md:text-base">{feature}</span>
+                <div 
+                  key={idx} 
+                  className={`flex items-start gap-3 p-2 rounded-lg transition-all duration-300 ${
+                    feature.highlight 
+                      ? 'bg-amber-500/15 border border-amber-500/30 hover:bg-amber-500/20' 
+                      : 'bg-gaming-accent/10 border border-gaming-accent/20'
+                  }`}
+                >
+                  <div className={`mt-0.5 ${feature.highlight ? 'text-amber-400' : 'text-gray-400'}`}>
+                    {feature.icon}
+                  </div>
+                  <span className={`text-sm md:text-base ${feature.highlight ? 'text-amber-200 font-semibold' : 'text-gray-300'}`}>
+                    {feature.text}
+                  </span>
                 </div>
               ))}
             </div>
-            <div className="flex flex-col sm:flex-row gap-3">
+            
+            {/* CTA */}
+            <p className="text-xs md:text-sm text-amber-400 font-bold mb-4 text-center md:text-left animate-pulse-slow">
+              ✨ {liteInfo.cta} ✨
+            </p>
+            
+            {/* Location CTA */}
+            <div className="flex flex-col sm:flex-row gap-3 items-center">
               <a
                 href={liteInfo.gmapLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/40 text-amber-300 rounded-lg hover:bg-amber-500/30 transition-all duration-300 text-sm font-semibold"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500/30 to-orange-500/30 border-2 border-amber-500/50 text-amber-200 rounded-lg hover:from-amber-500/40 hover:to-orange-500/40 transition-all duration-300 text-sm font-bold shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 hover:scale-105 group/btn"
               >
-                <MapPin className="h-4 w-4" />
-                View Location
-                <ExternalLink className="h-3 w-3" />
+                <MapPin className="h-4 w-4 group-hover/btn:animate-bounce" />
+                View Location on Maps
+                <ExternalLink className="h-3.5 w-3.5" />
               </a>
               <div className="flex items-center gap-2 text-gray-400 text-xs">
                 <MapPin className="h-3 w-3" />
-                <span>{liteInfo.location}</span>
+                <span className="text-left">{liteInfo.location}</span>
               </div>
             </div>
           </div>
@@ -166,7 +239,7 @@ const CuephoriaLiteAnnouncement = ({
                   <span className="text-amber-400">Cuephoria Lite</span> - Coming Soon!
                 </h3>
                 <span className="px-1.5 py-0.5 bg-amber-500/20 text-amber-300 text-[9px] md:text-[10px] font-bold rounded-full border border-amber-500/40 animate-pulse whitespace-nowrap">
-                  MID-JAN 2025
+                  MID-JAN 2026
                 </span>
               </div>
             </div>

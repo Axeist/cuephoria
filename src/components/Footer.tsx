@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home, X, Percent, Gift, Zap, Sparkles, Copy, Code, ExternalLink, Star, Moon } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home, X, Percent, Gift, Zap, Sparkles, Copy, Code, ExternalLink, Star, Moon, Crown } from 'lucide-react';
 
 const Footer = () => {
   const [modal, setModal] = useState(null); // 'terms', 'privacy', 'contact', or null
@@ -99,27 +99,53 @@ const Footer = () => {
                   </div>
                   
                   <p className="text-base md:text-lg text-amber-300 font-semibold mb-2 italic text-center md:text-left">
-                    Your Ultimate Late-Night Gaming Paradise Right Next to NIT Trichy! 🎮
+                    Premium Gaming Experience, Student-Friendly Prices - Same Luxury, More Affordable! 🎮
                   </p>
                   
-                  <p className="text-sm md:text-base text-gray-300 mb-3 flex items-center justify-center md:justify-start gap-2">
+                  <p className="text-sm md:text-base text-gray-300 mb-2 flex items-center justify-center md:justify-start gap-2">
                     <Clock className="h-4 w-4 md:h-5 md:w-5 text-amber-400 animate-pulse-slow" />
-                    <span className="font-semibold">Opening Mid-January 2026</span>
+                    <span className="font-semibold">Exact Opening Date Will Be Announced Soon</span>
+                  </p>
+                  <p className="text-xs md:text-sm text-amber-400 mb-3 italic text-center md:text-left">
+                    Opening in Mid-January 2026
                   </p>
                   
                   <p className="text-xs md:text-sm text-gray-400 mb-4 leading-relaxed text-center md:text-left">
-                    Experience the same epic gaming vibes you love, now closer to campus! Perfect for those late-night study breaks, post-exam celebrations, and weekend gaming marathons.
+                    Experience the authentic Cuephoria luxury you love, now more affordable and closer to campus! All the premium gaming, VR, and pool action at prices that won't break your budget. Perfect for those late-night study breaks, post-exam celebrations, and weekend gaming marathons.
                   </p>
                   
+                  {/* Opening Discount Banner */}
+                  <div className="bg-gradient-to-r from-red-500/20 via-orange-500/20 to-amber-500/20 border-2 border-red-500/40 rounded-lg p-3 mb-4 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 animate-pulse"></div>
+                    <div className="relative flex items-center gap-2">
+                      <Gift className="h-5 w-5 text-red-400 animate-pulse" />
+                      <p className="text-sm md:text-base font-bold text-red-300">
+                        Exclusive Opening Day Offer: Up to 60% OFF for Existing Cuephoria Customers!
+                      </p>
+                    </div>
+                  </div>
+                  
                   {/* Features Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
                     <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
                       <MapPin className="h-4 w-4 text-amber-400 flex-shrink-0" />
                       <span className="text-sm font-semibold">Right Opposite NIT Trichy!</span>
                     </div>
                     <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
-                      <Star className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                      <Crown className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                      <span className="text-sm font-semibold">Same Authentic Luxury</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                      <Percent className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                      <span className="text-sm font-semibold">More Affordable Pricing</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                      <Gift className="h-4 w-4 text-amber-400 flex-shrink-0" />
                       <span className="text-sm font-semibold">Exclusive NIT Discounts</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                      <Zap className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                      <span className="text-sm font-semibold">Same Premium Equipment</span>
                     </div>
                     <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
                       <Moon className="h-4 w-4 text-amber-400 flex-shrink-0" />
@@ -128,7 +154,7 @@ const Footer = () => {
                   </div>
                   
                   <p className="text-xs md:text-sm text-amber-400 font-bold mb-3 text-center md:text-left animate-pulse-slow">
-                    ✨ Be Among The First To Experience Cuephoria Lite! ✨
+                    ✨ Be Among The First To Experience Premium Gaming at Student-Friendly Prices! ✨
                   </p>
                   
                   {/* Location and CTA */}
