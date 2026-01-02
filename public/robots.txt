@@ -26,7 +26,7 @@ Allow: /
 Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://cuephoria.in/sitemap.xml
+Sitemap: https://www.cuephoria.in/sitemap.xml
 
 # Specific sections for targeting
 Allow: /#student-gaming-trichy

@@ -1,108 +1,287 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- Homepage - Highest Priority -->
   <url>
-    <loc>https://cuephoria.in/</loc>
-    <lastmod>2025-04-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://www.cuephoria.in/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.cuephoria.in/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png</image:loc>
+      <image:title>Cuephoria Gaming Lounge Logo</image:title>
+    </image:image>
   </url>
+
+  <!-- Booking Page - High Priority -->
   <url>
-    <loc>https://cuephoria.in/#about</loc>
-    <lastmod>2025-04-14</lastmod>
+    <loc>https://www.cuephoria.in/book</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Cafe Menu Page -->
+  <url>
+    <loc>https://www.cuephoria.in/cafemenu</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog Main Page -->
+  <url>
+    <loc>https://www.cuephoria.in/blog</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Posts - High Priority for SEO -->
+  <url>
+    <loc>https://www.cuephoria.in/blog/why-we-started-cuephoria</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://cuephoria.in/#games</loc>
-    <lastmod>2025-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.cuephoria.in/blog/ultimate-student-hangout</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://cuephoria.in/#gallery</loc>
-    <lastmod>2025-04-14</lastmod>
+    <loc>https://www.cuephoria.in/blog/nervous-beginner-to-pool-pro</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/blog/late-night-gaming-sessions</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/blog/parents-ask-whats-special</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/blog/art-of-perfect-break</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/blog/nit50-student-discount</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/blog/nit99-happy-hours</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/blog/nit-trichy-gaming-culture</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/blog/student-stress-relief-gaming</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Main Section Anchors for SEO -->
+  <url>
+    <loc>https://www.cuephoria.in/#about</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
-    <loc>https://cuephoria.in/#book-now</loc>
-    <lastmod>2025-04-14</lastmod>
+    <loc>https://www.cuephoria.in/#games</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
-    <loc>https://cuephoria.in/#contact</loc>
-    <lastmod>2025-04-14</lastmod>
+    <loc>https://www.cuephoria.in/#tournaments</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/#gallery</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/#testimonials</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/#book-now</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/#contact</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Additional URLs for SEO targeting -->
+
+  <!-- SEO-Optimized Service Pages -->
   <url>
-    <loc>https://cuephoria.in/#ps5-gaming-trichy</loc>
-    <lastmod>2025-04-14</lastmod>
+    <loc>https://www.cuephoria.in/#ps5-gaming-trichy</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
-    <loc>https://cuephoria.in/#8-ball-pool-trichy</loc>
-    <lastmod>2025-04-14</lastmod>
+    <loc>https://www.cuephoria.in/#8-ball-pool-trichy</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
-    <loc>https://cuephoria.in/#snooker-trichy</loc>
-    <lastmod>2025-04-14</lastmod>
+    <loc>https://www.cuephoria.in/#snooker-trichy</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
-    <loc>https://cuephoria.in/#hangout-place-trichy</loc>
-    <lastmod>2025-04-14</lastmod>
+    <loc>https://www.cuephoria.in/#vr-gaming-trichy</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/#meta-quest-3s-vr</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Student-Specific SEO URLs -->
+  <url>
+    <loc>https://www.cuephoria.in/#student-gaming-trichy</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/#college-hangout-trichy</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/#student-discount-gaming-trichy</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/#nit-student-discount</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/#gaming-cafe-near-college-trichy</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://cuephoria.in/#chill-out-trichy</loc>
-    <lastmod>2025-04-14</lastmod>
+    <loc>https://www.cuephoria.in/#hangout-place-trichy</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Student-specific SEO URLs -->
+
   <url>
-    <loc>https://cuephoria.in/#student-gaming-trichy</loc>
-    <lastmod>2025-04-14</lastmod>
+    <loc>https://www.cuephoria.in/#chill-out-trichy</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/#weekend-fun-students-trichy</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.cuephoria.in/#gaming-tournaments-students-trichy</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Cuephoria Lite - New Branch -->
+  <url>
+    <loc>https://www.cuephoria.in/#cuephoria-lite</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
-    <loc>https://cuephoria.in/#college-hangout-trichy</loc>
-    <lastmod>2025-04-14</lastmod>
+    <loc>https://www.cuephoria.in/#nit-trichy-gaming-lounge</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
-    <loc>https://cuephoria.in/#student-discount-gaming-trichy</loc>
-    <lastmod>2025-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://cuephoria.in/#gaming-cafe-near-college-trichy</loc>
-    <lastmod>2025-04-14</lastmod>
+    <loc>https://www.cuephoria.in/#affordable-gaming-trichy</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://cuephoria.in/#weekend-fun-students-trichy</loc>
-    <lastmod>2025-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cuephoria.in/#gaming-tournaments-students-trichy</loc>
-    <lastmod>2025-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+
 </urlset>
