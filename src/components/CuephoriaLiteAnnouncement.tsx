@@ -37,7 +37,7 @@ const CuephoriaLiteAnnouncement = ({
       { icon: <Percent className="h-4 w-4" />, text: "More Affordable Pricing", highlight: true },
       { icon: <Gift className="h-4 w-4" />, text: "Exclusive NIT Discounts", highlight: true },
       { icon: <Moon className="h-4 w-4" />, text: "Late Night Hours", highlight: true },
-      { icon: <Zap className="h-4 w-4" />, text: "PS5, VR & Pool Tables", highlight: false }
+      { icon: <Zap className="h-4 w-4" />, text: "Compact Pool Tables", highlight: true }
     ],
     openingDiscount: "Opening Day: Up to 60% OFF for Existing Customers!",
     cta: "Be Among The First To Experience!"

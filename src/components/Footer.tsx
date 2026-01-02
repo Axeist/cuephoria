@@ -142,7 +142,7 @@ const Footer = () => {
                     </div>
                     <div className="flex items-center gap-1.5 text-amber-200 bg-amber-500/15 rounded-lg p-1.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
                       <Zap className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
-                      <span className="text-xs font-semibold">PS5, VR & Pool</span>
+                      <span className="text-xs font-semibold">Compact Pool Tables</span>
                     </div>
                     <div className="flex items-center gap-1.5 text-amber-200 bg-amber-500/15 rounded-lg p-1.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
                       <Moon className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
