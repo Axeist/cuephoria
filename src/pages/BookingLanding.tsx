@@ -261,18 +261,18 @@ const BookingLanding = () => {
               {/* Header Section - Matching Live Occupancy Status Style */}
               <div className="p-3 md:p-4 border-b border-neon-blue/20">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-4">
-                  <div className="text-center md:text-left">
-                    <h2 className="text-xl md:text-2xl font-bold flex items-center justify-center md:justify-start gap-2">
+                  <div className="text-center flex-1">
+                    <h2 className="text-xl md:text-2xl font-bold flex items-center justify-center gap-2">
                       <Calendar className="text-neon-pink h-5 w-5 md:h-6 md:w-6" />
                       <span className="text-neon-blue">Book Your Session Now</span>
                     </h2>
-                    <p className="text-center md:text-left text-gray-300 text-xs md:text-sm mt-1">
+                    <p className="text-center text-gray-300 text-xs md:text-sm mt-1">
                       Select your gaming station and time slot
                     </p>
                   </div>
                   
                   {/* Desktop: Align buttons to the right of the header */}
-                  <div className="hidden md:flex items-center gap-3">
+                  <div className="hidden md:flex items-center gap-3 flex-shrink-0">
                     <button
                       aria-label="Expand booking in fullscreen modal"
                       className="px-4 py-2 rounded-md bg-neon-blue/80 text-white font-semibold hover:bg-neon-blue transition flex items-center gap-2 text-sm whitespace-nowrap"
