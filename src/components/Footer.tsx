@@ -269,8 +269,20 @@ const Footer = () => {
           {/* Bottom Section */}
           <div className="border-t border-gaming-accent/30 pt-8">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <div className="text-gray-400 text-sm text-center sm:text-left">
-                © {currentYear} Cuephoria. All rights reserved. Made with ❤️ for Trichy gamers.
+              <div className="text-gray-400 text-sm text-center sm:text-left flex items-center gap-2 flex-wrap justify-center sm:justify-start">
+                <span>© {currentYear} Cuephoria. All rights reserved. Made with ❤️ for Trichy gamers.</span>
+                <span className="text-gray-500">•</span>
+                <span className="text-gray-400">Powered by</span>
+                <a
+                  href="https://cuephoriatech.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-500/20 border border-green-500/40 rounded-md text-green-400 hover:bg-green-500/30 hover:border-green-500/60 transition-all duration-300 hover:scale-105 shadow-sm shadow-green-500/10 hover:shadow-green-500/20"
+                >
+                  <Code className="h-3.5 w-3.5" />
+                  <span className="font-semibold text-xs">Cuephoria Tech</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
               </div>
               
               <div className="flex items-center flex-wrap justify-center gap-4 sm:gap-6">
@@ -293,20 +305,6 @@ const Footer = () => {
                   Contact
                 </button>
               </div>
-            </div>
-            
-            {/* Cuephoria Tech Tag */}
-            <div className="mt-6 flex justify-center">
-              <a
-                href="https://cuephoriatech.in"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/40 rounded-lg text-green-400 hover:bg-green-500/30 hover:border-green-500/60 transition-all duration-300 hover:scale-105 shadow-lg shadow-green-500/10 hover:shadow-green-500/20"
-              >
-                <Code className="h-4 w-4" />
-                <span className="font-semibold text-sm">Cuephoria Tech</span>
-                <ExternalLink className="h-3.5 w-3.5" />
-              </a>
             </div>
           </div>
         </div>

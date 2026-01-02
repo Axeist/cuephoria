@@ -256,7 +256,7 @@ const BookingLanding = () => {
             </div>
           </div>
 
-          {/* Full Width Booking Iframe */}
+          {/* Full Width Booking Iframe - Matching Information Container Width */}
           <div className="max-w-[95vw] lg:max-w-[1400px] mx-auto mb-6 md:mb-8">
             <div className="bg-gaming-darker/70 backdrop-blur-lg border border-neon-blue/30 rounded-xl overflow-hidden shadow-lg shadow-neon-blue/10">
               {/* Header Section - Matching Live Occupancy Status Style */}
@@ -325,15 +325,21 @@ const BookingLanding = () => {
                 </div>
               </div>
 
-              {/* Cuephoria Booking Website - Full Width and Big */}
-              <div className="relative w-full" style={{ height: isMobile ? "1000px" : "1200px", minHeight: isMobile ? "1000px" : "1200px" }}>
+              {/* Cuephoria Booking Website - Stretched to full container width */}
+              <div className="relative w-full overflow-hidden" style={{ height: isMobile ? "1000px" : "1200px", minHeight: isMobile ? "1000px" : "1200px", width: '100%' }}>
                 <iframe 
-                  width="100%" 
-                  height="100%"
                   src="https://admin.cuephoria.in/public/booking" 
                   frameBorder="0" 
                   allowFullScreen
-                  className="w-full h-full border-0"
+                  className="absolute inset-0 w-full h-full border-0"
+                  style={{ 
+                    width: '100%', 
+                    height: '100%', 
+                    border: 'none',
+                    margin: 0,
+                    padding: 0,
+                    display: 'block'
+                  }}
                   title="Cuephoria Booking Website"
                   loading="lazy"
                   aria-label="Cuephoria session booking"
