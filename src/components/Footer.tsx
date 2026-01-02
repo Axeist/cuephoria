@@ -98,26 +98,38 @@ const Footer = () => {
                     </span>
                   </div>
                   
-                  <p className="text-lg md:text-xl text-amber-300 font-semibold mb-4 flex items-center justify-center md:justify-start gap-2">
-                    <Clock className="h-5 w-5 animate-pulse-slow" />
-                    Opening Mid-January 2025
+                  <p className="text-base md:text-lg text-amber-300 font-semibold mb-2 italic text-center md:text-left">
+                    Your Ultimate Late-Night Gaming Paradise Right Next to NIT Trichy! 🎮
+                  </p>
+                  
+                  <p className="text-sm md:text-base text-gray-300 mb-3 flex items-center justify-center md:justify-start gap-2">
+                    <Clock className="h-4 w-4 md:h-5 md:w-5 text-amber-400 animate-pulse-slow" />
+                    <span className="font-semibold">Opening Mid-January 2026</span>
+                  </p>
+                  
+                  <p className="text-xs md:text-sm text-gray-400 mb-4 leading-relaxed text-center md:text-left">
+                    Experience the same epic gaming vibes you love, now closer to campus! Perfect for those late-night study breaks, post-exam celebrations, and weekend gaming marathons.
                   </p>
                   
                   {/* Features Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
-                    <div className="flex items-center gap-2 text-gray-300 bg-amber-500/10 rounded-lg p-2 border border-amber-500/20">
+                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
                       <MapPin className="h-4 w-4 text-amber-400 flex-shrink-0" />
-                      <span className="text-sm font-medium">Opposite NIT Trichy</span>
+                      <span className="text-sm font-semibold">Right Opposite NIT Trichy!</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-300 bg-amber-500/10 rounded-lg p-2 border border-amber-500/20">
+                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
                       <Star className="h-4 w-4 text-amber-400 flex-shrink-0" />
-                      <span className="text-sm font-medium">Exclusive NIT Discounts</span>
+                      <span className="text-sm font-semibold">Exclusive NIT Discounts</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-300 bg-amber-500/10 rounded-lg p-2 border border-amber-500/20">
+                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
                       <Moon className="h-4 w-4 text-amber-400 flex-shrink-0" />
-                      <span className="text-sm font-medium">Late Night Hours</span>
+                      <span className="text-sm font-semibold">Late Night Hours</span>
                     </div>
                   </div>
+                  
+                  <p className="text-xs md:text-sm text-amber-400 font-bold mb-3 text-center md:text-left animate-pulse-slow">
+                    ✨ Be Among The First To Experience Cuephoria Lite! ✨
+                  </p>
                   
                   {/* Location and CTA */}
                   <div className="flex flex-col sm:flex-row items-center gap-3">

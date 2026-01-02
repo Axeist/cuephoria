@@ -207,7 +207,7 @@ Message: ${formData.message}`;
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-white">
-                      Cuephoria Lite <span className="text-xs text-amber-400 font-normal">(Coming Soon - Mid-January)</span>
+                      Cuephoria Lite <span className="text-xs text-amber-400 font-normal">(Coming Soon - Mid-January 2026)</span>
                     </h4>
                     <p className="text-gray-400 mb-2">
                       QR64+CRV Electronics Bus Stop, Valavandankottai, Tamil Nadu 620015
