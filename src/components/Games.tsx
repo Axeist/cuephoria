@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Gamepad2, Crosshair, TrophyIcon, Target, X, Box } from 'lucide-react';
+import { Gamepad2, Crosshair, TrophyIcon, Target, X, Box, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useIsMobile } from "../hooks/use-mobile";
 
 // Updated games array with uploaded images
@@ -295,16 +296,66 @@ const Games = () => {
                 {/* FC 26 Featured */}
                 <div className="group relative overflow-hidden rounded-xl bg-gaming-darker/80 border border-neon-blue/30 hover:border-neon-blue/50 transition-all duration-300">
                   <div className="relative h-48 md:h-64 overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800&h=600&fit=crop&q=80" 
-                      alt="FC 26 - EA Sports Football Game"
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                      width="800"
-                      height="600"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker via-gaming-darker/50 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                    <Carousel className="w-full h-full">
+                      <CarouselContent className="h-full">
+                        {/* Main title image */}
+                        <CarouselItem className="h-full">
+                          <img 
+                            src="/FC title.avif" 
+                            alt="FC 26 - EA Sports Football Game"
+                            className="w-full h-full object-cover"
+                            loading="eager"
+                            width="800"
+                            height="600"
+                          />
+                        </CarouselItem>
+                        {/* Carousel images */}
+                        <CarouselItem className="h-full">
+                          <img 
+                            src="/FC1.avif" 
+                            alt="FC 26 Gameplay 1"
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            width="800"
+                            height="600"
+                          />
+                        </CarouselItem>
+                        <CarouselItem className="h-full">
+                          <img 
+                            src="/FC2.avif" 
+                            alt="FC 26 Gameplay 2"
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            width="800"
+                            height="600"
+                          />
+                        </CarouselItem>
+                        <CarouselItem className="h-full">
+                          <img 
+                            src="/FC3.avif" 
+                            alt="FC 26 Gameplay 3"
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            width="800"
+                            height="600"
+                          />
+                        </CarouselItem>
+                        <CarouselItem className="h-full">
+                          <img 
+                            src="/FC4.avif" 
+                            alt="FC 26 Gameplay 4"
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            width="800"
+                            height="600"
+                          />
+                        </CarouselItem>
+                      </CarouselContent>
+                      <CarouselPrevious className="left-2 bg-gaming-darker/80 border-neon-blue/50 text-neon-blue hover:bg-gaming-darker hover:text-white" />
+                      <CarouselNext className="right-2 bg-gaming-darker/80 border-neon-blue/50 text-neon-blue hover:bg-gaming-darker hover:text-white" />
+                    </Carousel>
+                    <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker via-gaming-darker/50 to-transparent pointer-events-none"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 pointer-events-none">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="px-2 py-1 bg-neon-pink/20 text-neon-pink text-xs font-bold rounded border border-neon-pink/30">
                           NEW
@@ -322,16 +373,56 @@ const Games = () => {
                 {/* NBA 2K26 Featured */}
                 <div className="group relative overflow-hidden rounded-xl bg-gaming-darker/80 border border-neon-pink/30 hover:border-neon-pink/50 transition-all duration-300">
                   <div className="relative h-48 md:h-64 overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&h=600&fit=crop&q=80" 
-                      alt="NBA 2K26 - Basketball Game"
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                      width="800"
-                      height="600"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker via-gaming-darker/50 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                    <Carousel className="w-full h-full">
+                      <CarouselContent className="h-full">
+                        {/* Main title image */}
+                        <CarouselItem className="h-full">
+                          <img 
+                            src="/NBA Title.avif" 
+                            alt="NBA 2K26 - Basketball Game"
+                            className="w-full h-full object-cover"
+                            loading="eager"
+                            width="800"
+                            height="600"
+                          />
+                        </CarouselItem>
+                        {/* Carousel images */}
+                        <CarouselItem className="h-full">
+                          <img 
+                            src="/NBA1.avif" 
+                            alt="NBA 2K26 Gameplay 1"
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            width="800"
+                            height="600"
+                          />
+                        </CarouselItem>
+                        <CarouselItem className="h-full">
+                          <img 
+                            src="/NBA2.avif" 
+                            alt="NBA 2K26 Gameplay 2"
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            width="800"
+                            height="600"
+                          />
+                        </CarouselItem>
+                        <CarouselItem className="h-full">
+                          <img 
+                            src="/NBA3.avif" 
+                            alt="NBA 2K26 Gameplay 3"
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            width="800"
+                            height="600"
+                          />
+                        </CarouselItem>
+                      </CarouselContent>
+                      <CarouselPrevious className="left-2 bg-gaming-darker/80 border-neon-pink/50 text-neon-pink hover:bg-gaming-darker hover:text-white" />
+                      <CarouselNext className="right-2 bg-gaming-darker/80 border-neon-pink/50 text-neon-pink hover:bg-gaming-darker hover:text-white" />
+                    </Carousel>
+                    <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker via-gaming-darker/50 to-transparent pointer-events-none"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 pointer-events-none">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="px-2 py-1 bg-neon-pink/20 text-neon-pink text-xs font-bold rounded border border-neon-pink/30">
                           NEW
