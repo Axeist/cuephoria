@@ -57,10 +57,11 @@ const Footer = () => {
           <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-neon-pink/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
-        <div className="container mx-auto px-4 py-12 relative z-10 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6 xl:gap-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10 max-w-7xl">
+          {/* Main Footer Content */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-12">
             {/* Logo & Description */}
-            <div className="space-y-6">
+            <div className="space-y-5">
               <div className="flex items-center space-x-3">
                 <div className="relative">
                   <div className="absolute inset-0 bg-neon-blue/20 rounded-full blur-lg"></div>
@@ -80,12 +81,13 @@ const Footer = () => {
                 Perfect for students, friends, and gaming enthusiasts.
               </p>
               {/* Social Media Links */}
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 pt-2">
                 <a 
                   href="https://www.instagram.com/cuephoriaclub" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-neon-pink transition-colors duration-300"
+                  aria-label="Instagram"
                 >
                   <Instagram className="h-5 w-5" />
                 </a>
@@ -94,6 +96,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-green-400 transition-colors duration-300"
+                  aria-label="WhatsApp"
                 >
                   <MessageCircle className="h-5 w-5" />
                 </a>
@@ -102,6 +105,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-blue-500 transition-colors duration-300"
+                  aria-label="Facebook"
                 >
                   <Facebook className="h-5 w-5" />
                 </a>
@@ -109,14 +113,14 @@ const Footer = () => {
             </div>
 
             {/* Quick Links */}
-            <div className="space-y-6">
+            <div className="space-y-5">
               <h4 className="text-lg font-bold text-white">Quick Links</h4>
-              <nav className="space-y-3">
+              <nav className="space-y-2.5">
                 <a 
                   href="https://www.cuephoria.in/#home"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group text-sm"
                 >
                   <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                   <span>Home</span>
@@ -125,7 +129,7 @@ const Footer = () => {
                   href="https://www.cuephoria.in/book"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group text-sm"
                 >
                   <Target className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                   <span>Book Now</span>
@@ -134,7 +138,7 @@ const Footer = () => {
                   href="https://www.cuephoria.in/blog"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group text-sm"
                 >
                   <BookOpen className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                   <span>Blog</span>
@@ -143,7 +147,7 @@ const Footer = () => {
                   href="https://www.cuephoria.in/#games"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group text-sm"
                 >
                   <Gamepad2 className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                   <span>Games</span>
@@ -152,7 +156,7 @@ const Footer = () => {
                   href="https://www.cuephoria.in/#gallery"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group text-sm"
                 >
                   <Coffee className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                   <span>Gallery</span>
@@ -161,7 +165,7 @@ const Footer = () => {
                   href="https://www.cuephoria.in/#testimonials"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group text-sm"
                 >
                   <Trophy className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                   <span>Reviews</span>
@@ -170,7 +174,7 @@ const Footer = () => {
                   href="https://www.cuephoria.in/#about"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group text-sm"
                 >
                   <Users className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                   <span>About</span>
@@ -179,16 +183,16 @@ const Footer = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-6">
+            <div className="space-y-5">
               <h4 className="text-lg font-bold text-white">Contact Info</h4>
-              <div className="space-y-4">
+              <div className="space-y-3.5">
                 <a 
                   href="https://maps.app.goo.gl/vUNCsMkiMEgHfbVPA" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
                 >
-                  <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                  <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
                   <span className="text-sm leading-relaxed">
                     Roof Top, No.1, Shivani Complex,<br />
                     Vaithiyalingam St, Muthu Nagar,<br />
@@ -196,24 +200,22 @@ const Footer = () => {
                   </span>
                 </a>
                 
-                {/* WhatsApp Bot Number */}
                 <a 
                   href="tel:+918637625155" 
-                  className="flex items-center space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+                  className="flex items-start space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
                 >
-                  <Phone className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                  <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
                   <div className="text-sm">
                     <div>+91 86376 25155</div>
                     <div className="text-xs text-gray-500">WhatsApp Bot/Calls</div>
                   </div>
                 </a>
                 
-                {/* Real Agent Number */}
                 <a 
                   href="tel:+917550025155" 
-                  className="flex items-center space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
+                  className="flex items-start space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
                 >
-                  <Phone className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                  <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
                   <div className="text-sm">
                     <div>+91 75500 25155</div>
                     <div className="text-xs text-gray-500">Human Agent</div>
@@ -224,28 +226,28 @@ const Footer = () => {
                   href="mailto:contact@cuephoria.in" 
                   className="flex items-center space-x-3 text-gray-400 hover:text-neon-blue transition-colors duration-300 group"
                 >
-                  <Mail className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                  <Mail className="h-4 w-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
                   <span className="text-sm">contact@cuephoria.in</span>
                 </a>
                 
                 <div className="flex items-center space-x-3 text-gray-400">
-                  <Clock className="h-5 w-5" />
+                  <Clock className="h-4 w-4 flex-shrink-0" />
                   <span className="text-sm">11:00 AM - 11:00 PM, Every day</span>
                 </div>
               </div>
             </div>
 
-            {/* Coupon Codes */}
-            <div className="space-y-6">
+            {/* Special Offers */}
+            <div className="space-y-5">
               <h4 className="text-lg font-bold text-white">Special Offers</h4>
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {footerCoupons.map((coupon, idx) => (
                   <div
                     key={idx}
                     onClick={() => copyCouponCode(coupon.code)}
                     className={`group relative p-3 ${coupon.bgColor} rounded-lg border ${coupon.borderColor} transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:shadow-lg`}
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between mb-1.5">
                       <div className="flex items-center gap-2">
                         <div className={`p-1 ${coupon.bgColor} rounded`}>
                           {coupon.icon}
@@ -254,7 +256,7 @@ const Footer = () => {
                       </div>
                       <span className={`${coupon.textColor} text-xs font-semibold`}>{coupon.discount}</span>
                     </div>
-                    <div className="mt-2 flex items-center gap-1 text-[10px] text-gray-400 group-hover:text-gray-300 transition-colors">
+                    <div className="flex items-center gap-1 text-[10px] text-gray-400 group-hover:text-gray-300 transition-colors">
                       <Copy className="h-3 w-3" />
                       <span>Click to copy</span>
                     </div>
@@ -262,32 +264,31 @@ const Footer = () => {
                 ))}
               </div>
             </div>
-
           </div>
 
-          {/* Bottom Section with Popup Buttons */}
-          <div className="border-t border-gaming-accent/30 mt-12 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 w-full">
-              <div className="text-gray-400 text-sm">
+          {/* Bottom Section */}
+          <div className="border-t border-gaming-accent/30 pt-8">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <div className="text-gray-400 text-sm text-center sm:text-left">
                 © {currentYear} Cuephoria. All rights reserved. Made with ❤️ for Trichy gamers.
               </div>
               
-              <div className="flex items-center space-x-6">
+              <div className="flex items-center flex-wrap justify-center gap-4 sm:gap-6">
                 <button 
                   onClick={() => setModal('terms')}
-                  className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm"
+                  className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm whitespace-nowrap"
                 >
                   Terms & Conditions
                 </button>
                 <button 
                   onClick={() => setModal('privacy')}
-                  className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm"
+                  className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm whitespace-nowrap"
                 >
                   Privacy Policy
                 </button>
                 <button 
                   onClick={() => setModal('contact')}
-                  className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm"
+                  className="text-gray-400 hover:text-neon-blue transition-colors duration-300 text-sm whitespace-nowrap"
                 >
                   Contact
                 </button>
