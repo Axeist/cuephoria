@@ -279,15 +279,11 @@ const Games = () => {
         
         {/* Featured Games Section */}
         <div className="mt-16">
-          <div className="glass-card rounded-xl p-6 md:p-10 border border-neon-pink/30 shadow-2xl relative overflow-hidden">
-            {/* Animated background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-neon-pink/10 via-purple-500/10 to-neon-blue/10"></div>
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-pink via-purple-500 to-neon-blue animate-shimmer"></div>
-            
+          <div className="glass-card rounded-xl p-6 md:p-10 border border-neon-pink/30 shadow-lg relative overflow-hidden">
             <div className="relative z-10">
               <div className="text-center mb-8">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
-                  <span className="neon-text-pink glow-text animate-pulse-neon">Featured</span>{" "}
+                <h3 className="text-3xl md:text-4xl font-bold mb-2">
+                  <span className="neon-text-pink">Featured</span>{" "}
                   <span className="text-white">Latest Games</span>
                 </h3>
                 <p className="text-gray-300 text-sm md:text-base">
@@ -297,12 +293,12 @@ const Games = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 {/* FC 26 Featured */}
-                <div className="group relative overflow-hidden rounded-xl bg-gaming-darker/80 border border-neon-blue/30 hover:border-neon-blue/60 transition-all duration-300 hover:shadow-2xl hover:shadow-neon-blue/30">
+                <div className="group relative overflow-hidden rounded-xl bg-gaming-darker/80 border border-neon-blue/30 hover:border-neon-blue/50 transition-all duration-300">
                   <div className="relative h-48 md:h-64 overflow-hidden">
                     <img 
                       src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800&h=600&fit=crop&q=80" 
                       alt="FC 26 - EA Sports Football Game"
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover"
                       loading="lazy"
                       width="800"
                       height="600"
@@ -324,12 +320,12 @@ const Games = () => {
                 </div>
                 
                 {/* NBA 2K26 Featured */}
-                <div className="group relative overflow-hidden rounded-xl bg-gaming-darker/80 border border-neon-pink/30 hover:border-neon-pink/60 transition-all duration-300 hover:shadow-2xl hover:shadow-neon-pink/30">
+                <div className="group relative overflow-hidden rounded-xl bg-gaming-darker/80 border border-neon-pink/30 hover:border-neon-pink/50 transition-all duration-300">
                   <div className="relative h-48 md:h-64 overflow-hidden">
                     <img 
                       src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&h=600&fit=crop&q=80" 
                       alt="NBA 2K26 - Basketball Game"
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover"
                       loading="lazy"
                       width="800"
                       height="600"
@@ -355,17 +351,13 @@ const Games = () => {
         </div>
         
         <div className="mt-16">
-          <div className="glass-card rounded-xl p-6 md:p-10 border border-neon-blue/30 shadow-2xl relative overflow-hidden">
-            {/* Animated background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/10 via-purple-500/5 to-neon-pink/10 animate-pulse"></div>
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-neon-blue to-transparent animate-shimmer"></div>
-            
+          <div className="glass-card rounded-xl p-6 md:p-10 border border-neon-blue/30 shadow-lg relative overflow-hidden">
             <div className="relative z-10">
               {/* Enhanced Title */}
               <div className="text-center mb-8 md:mb-12">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3">
+                <h3 className="text-3xl md:text-4xl font-bold mb-3">
                   <span className="text-white">Available</span>{" "}
-                  <span className="neon-text-blue glow-text animate-pulse-neon">Game Titles</span>
+                  <span className="neon-text-blue">Game Titles</span>
                 </h3>
                 <p className="text-gray-300 text-sm md:text-base mt-2">
                   Experience the latest and greatest games in gaming
@@ -377,12 +369,11 @@ const Games = () => {
                 {gameTitles.map((category, i) => (
                   <div 
                     key={i} 
-                    className="space-y-4 group"
-                    style={{ animationDelay: `${i * 0.1}s` }}
+                    className="space-y-4"
                   >
                     <div className="flex items-center gap-2 mb-4">
                       <div className="h-1 w-8 bg-gradient-to-r from-neon-pink to-neon-blue rounded-full"></div>
-                      <h4 className="text-xl md:text-2xl font-bold neon-text-pink group-hover:scale-105 transition-transform duration-300">
+                      <h4 className="text-xl md:text-2xl font-bold neon-text-pink">
                         {category.category}
                       </h4>
                     </div>
@@ -392,10 +383,10 @@ const Games = () => {
                         return (
                           <div 
                             key={j} 
-                            className={`group/item relative backdrop-blur-sm px-3 py-2.5 md:px-4 md:py-3 rounded-lg text-white text-xs md:text-sm font-medium transition-all duration-300 cursor-default border transform ${
+                            className={`relative backdrop-blur-sm px-3 py-3 md:px-4 md:py-4 rounded-lg text-white font-medium transition-all duration-300 cursor-default border ${
                               isFeatured 
-                                ? "bg-gradient-to-br from-neon-pink/30 to-neon-blue/30 border-neon-pink/50 hover:border-neon-blue/70 hover:shadow-lg hover:shadow-neon-pink/30 hover:scale-105" 
-                                : "bg-gaming-accent/40 border-transparent hover:bg-gradient-to-r hover:from-neon-blue/30 hover:to-purple-500/30 hover:border-neon-blue/50 hover:shadow-lg hover:shadow-neon-blue/20 hover:scale-105"
+                                ? "bg-gradient-to-br from-neon-pink/30 to-neon-blue/30 border-neon-pink/50 hover:border-neon-blue/50 text-base md:text-lg" 
+                                : "bg-gaming-accent/40 border-transparent hover:bg-gaming-accent/60 hover:border-neon-blue/30 text-sm md:text-base"
                             }`}
                           >
                             {isFeatured && (
@@ -404,13 +395,12 @@ const Games = () => {
                               </span>
                             )}
                             <span className="relative z-10 font-semibold">{title}</span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/0 via-neon-blue/20 to-neon-blue/0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 rounded-lg"></div>
                           </div>
                         );
                       })}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
               </div>
             </div>
           </div>
