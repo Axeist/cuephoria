@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Gamepad2, Crosshair, TrophyIcon, Target, X, Box, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Gamepad2, Crosshair, TrophyIcon, Target, X, Box } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useIsMobile } from "../hooks/use-mobile";
 
 // Updated games array with uploaded images
@@ -256,6 +256,31 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
 };
 
 const Games = () => {
+  const [fcApi, setFcApi] = useState<any>();
+  const [nbaApi, setNbaApi] = useState<any>();
+
+  // Auto-scroll FC 26 carousel
+  useEffect(() => {
+    if (!fcApi) return;
+
+    const interval = setInterval(() => {
+      fcApi.scrollNext();
+    }, 3500); // Change image every 3.5 seconds
+
+    return () => clearInterval(interval);
+  }, [fcApi]);
+
+  // Auto-scroll NBA 2K26 carousel
+  useEffect(() => {
+    if (!nbaApi) return;
+
+    const interval = setInterval(() => {
+      nbaApi.scrollNext();
+    }, 3500); // Change image every 3.5 seconds
+
+    return () => clearInterval(interval);
+  }, [nbaApi]);
+
   return (
     <section id="games" className="py-20 relative">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -286,7 +311,7 @@ const Games = () => {
                 <h3 className="text-3xl md:text-4xl font-bold mb-2">
                   <span className="neon-text-pink">Featured</span>{" "}
                   <span className="text-white">Latest Games</span>
-                </h3>
+            </h3>
                 <p className="text-gray-300 text-sm md:text-base">
                   Experience the newest releases in gaming
                 </p>
@@ -295,64 +320,81 @@ const Games = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 {/* FC 26 Featured */}
                 <div className="group relative overflow-hidden rounded-xl bg-gaming-darker/80 border border-neon-blue/30 hover:border-neon-blue/50 transition-all duration-300">
-                  <div className="relative h-48 md:h-64 overflow-hidden">
-                    <Carousel className="w-full h-full">
-                      <CarouselContent className="h-full">
+                  <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
+                    <Carousel 
+                      className="w-full h-full" 
+                      setApi={setFcApi}
+                      opts={{
+                        align: "start",
+                        loop: true,
+                        duration: 20,
+                        dragFree: false,
+                      }}
+                    >
+                      <CarouselContent className="h-full -ml-0">
                         {/* Main title image */}
-                        <CarouselItem className="h-full">
-                          <img 
-                            src="/FC title.avif" 
-                            alt="FC 26 - EA Sports Football Game"
-                            className="w-full h-full object-cover"
-                            loading="eager"
-                            width="800"
-                            height="600"
-                          />
+                        <CarouselItem className="pl-0 h-full">
+                          <div className="h-full">
+                            <img 
+                              src="/FC title.avif" 
+                              alt="FC 26 - EA Sports Football Game"
+                              className="w-full h-full object-cover"
+                              loading="eager"
+                              width="1200"
+                              height="800"
+                            />
+                          </div>
                         </CarouselItem>
                         {/* Carousel images */}
-                        <CarouselItem className="h-full">
-                          <img 
-                            src="/FC1.avif" 
-                            alt="FC 26 Gameplay 1"
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                            width="800"
-                            height="600"
-                          />
+                        <CarouselItem className="pl-0 h-full">
+                          <div className="h-full">
+                            <img 
+                              src="/FC1.avif" 
+                              alt="FC 26 Gameplay 1"
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                              width="1200"
+                              height="800"
+                            />
+                          </div>
                         </CarouselItem>
-                        <CarouselItem className="h-full">
-                          <img 
-                            src="/FC2.avif" 
-                            alt="FC 26 Gameplay 2"
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                            width="800"
-                            height="600"
-                          />
+                        <CarouselItem className="pl-0 h-full">
+                          <div className="h-full">
+                            <img 
+                              src="/FC2.avif" 
+                              alt="FC 26 Gameplay 2"
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                              width="1200"
+                              height="800"
+                            />
+                          </div>
                         </CarouselItem>
-                        <CarouselItem className="h-full">
-                          <img 
-                            src="/FC3.avif" 
-                            alt="FC 26 Gameplay 3"
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                            width="800"
-                            height="600"
-                          />
+                        <CarouselItem className="pl-0 h-full">
+                          <div className="h-full">
+                            <img 
+                              src="/FC3.avif" 
+                              alt="FC 26 Gameplay 3"
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                              width="1200"
+                              height="800"
+                            />
+                          </div>
                         </CarouselItem>
-                        <CarouselItem className="h-full">
-                          <img 
-                            src="/FC4.avif" 
-                            alt="FC 26 Gameplay 4"
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                            width="800"
-                            height="600"
-                          />
+                        <CarouselItem className="pl-0 h-full">
+                          <div className="h-full">
+                            <img 
+                              src="/FC4.avif" 
+                              alt="FC 26 Gameplay 4"
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                              width="1200"
+                              height="800"
+                            />
+                          </div>
                         </CarouselItem>
                       </CarouselContent>
-                      <CarouselPrevious className="left-2 bg-gaming-darker/80 border-neon-blue/50 text-neon-blue hover:bg-gaming-darker hover:text-white" />
-                      <CarouselNext className="right-2 bg-gaming-darker/80 border-neon-blue/50 text-neon-blue hover:bg-gaming-darker hover:text-white" />
                     </Carousel>
                     <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker via-gaming-darker/50 to-transparent pointer-events-none"></div>
                     <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 pointer-events-none">
@@ -372,54 +414,69 @@ const Games = () => {
                 
                 {/* NBA 2K26 Featured */}
                 <div className="group relative overflow-hidden rounded-xl bg-gaming-darker/80 border border-neon-pink/30 hover:border-neon-pink/50 transition-all duration-300">
-                  <div className="relative h-48 md:h-64 overflow-hidden">
-                    <Carousel className="w-full h-full">
-                      <CarouselContent className="h-full">
+                  <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
+                    <Carousel 
+                      className="w-full h-full" 
+                      setApi={setNbaApi}
+                      opts={{
+                        align: "start",
+                        loop: true,
+                        duration: 20,
+                        dragFree: false,
+                      }}
+                    >
+                      <CarouselContent className="h-full -ml-0">
                         {/* Main title image */}
-                        <CarouselItem className="h-full">
-                          <img 
-                            src="/NBA Title.avif" 
-                            alt="NBA 2K26 - Basketball Game"
-                            className="w-full h-full object-cover"
-                            loading="eager"
-                            width="800"
-                            height="600"
-                          />
+                        <CarouselItem className="pl-0 h-full">
+                          <div className="h-full">
+                            <img 
+                              src="/NBA Title.avif" 
+                              alt="NBA 2K26 - Basketball Game"
+                              className="w-full h-full object-cover"
+                              loading="eager"
+                              width="1200"
+                              height="800"
+                            />
+                          </div>
                         </CarouselItem>
                         {/* Carousel images */}
-                        <CarouselItem className="h-full">
-                          <img 
-                            src="/NBA1.avif" 
-                            alt="NBA 2K26 Gameplay 1"
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                            width="800"
-                            height="600"
-                          />
+                        <CarouselItem className="pl-0 h-full">
+                          <div className="h-full">
+                            <img 
+                              src="/NBA1.avif" 
+                              alt="NBA 2K26 Gameplay 1"
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                              width="1200"
+                              height="800"
+                            />
+                          </div>
                         </CarouselItem>
-                        <CarouselItem className="h-full">
-                          <img 
-                            src="/NBA2.avif" 
-                            alt="NBA 2K26 Gameplay 2"
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                            width="800"
-                            height="600"
-                          />
+                        <CarouselItem className="pl-0 h-full">
+                          <div className="h-full">
+                            <img 
+                              src="/NBA2.avif" 
+                              alt="NBA 2K26 Gameplay 2"
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                              width="1200"
+                              height="800"
+                            />
+                          </div>
                         </CarouselItem>
-                        <CarouselItem className="h-full">
-                          <img 
-                            src="/NBA3.avif" 
-                            alt="NBA 2K26 Gameplay 3"
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                            width="800"
-                            height="600"
-                          />
+                        <CarouselItem className="pl-0 h-full">
+                          <div className="h-full">
+                            <img 
+                              src="/NBA3.avif" 
+                              alt="NBA 2K26 Gameplay 3"
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                              width="1200"
+                              height="800"
+                            />
+                          </div>
                         </CarouselItem>
                       </CarouselContent>
-                      <CarouselPrevious className="left-2 bg-gaming-darker/80 border-neon-pink/50 text-neon-pink hover:bg-gaming-darker hover:text-white" />
-                      <CarouselNext className="right-2 bg-gaming-darker/80 border-neon-pink/50 text-neon-pink hover:bg-gaming-darker hover:text-white" />
                     </Carousel>
                     <div className="absolute inset-0 bg-gradient-to-t from-gaming-darker via-gaming-darker/50 to-transparent pointer-events-none"></div>
                     <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 pointer-events-none">
@@ -457,7 +514,7 @@ const Games = () => {
               
               {/* Game Categories Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                {gameTitles.map((category, i) => (
+              {gameTitles.map((category, i) => (
                   <div 
                     key={i} 
                     className="space-y-4"
@@ -472,8 +529,8 @@ const Games = () => {
                       {category.titles.map((title, j) => {
                         const isFeatured = title === "FC 26" || title === "NBA 2K26";
                         return (
-                          <div 
-                            key={j} 
+                      <div 
+                        key={j} 
                             className={`relative backdrop-blur-sm px-3 py-3 md:px-4 md:py-4 rounded-lg text-white font-medium transition-all duration-300 cursor-default border ${
                               isFeatured 
                                 ? "bg-gradient-to-br from-neon-pink/30 to-neon-blue/30 border-neon-pink/50 hover:border-neon-blue/50 text-base md:text-lg" 
@@ -486,12 +543,12 @@ const Games = () => {
                               </span>
                             )}
                             <span className="relative z-10 font-semibold">{title}</span>
-                          </div>
+                      </div>
                         );
                       })}
-                    </div>
                   </div>
-                ))}
+                </div>
+              ))}
               </div>
             </div>
           </div>
