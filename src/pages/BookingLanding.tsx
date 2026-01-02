@@ -7,6 +7,7 @@ import { Table, TableBody, TableCell, TableRow } from "../components/ui/table";
 import { Dialog, DialogContent } from "../components/ui/dialog";
 import { useIsMobile } from '../hooks/use-mobile';
 import { useToast } from '../hooks/use-toast';
+import CuephoriaLiteAnnouncement from '../components/CuephoriaLiteAnnouncement';
 
 const VisitorStats = lazy(() => import('../components/VisitorStats'));
 
@@ -195,6 +196,12 @@ const BookingLanding = () => {
                 Get <span className="text-neon-blue font-bold">25% OFF</span> on your total bill with online bookings!
               </p>
             </div>
+            
+            {/* Cuephoria Lite Announcement */}
+            <div className="max-w-4xl mx-auto mb-6 md:mb-8">
+              <CuephoriaLiteAnnouncement variant="card" />
+            </div>
+            
             <div className="mb-6 md:mb-8">
               <p className="text-gray-300 mb-2 flex items-center justify-center gap-2 animate-blink-slow">
                 <Clock className="h-4 w-4 md:h-5 md:w-5 text-red-500 animate-pulse" />

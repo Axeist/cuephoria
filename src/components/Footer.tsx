@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home, X, Percent, Gift, Zap, Sparkles, Copy, Code, ExternalLink } from 'lucide-react';
+import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
 
 const Footer = () => {
   const [modal, setModal] = useState(null); // 'terms', 'privacy', 'contact', or null
@@ -58,6 +59,11 @@ const Footer = () => {
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10 max-w-7xl">
+          {/* Cuephoria Lite Announcement */}
+          <div className="mb-8">
+            <CuephoriaLiteAnnouncement variant="banner" />
+          </div>
+          
           {/* Main Footer Content */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-12">
             {/* Logo & Description */}
@@ -194,9 +200,25 @@ const Footer = () => {
                 >
                   <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
                   <span className="text-sm leading-relaxed">
+                    <span className="font-semibold text-white">Main Branch:</span><br />
                     Roof Top, No.1, Shivani Complex,<br />
                     Vaithiyalingam St, Muthu Nagar,<br />
                     Thiruverumbur, Tamil Nadu 620013
+                  </span>
+                </a>
+                
+                <a 
+                  href="https://maps.app.goo.gl/nvTtK6SG4nGQXenGA" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start space-x-3 text-amber-400 hover:text-amber-300 transition-colors duration-300 group"
+                >
+                  <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-sm leading-relaxed">
+                    <span className="font-semibold text-amber-300">Cuephoria Lite (Coming Soon):</span><br />
+                    QR64+CRV Electronics Bus Stop,<br />
+                    Valavandankottai, Tamil Nadu 620015<br />
+                    <span className="text-xs text-amber-500">Opposite NIT Trichy</span>
                   </span>
                 </a>
                 

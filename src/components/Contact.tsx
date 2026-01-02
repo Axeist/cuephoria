@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, Instagram } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -125,6 +126,11 @@ Message: ${formData.message}`;
           </p>
         </div>
 
+        {/* Cuephoria Lite Announcement */}
+        <div className="max-w-4xl mx-auto mb-8">
+          <CuephoriaLiteAnnouncement variant="card" />
+        </div>
+
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="w-full lg:w-1/2">
             <div className="glass-card rounded-xl p-8 h-full">
@@ -187,10 +193,34 @@ Message: ${formData.message}`;
                     <MapPin className="h-5 w-5 text-neon-blue" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-white">Location</h4>
+                    <h4 className="text-lg font-semibold text-white">Location (Main Branch)</h4>
                     <p className="text-gray-400">
                       Roof Top, No.1, Shivani Complex, Vaithiyalingam St, Muthu Nagar, Thiruverumbur, Tamil Nadu 620013
                     </p>
+                  </div>
+                </div>
+
+                {/* Cuephoria Lite Location */}
+                <div className="flex items-start">
+                  <div className="h-10 w-10 rounded-full bg-amber-500/20 flex items-center justify-center mr-4">
+                    <MapPin className="h-5 w-5 text-amber-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-white">
+                      Cuephoria Lite <span className="text-xs text-amber-400 font-normal">(Coming Soon - Mid-January)</span>
+                    </h4>
+                    <p className="text-gray-400 mb-2">
+                      QR64+CRV Electronics Bus Stop, Valavandankottai, Tamil Nadu 620015
+                    </p>
+                    <a
+                      href="https://maps.app.goo.gl/nvTtK6SG4nGQXenGA"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-amber-400 hover:text-amber-300 transition-colors text-sm flex items-center gap-1"
+                    >
+                      View on Google Maps
+                    </a>
+                    <p className="text-xs text-gray-500 mt-1">Opposite NIT Trichy • Exclusive NIT student discounts • Late night hours</p>
                   </div>
                 </div>
 

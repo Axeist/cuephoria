@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Clock, MapPin, Gamepad2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
 
 const Hero = ({ className = '' }) => {
   return (
@@ -75,6 +76,11 @@ const Hero = ({ className = '' }) => {
                 <MapPin className="h-5 w-5 text-neon-blue" />
                 <span>Thiruverumbur, Trichy, Tamil Nadu</span>
               </div>
+            </div>
+            
+            {/* Cuephoria Lite Sneak Peek */}
+            <div className="mb-6">
+              <CuephoriaLiteAnnouncement variant="compact" />
             </div>
             
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Target, Joystick, Users, Coffee } from 'lucide-react';
+import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
 
 const FeatureCard = ({ icon: Icon, title, description }: { icon: any; title: string; description: string }) => (
   <div className="glass-card rounded-xl p-6 hover:border-neon-blue/30 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(0,255,255,0.3)]">
@@ -56,6 +57,11 @@ const About = () => {
             title="Community Space"
             description="Regular tournaments, events and a vibrant community of gaming and billiards enthusiasts."
           />
+        </div>
+        
+        {/* Cuephoria Lite Announcement */}
+        <div className="mt-12 mb-8">
+          <CuephoriaLiteAnnouncement variant="card" />
         </div>
         
         <div className="mt-20 glass-card rounded-xl p-8 md:p-12 relative overflow-hidden">

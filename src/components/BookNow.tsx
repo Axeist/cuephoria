@@ -4,6 +4,7 @@ import { Calendar, Clock, Users, Award, Table2, Siren, Percent, Gift, Zap, Spark
 import { Link } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
+import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
 
 const BookNow = () => {
   const { toast } = useToast();
@@ -95,6 +96,11 @@ const BookNow = () => {
           <p className="text-gray-300 max-w-2xl mx-auto mt-4">
             Book your gaming or pool session now and prepare for an unforgettable experience at Cuephoria.
           </p>
+          
+          {/* Cuephoria Lite Announcement */}
+          <div className="max-w-4xl mx-auto mt-6 mb-6">
+            <CuephoriaLiteAnnouncement variant="card" />
+          </div>
           
           {/* Fixed alignment for the limited time offer banner */}
           <div className="flex justify-center mt-6 mb-8">
