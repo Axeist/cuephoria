@@ -85,7 +85,7 @@ const Testimonials = () => {
   const featuredTestimonials = sortedTestimonials.filter(review => review.text && review.text.trim().length > 10);
   const quickReviews = sortedTestimonials.filter(review => !review.text || review.text.trim().length <= 10);
 
-  // Calculate statistics from actual reviews
+  // Calculate detailed statistics from actual reviews
   const totalReviews = testimonials.length;
   const averageRating = totalReviews > 0 
     ? (testimonials.reduce((sum, review) => sum + review.stars, 0) / totalReviews).toFixed(1)
@@ -93,6 +93,78 @@ const Testimonials = () => {
   const satisfactionRate = totalReviews > 0
     ? Math.round((testimonials.filter(review => review.stars >= 4).length / totalReviews) * 100)
     : 100;
+  
+  // Star rating distribution
+  const starDistribution = {
+    5: testimonials.filter(r => r.stars === 5).length,
+    4: testimonials.filter(r => r.stars === 4).length,
+    3: testimonials.filter(r => r.stars === 3).length,
+    2: testimonials.filter(r => r.stars === 2).length,
+    1: testimonials.filter(r => r.stars === 1).length,
+  };
+  
+  const fiveStarPercentage = totalReviews > 0 
+    ? Math.round((starDistribution[5] / totalReviews) * 100)
+    : 0;
+  
+  const reviewsWithText = testimonials.filter(r => r.text && r.text.trim().length > 0).length;
+  const detailedReviewsPercentage = totalReviews > 0
+    ? Math.round((reviewsWithText / totalReviews) * 100)
+    : 0;
+  
+  // Review quality and sentiment analysis
+  const reviewsWithDetailedText = testimonials.filter(r => r.text && r.text.trim().length > 50).length;
+  const averageReviewLength = reviewsWithText > 0
+    ? Math.round(testimonials
+        .filter(r => r.text)
+        .reduce((sum, r) => sum + (r.text?.length || 0), 0) / reviewsWithText)
+    : 0;
+  
+  // Positive sentiment keywords
+  const positiveKeywords = ['great', 'good', 'excellent', 'amazing', 'awesome', 'best', 'love', 'perfect', 'wonderful', 'fantastic', 'enjoy', 'recommend', 'nice', 'cool', 'fun', 'enjoyed', 'superb', 'outstanding'];
+  const reviewsWithPositiveSentiment = testimonials.filter(r => {
+    if (!r.text) return false;
+    const text = r.text.toLowerCase();
+    return positiveKeywords.some(keyword => text.includes(keyword));
+  }).length;
+  
+  const positiveSentimentRate = totalReviews > 0
+    ? Math.round((reviewsWithPositiveSentiment / totalReviews) * 100)
+    : 0;
+  
+  // Review quality score (based on length, detail, and rating)
+  const qualityScore = totalReviews > 0
+    ? Math.round(
+        (detailedReviewsPercentage * 0.4) + 
+        (positiveSentimentRate * 0.3) + 
+        (satisfactionRate * 0.3)
+      )
+    : 0;
+  
+  // Most common positive aspects
+  const aspectKeywords = {
+    'ambience': ['ambience', 'atmosphere', 'vibe', 'environment', 'place'],
+    'staff': ['staff', 'service', 'friendly', 'helpful', 'attentive'],
+    'games': ['games', 'gaming', 'ps5', 'pool', 'billiards', 'snooker', 'vr'],
+    'pricing': ['affordable', 'cheap', 'price', 'worth', 'value', 'discount'],
+    'experience': ['experience', 'fun', 'enjoy', 'time', 'visit']
+  };
+  
+  const aspectMentions = Object.keys(aspectKeywords).map(aspect => {
+    const keywords = aspectKeywords[aspect as keyof typeof aspectKeywords];
+    const mentions = testimonials.filter(r => {
+      if (!r.text) return false;
+      const text = r.text.toLowerCase();
+      return keywords.some(keyword => text.includes(keyword));
+    }).length;
+    return { aspect, mentions, percentage: Math.round((mentions / totalReviews) * 100) };
+  }).sort((a, b) => b.mentions - a.mentions);
+  
+  // Review engagement (reviews with detailed feedback)
+  const highlyEngagedReviews = testimonials.filter(r => r.text && r.text.trim().length > 100).length;
+  const engagementRate = totalReviews > 0
+    ? Math.round((highlyEngagedReviews / totalReviews) * 100)
+    : 0;
 
   return (
     <section id="testimonials" className="py-20 bg-gaming-dark relative overflow-hidden">
@@ -269,7 +341,7 @@ const Testimonials = () => {
 
         {/* Enhanced Stats Section with Google branding */}
         <div className="text-center">
-          <div className="glass-card rounded-xl p-8 border border-white/20 max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
+          <div className="glass-card rounded-xl p-6 md:p-8 border border-white/20 max-w-6xl mx-auto shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-green-600/5"></div>
             
             <div className="flex items-center justify-center mb-6 relative z-10">
@@ -284,27 +356,164 @@ const Testimonials = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-              <div className="group">
-                <div className="text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
+            {/* Primary Metrics Row */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 relative z-10 mb-8">
+              {/* Total Reviews */}
+              <div className="group bg-white/5 rounded-lg p-4 border border-white/10 hover:border-blue-400/30 transition-all">
+                <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-1 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
                   {totalReviews}
                 </div>
-                <div className="text-gray-300 font-medium">Happy Customers</div>
+                <div className="text-gray-300 font-medium text-xs md:text-sm">Total Reviews</div>
+                <div className="text-[10px] md:text-xs text-gray-400 mt-1">
+                  {reviewsWithText} with feedback ({detailedReviewsPercentage}%)
+                </div>
               </div>
-              <div className="group">
-                <div className="text-4xl font-bold text-yellow-400 mb-2 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
+              
+              {/* Average Rating */}
+              <div className="group bg-white/5 rounded-lg p-4 border border-white/10 hover:border-yellow-400/30 transition-all">
+                <div className="text-3xl md:text-4xl font-bold text-yellow-400 mb-1 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
                   {averageRating}
                 </div>
-                <div className="text-gray-300 font-medium">Average Rating</div>
-                <div className="flex justify-center mt-2">
+                <div className="text-gray-300 font-medium text-xs md:text-sm">Average Rating</div>
+                <div className="flex justify-center mt-1">
                   {renderStars(parseFloat(averageRating))}
                 </div>
+                <div className="text-[10px] md:text-xs text-gray-400 mt-1">
+                  {starDistribution[5]} perfect 5★ reviews
+                </div>
               </div>
-              <div className="group">
-                <div className="text-4xl font-bold text-green-400 mb-2 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
+              
+              {/* Satisfaction Rate */}
+              <div className="group bg-white/5 rounded-lg p-4 border border-white/10 hover:border-green-400/30 transition-all">
+                <div className="text-3xl md:text-4xl font-bold text-green-400 mb-1 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
                   {satisfactionRate}%
                 </div>
-                <div className="text-gray-300 font-medium">Satisfaction Rate</div>
+                <div className="text-gray-300 font-medium text-xs md:text-sm">Satisfaction Rate</div>
+                <div className="text-[10px] md:text-xs text-gray-400 mt-1">
+                  {starDistribution[4] + starDistribution[5]} rated 4+ stars
+                </div>
+              </div>
+              
+              {/* Review Quality Score */}
+              <div className="group bg-white/5 rounded-lg p-4 border border-white/10 hover:border-purple-400/30 transition-all">
+                <div className="text-3xl md:text-4xl font-bold text-purple-400 mb-1 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
+                  {qualityScore}%
+                </div>
+                <div className="text-gray-300 font-medium text-xs md:text-sm">Quality Score</div>
+                <div className="text-[10px] md:text-xs text-gray-400 mt-1">
+                  Based on detail & sentiment
+                </div>
+              </div>
+            </div>
+
+            {/* Secondary Insights Row */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 relative z-10 mb-8">
+              {/* Positive Sentiment */}
+              <div className="bg-white/5 rounded-lg p-3 md:p-4 border border-white/10">
+                <div className="text-2xl md:text-3xl font-bold text-green-400 mb-1">
+                  {positiveSentimentRate}%
+                </div>
+                <div className="text-gray-300 font-medium text-xs">Positive Sentiment</div>
+                <div className="text-[10px] md:text-xs text-gray-400 mt-1">
+                  {reviewsWithPositiveSentiment} reviews with positive keywords
+                </div>
+              </div>
+              
+              {/* Engagement Rate */}
+              <div className="bg-white/5 rounded-lg p-3 md:p-4 border border-white/10">
+                <div className="text-2xl md:text-3xl font-bold text-cyan-400 mb-1">
+                  {engagementRate}%
+                </div>
+                <div className="text-gray-300 font-medium text-xs">High Engagement</div>
+                <div className="text-[10px] md:text-xs text-gray-400 mt-1">
+                  {highlyEngagedReviews} detailed reviews (100+ chars)
+                </div>
+              </div>
+              
+              {/* Average Review Length */}
+              <div className="bg-white/5 rounded-lg p-3 md:p-4 border border-white/10">
+                <div className="text-2xl md:text-3xl font-bold text-orange-400 mb-1">
+                  {averageReviewLength}
+                </div>
+                <div className="text-gray-300 font-medium text-xs">Avg. Length</div>
+                <div className="text-[10px] md:text-xs text-gray-400 mt-1">
+                  {reviewsWithDetailedText} reviews with 50+ chars
+                </div>
+              </div>
+              
+              {/* Five Star Percentage */}
+              <div className="bg-white/5 rounded-lg p-3 md:p-4 border border-white/10">
+                <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-1">
+                  {fiveStarPercentage}%
+                </div>
+                <div className="text-gray-300 font-medium text-xs">5-Star Reviews</div>
+                <div className="text-[10px] md:text-xs text-gray-400 mt-1">
+                  {starDistribution[5]} out of {totalReviews} total
+                </div>
+              </div>
+            </div>
+
+            {/* Star Distribution Breakdown */}
+            <div className="mb-8 pt-6 border-t border-white/10 relative z-10">
+              <div className="text-center mb-4">
+                <h4 className="text-white font-semibold text-sm md:text-base mb-2">Rating Distribution</h4>
+                <p className="text-xs text-gray-400">Visual breakdown of all customer ratings</p>
+              </div>
+              <div className="grid grid-cols-5 gap-2 md:gap-4 max-w-3xl mx-auto">
+                {[5, 4, 3, 2, 1].map((stars) => {
+                  const count = starDistribution[stars as keyof typeof starDistribution];
+                  const percentage = totalReviews > 0 ? Math.round((count / totalReviews) * 100) : 0;
+                  return (
+                    <div key={stars} className="text-center">
+                      <div className="flex justify-center mb-2">
+                        {renderStars(stars)}
+                      </div>
+                      <div className="text-xl md:text-2xl font-bold text-white mb-1">{count}</div>
+                      <div className="text-xs text-gray-400 mb-2">{percentage}%</div>
+                      <div className="mt-2 h-2 bg-gray-700 rounded-full overflow-hidden">
+                        <div 
+                          className={`h-full rounded-full transition-all duration-500 ${
+                            stars === 5 ? 'bg-yellow-400' :
+                            stars === 4 ? 'bg-blue-400' :
+                            stars === 3 ? 'bg-green-400' :
+                            stars === 2 ? 'bg-orange-400' :
+                            'bg-red-400'
+                          }`}
+                          style={{ width: `${percentage}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Most Mentioned Aspects */}
+            <div className="pt-6 border-t border-white/10 relative z-10">
+              <div className="text-center mb-4">
+                <h4 className="text-white font-semibold text-sm md:text-base mb-2">What Customers Love Most</h4>
+                <p className="text-xs text-gray-400">Most frequently mentioned positive aspects</p>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4 max-w-4xl mx-auto">
+                {aspectMentions.slice(0, 5).map((item, index) => (
+                  <div key={index} className="bg-white/5 rounded-lg p-3 border border-white/10 hover:border-blue-400/30 transition-all">
+                    <div className="text-lg md:text-xl font-bold text-blue-400 mb-1">
+                      {item.percentage}%
+                    </div>
+                    <div className="text-xs md:text-sm text-gray-300 capitalize font-medium">
+                      {item.aspect}
+                    </div>
+                    <div className="text-[10px] text-gray-400 mt-1">
+                      {item.mentions} mentions
+                    </div>
+                    <div className="mt-2 h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full transition-all duration-500"
+                        style={{ width: `${item.percentage}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
