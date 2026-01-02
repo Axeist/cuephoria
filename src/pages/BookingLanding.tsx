@@ -1,5 +1,5 @@
 import React, { useEffect, useState, lazy, Suspense, useCallback, useMemo } from 'react';
-import { ArrowRight, Clock, MapPin, Star, Award, Table2, Siren, ActivitySquare, Expand, ExternalLink, Percent, Gift, Zap, Sparkles, Copy, Target, X } from 'lucide-react';
+import { ArrowRight, Clock, MapPin, Star, Award, Table2, Siren, ActivitySquare, Expand, ExternalLink, Percent, Gift, Zap, Sparkles, Copy, Target, X, Calendar } from 'lucide-react';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import SEOMetadata from '../components/SEOMetadata';
@@ -256,91 +256,95 @@ const BookingLanding = () => {
           </div>
 
           {/* Full Width Booking Iframe */}
-          <div className="max-w-[98vw] mx-auto mb-8">
-            {/* Header Section */}
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4 md:mb-6">
-              <h2 className="text-xl md:text-2xl font-bold text-center lg:text-left text-neon-blue mb-3 lg:mb-0">
-                Book Your Session Now
-              </h2>
-              
-              {/* Desktop: Align buttons to the right of the header */}
-              <div className="hidden lg:flex items-center gap-3">
-                <button
-                  aria-label="Expand booking in fullscreen modal"
-                  className="px-4 py-2 rounded-md bg-neon-blue/80 text-white font-semibold hover:bg-neon-blue transition flex items-center gap-2 text-sm whitespace-nowrap"
-                  onClick={() => setIsModalOpen(true)}
-                >
-                  <Expand className="h-4 w-4" />
-                  Expand
-                </button>
-                <a
-                  href="https://admin.cuephoria.in/public/booking"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Open in new tab"
-                  className="px-4 py-2 rounded-md bg-gaming-accent text-white font-semibold hover:bg-neon-pink/80 flex items-center gap-2 transition text-sm whitespace-nowrap"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  New Tab
-                </a>
+          <div className="max-w-[95vw] lg:max-w-[1400px] mx-auto mb-6 md:mb-8">
+            <div className="bg-gaming-darker/70 backdrop-blur-lg border border-neon-blue/30 rounded-xl overflow-hidden shadow-lg shadow-neon-blue/10">
+              {/* Header Section - Matching Live Occupancy Status Style */}
+              <div className="p-3 md:p-4 border-b border-neon-blue/20">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-4">
+                  <div className="text-center md:text-left">
+                    <h2 className="text-xl md:text-2xl font-bold flex items-center justify-center md:justify-start gap-2">
+                      <Calendar className="text-neon-pink h-5 w-5 md:h-6 md:w-6" />
+                      <span className="text-neon-blue">Book Your Session Now</span>
+                    </h2>
+                    <p className="text-center md:text-left text-gray-300 text-xs md:text-sm mt-1">
+                      Select your gaming station and time slot
+                    </p>
+                  </div>
+                  
+                  {/* Desktop: Align buttons to the right of the header */}
+                  <div className="hidden md:flex items-center gap-3">
+                    <button
+                      aria-label="Expand booking in fullscreen modal"
+                      className="px-4 py-2 rounded-md bg-neon-blue/80 text-white font-semibold hover:bg-neon-blue transition flex items-center gap-2 text-sm whitespace-nowrap"
+                      onClick={() => setIsModalOpen(true)}
+                    >
+                      <Expand className="h-4 w-4" />
+                      Expand
+                    </button>
+                    <a
+                      href="https://admin.cuephoria.in/public/booking"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Open in new tab"
+                      className="px-4 py-2 rounded-md bg-gaming-accent text-white font-semibold hover:bg-neon-pink/80 flex items-center gap-2 transition text-sm whitespace-nowrap"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      New Tab
+                    </a>
+                  </div>
+                </div>
+                
+                {/* Mobile: Show info banner and controls below header */}
+                <div className="md:hidden mt-3">
+                  <div className="mb-3 text-center p-3 bg-gaming-accent/10 rounded-lg text-sm text-white">
+                    <strong>Cuephoria Booking:</strong> PS5 or Pool Table slots.<br />
+                    Need more space? <span className="font-bold text-neon-blue">Expand</span> or <span className="font-bold text-neon-blue">open in new tab</span>.
+                  </div>
+                  
+                  <div className="flex justify-center gap-2">
+                    <button
+                      aria-label="Expand booking in fullscreen modal"
+                      className="px-4 py-2 rounded-md bg-neon-blue/80 text-white font-semibold hover:bg-neon-blue transition flex items-center gap-2 text-sm"
+                      onClick={() => setIsModalOpen(true)}
+                    >
+                      <Expand className="h-4 w-4" />
+                      Expand
+                    </button>
+                    <a
+                      href="https://admin.cuephoria.in/public/booking"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Open in new tab"
+                      className="px-4 py-2 rounded-md bg-gaming-accent text-white font-semibold hover:bg-neon-pink/80 flex items-center gap-2 transition text-sm"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      New Tab
+                    </a>
+                  </div>
+                </div>
               </div>
-            </div>
-            
-            {/* Mobile: Show info banner and controls below header */}
-            <div className="lg:hidden">
-              <div className="mb-3 text-center p-3 bg-gaming-accent/10 rounded-lg text-sm text-white">
-                <strong>Cuephoria Booking:</strong> PS5 or Pool Table slots.<br />
-                Need more space? <span className="font-bold text-neon-blue">Expand</span> or <span className="font-bold text-neon-blue">open in new tab</span>.
-              </div>
-              
-              <div className="flex justify-center gap-2 mb-4">
-                <button
-                  aria-label="Expand booking in fullscreen modal"
-                  className="px-4 py-2 rounded-md bg-neon-blue/80 text-white font-semibold hover:bg-neon-blue transition flex items-center gap-2 text-sm"
-                  onClick={() => setIsModalOpen(true)}
-                >
-                  <Expand className="h-4 w-4" />
-                  Expand
-                </button>
-                <a
-                  href="https://admin.cuephoria.in/public/booking"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Open in new tab"
-                  className="px-4 py-2 rounded-md bg-gaming-accent text-white font-semibold hover:bg-neon-pink/80 flex items-center gap-2 transition text-sm"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  New Tab
-                </a>
-              </div>
-            </div>
 
-            {/* Cuephoria Booking Website - Full Width and Big */}
-            <div 
-              className="w-full rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50 transition-all duration-300"
-              style={{
-                height: "1200px",
-                minHeight: "1200px",
-                maxHeight: "90vh"
-              }}
-            >
-              <iframe 
-                width="100%" 
-                height="100%"
-                src="https://admin.cuephoria.in/public/booking" 
-                frameBorder="0" 
-                allowFullScreen
-                className="w-full h-full rounded-lg"
-                title="Cuephoria Booking Website"
-                loading="lazy"
-                aria-label="Cuephoria session booking"
-              />
+              {/* Cuephoria Booking Website - Full Width and Big */}
+              <div className="relative w-full" style={{ height: isMobile ? "1000px" : "1200px", minHeight: isMobile ? "1000px" : "1200px" }}>
+                <iframe 
+                  width="100%" 
+                  height="100%"
+                  src="https://admin.cuephoria.in/public/booking" 
+                  frameBorder="0" 
+                  allowFullScreen
+                  className="w-full h-full border-0"
+                  title="Cuephoria Booking Website"
+                  loading="lazy"
+                  aria-label="Cuephoria session booking"
+                />
+              </div>
             </div>
           </div>
 
           {/* Information Container - Separate Section */}
-          <div className="max-w-[98vw] lg:max-w-[1600px] mx-auto bg-gaming-darker/50 backdrop-blur-lg rounded-xl border border-neon-blue/30 p-4 md:p-6 lg:p-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
+          <div className="max-w-[95vw] lg:max-w-[1400px] mx-auto bg-gaming-darker/50 backdrop-blur-lg rounded-xl border border-neon-blue/30 p-4 md:p-6 lg:p-8">
+            {/* Top Row - Three Equal Columns on Desktop */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
               {/* Why Cuephoria Section */}
               <div className="bg-gaming-accent/10 rounded-lg p-4 md:p-6">
                 <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
@@ -415,9 +419,12 @@ const BookingLanding = () => {
                   </div>
                 </div>
               </div>
+            </div>
 
+            {/* Bottom Row - Special Offers on Left, Stats and Contact on Right */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
               {/* Special Offers / Coupon Codes Section */}
-              <div className="bg-gaming-accent/10 rounded-lg p-4 md:p-6 lg:col-span-2 xl:col-span-1">
+              <div className="bg-gaming-accent/10 rounded-lg p-4 md:p-6 lg:col-span-1">
                 <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
                   <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-neon-pink mr-2 animate-pulse" />
                   Special Offers
@@ -478,15 +485,17 @@ const BookingLanding = () => {
                 </div>
               </div>
 
-              {/* Lazy load visitor stats component */}
-              <div className="bg-gaming-accent/10 rounded-lg p-4 md:p-6">
-                <Suspense fallback={<div className="h-16 md:h-20 bg-gaming-accent/10 animate-pulse rounded-lg"></div>}>
-                  <VisitorStats />
-                </Suspense>
-              </div>
+              {/* Right Column - Stats and Contact */}
+              <div className="lg:col-span-2 space-y-4 md:space-y-6">
+                {/* Lazy load visitor stats component */}
+                <div className="bg-gaming-accent/10 rounded-lg p-4 md:p-6">
+                  <Suspense fallback={<div className="h-16 md:h-20 bg-gaming-accent/10 animate-pulse rounded-lg"></div>}>
+                    <VisitorStats />
+                  </Suspense>
+                </div>
 
-              {/* Contact Options Section */}
-              <div className="bg-gaming-accent/10 rounded-lg p-4 md:p-6 text-center lg:col-span-2 xl:col-span-1">
+                {/* Contact Options Section */}
+                <div className="bg-gaming-accent/10 rounded-lg p-4 md:p-6 text-center">
                 <p className="text-xs md:text-sm text-gray-400 mb-3 md:mb-4">
                   Can't book online right now? Reach us directly:
                 </p>
@@ -528,6 +537,7 @@ const BookingLanding = () => {
                 </div>
               </div>
             </div>
+          </div>
           </div>
 
           {/* Return to main site button */}
