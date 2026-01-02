@@ -57,10 +57,10 @@ const Footer = () => {
           <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-neon-pink/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
-        <div className="container mx-auto px-4 py-12 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="container mx-auto px-4 py-12 relative z-10 max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6 xl:gap-8 justify-items-start">
             {/* Logo & Description */}
-            <div className="space-y-6">
+            <div className="space-y-6 max-w-full">
               <div className="flex items-center space-x-3">
                 <div className="relative">
                   <div className="absolute inset-0 bg-neon-blue/20 rounded-full blur-lg"></div>
@@ -109,7 +109,7 @@ const Footer = () => {
             </div>
 
             {/* Quick Links */}
-            <div className="space-y-6">
+            <div className="space-y-6 max-w-full">
               <h4 className="text-lg font-bold text-white">Quick Links</h4>
               <nav className="space-y-3">
                 <a 
@@ -179,7 +179,7 @@ const Footer = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-6">
+            <div className="space-y-6 max-w-full">
               <h4 className="text-lg font-bold text-white">Contact Info</h4>
               <div className="space-y-4">
                 <a 
@@ -236,7 +236,7 @@ const Footer = () => {
             </div>
 
             {/* Coupon Codes */}
-            <div className="space-y-6">
+            <div className="space-y-6 max-w-full">
               <h4 className="text-lg font-bold text-white">Special Offers</h4>
               <div className="space-y-3">
                 {footerCoupons.map((coupon, idx) => (
