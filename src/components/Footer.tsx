@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home, X } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home, X, Percent, Sparkles, Zap, Gift } from 'lucide-react';
 
 const Footer = () => {
   const [modal, setModal] = useState(null); // 'terms', 'privacy', 'contact', or null
@@ -196,27 +196,154 @@ const Footer = () => {
 
             {/* Special Offers */}
             <div className="space-y-6">
-              <h4 className="text-lg font-bold text-white">Special Offers</h4>
-              <div className="space-y-4">
-                <div className="p-4 bg-gradient-to-r from-neon-blue/10 to-purple-500/10 rounded-lg border border-neon-blue/20">
-                  <h5 className="text-neon-blue font-semibold text-sm mb-2">NIT50 Discount</h5>
-                  <p className="text-xs text-gray-300 leading-relaxed">
-                    50% off for NIT Trichy students with valid ID
-                  </p>
+              <h4 className="text-lg font-bold text-white flex items-center gap-2">
+                <Sparkles className="h-5 w-5 text-neon-pink animate-pulse" />
+                Special Offers
+              </h4>
+              <div className="space-y-3">
+                {/* CUEPHORIA20 */}
+                <div className="group relative p-4 bg-gradient-to-r from-neon-blue/15 via-purple-500/10 to-neon-blue/15 rounded-xl border border-neon-blue/30 hover:border-neon-blue/60 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,255,255,0.3)] overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="p-1.5 bg-neon-blue/20 rounded-lg">
+                          <Percent className="h-4 w-4 text-neon-blue" />
+                        </div>
+                        <h5 className="text-neon-blue font-bold text-sm neon-text-blue">CUEPHORIA20</h5>
+                      </div>
+                      <span className="px-2 py-1 bg-neon-blue/20 text-neon-blue text-xs font-bold rounded-full border border-neon-blue/50">
+                        20% OFF
+                      </span>
+                    </div>
+                    <div className="space-y-1.5 text-xs">
+                      <div className="flex items-center gap-2 text-gray-300">
+                        <span className="text-gray-500 line-through">₹150</span>
+                        <span className="text-neon-blue font-semibold">→ ₹120/hour</span>
+                        <span className="text-green-400 text-[10px]">(Save ₹30)</span>
+                        <span className="text-gray-500">PS5/VR</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-300">
+                        <span className="text-gray-500 line-through">₹300</span>
+                        <span className="text-neon-blue font-semibold">→ ₹240/hour</span>
+                        <span className="text-green-400 text-[10px]">(Save ₹60)</span>
+                        <span className="text-gray-500">Pool</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 
-                <div className="p-4 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-lg border border-amber-500/20">
-                  <h5 className="text-amber-400 font-semibold text-sm mb-2">NIT99 Happy Hours</h5>
-                  <p className="text-xs text-gray-300 leading-relaxed">
-                    Play pool for just ₹99 from 11 AM to 3 PM
-                  </p>
+                {/* CUEPHORIA35 */}
+                <div className="group relative p-4 bg-gradient-to-r from-purple-500/15 via-pink-500/10 to-purple-500/15 rounded-xl border border-purple-500/30 hover:border-purple-500/60 transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="p-1.5 bg-purple-500/20 rounded-lg">
+                          <Gift className="h-4 w-4 text-purple-400" />
+                        </div>
+                        <h5 className="text-purple-400 font-bold text-sm">CUEPHORIA35</h5>
+                      </div>
+                      <span className="px-2 py-1 bg-purple-500/20 text-purple-400 text-xs font-bold rounded-full border border-purple-500/50">
+                        35% OFF
+                      </span>
+                    </div>
+                    <div className="mb-1.5">
+                      <span className="text-[10px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">
+                        Student ID Required
+                      </span>
+                    </div>
+                    <div className="space-y-1.5 text-xs">
+                      <div className="flex items-center gap-2 text-gray-300">
+                        <span className="text-gray-500 line-through">₹150</span>
+                        <span className="text-purple-400 font-semibold">→ ₹97.50/hour</span>
+                        <span className="text-green-400 text-[10px]">(Save ₹52.50)</span>
+                        <span className="text-gray-500">PS5/VR</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-300">
+                        <span className="text-gray-500 line-through">₹300</span>
+                        <span className="text-purple-400 font-semibold">→ ₹195/hour</span>
+                        <span className="text-green-400 text-[10px]">(Save ₹105)</span>
+                        <span className="text-gray-500">Pool</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* HH99 Happy Hours */}
+                <div className="group relative p-4 bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-amber-500/15 rounded-xl border border-amber-500/30 hover:border-amber-500/60 transition-all duration-300 hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="p-1.5 bg-amber-500/20 rounded-lg">
+                          <Zap className="h-4 w-4 text-amber-400 animate-pulse" />
+                        </div>
+                        <h5 className="text-amber-400 font-bold text-sm">HH99 Happy Hours</h5>
+                      </div>
+                      <span className="px-2 py-1 bg-amber-500/20 text-amber-400 text-xs font-bold rounded-full border border-amber-500/50 animate-pulse">
+                        ₹99 FIXED
+                      </span>
+                    </div>
+                    <div className="mb-1.5">
+                      <span className="text-[10px] text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">
+                        Mon-Fri, 11 AM-4 PM
+                      </span>
+                    </div>
+                    <div className="space-y-1.5 text-xs">
+                      <div className="flex items-center gap-2 text-gray-300">
+                        <span className="text-gray-500 line-through">₹150</span>
+                        <span className="text-amber-400 font-semibold">→ ₹99/hour</span>
+                        <span className="text-green-400 text-[10px]">(Save ₹51)</span>
+                        <span className="text-gray-500">PS5</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-300">
+                        <span className="text-gray-500 line-through">₹300</span>
+                        <span className="text-amber-400 font-semibold">→ ₹99/hour</span>
+                        <span className="text-green-400 text-[10px]">(Save ₹201)</span>
+                        <span className="text-gray-500">Pool</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* NIT35 */}
+                <div className="group relative p-4 bg-gradient-to-r from-green-500/15 via-teal-500/10 to-green-500/15 rounded-xl border border-green-500/30 hover:border-green-500/60 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="p-1.5 bg-green-500/20 rounded-lg">
+                          <Sparkles className="h-4 w-4 text-green-400" />
+                        </div>
+                        <h5 className="text-green-400 font-bold text-sm">NIT35</h5>
+                      </div>
+                      <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-bold rounded-full border border-green-500/50">
+                        35% OFF
+                      </span>
+                    </div>
+                    <div className="space-y-1.5 text-xs">
+                      <div className="flex items-center gap-2 text-gray-300">
+                        <span className="text-gray-500 line-through">₹150</span>
+                        <span className="text-green-400 font-semibold">→ ₹97.50/hour</span>
+                        <span className="text-green-400 text-[10px]">(Save ₹52.50)</span>
+                        <span className="text-gray-500">PS5/VR</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-300">
+                        <span className="text-gray-500 line-through">₹300</span>
+                        <span className="text-green-400 font-semibold">→ ₹195/hour</span>
+                        <span className="text-green-400 text-[10px]">(Save ₹105)</span>
+                        <span className="text-gray-500">Pool</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 
                 <a 
                   href="https://www.cuephoria.in/book"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-neon-pink hover:text-neon-blue transition-colors duration-300 text-sm font-medium group"
+                  className="inline-flex items-center justify-center space-x-2 w-full px-4 py-2.5 bg-gradient-to-r from-neon-pink via-purple-500 to-neon-blue text-white text-sm font-bold rounded-lg hover:shadow-[0_0_25px_rgba(255,45,239,0.5)] transition-all duration-300 group transform hover:scale-105"
                 >
                   <span>Book Now</span>
                   <Target className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -291,9 +418,10 @@ const Footer = () => {
                     <h4 className="text-lg font-semibold text-white mb-3">1. Booking & Reservations</h4>
                     <ul className="space-y-2 list-disc list-inside">
                       <li>All bookings are subject to availability and must be confirmed in advance</li>
-                      <li>Valid student ID required for all student discounts (NIT50, NIT99)</li>
+                      <li>Valid student ID required for CUEPHORIA35 discount</li>
                       <li>Cancellations must be made at least 24 hours prior to avoid charges</li>
                       <li>No-shows will be charged the full session amount</li>
+                      <li>Coupon codes cannot be combined with other offers</li>
                     </ul>
                   </div>
 
@@ -313,8 +441,9 @@ const Footer = () => {
                     <ul className="space-y-2 list-disc list-inside">
                       <li>All prices are clearly displayed and subject to change</li>
                       <li>Payment must be completed before or immediately after the session</li>
-                      <li>Student discounts require valid ID verification</li>
-                      <li>Happy hour rates (NIT99) apply only during specified times</li>
+                      <li>Student discounts (CUEPHORIA35) require valid ID verification</li>
+                      <li>Happy hour rates (HH99) apply only during specified times (Mon-Fri, 11 AM-4 PM)</li>
+                      <li>Available coupon codes: CUEPHORIA20, CUEPHORIA35, HH99, NIT35</li>
                     </ul>
                   </div>
 
@@ -480,7 +609,7 @@ const Footer = () => {
                       <p className="text-white font-semibold">11:00 AM - 11:00 PM</p>
                       <p className="text-sm text-gray-400">Every day of the week</p>
                       <p className="text-xs text-gray-500 mt-2">
-                        NIT99 Happy Hours: 11:00 AM - 3:00 PM daily
+                        HH99 Happy Hours: 11:00 AM - 4:00 PM (Mon-Fri only)
                       </p>
                     </div>
                   </div>

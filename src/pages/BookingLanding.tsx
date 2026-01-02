@@ -23,8 +23,9 @@ const features = [
 ];
 
 const pricing = [
-  { label: "PS5 Gaming (per controller)", original: 150, discounted: 113 },
-  { label: "Pool Table (per hour)", original: 300, discounted: 225 },
+  { label: "PS5 Gaming (per controller)", original: 150, discounted: 150 },
+  { label: "Pool Table (per hour)", original: 300, discounted: 300 },
+  { label: "VR Station (per hour)", original: 150, discounted: 150 },
 ];
 
 const memberships = [
@@ -302,8 +303,7 @@ const BookingLanding = () => {
                             </TableCell>
                             <TableCell className="py-2 md:py-3 text-right">
                               <div className="flex items-center justify-end">
-                                <span className="font-bold text-gray-400 line-through mr-1 md:mr-2 text-sm md:text-base">₹{original}</span>
-                                <span className="font-bold text-neon-blue text-lg md:text-xl">₹{discounted}</span>
+                                <span className="font-bold text-neon-blue text-lg md:text-xl">₹{original}</span>
                               </div>
                             </TableCell>
                           </TableRow>

@@ -228,7 +228,7 @@ const Chatbot = () => {
 
     if (lowerInput.includes('pool') || lowerInput.includes('8-ball') || lowerInput.includes('snooker') || lowerInput.includes('billiards')) {
       return {
-        response: "🎱 Vanakkam! Pool Games are absolutely mass, da! We've got professional tables waiting for you here in Trichy:\n\n💰 Regular Price: ₹300/day\n🔥 Opening Offer: 50% OFF - Now just ₹150!\n\nThat's a whole day of pool mastery! Perfect for hanging out with friends or some serious practice. Ready to book your session right now?",
+        response: "🎱 Vanakkam! Pool Games are absolutely mass, da! We've got professional tables waiting for you here in Trichy:\n\n💰 Regular Price: ₹300/hour\n\nUse coupon codes for discounts:\n🎟️ CUEPHORIA20 - 20% OFF: ₹300 → ₹240/hour (saving ₹60)\n🎟️ CUEPHORIA35 - 35% OFF with student ID: ₹300 → ₹195/hour (saving ₹105)\n🎟️ HH99 - Fixed ₹99/hour (Mon-Fri, 11 AM-4 PM): ₹300 → ₹99/hour (saving ₹201)\n🎟️ NIT35 - 35% OFF: ₹300 → ₹195/hour (saving ₹105)\n\nThat's a whole day of pool mastery! Perfect for hanging out with friends or some serious practice. Ready to book your session right now?",
         buttons: [
           { text: "Book Now", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> },
           { text: "Check Live Tables", action: "link", value: "https://admin.cuephoria.in/public/stations", icon: <BarChart3 size={16} /> }
@@ -238,7 +238,7 @@ const Chatbot = () => {
     
     if (lowerInput.includes('ps5') || lowerInput.includes('playstation') || lowerInput.includes('console') || lowerInput.includes('controller')) {
       return {
-        response: "🎮 Aiyo! PS5 Gaming is where the real magic happens, da! We've got the latest titles and premium controllers here in Trichy:\n\n💰 Regular Price: ₹150 per controller\n🔥 Opening Offer: 50% OFF - Now just ₹75!\n\nWhether you're into FIFA, God of War, or Spider-Man, we've got you covered! Ready to secure your gaming throne? Book immediately!",
+        response: "🎮 Aiyo! PS5 Gaming is where the real magic happens, da! We've got the latest titles and premium controllers here in Trichy:\n\n💰 Regular Price: ₹150 per controller/hour\n\nUse coupon codes for discounts:\n🎟️ CUEPHORIA20 - 20% OFF: ₹150 → ₹120/hour (saving ₹30)\n🎟️ CUEPHORIA35 - 35% OFF with student ID: ₹150 → ₹97.50/hour (saving ₹52.50)\n🎟️ HH99 - Fixed ₹99/hour (Mon-Fri, 11 AM-4 PM): ₹150 → ₹99/hour (saving ₹51)\n🎟️ NIT35 - 35% OFF: ₹150 → ₹97.50/hour (saving ₹52.50)\n\nWhether you're into FIFA, God of War, or Spider-Man, we've got you covered! Ready to secure your gaming throne? Book immediately!",
         buttons: [
           { text: "Book PS5 Session", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> },
           { text: "Live Availability", action: "link", value: "https://admin.cuephoria.in/public/stations", icon: <BarChart3 size={16} /> }
@@ -257,7 +257,7 @@ const Chatbot = () => {
     
     if (lowerInput.includes('book') || lowerInput.includes('reserve') || lowerInput.includes('slot') || lowerInput.includes('book now')) {
       return {
-        response: "🎯 Superb! Let's get you booked at Cuephoria Trichy! Here's what's available with our opening offers:\n\n🎮 PS5 Gaming (₹75 per controller - 50% off!)\n🎱 Pool Games (₹150 per day - 50% off!)\n🎲 Board Games (FREE with snacks)\n\nI can help you book the perfect gaming session right now! What's calling to you today?",
+        response: "🎯 Superb! Let's get you booked at Cuephoria Trichy! Here's what's available:\n\n🎮 PS5 Gaming: ₹150/hour\n🎱 Pool Table: ₹300/hour\n🥽 VR Station: ₹150/hour\n🎲 Board Games: FREE with snacks\n\nUse coupon codes for discounts:\n🎟️ CUEPHORIA20 - 20% OFF\n   PS5/VR: ₹150 → ₹120/hour | Pool: ₹300 → ₹240/hour\n🎟️ CUEPHORIA35 - 35% OFF (student ID required)\n   PS5/VR: ₹150 → ₹97.50/hour | Pool: ₹300 → ₹195/hour\n🎟️ HH99 - Fixed ₹99/hour (PS5 & Pool only, Mon-Fri 11 AM-4 PM)\n   PS5: ₹150 → ₹99/hour | Pool: ₹300 → ₹99/hour\n🎟️ NIT35 - 35% OFF\n   PS5/VR: ₹150 → ₹97.50/hour | Pool: ₹300 → ₹195/hour\n\nI can help you book the perfect gaming session right now! What's calling to you today?",
         buttons: [
           { text: "Instant Booking", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
         ]
@@ -305,7 +305,7 @@ const Chatbot = () => {
     
     if (lowerInput.includes('price') || lowerInput.includes('cost') || lowerInput.includes('how much') || lowerInput.includes('rates') || lowerInput.includes('cheap') || lowerInput.includes('expensive')) {
       return {
-        response: "💰 Vanakkam! Here's our transparent pricing for Trichy (with massive opening discounts!):\n\n🎱 Pool Games: ₹150/day (50% off original ₹300!)\n🎮 PS5 Gaming: ₹75 per controller (50% off original ₹150!)\n🎲 Board Games: FREE with any snack order!\n\n💎 Monthly Memberships:\n🥈 Silver: ₹199 (2 players) - 50% off everything!\n🥇 Gold: ₹349 (4 players) - 50% off everything!\n\nHonestly, these are the best gaming rates in all of Tamil Nadu, da! No hidden charges, no surprises.",
+        response: "💰 Vanakkam! Here's our transparent pricing for Trichy:\n\n🎱 Pool Table: ₹300/hour\n🎮 PS5 Gaming: ₹150/hour per controller\n🥽 VR Station: ₹150/hour\n🎲 Board Games: FREE with any snack order!\n\n🎟️ Available Coupon Codes:\n• CUEPHORIA20 - 20% OFF all stations\n   PS5/VR: ₹150 → ₹120/hour (save ₹30) | Pool: ₹300 → ₹240/hour (save ₹60)\n• CUEPHORIA35 - 35% OFF all stations (student ID required)\n   PS5/VR: ₹150 → ₹97.50/hour (save ₹52.50) | Pool: ₹300 → ₹195/hour (save ₹105)\n• HH99 - Fixed ₹99/hour for PS5 & Pool (Mon-Fri, 11 AM-4 PM)\n   PS5: ₹150 → ₹99/hour (save ₹51) | Pool: ₹300 → ₹99/hour (save ₹201)\n• NIT35 - 35% OFF all stations\n   PS5/VR: ₹150 → ₹97.50/hour (save ₹52.50) | Pool: ₹300 → ₹195/hour (save ₹105)\n\n💎 Monthly Memberships:\n🥈 Silver: ₹199 (2 players) - 50% off everything!\n🥇 Gold: ₹349 (4 players) - 50% off everything!\n\nHonestly, these are the best gaming rates in all of Tamil Nadu, da! No hidden charges, no surprises.",
         buttons: [
           { text: "Book at These Rates", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
         ]
@@ -322,9 +322,9 @@ const Chatbot = () => {
       };
     }
     
-    if (lowerInput.includes('student') || lowerInput.includes('discount') || lowerInput.includes('offer') || lowerInput.includes('deal')) {
+    if (lowerInput.includes('student') || lowerInput.includes('discount') || lowerInput.includes('offer') || lowerInput.includes('deal') || lowerInput.includes('coupon')) {
       return {
-        response: "🎓 Student life and gaming go hand in hand, da! We've got special student offers:\n\n🎮 Current 50% off opening offers for all students\n💎 Monthly Memberships with EXTRA ₹100 OFF with valid student ID:\n🥈 Silver: Just ₹99 (normally ₹199)\n🥇 Gold: Just ₹249 (normally ₹349)\n\nPerfect for study breaks and hanging with classmates! Group bookings get even more fun. Ready to book your stress-busting session?",
+        response: "🎓 Student life and gaming go hand in hand, da! We've got special student offers:\n\n🎟️ CUEPHORIA35 - 35% OFF all stations (valid student ID required)\n   PS5: ₹150 → ₹97.50/hour (saving ₹52.50)\n   8-Ball: ₹300 → ₹195/hour (saving ₹105)\n   VR: ₹150 → ₹97.50/hour (saving ₹52.50)\n\n🎟️ HH99 - Fixed ₹99/hour for PS5 & Pool (Mon-Fri, 11 AM-4 PM)\n   PS5: ₹150 → ₹99/hour (saving ₹51)\n   Pool: ₹300 → ₹99/hour (saving ₹201)\n   Perfect for afternoon breaks between classes!\n\n🎟️ NIT35 - 35% OFF all stations\n   PS5/VR: ₹150 → ₹97.50/hour (saving ₹52.50)\n   Pool: ₹300 → ₹195/hour (saving ₹105)\n\n💎 Monthly Memberships with EXTRA ₹100 OFF with valid student ID:\n🥈 Silver: Just ₹99 (normally ₹199)\n🥇 Gold: Just ₹249 (normally ₹349)\n\nPerfect for study breaks and hanging with classmates! Group bookings get even more fun. Ready to book your stress-busting session?",
         buttons: [
           { text: "Book Student Session", action: "link", value: "https://cuephoria.in/book", icon: <Calendar size={16} /> }
         ]

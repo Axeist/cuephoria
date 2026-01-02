@@ -1,10 +1,85 @@
 
 import React from 'react';
-import { Calendar, Clock, Users, Award, Table2, Siren } from 'lucide-react';
+import { Calendar, Clock, Users, Award, Table2, Siren, Percent, Gift, Zap, Sparkles, Copy } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { useToast } from "@/hooks/use-toast";
 
 const BookNow = () => {
+  const { toast } = useToast();
+
+  const copyCouponCode = (code: string) => {
+    navigator.clipboard.writeText(code);
+    toast({
+      title: "Coupon Copied!",
+      description: `${code} has been copied to clipboard`,
+    });
+  };
+
+  const couponCodes = [
+    {
+      code: "CUEPHORIA20",
+      discount: "20% OFF",
+      icon: <Percent className="h-5 w-5 text-neon-blue" />,
+      textColor: "text-neon-blue",
+      bgColor: "bg-neon-blue/20",
+      bgGradient: "from-neon-blue/15 via-purple-500/10 to-neon-blue/15",
+      borderColor: "border-neon-blue/30 hover:border-neon-blue/60",
+      shadowColor: "hover:shadow-[0_0_20px_rgba(0,255,255,0.3)]",
+      details: [
+        { type: "PS5/VR", original: "₹150", discounted: "₹120", savings: "₹30" },
+        { type: "Pool", original: "₹300", discounted: "₹240", savings: "₹60" }
+      ],
+      requirement: null
+    },
+    {
+      code: "CUEPHORIA35",
+      discount: "35% OFF",
+      icon: <Gift className="h-5 w-5 text-purple-400" />,
+      textColor: "text-purple-400",
+      bgColor: "bg-purple-500/20",
+      bgGradient: "from-purple-500/15 via-pink-500/10 to-purple-500/15",
+      borderColor: "border-purple-500/30 hover:border-purple-500/60",
+      shadowColor: "hover:shadow-[0_0_20px_rgba(168,85,247,0.3)]",
+      details: [
+        { type: "PS5/VR", original: "₹150", discounted: "₹97.50", savings: "₹52.50" },
+        { type: "Pool", original: "₹300", discounted: "₹195", savings: "₹105" }
+      ],
+      requirement: "Student ID Required"
+    },
+    {
+      code: "HH99",
+      discount: "₹99 FIXED",
+      icon: <Zap className="h-5 w-5 text-amber-400" />,
+      textColor: "text-amber-400",
+      bgColor: "bg-amber-500/20",
+      bgGradient: "from-amber-500/15 via-orange-500/10 to-amber-500/15",
+      borderColor: "border-amber-500/30 hover:border-amber-500/60",
+      shadowColor: "hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]",
+      details: [
+        { type: "PS5", original: "₹150", discounted: "₹99", savings: "₹51" },
+        { type: "Pool", original: "₹300", discounted: "₹99", savings: "₹201" }
+      ],
+      requirement: "Mon-Fri, 11 AM-4 PM",
+      animate: true
+    },
+    {
+      code: "NIT35",
+      discount: "35% OFF",
+      icon: <Sparkles className="h-5 w-5 text-green-400" />,
+      textColor: "text-green-400",
+      bgColor: "bg-green-500/20",
+      bgGradient: "from-green-500/15 via-teal-500/10 to-green-500/15",
+      borderColor: "border-green-500/30 hover:border-green-500/60",
+      shadowColor: "hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]",
+      details: [
+        { type: "PS5/VR", original: "₹150", discounted: "₹97.50", savings: "₹52.50" },
+        { type: "Pool", original: "₹300", discounted: "₹195", savings: "₹105" }
+      ],
+      requirement: null
+    }
+  ];
+
   return (
     <section id="book-now" className="py-20 relative">
       {/* Background elements */}
@@ -85,8 +160,7 @@ const BookNow = () => {
                         </TableCell>
                         <TableCell className="py-4 text-right">
                           <div className="flex items-center justify-end">
-                            <div className="text-2xl font-bold text-gray-400 line-through mr-3">₹300</div>
-                            <div className="text-2xl font-bold text-white">₹225</div>
+                            <div className="text-2xl font-bold text-white">₹300</div>
                           </div>
                         </TableCell>
                       </TableRow>
@@ -100,8 +174,21 @@ const BookNow = () => {
                         </TableCell>
                         <TableCell className="py-4 text-right">
                           <div className="flex items-center justify-end">
-                            <div className="text-2xl font-bold text-gray-400 line-through mr-3">₹150</div>
-                            <div className="text-2xl font-bold text-white">₹113</div>
+                            <div className="text-2xl font-bold text-white">₹150</div>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      
+                      <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
+                        <TableCell className="py-4">
+                          <div>
+                            <h4 className="text-xl font-semibold text-neon-blue">VR Station</h4>
+                            <p className="text-gray-400">Per hour rate for VR gaming</p>
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-4 text-right">
+                          <div className="flex items-center justify-end">
+                            <div className="text-2xl font-bold text-white">₹150</div>
                           </div>
                         </TableCell>
                       </TableRow>
@@ -184,6 +271,59 @@ const BookNow = () => {
                         </TableRow>
                       </TableBody>
                     </Table>
+                  </div>
+                </div>
+                
+                {/* Coupon Codes Section */}
+                <div>
+                  <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
+                    <Sparkles className="h-5 w-5 text-neon-pink mr-2 animate-pulse" />
+                    Available Coupon Codes
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {couponCodes.map((coupon, idx) => (
+                      <div
+                        key={idx}
+                        className={`group relative p-4 bg-gradient-to-r ${coupon.bgGradient} rounded-xl border ${coupon.borderColor} transition-all duration-300 ${coupon.shadowColor} overflow-hidden cursor-pointer transform hover:scale-[1.02]`}
+                        onClick={() => copyCouponCode(coupon.code)}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="relative z-10">
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-2">
+                              <div className={`p-1.5 ${coupon.bgColor} rounded-lg`}>
+                                {coupon.icon}
+                              </div>
+                              <h5 className={`${coupon.textColor} font-bold text-sm`}>{coupon.code}</h5>
+                            </div>
+                            <span className={`px-2 py-1 ${coupon.bgColor} ${coupon.textColor} text-xs font-bold rounded-full border ${coupon.borderColor} ${coupon.animate ? 'animate-pulse' : ''}`}>
+                              {coupon.discount}
+                            </span>
+                          </div>
+                          {coupon.requirement && (
+                            <div className="mb-2">
+                              <span className="text-[10px] text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">
+                                {coupon.requirement}
+                              </span>
+                            </div>
+                          )}
+                          <div className="space-y-1 text-xs">
+                            {coupon.details.map((detail, i) => (
+                              <div key={i} className="flex items-center gap-2 text-gray-300">
+                                <span className="text-gray-500 line-through text-[10px]">{detail.original}</span>
+                                <span className={`${coupon.textColor} font-semibold`}>→ {detail.discounted}</span>
+                                <span className="text-green-400 text-[10px]">(Save {detail.savings})</span>
+                                <span className="text-gray-500 text-[10px]">{detail.type}</span>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="mt-2 flex items-center gap-1 text-[10px] text-gray-400 group-hover:text-gray-300 transition-colors">
+                            <Copy className="h-3 w-3" />
+                            <span>Click to copy code</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
                 
