@@ -85,6 +85,15 @@ const Testimonials = () => {
   const featuredTestimonials = sortedTestimonials.filter(review => review.text && review.text.trim().length > 10);
   const quickReviews = sortedTestimonials.filter(review => !review.text || review.text.trim().length <= 10);
 
+  // Calculate statistics from actual reviews
+  const totalReviews = testimonials.length;
+  const averageRating = totalReviews > 0 
+    ? (testimonials.reduce((sum, review) => sum + review.stars, 0) / totalReviews).toFixed(1)
+    : '5.0';
+  const satisfactionRate = totalReviews > 0
+    ? Math.round((testimonials.filter(review => review.stars >= 4).length / totalReviews) * 100)
+    : 100;
+
   return (
     <section id="testimonials" className="py-20 bg-gaming-dark relative overflow-hidden">
       {/* Enhanced animated background effects */}
@@ -278,22 +287,22 @@ const Testimonials = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
               <div className="group">
                 <div className="text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
-                  {testimonials.length}
+                  {totalReviews}
                 </div>
                 <div className="text-gray-300 font-medium">Happy Customers</div>
               </div>
               <div className="group">
                 <div className="text-4xl font-bold text-yellow-400 mb-2 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
-                  5.0
+                  {averageRating}
                 </div>
                 <div className="text-gray-300 font-medium">Average Rating</div>
                 <div className="flex justify-center mt-2">
-                  {renderStars(5)}
+                  {renderStars(parseFloat(averageRating))}
                 </div>
               </div>
               <div className="group">
                 <div className="text-4xl font-bold text-green-400 mb-2 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
-                  100%
+                  {satisfactionRate}%
                 </div>
                 <div className="text-gray-300 font-medium">Satisfaction Rate</div>
               </div>

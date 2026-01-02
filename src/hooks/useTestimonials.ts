@@ -19,15 +19,23 @@ export const useTestimonials = () => {
     // Load testimonials from localStorage or use default data
     const loadTestimonials = () => {
       try {
+        // Load reviews from JSON file (261 reviews)
+        const defaultTestimonials: Testimonial[] = reviewsData as Testimonial[];
+        const expectedCount = defaultTestimonials.length;
+        
         const storedTestimonials = localStorage.getItem('cuephoria_testimonials');
         if (storedTestimonials) {
           const parsed = JSON.parse(storedTestimonials);
+          // If cached data has fewer reviews than expected, update with latest data
+          if (parsed.length < expectedCount) {
+            console.log(`Updating testimonials from ${parsed.length} to ${expectedCount} reviews`);
+            setTestimonials(defaultTestimonials);
+            localStorage.setItem('cuephoria_testimonials', JSON.stringify(defaultTestimonials));
+          } else {
           console.log('Loaded testimonials from localStorage:', parsed.length);
           setTestimonials(parsed);
+          }
         } else {
-          // Load reviews from JSON file (261 reviews)
-          const defaultTestimonials: Testimonial[] = reviewsData as Testimonial[];
-          
           console.log('Using default testimonials from JSON:', defaultTestimonials.length);
           setTestimonials(defaultTestimonials);
           localStorage.setItem('cuephoria_testimonials', JSON.stringify(defaultTestimonials));
