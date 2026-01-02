@@ -24,7 +24,7 @@ export const useTestimonials = () => {
           console.log('Loaded testimonials from localStorage:', parsed.length);
           setTestimonials(parsed);
         } else {
-          // Complete 37 reviews data
+          // Complete 261 reviews data
           const defaultTestimonials: Testimonial[] = [
             {
               "title": "Cuephoria Gaming Lounge & Café",
