@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Gamepad2, Crosshair, TrophyIcon, Target, X } from 'lucide-react';
+import { Gamepad2, Crosshair, TrophyIcon, Target, X, Box } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useIsMobile } from "../hooks/use-mobile";
 
@@ -43,6 +43,19 @@ const games = [
       "Latest game titles across all popular genres",
       "Multiplayer tournament capabilities"
     ]
+  },
+  {
+    name: "VR Gaming",
+    image: "/lovable-uploads/2663021f-e6d3-4c75-8f66-b2672cc5f988.png",
+    description: "Step into the future with Meta Quest 3S VR - experience mixed reality and cutting-edge VR games.",
+    icon: <Box className="h-6 w-6" />,
+    detailedDescription: "Experience the next level of gaming with our Meta Quest 3S VR stations at Cuephoria. The latest generation VR headset offers stunning mixed reality experiences, allowing you to blend virtual worlds with your physical environment. Enjoy an extensive library of the latest VR games, from action-packed adventures to immersive simulations. Our VR stations feature premium headsets, dedicated play areas, and expert guidance to ensure you have the ultimate virtual reality experience.",
+    benefits: [
+      "Latest generation Meta Quest 3S VR headsets",
+      "Mixed reality technology for immersive experiences",
+      "Extensive library of cutting-edge VR games",
+      "Dedicated play areas with expert guidance"
+    ]
   }
 ];
 
@@ -50,6 +63,7 @@ const games = [
 const gameTitles = [
   { category: "PS5 Games", titles: ["FIFA 24", "Call of Duty: Modern Warfare", "GTA V", "God of War Ragnarök", "Spider-Man 2", "Elden Ring", "Hogwarts Legacy", "Mortal Kombat 1"] },
   { category: "Multiplayer Favorites", titles: ["Fortnite", "Rocket League", "Fall Guys", "It Takes Two", "Overcooked 2", "Tekken 8", "Street Fighter 6", "NBA 2K24"] },
+  { category: "VR Games", titles: ["Beat Saber", "Superhot VR", "Half-Life: Alyx", "The Walking Dead: Saints & Sinners", "Resident Evil 4 VR", "Blade & Sorcery", "Pistol Whip", "Population: One"] },
 ];
 
 // Updated pricing information with new membership structure
@@ -58,13 +72,13 @@ const pricingOptions = [
     name: "💎 Silver Membership",
     price: "₹199",
     description: "Up to 2 players • 50% OFF for entire month • Priority bookings • Premium membership card",
-    features: ["PS5 & 8-Ball Pool at half price", "Priority bookings", "Premium membership card", "₹49 per extra player/hour"]
+    features: ["PS5, VR Gaming & 8-Ball Pool at half price", "Priority bookings", "Premium membership card", "₹49 per extra player/hour"]
   },
   { 
     name: "🌟 Gold Membership",
     price: "₹349", 
     description: "Up to 4 players • 50% OFF for entire month • Priority bookings • Premium membership card",
-    features: ["PS5 & 8-Ball Pool at half price", "Priority bookings", "Premium membership card", "₹49 per extra player/hour"]
+    features: ["PS5, VR Gaming & 8-Ball Pool at half price", "Priority bookings", "Premium membership card", "₹49 per extra player/hour"]
   }
 ];
 
@@ -230,7 +244,7 @@ const Games = () => {
             Our <span className="neon-text-pink">Gaming</span> Experiences
           </h2>
           <p className="max-w-2xl mx-auto text-gray-400">
-            Discover the variety of gaming experiences we offer at Cuephoria, from classic billiards to the latest PS5 games.
+            Discover the variety of gaming experiences we offer at Cuephoria, from classic billiards to the latest PS5 games and cutting-edge VR gaming with Meta Quest 3S.
           </p>
         </div>
         

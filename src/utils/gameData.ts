@@ -62,6 +62,12 @@ export const gameData = [
     description: "Enjoy the latest PS5 titles including FIFA, Call of Duty, GTA, and more on large screens with immersive sound systems."
   },
   {
+    title: "VR Gaming",
+    icon: "gamepad",
+    image: "/lovable-uploads/57d06b72-9672-4794-9c74-4d81d8453ea9.png",
+    description: "Experience the future of gaming with Meta Quest 3S VR - mixed reality technology and cutting-edge VR games in dedicated play areas."
+  },
+  {
     title: "Console Gaming",
     icon: "gamepad",
     image: "/lovable-uploads/1151d956-9a48-4426-89ee-8e8c8ce8b5f6.png",

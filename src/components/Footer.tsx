@@ -77,7 +77,7 @@ const Footer = () => {
                 </div>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Trichy&apos;s premier gaming lounge combining the thrill of billiards, snooker, and PS5 gaming. 
+                Trichy&apos;s premier gaming lounge combining the thrill of billiards, snooker, PS5 gaming, and cutting-edge VR gaming with Meta Quest 3S. 
                 Perfect for students, friends, and gaming enthusiasts.
               </p>
               {/* Social Media Links */}

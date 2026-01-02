@@ -11,9 +11,9 @@ interface SEOMetadataProps {
 }
 
 const SEOMetadata = ({
-  title = "Cuephoria | Best PS5 Gaming, 8-Ball Pool & Snooker Club for Students in Trichy",
-  description = "Cuephoria - Trichy's #1 gaming lounge for college & school students with PS5 games, 8-ball pool, snooker & student discounts. The perfect hangout spot for friends. Book online now!",
-  keywords = "Cuephoria, gaming lounge Trichy, PS5 gaming Trichy, 8-ball pool Trichy, snooker Trichy, pool table Trichy, PlayStation games Trichy, VR games, metashot challenges, hangout place Trichy, chill out spot Trichy, billiards Trichy, gaming center Trichy, best gaming lounge Trichy, weekend hangout Trichy, gaming cafe Trichy, student gaming Trichy, college hangout Trichy, student discount gaming Trichy, student recreation Trichy",
+  title = "Cuephoria | Best PS5 Gaming, VR & Pool Club for Students in Trichy",
+  description = "Cuephoria - Trichy's #1 gaming lounge for college & school students with PS5 games, Meta Quest 3S VR gaming, 8-ball pool, snooker & student discounts. The perfect hangout spot for friends. Book online now!",
+  keywords = "Cuephoria, gaming lounge Trichy, PS5 gaming Trichy, VR gaming Trichy, Meta Quest 3S, virtual reality Trichy, mixed reality gaming, 8-ball pool Trichy, snooker Trichy, pool table Trichy, PlayStation games Trichy, VR games, metashot challenges, hangout place Trichy, chill out spot Trichy, billiards Trichy, gaming center Trichy, best gaming lounge Trichy, weekend hangout Trichy, gaming cafe Trichy, student gaming Trichy, college hangout Trichy, student discount gaming Trichy, student recreation Trichy",
   canonicalUrl = "https://cuephoria.in",
   ogImage = "/lovable-uploads/bf64c942-20de-45f0-a655-188a21952fc4.png"
 }: SEOMetadataProps) => {

@@ -19,6 +19,7 @@ const createWhatsAppLink = (phone, text) => `https://wa.me/${phone}?text=${encod
 
 const features = [
   "Latest PS5 games with 4K display",
+  "Meta Quest 3S VR gaming with mixed reality",
   "Professional pool tables",
   "Comfortable gaming environment",
   "Monthly memberships with 50% savings",
@@ -162,9 +163,9 @@ const BookingLanding = () => {
   return (
     <div className="min-h-screen bg-gaming-darker text-white">
       <SEOMetadata
-        title="Book Now | Student Discount Gaming & Pool in Trichy | Cuephoria"
-        description="Book your PS5 gaming session or 8-ball pool table at Cuephoria - Special discounts for college & school students in Trichy! Best hangout place for students with exclusive offers."
-        keywords="student gaming trichy, college hangout trichy, student discount gaming, ps5 gaming student discount, pool table student offers trichy"
+        title="Book Now | Student Discount Gaming, VR & Pool in Trichy | Cuephoria"
+        description="Book your PS5 gaming, Meta Quest 3S VR, or 8-ball pool table at Cuephoria - Special discounts for college & school students in Trichy! Best hangout place for students with exclusive offers."
+        keywords="student gaming trichy, college hangout trichy, student discount gaming, ps5 gaming student discount, vr gaming trichy, meta quest 3s, pool table student offers trichy"
       />
       <section className="relative py-12 md:py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gaming-darker">
@@ -182,7 +183,7 @@ const BookingLanding = () => {
             </div>
             <h1 className="text-3xl md:text-5xl font-bold mb-6">
               <span className="block neon-text-blue">BOOK YOUR SPOT</span>
-              <span className="block text-xl md:text-3xl mt-2 text-white">PS5 Gaming & Pool Tables</span>
+              <span className="block text-xl md:text-3xl mt-2 text-white">PS5 Gaming, VR & Pool Tables</span>
             </h1>
             <div className="bg-gaming-darker/80 backdrop-blur-md p-3 md:p-4 rounded-lg border border-neon-pink/30 mb-4 md:mb-6">
               <p className="text-lg md:text-xl text-neon-pink font-bold mb-1 md:mb-2 animate-blink-slow flex items-center justify-center gap-2">
@@ -229,7 +230,7 @@ const BookingLanding = () => {
                   <span className="text-neon-blue">Live Occupancy Status</span>
                 </h2>
                 <p className="text-center text-gray-300 text-xs md:text-sm">
-                  Check real-time availability of Pool Tables and PS5 controllers
+                  Check real-time availability of Pool Tables, PS5 controllers, and VR stations
                 </p>
               </div>
               <div className="relative w-full" style={{ height: isMobile ? "400px" : "500px" }}>
@@ -249,7 +250,7 @@ const BookingLanding = () => {
                     const loader = document.getElementById('occupancy-loader');
                     if (loader) loader.style.display = 'none';
                   }}
-                  aria-label="Live occupancy status for Cuephoria pool tables and PS5 controllers"
+                  aria-label="Live occupancy status for Cuephoria pool tables, PS5 controllers, and VR stations"
                 />
               </div>
             </div>
@@ -297,7 +298,7 @@ const BookingLanding = () => {
                 {/* Mobile: Show info banner and controls below header */}
                 <div className="md:hidden mt-3">
                   <div className="mb-3 text-center p-3 bg-gaming-accent/10 rounded-lg text-sm text-white">
-                    <strong>Cuephoria Booking:</strong> PS5 or Pool Table slots.<br />
+                    <strong>Cuephoria Booking:</strong> PS5, VR, or Pool Table slots.<br />
                     Need more space? <span className="font-bold text-neon-blue">Expand</span> or <span className="font-bold text-neon-blue">open in new tab</span>.
                   </div>
                   

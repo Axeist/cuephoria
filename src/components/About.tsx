@@ -31,7 +31,7 @@ const About = () => {
             <span className="neon-text-blue">Experience</span> the Fusion
           </h2>
           <p className="max-w-2xl text-gray-400">
-            At Cuephoria, we blend the precision of billiards with the thrill of gaming, creating an unmatched entertainment venue that welcomes everyone from casual players to serious enthusiasts.
+            At Cuephoria, we blend the precision of billiards with the thrill of gaming and the future of virtual reality, creating an unmatched entertainment venue that welcomes everyone from casual players to serious enthusiasts.
           </p>
         </div>
 
@@ -44,7 +44,7 @@ const About = () => {
           <FeatureCard 
             icon={Joystick}
             title="Gaming Zone"
-            description="State-of-the-art gaming rigs loaded with the latest titles for an immersive gaming experience."
+            description="State-of-the-art PS5 gaming rigs and cutting-edge Meta Quest 3S VR stations with mixed reality experiences and latest titles."
           />
           <FeatureCard 
             icon={Coffee}
@@ -64,8 +64,9 @@ const About = () => {
               <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">Why Choose <span className="neon-text-pink">Cuephoria</span>?</h3>
               <ul className="space-y-4">
                 {[
-                  "Premium gaming experience with high-end equipment",
+                  "Premium gaming experience with high-end PS5 and Meta Quest 3S VR equipment",
                   "Professional pool tables with quality cues and accessories",
+                  "Cutting-edge VR gaming with mixed reality technology",
                   "Comfortable, stylish environment with neon aesthetics",
                   "Friendly staff and welcoming community",
                   "Affordable rates with special packages for regular players"

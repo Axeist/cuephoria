@@ -62,7 +62,7 @@ const Hero = ({ className = '' }) => {
             </h2>
             
             <p className="text-lg text-gray-300 mb-6 max-w-xl mx-auto lg:mx-0">
-              Experience the perfect blend of billiards, snooker, and PS5 gaming at Cuephoria, Trichy's premier gaming lounge and café.
+              Experience the perfect blend of billiards, snooker, PS5 gaming, and cutting-edge VR gaming with Meta Quest 3S at Cuephoria, Trichy's premier gaming lounge and café.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 mb-6">
