@@ -98,64 +98,57 @@ const Footer = () => {
                     </span>
                   </div>
                   
-                  <p className="text-sm md:text-base text-amber-300 font-semibold mb-1.5 italic text-center md:text-left">
-                    Premium Gaming Experience, Student-Friendly Prices - Same Luxury, More Affordable! 🎮
+                  <p className="text-sm text-amber-300 font-semibold mb-2 text-center md:text-left">
+                    Same Luxury, More Affordable - Right Next to NIT Trichy! 🎮
                   </p>
                   
-                  <p className="text-xs md:text-sm text-gray-300 mb-1 flex items-center justify-center md:justify-start gap-1.5">
-                    <Clock className="h-3.5 w-3.5 md:h-4 md:w-4 text-amber-400 animate-pulse-slow" />
-                    <span className="font-semibold">Exact Opening Date Will Be Announced Soon</span>
-                  </p>
-                  <p className="text-xs text-amber-400 mb-2 italic text-center md:text-left">
-                    Opening in Mid-January 2026
+                  <p className="text-xs text-gray-300 mb-2 flex items-center justify-center md:justify-start gap-1.5">
+                    <Clock className="h-3.5 w-3.5 text-amber-400 animate-pulse-slow" />
+                    <span>Date Will Be Announced Soon • Opening in Mid-January 2026</span>
                   </p>
                   
-                  <p className="text-xs md:text-sm text-gray-400 mb-3 leading-relaxed text-center md:text-left">
-                    Experience the authentic Cuephoria luxury you love, now more affordable and closer to campus! All the premium gaming, VR, and pool action at prices that won't break your budget. Perfect for those late-night study breaks, post-exam celebrations, and weekend gaming marathons.
+                  <p className="text-xs text-gray-400 mb-3 text-center md:text-left">
+                    Authentic Cuephoria experience at student-friendly prices. Premium gaming, VR & pool closer to campus.
                   </p>
                   
                   {/* Opening Discount Banner */}
-                  <div className="bg-gradient-to-r from-red-500/20 via-orange-500/20 to-amber-500/20 border-2 border-red-500/40 rounded-lg p-2 mb-3 relative overflow-hidden">
+                  <div className="bg-gradient-to-r from-red-500/20 via-orange-500/20 to-amber-500/20 border-2 border-red-500/40 rounded-lg p-1.5 mb-3 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 animate-pulse"></div>
-                    <div className="relative flex items-center gap-2">
-                      <Gift className="h-4 w-4 text-red-400 animate-pulse" />
-                      <p className="text-xs md:text-sm font-bold text-red-300">
-                        Exclusive Opening Day Offer: Up to 60% OFF for Existing Cuephoria Customers!
+                    <div className="relative flex items-center gap-1.5">
+                      <Gift className="h-3.5 w-3.5 text-red-400 animate-pulse" />
+                      <p className="text-xs font-bold text-red-300">
+                        Opening Day: Up to 60% OFF for Existing Customers!
                       </p>
                     </div>
                   </div>
                   
                   {/* Features Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mb-3">
-                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                    <div className="flex items-center gap-1.5 text-amber-200 bg-amber-500/15 rounded-lg p-1.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
                       <MapPin className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
-                      <span className="text-xs md:text-sm font-semibold">Right Opposite NIT Trichy!</span>
+                      <span className="text-xs font-semibold">Opposite NIT Trichy</span>
                     </div>
-                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                    <div className="flex items-center gap-1.5 text-amber-200 bg-amber-500/15 rounded-lg p-1.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
                       <Crown className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
-                      <span className="text-xs md:text-sm font-semibold">Same Authentic Luxury</span>
+                      <span className="text-xs font-semibold">Same Premium Quality</span>
                     </div>
-                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                    <div className="flex items-center gap-1.5 text-amber-200 bg-amber-500/15 rounded-lg p-1.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
                       <Percent className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
-                      <span className="text-xs md:text-sm font-semibold">More Affordable Pricing</span>
+                      <span className="text-xs font-semibold">More Affordable</span>
                     </div>
-                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                    <div className="flex items-center gap-1.5 text-amber-200 bg-amber-500/15 rounded-lg p-1.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
                       <Gift className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
-                      <span className="text-xs md:text-sm font-semibold">Exclusive NIT Discounts</span>
+                      <span className="text-xs font-semibold">NIT Discounts</span>
                     </div>
-                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                    <div className="flex items-center gap-1.5 text-amber-200 bg-amber-500/15 rounded-lg p-1.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
                       <Zap className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
-                      <span className="text-xs md:text-sm font-semibold">Same Premium Equipment</span>
+                      <span className="text-xs font-semibold">PS5, VR & Pool</span>
                     </div>
-                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                    <div className="flex items-center gap-1.5 text-amber-200 bg-amber-500/15 rounded-lg p-1.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
                       <Moon className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
-                      <span className="text-xs md:text-sm font-semibold">Late Night Hours</span>
+                      <span className="text-xs font-semibold">Late Night Hours</span>
                     </div>
                   </div>
-                  
-                  <p className="text-xs text-amber-400 font-bold mb-3 text-center md:text-left animate-pulse-slow">
-                    ✨ Be Among The First To Experience Premium Gaming at Student-Friendly Prices! ✨
-                  </p>
                   
                   {/* Location and CTA */}
                   <div className="flex flex-col sm:flex-row items-center gap-2">
@@ -163,15 +156,14 @@ const Footer = () => {
                       href="https://maps.app.goo.gl/nvTtK6SG4nGQXenGA"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500/30 to-orange-500/30 border-2 border-amber-500/50 text-amber-200 rounded-lg hover:from-amber-500/40 hover:to-orange-500/40 transition-all duration-300 text-xs md:text-sm font-bold shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 hover:scale-105 group/btn"
+                      className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-500/30 to-orange-500/30 border-2 border-amber-500/50 text-amber-200 rounded-lg hover:from-amber-500/40 hover:to-orange-500/40 transition-all duration-300 text-xs font-bold shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 hover:scale-105 group/btn"
                     >
                       <MapPin className="h-3.5 w-3.5 group-hover/btn:animate-bounce" />
-                      View Location on Maps
+                      View Location
                       <ExternalLink className="h-3 w-3" />
                     </a>
-                    <div className="text-[10px] md:text-xs text-gray-400 text-center sm:text-left">
-                      <p className="font-medium text-amber-300 mb-0.5">QR64+CRV Electronics Bus Stop</p>
-                      <p>Valavandankottai, Tamil Nadu 620015</p>
+                    <div className="text-[10px] text-gray-400 text-center sm:text-left">
+                      QR64+CRV Electronics Bus Stop, Valavandankottai, Tamil Nadu 620015
                     </div>
                   </div>
                 </div>

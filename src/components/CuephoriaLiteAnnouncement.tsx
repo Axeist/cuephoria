@@ -29,19 +29,18 @@ const CuephoriaLiteAnnouncement = ({
     openingDateNote: "Opening in Mid-January 2026",
     location: "QR64+CRV Electronics Bus Stop, Valavandankottai, Tamil Nadu 620015",
     gmapLink: "https://maps.app.goo.gl/nvTtK6SG4nGQXenGA",
-    tagline: "Premium Gaming Experience, Student-Friendly Prices - Same Authentic Cuephoria Luxury, More Affordable!",
-    description: "Experience the authentic Cuephoria luxury you love, now more affordable and closer to campus! All the premium gaming, VR, and pool action at prices that won't break your budget. Perfect for those late-night study breaks, post-exam celebrations, and weekend gaming marathons.",
+    tagline: "Same Luxury, More Affordable - Right Next to NIT Trichy!",
+    description: "Authentic Cuephoria experience at student-friendly prices. Premium gaming, VR & pool closer to campus.",
     features: [
-      { icon: <MapPin className="h-4 w-4" />, text: "Right Opposite NIT Trichy - Walkable Distance!", highlight: true },
-      { icon: <Crown className="h-4 w-4" />, text: "Same Authentic Cuephoria Luxury Experience - Premium Quality!", highlight: true },
-      { icon: <Percent className="h-4 w-4" />, text: "More Affordable Pricing - Same Premium Equipment & Service!", highlight: true },
-      { icon: <Gift className="h-4 w-4" />, text: "Exclusive NIT Student Discounts - Special Rates Just For You!", highlight: true },
-      { icon: <Moon className="h-4 w-4" />, text: "Late Night Hours - Game Till You Drop!", highlight: true },
-      { icon: <Zap className="h-4 w-4" />, text: "Same Premium Equipment - PS5, VR & Professional Pool Tables", highlight: false },
-      { icon: <Users className="h-4 w-4" />, text: "Perfect Hangout Spot for NIT Students - Budget-Friendly Fun!", highlight: false }
+      { icon: <MapPin className="h-4 w-4" />, text: "Opposite NIT Trichy", highlight: true },
+      { icon: <Crown className="h-4 w-4" />, text: "Same Premium Quality", highlight: true },
+      { icon: <Percent className="h-4 w-4" />, text: "More Affordable Pricing", highlight: true },
+      { icon: <Gift className="h-4 w-4" />, text: "Exclusive NIT Discounts", highlight: true },
+      { icon: <Moon className="h-4 w-4" />, text: "Late Night Hours", highlight: true },
+      { icon: <Zap className="h-4 w-4" />, text: "PS5, VR & Pool Tables", highlight: false }
     ],
-    openingDiscount: "Exclusive Opening Day Offer: Up to 60% OFF for Existing Cuephoria Customers!",
-    cta: "Be Among The First To Experience Premium Gaming at Student-Friendly Prices!"
+    openingDiscount: "Opening Day: Up to 60% OFF for Existing Customers!",
+    cta: "Be Among The First To Experience!"
   };
 
   if (variant === 'compact') {
@@ -132,30 +131,27 @@ const CuephoriaLiteAnnouncement = ({
             </div>
             
             {/* Tagline */}
-            <p className="text-sm md:text-base text-amber-300 font-semibold mb-1.5 italic">
+            <p className="text-sm text-amber-300 font-semibold mb-2">
               {liteInfo.tagline}
             </p>
             
             {/* Opening Date */}
-            <p className="text-xs md:text-sm text-gray-300 mb-1 flex items-center justify-center md:justify-start gap-1.5">
-              <Clock className="h-3.5 w-3.5 md:h-4 md:w-4 text-amber-400 animate-pulse-slow" />
-              <span className="font-semibold">{liteInfo.openingDate}</span>
-            </p>
-            <p className="text-xs text-amber-400 mb-2 italic">
-              {liteInfo.openingDateNote}
+            <p className="text-xs text-gray-300 mb-2 flex items-center justify-center md:justify-start gap-1.5">
+              <Clock className="h-3.5 w-3.5 text-amber-400 animate-pulse-slow" />
+              <span>{liteInfo.openingDate} • {liteInfo.openingDateNote}</span>
             </p>
             
             {/* Description */}
-            <p className="text-xs md:text-sm text-gray-300 mb-3 leading-relaxed">
+            <p className="text-xs text-gray-400 mb-3">
               {liteInfo.description}
             </p>
             
             {/* Opening Discount Banner */}
-            <div className="bg-gradient-to-r from-red-500/20 via-orange-500/20 to-amber-500/20 border-2 border-red-500/40 rounded-lg p-2 mb-3 relative overflow-hidden">
+            <div className="bg-gradient-to-r from-red-500/20 via-orange-500/20 to-amber-500/20 border-2 border-red-500/40 rounded-lg p-1.5 mb-3 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 animate-pulse"></div>
-              <div className="relative flex items-center gap-2">
-                <Gift className="h-4 w-4 text-red-400 animate-pulse" />
-                <p className="text-xs md:text-sm font-bold text-red-300">
+              <div className="relative flex items-center gap-1.5">
+                <Gift className="h-3.5 w-3.5 text-red-400 animate-pulse" />
+                <p className="text-xs font-bold text-red-300">
                   {liteInfo.openingDiscount}
                 </p>
               </div>
@@ -182,26 +178,20 @@ const CuephoriaLiteAnnouncement = ({
               ))}
             </div>
             
-            {/* CTA */}
-            <p className="text-xs text-amber-400 font-bold mb-3 text-center md:text-left animate-pulse-slow">
-              ✨ {liteInfo.cta} ✨
-            </p>
-            
             {/* Location CTA */}
             <div className="flex flex-col sm:flex-row gap-2 items-center">
               <a
                 href={liteInfo.gmapLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500/30 to-orange-500/30 border-2 border-amber-500/50 text-amber-200 rounded-lg hover:from-amber-500/40 hover:to-orange-500/40 transition-all duration-300 text-xs md:text-sm font-bold shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 hover:scale-105 group/btn"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-500/30 to-orange-500/30 border-2 border-amber-500/50 text-amber-200 rounded-lg hover:from-amber-500/40 hover:to-orange-500/40 transition-all duration-300 text-xs font-bold shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 hover:scale-105 group/btn"
               >
                 <MapPin className="h-3.5 w-3.5 group-hover/btn:animate-bounce" />
-                View Location on Maps
+                View Location
                 <ExternalLink className="h-3 w-3" />
               </a>
-              <div className="flex items-center gap-1.5 text-gray-400 text-[10px] md:text-xs">
-                <MapPin className="h-3 w-3" />
-                <span className="text-left">{liteInfo.location}</span>
+              <div className="text-[10px] text-gray-400 text-center sm:text-left">
+                {liteInfo.location}
               </div>
             </div>
           </div>
