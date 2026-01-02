@@ -59,118 +59,118 @@ const Footer = () => {
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10 max-w-7xl">
           {/* Cuephoria Lite Fancy Announcement */}
-          <div className="mb-10">
-            <div className="relative glass-card rounded-xl p-6 md:p-8 border-2 border-amber-500/50 bg-gradient-to-br from-amber-500/15 via-orange-500/15 to-amber-500/15 overflow-hidden group">
+          <div className="mb-6">
+            <div className="relative glass-card rounded-xl p-4 md:p-5 border-2 border-amber-500/50 bg-gradient-to-br from-amber-500/15 via-orange-500/15 to-amber-500/15 overflow-hidden group">
               {/* Animated background glow */}
               <div className="absolute inset-0 bg-gradient-to-r from-amber-400/0 via-amber-400/10 to-amber-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-xl"></div>
               
               {/* Shimmer effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-300/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-2000 ease-in-out"></div>
               
-              <div className="relative flex flex-col md:flex-row items-center gap-6">
+              <div className="relative flex flex-col md:flex-row items-center gap-4 md:gap-5">
                 {/* Logo Section */}
                 <div className="flex-shrink-0 relative">
                   <div className="absolute inset-0 bg-amber-400/20 rounded-lg blur-md animate-pulse"></div>
                   <img
                     src="https://iili.io/fjuZYga.jpg"
                     alt="Cuephoria Lite Logo"
-                    className="w-24 h-24 md:w-32 md:h-32 object-contain rounded-lg border-2 border-amber-500/50 bg-white/10 p-3 relative z-10 shadow-lg shadow-amber-500/20"
+                    className="w-20 h-20 md:w-24 md:h-24 object-contain rounded-lg border-2 border-amber-500/50 bg-white/10 p-2 relative z-10 shadow-lg shadow-amber-500/20"
                   />
                 </div>
                 
                 {/* Content Section */}
                 <div className="flex-1 text-center md:text-left">
-                  <div className="flex items-center justify-center md:justify-start gap-3 mb-3">
+                  <div className="flex items-center justify-center md:justify-start gap-2 mb-2 flex-wrap">
                     <div className="relative">
-                      <Sparkles className="h-6 w-6 text-amber-400 animate-pulse" />
+                      <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-amber-400 animate-pulse" />
                       <div className="absolute inset-0">
-                        <Sparkles className="h-6 w-6 text-amber-300 animate-ping opacity-50" />
+                        <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-amber-300 animate-ping opacity-50" />
                       </div>
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white">
+                    <h3 className="text-xl md:text-2xl font-bold text-white">
                       <span className="text-amber-400 relative inline-block">
                         Cuephoria Lite
-                        <span className="absolute -inset-2 bg-amber-400/20 blur-lg opacity-50 animate-pulse"></span>
+                        <span className="absolute -inset-1 bg-amber-400/20 blur-lg opacity-50 animate-pulse"></span>
                       </span>
                     </h3>
-                    <span className="px-3 py-1.5 bg-gradient-to-r from-amber-500/30 to-orange-500/30 text-amber-200 text-xs md:text-sm font-bold rounded-full border border-amber-500/50 animate-pulse shadow-lg shadow-amber-500/20">
+                    <span className="px-2 py-1 bg-gradient-to-r from-amber-500/30 to-orange-500/30 text-amber-200 text-xs font-bold rounded-full border border-amber-500/50 animate-pulse shadow-lg shadow-amber-500/20">
                       COMING SOON
                     </span>
                   </div>
                   
-                  <p className="text-base md:text-lg text-amber-300 font-semibold mb-2 italic text-center md:text-left">
+                  <p className="text-sm md:text-base text-amber-300 font-semibold mb-1.5 italic text-center md:text-left">
                     Premium Gaming Experience, Student-Friendly Prices - Same Luxury, More Affordable! 🎮
                   </p>
                   
-                  <p className="text-sm md:text-base text-gray-300 mb-2 flex items-center justify-center md:justify-start gap-2">
-                    <Clock className="h-4 w-4 md:h-5 md:w-5 text-amber-400 animate-pulse-slow" />
+                  <p className="text-xs md:text-sm text-gray-300 mb-1 flex items-center justify-center md:justify-start gap-1.5">
+                    <Clock className="h-3.5 w-3.5 md:h-4 md:w-4 text-amber-400 animate-pulse-slow" />
                     <span className="font-semibold">Exact Opening Date Will Be Announced Soon</span>
                   </p>
-                  <p className="text-xs md:text-sm text-amber-400 mb-3 italic text-center md:text-left">
+                  <p className="text-xs text-amber-400 mb-2 italic text-center md:text-left">
                     Opening in Mid-January 2026
                   </p>
                   
-                  <p className="text-xs md:text-sm text-gray-400 mb-4 leading-relaxed text-center md:text-left">
+                  <p className="text-xs md:text-sm text-gray-400 mb-3 leading-relaxed text-center md:text-left">
                     Experience the authentic Cuephoria luxury you love, now more affordable and closer to campus! All the premium gaming, VR, and pool action at prices that won't break your budget. Perfect for those late-night study breaks, post-exam celebrations, and weekend gaming marathons.
                   </p>
                   
                   {/* Opening Discount Banner */}
-                  <div className="bg-gradient-to-r from-red-500/20 via-orange-500/20 to-amber-500/20 border-2 border-red-500/40 rounded-lg p-3 mb-4 relative overflow-hidden">
+                  <div className="bg-gradient-to-r from-red-500/20 via-orange-500/20 to-amber-500/20 border-2 border-red-500/40 rounded-lg p-2 mb-3 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 animate-pulse"></div>
                     <div className="relative flex items-center gap-2">
-                      <Gift className="h-5 w-5 text-red-400 animate-pulse" />
-                      <p className="text-sm md:text-base font-bold text-red-300">
+                      <Gift className="h-4 w-4 text-red-400 animate-pulse" />
+                      <p className="text-xs md:text-sm font-bold text-red-300">
                         Exclusive Opening Day Offer: Up to 60% OFF for Existing Cuephoria Customers!
                       </p>
                     </div>
                   </div>
                   
                   {/* Features Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
-                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
-                      <MapPin className="h-4 w-4 text-amber-400 flex-shrink-0" />
-                      <span className="text-sm font-semibold">Right Opposite NIT Trichy!</span>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mb-3">
+                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                      <MapPin className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
+                      <span className="text-xs md:text-sm font-semibold">Right Opposite NIT Trichy!</span>
                     </div>
-                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
-                      <Crown className="h-4 w-4 text-amber-400 flex-shrink-0" />
-                      <span className="text-sm font-semibold">Same Authentic Luxury</span>
+                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                      <Crown className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
+                      <span className="text-xs md:text-sm font-semibold">Same Authentic Luxury</span>
                     </div>
-                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
-                      <Percent className="h-4 w-4 text-amber-400 flex-shrink-0" />
-                      <span className="text-sm font-semibold">More Affordable Pricing</span>
+                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                      <Percent className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
+                      <span className="text-xs md:text-sm font-semibold">More Affordable Pricing</span>
                     </div>
-                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
-                      <Gift className="h-4 w-4 text-amber-400 flex-shrink-0" />
-                      <span className="text-sm font-semibold">Exclusive NIT Discounts</span>
+                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                      <Gift className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
+                      <span className="text-xs md:text-sm font-semibold">Exclusive NIT Discounts</span>
                     </div>
-                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
-                      <Zap className="h-4 w-4 text-amber-400 flex-shrink-0" />
-                      <span className="text-sm font-semibold">Same Premium Equipment</span>
+                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                      <Zap className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
+                      <span className="text-xs md:text-sm font-semibold">Same Premium Equipment</span>
                     </div>
-                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2.5 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
-                      <Moon className="h-4 w-4 text-amber-400 flex-shrink-0" />
-                      <span className="text-sm font-semibold">Late Night Hours</span>
+                    <div className="flex items-center gap-2 text-amber-200 bg-amber-500/15 rounded-lg p-2 border border-amber-500/30 hover:bg-amber-500/20 transition-all duration-300">
+                      <Moon className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
+                      <span className="text-xs md:text-sm font-semibold">Late Night Hours</span>
                     </div>
                   </div>
                   
-                  <p className="text-xs md:text-sm text-amber-400 font-bold mb-3 text-center md:text-left animate-pulse-slow">
+                  <p className="text-xs text-amber-400 font-bold mb-3 text-center md:text-left animate-pulse-slow">
                     ✨ Be Among The First To Experience Premium Gaming at Student-Friendly Prices! ✨
                   </p>
                   
                   {/* Location and CTA */}
-                  <div className="flex flex-col sm:flex-row items-center gap-3">
+                  <div className="flex flex-col sm:flex-row items-center gap-2">
                     <a
                       href="https://maps.app.goo.gl/nvTtK6SG4nGQXenGA"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500/30 to-orange-500/30 border-2 border-amber-500/50 text-amber-200 rounded-lg hover:from-amber-500/40 hover:to-orange-500/40 transition-all duration-300 text-sm font-bold shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 hover:scale-105 group/btn"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500/30 to-orange-500/30 border-2 border-amber-500/50 text-amber-200 rounded-lg hover:from-amber-500/40 hover:to-orange-500/40 transition-all duration-300 text-xs md:text-sm font-bold shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 hover:scale-105 group/btn"
                     >
-                      <MapPin className="h-4 w-4 group-hover/btn:animate-bounce" />
+                      <MapPin className="h-3.5 w-3.5 group-hover/btn:animate-bounce" />
                       View Location on Maps
-                      <ExternalLink className="h-3.5 w-3.5" />
+                      <ExternalLink className="h-3 w-3" />
                     </a>
-                    <div className="text-xs text-gray-400 text-center sm:text-left">
-                      <p className="font-medium text-amber-300 mb-1">QR64+CRV Electronics Bus Stop</p>
+                    <div className="text-[10px] md:text-xs text-gray-400 text-center sm:text-left">
+                      <p className="font-medium text-amber-300 mb-0.5">QR64+CRV Electronics Bus Stop</p>
                       <p>Valavandankottai, Tamil Nadu 620015</p>
                     </div>
                   </div>
