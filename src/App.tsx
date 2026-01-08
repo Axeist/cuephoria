@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 // Lazy load routes for better initial performance
 const BookingLanding = lazy(() => import("./pages/BookingLanding"));
 const CafeMenu = lazy(() => import("./pages/CafeMenu"));
+const GameInsider = lazy(() => import("./pages/GameInsider"));
 
 // Lazy load blog routes (not critical for initial load)
 const Blog = lazy(() => import("./pages/Blog"));
@@ -47,6 +48,7 @@ const App = () => {
               <Route path="/" element={<Index />} />
               <Route path="/book" element={<BookingLanding />} />
               <Route path="/cafemenu" element={<CafeMenu />} />
+              <Route path="/gameinsider" element={<GameInsider />} />
               
               {/* Blog Routes - lazy loaded */}
               <Route path="/blog" element={<Blog />} />
