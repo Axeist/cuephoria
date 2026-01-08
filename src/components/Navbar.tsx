@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Gamepad2, Siren, GraduationCap } from 'lucide-react';
+import { Menu, X, Gamepad2, Siren, GraduationCap, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import NewsTicker from './NewsTicker';
@@ -37,6 +37,7 @@ interface NavbarProps {
 const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,6 +63,25 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
     };
   }, [mobileMenuOpen]);
 
+  // Close expanded menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const header = document.querySelector('header');
+      if (isExpanded && header && !header.contains(target)) {
+        setIsExpanded(false);
+      }
+    };
+
+    if (isExpanded) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isExpanded]);
+
   const navItems = [
     { href: "#home", label: "Home" },
     { href: "#about", label: "About" },
@@ -76,24 +96,37 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
     <>
       <header 
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 overflow-hidden",
           isScrolled 
-            ? "bg-gaming-darker/80 backdrop-blur-md shadow-lg py-1.5" 
-            : "bg-transparent py-1 md:py-2"
+            ? "bg-gaming-darker/80 backdrop-blur-md shadow-lg" 
+            : "bg-transparent"
         )}
       >
-        <div className="container mx-auto px-4 flex justify-between items-center">
+        {/* Main Header Bar */}
+        <div className={cn(
+          "container mx-auto px-4 flex justify-between items-center transition-all duration-300",
+          isScrolled ? "py-2" : "py-4 md:py-6"
+        )}>
           <a href="/" className="flex items-center space-x-2">
             <img 
               src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
               alt="Cuephoria" 
-              className="h-7 md:h-12 animate-pulse-neon"
+              className={cn(
+                "animate-pulse-neon transition-all duration-300",
+                isScrolled ? "h-8 md:h-10" : "h-10 md:h-14"
+              )}
             />
-            <span className="text-lg md:text-xl font-bold neon-text-blue animate-pulse-neon">CUEPHORIA</span>
+            <span className={cn(
+              "font-bold neon-text-blue animate-pulse-neon transition-all duration-300",
+              isScrolled ? "text-base md:text-lg" : "text-lg md:text-2xl"
+            )}>CUEPHORIA</span>
           </a>
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className={cn(
+            "hidden md:flex items-center transition-all duration-300",
+            isScrolled ? "space-x-4" : "space-x-6"
+          )}>
             {navItems.map((item) => (
               <NavLink 
                 key={item.href} 
@@ -105,23 +138,42 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             ))}
             <Link 
               to="/gameinsider"
-              className="px-4 py-2 rounded-md font-medium transition-colors text-white hover:text-orange-500 border border-orange-500/30 hover:border-orange-500/60"
+              className={cn(
+                "rounded-md font-medium transition-all duration-300 text-white hover:text-orange-500 border border-orange-500/30 hover:border-orange-500/60",
+                isScrolled ? "px-3 py-1.5 text-sm" : "px-4 py-2"
+              )}
             >
-              <GraduationCap className="h-4 w-4 inline mr-2" />
+              <GraduationCap className={cn(
+                "inline mr-2 transition-all duration-300",
+                isScrolled ? "h-3.5 w-3.5" : "h-4 w-4"
+              )} />
               Game Insider
             </Link>
             <a 
               href="#book-now" 
               className={cn(
-                "px-6 py-2 rounded-md font-medium transition-colors",
+                "rounded-md font-medium transition-all duration-300",
                 activeSection === "book-now" 
                   ? "bg-neon-pink text-white" 
-                  : "bg-neon-pink/80 text-white hover:bg-neon-pink animate-pulse-neon"
+                  : "bg-neon-pink/80 text-white hover:bg-neon-pink animate-pulse-neon",
+                isScrolled ? "px-5 py-1.5 text-sm" : "px-6 py-2"
               )}
             >
               Book Now
             </a>
           </nav>
+          
+          {/* Expand Menu Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsExpanded(!isExpanded);
+            }}
+            className="hidden md:flex items-center gap-2 px-3 py-2 text-white hover:text-neon-blue transition-colors"
+            aria-label={isExpanded ? "Collapse menu" : "Expand menu"}
+          >
+            {isExpanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+          </button>
           
           {/* Mobile Menu Button */}
           <button 
@@ -132,12 +184,95 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
+
+        {/* Expandable Menu Section */}
+        <div className={cn(
+          "bg-gaming-darker/95 backdrop-blur-md border-t border-gaming-accent/30 transition-all duration-300 overflow-hidden",
+          isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        )}>
+          <div className="container mx-auto px-4 py-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Quick Links */}
+              <div>
+                <h4 className="text-sm font-bold text-neon-blue mb-3">Quick Links</h4>
+                <nav className="space-y-2">
+                  {navItems.slice(0, 4).map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsExpanded(false)}
+                      className="block text-sm text-gray-400 hover:text-neon-blue transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+              
+              {/* More Links */}
+              <div>
+                <h4 className="text-sm font-bold text-neon-pink mb-3">More</h4>
+                <nav className="space-y-2">
+                  {navItems.slice(4).map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsExpanded(false)}
+                      className="block text-sm text-gray-400 hover:text-neon-pink transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                  <Link
+                    to="/gameinsider"
+                    onClick={() => setIsExpanded(false)}
+                    className="block text-sm text-gray-400 hover:text-orange-500 transition-colors"
+                  >
+                    Game Insider
+                  </Link>
+                </nav>
+              </div>
+              
+              {/* Special Offers */}
+              <div>
+                <h4 className="text-sm font-bold text-orange-500 mb-3">Special Offers</h4>
+                <div className="space-y-2">
+                  <a
+                    href="#book-now"
+                    onClick={() => setIsExpanded(false)}
+                    className="block text-sm text-gray-400 hover:text-orange-500 transition-colors"
+                  >
+                    Book Online - 50% OFF
+                  </a>
+                  <Link
+                    to="/gameinsider"
+                    onClick={() => setIsExpanded(false)}
+                    className="block text-sm text-gray-400 hover:text-orange-500 transition-colors"
+                  >
+                    Game Insider - Free Starter Series
+                  </Link>
+                  <a
+                    href="https://www.cuephoria.in/blog"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsExpanded(false)}
+                    className="block text-sm text-gray-400 hover:text-orange-500 transition-colors"
+                  >
+                    Latest Blog Posts
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
       
       {/* News Ticker positioned just below the header */}
       <div className={cn(
         "fixed left-0 right-0 z-40 transition-all duration-300 w-full",
-        isScrolled ? "top-[46px] md:top-[60px]" : "top-[50px] md:top-[80px]" 
+        isExpanded 
+          ? (isScrolled ? "top-[200px] md:top-[220px]" : "top-[250px] md:top-[300px]")
+          : (isScrolled ? "top-[46px] md:top-[60px]" : "top-[50px] md:top-[80px]")
       )}>
         <NewsTicker />
       </div>
