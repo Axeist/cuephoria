@@ -386,33 +386,6 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Special Offers */}
-            <div className="space-y-5">
-              <h4 className="text-lg font-bold text-white">Special Offers</h4>
-              <div className="space-y-2.5">
-                {footerCoupons.map((coupon, idx) => (
-                  <div
-                    key={idx}
-                    onClick={() => copyCouponCode(coupon.code)}
-                    className={`group relative p-3 ${coupon.bgColor} rounded-lg border ${coupon.borderColor} transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:shadow-lg`}
-                  >
-                    <div className="flex items-center justify-between mb-1.5">
-                      <div className="flex items-center gap-2">
-                        <div className={`p-1 ${coupon.bgColor} rounded`}>
-                          {coupon.icon}
-                        </div>
-                        <span className={`${coupon.textColor} font-bold text-sm`}>{coupon.code}</span>
-                      </div>
-                      <span className={`${coupon.textColor} text-xs font-semibold`}>{coupon.discount}</span>
-                    </div>
-                    <div className="flex items-center gap-1 text-[10px] text-gray-400 group-hover:text-gray-300 transition-colors">
-                      <Copy className="h-3 w-3" />
-                      <span>Click to copy</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Bottom Section */}
