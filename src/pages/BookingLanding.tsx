@@ -1,5 +1,5 @@
 import React, { useEffect, useState, lazy, Suspense, useCallback, useMemo } from 'react';
-import { ArrowRight, Clock, MapPin, Star, Award, Table2, Siren, ActivitySquare, Expand, ExternalLink, Percent, Gift, Zap, Sparkles, Copy, Target, X, Calendar } from 'lucide-react';
+import { ArrowRight, Clock, MapPin, Star, Award, Table2, Siren, ActivitySquare, Expand, ExternalLink, Percent, Gift, Zap, Sparkles, Copy, Target, X, Calendar, GraduationCap } from 'lucide-react';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import SEOMetadata from '../components/SEOMetadata';
@@ -121,6 +121,22 @@ const BookingLanding = () => {
         { type: "Pool", original: "₹300", discounted: "₹195", savings: "₹105" }
       ],
       requirement: null
+    },
+    {
+      code: "GAMEINSIDER50",
+      discount: "50% OFF",
+      icon: <GraduationCap className="h-5 w-5 text-orange-400" />,
+      textColor: "text-orange-400",
+      bgColor: "bg-orange-500/20",
+      bgGradient: "from-orange-500/15 via-orange-600/10 to-orange-500/15",
+      borderColor: "border-orange-500/30 hover:border-orange-500/60",
+      shadowColor: "hover:shadow-[0_0_20px_rgba(255,165,0,0.3)]",
+      details: [
+        { type: "PS5/VR", original: "₹150", discounted: "₹75", savings: "₹75" },
+        { type: "Pool", original: "₹300", discounted: "₹150", savings: "₹150" }
+      ],
+      requirement: "Game Insider Community - Exclusive",
+      animate: true
     }
   ];
 
@@ -443,6 +459,21 @@ const BookingLanding = () => {
                   <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-neon-pink mr-2 animate-pulse" />
                   Special Offers
                 </h3>
+                <div className="mb-4 p-3 bg-gradient-to-r from-orange-500/20 to-orange-600/20 rounded-lg border border-orange-500/40">
+                  <div className="flex items-center gap-2 mb-2">
+                    <GraduationCap className="h-4 w-4 md:h-5 md:w-5 text-orange-400" />
+                    <span className="text-orange-400 font-bold text-xs md:text-sm">Game Insider Exclusive</span>
+                  </div>
+                  <p className="text-xs text-gray-300 mb-2">
+                    Get <span className="text-orange-400 font-bold">50% OFF</span> on all game services with code <span className="font-mono font-bold text-white">GAMEINSIDER50</span> when you join the Game Insider program!
+                  </p>
+                  <a 
+                    href="/gameinsider" 
+                    className="text-orange-400 hover:text-orange-300 text-xs font-semibold flex items-center gap-1"
+                  >
+                    Learn More <ExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
                 <div className="space-y-3">
                   {couponCodes.map((coupon, idx) => (
                     <div

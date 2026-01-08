@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, Clock, MapPin, Gamepad2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
+import GameInsiderAnnouncement from './GameInsiderAnnouncement';
 
 const Hero = ({ className = '' }) => {
   return (
@@ -79,8 +80,13 @@ const Hero = ({ className = '' }) => {
             </div>
             
             {/* Cuephoria Lite Sneak Peek */}
-            <div className="mb-6">
+            <div className="mb-4">
               <CuephoriaLiteAnnouncement variant="compact" />
+            </div>
+            
+            {/* Game Insider Announcement */}
+            <div className="mb-6">
+              <GameInsiderAnnouncement variant="compact" />
             </div>
             
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
