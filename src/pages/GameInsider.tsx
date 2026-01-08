@@ -22,7 +22,19 @@ import {
   PlayCircle,
   Layers,
   Lightbulb,
-  Shield
+  Shield,
+  Clock,
+  DollarSign,
+  Globe,
+  BarChart3,
+  FileText,
+  Video,
+  MessageSquare,
+  Calendar,
+  UserCheck,
+  Building2,
+  Brain,
+  Puzzle
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -440,7 +452,7 @@ const GameInsider = () => {
           </div>
         </section>
 
-        {/* Program Benefits Section - New */}
+        {/* Program Benefits Section */}
         <section className="py-24 relative">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
@@ -468,6 +480,330 @@ const GameInsider = () => {
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3>
                   <p className="text-gray-300 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Learning Paths Section */}
+        <section className="py-24 relative">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,255,255,0.1)_0,rgba(15,25,40,0)_70%)]"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                <span className="neon-text-pink">Learning Paths</span>
+              </h2>
+              <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+                Structured programs designed to take you from beginner to industry-ready professional
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {/* Game Development Path */}
+              <div className="glass-card rounded-3xl p-8 border-2 border-orange-500/40 bg-gradient-to-br from-orange-500/10 via-transparent to-neon-blue/10">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-4 bg-orange-500/20 rounded-2xl border border-orange-500/50">
+                    <Code className="h-10 w-10 text-orange-500" />
+                  </div>
+                  <div>
+                    <h3 className="text-3xl font-bold text-white">Game Development</h3>
+                    <p className="text-gray-400">Build real games, learn real skills</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-4 mb-6">
+                  {[
+                    'Game Design Fundamentals',
+                    'Programming & Development',
+                    'Game Engines (Unity/Unreal)',
+                    'Art & Animation Basics',
+                    'Project Management',
+                    'Portfolio Development'
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-3 p-3 bg-gaming-darker/60 rounded-lg border border-orange-500/20">
+                      <CheckCircle2 className="h-5 w-5 text-orange-500 flex-shrink-0" />
+                      <span className="text-gray-300">{item}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-4 text-sm text-gray-400">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-4 w-4" />
+                    <span>8-12 Weeks</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Users className="h-4 w-4" />
+                    <span>Mentor-Led</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Esports Path */}
+              <div className="glass-card rounded-3xl p-8 border-2 border-neon-blue/40 bg-gradient-to-br from-neon-blue/10 via-transparent to-neon-pink/10">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-4 bg-neon-blue/20 rounded-2xl border border-neon-blue/50">
+                    <Trophy className="h-10 w-10 text-neon-blue" />
+                  </div>
+                  <div>
+                    <h3 className="text-3xl font-bold text-white">Esports</h3>
+                    <p className="text-gray-400">Master the competitive gaming industry</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-4 mb-6">
+                  {[
+                    'Esports Ecosystem Overview',
+                    'Team Management & Strategy',
+                    'Event Production & Broadcasting',
+                    'Player Development',
+                    'Business & Marketing',
+                    'Career Pathways'
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-3 p-3 bg-gaming-darker/60 rounded-lg border border-neon-blue/20">
+                      <CheckCircle2 className="h-5 w-5 text-neon-blue flex-shrink-0" />
+                      <span className="text-gray-300">{item}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-4 text-sm text-gray-400">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-4 w-4" />
+                    <span>6-10 Weeks</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Users className="h-4 w-4" />
+                    <span>Industry Experts</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Industry Statistics Section */}
+        <section className="py-24 relative">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                <span className="neon-text-blue">The Gaming Industry</span>
+              </h2>
+              <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+                Why now is the perfect time to start your gaming career
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {[
+                { icon: DollarSign, value: '$200B+', label: 'Global Gaming Market', bgColor: 'bg-orange-500/20', iconColor: 'text-orange-500', borderColor: 'border-orange-500/30 hover:border-orange-500/70', textColor: 'text-orange-500', gradient: 'from-orange-500/10' },
+                { icon: Users, value: '3.2B+', label: 'Gamers Worldwide', bgColor: 'bg-neon-blue/20', iconColor: 'text-neon-blue', borderColor: 'border-neon-blue/30 hover:border-neon-blue/70', textColor: 'text-neon-blue', gradient: 'from-neon-blue/10' },
+                { icon: TrendingUp, value: '10%+', label: 'Annual Growth Rate', bgColor: 'bg-neon-pink/20', iconColor: 'text-neon-pink', borderColor: 'border-neon-pink/30 hover:border-neon-pink/70', textColor: 'text-neon-pink', gradient: 'from-neon-pink/10' },
+                { icon: Briefcase, value: '500K+', label: 'Job Opportunities', bgColor: 'bg-purple-500/20', iconColor: 'text-purple-400', borderColor: 'border-purple-500/30 hover:border-purple-500/70', textColor: 'text-purple-400', gradient: 'from-purple-500/10' },
+              ].map((stat, idx) => (
+                <div
+                  key={idx}
+                  className={`glass-card rounded-2xl p-8 border-2 ${stat.borderColor} transition-all hover:scale-105 text-center bg-gradient-to-br ${stat.gradient} to-transparent`}
+                >
+                  <div className={`p-4 ${stat.bgColor} rounded-xl mb-4 inline-block`}>
+                    <stat.icon className={`h-8 w-8 ${stat.iconColor}`} />
+                  </div>
+                  <div className={`text-4xl font-bold ${stat.textColor} mb-2`}>{stat.value}</div>
+                  <div className="text-gray-300 text-sm">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12 max-w-4xl mx-auto">
+              <div className="glass-card rounded-2xl p-8 border-2 border-orange-500/40 bg-gradient-to-r from-orange-500/10 to-neon-blue/10">
+                <p className="text-lg text-gray-300 leading-relaxed text-center">
+                  The gaming industry is one of the fastest-growing sectors globally, with <span className="text-orange-500 font-semibold">unprecedented career opportunities</span> in game development, esports management, content creation, and more. The demand for skilled professionals continues to outpace supply, making it an ideal time to enter the field.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Course Modules Section */}
+        <section className="py-24 relative">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(255,165,0,0.1)_0,rgba(15,25,40,0)_70%)]"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                <span className="neon-text-pink">Course Modules</span>
+              </h2>
+              <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+                Comprehensive curriculum covering all aspects of game development and esports
+              </p>
+            </div>
+
+            <div className="max-w-5xl mx-auto">
+              <div className="space-y-6">
+                {[
+                  {
+                    title: 'Foundation Module',
+                    desc: 'Introduction to gaming industry, career paths, and essential concepts',
+                    topics: ['Industry Overview', 'Career Mapping', 'Essential Tools', 'Industry Terminology'],
+                    duration: '2 Weeks',
+                    icon: BookOpen
+                  },
+                  {
+                    title: 'Core Skills Development',
+                    desc: 'Hands-on learning of fundamental skills required in your chosen path',
+                    topics: ['Practical Exercises', 'Real-world Projects', 'Skill Assessments', 'Progress Tracking'],
+                    duration: '4-6 Weeks',
+                    icon: Brain
+                  },
+                  {
+                    title: 'Industry Application',
+                    desc: 'Apply your skills to real industry scenarios and workflows',
+                    topics: ['Industry Workflows', 'Team Collaboration', 'Project Management', 'Quality Standards'],
+                    duration: '2-4 Weeks',
+                    icon: Puzzle
+                  },
+                  {
+                    title: 'Career Preparation',
+                    desc: 'Build your portfolio, network, and prepare for job opportunities',
+                    topics: ['Portfolio Development', 'Resume Building', 'Interview Prep', 'Networking'],
+                    duration: '2 Weeks',
+                    icon: Briefcase
+                  }
+                ].map((module, idx) => (
+                  <div
+                    key={idx}
+                    className="glass-card rounded-2xl p-8 border-2 border-orange-500/30 hover:border-orange-500/60 transition-all hover:scale-[1.02] bg-gradient-to-r from-orange-500/10 via-transparent to-neon-blue/10"
+                  >
+                    <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                      <div className="p-4 bg-orange-500/20 rounded-xl border border-orange-500/50">
+                        <module.icon className="h-8 w-8 text-orange-500" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-4 mb-3">
+                          <h3 className="text-2xl font-bold text-white">{module.title}</h3>
+                          <span className="px-3 py-1 bg-orange-500/20 text-orange-500 text-sm font-semibold rounded-full border border-orange-500/50">
+                            {module.duration}
+                          </span>
+                        </div>
+                        <p className="text-gray-300 mb-4">{module.desc}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {module.topics.map((topic, i) => (
+                            <span
+                              key={i}
+                              className="px-3 py-1 bg-gaming-darker/60 text-gray-300 text-sm rounded-lg border border-orange-500/20"
+                            >
+                              {topic}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Career Opportunities Section */}
+        <section className="py-24 relative">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                <span className="neon-text-blue">Career Opportunities</span>
+              </h2>
+              <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+                Explore diverse career paths in the gaming and esports industry
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {[
+                { title: 'Game Developer', desc: 'Create games using programming and game engines', icon: Code, bgColor: 'bg-orange-500/20', iconColor: 'text-orange-500', borderColor: 'border-orange-500/30 hover:border-orange-500/70', gradient: 'from-orange-500/10' },
+                { title: 'Game Designer', desc: 'Design gameplay mechanics and player experiences', icon: Puzzle, bgColor: 'bg-neon-blue/20', iconColor: 'text-neon-blue', borderColor: 'border-neon-blue/30 hover:border-neon-blue/70', gradient: 'from-neon-blue/10' },
+                { title: 'Esports Manager', desc: 'Manage teams, events, and competitive gaming operations', icon: Trophy, bgColor: 'bg-neon-pink/20', iconColor: 'text-neon-pink', borderColor: 'border-neon-pink/30 hover:border-neon-pink/70', gradient: 'from-neon-pink/10' },
+                { title: 'Game Artist', desc: 'Create visual assets, characters, and environments', icon: Sparkles, bgColor: 'bg-purple-500/20', iconColor: 'text-purple-400', borderColor: 'border-purple-500/30 hover:border-purple-500/70', gradient: 'from-purple-500/10' },
+                { title: 'Esports Analyst', desc: 'Analyze gameplay, strategies, and performance data', icon: BarChart3, bgColor: 'bg-orange-500/20', iconColor: 'text-orange-500', borderColor: 'border-orange-500/30 hover:border-orange-500/70', gradient: 'from-orange-500/10' },
+                { title: 'Community Manager', desc: 'Build and engage gaming communities', icon: Users, bgColor: 'bg-neon-blue/20', iconColor: 'text-neon-blue', borderColor: 'border-neon-blue/30 hover:border-neon-blue/70', gradient: 'from-neon-blue/10' },
+                { title: 'Game Producer', desc: 'Oversee game development projects and teams', icon: Briefcase, bgColor: 'bg-neon-pink/20', iconColor: 'text-neon-pink', borderColor: 'border-neon-pink/30 hover:border-neon-pink/70', gradient: 'from-neon-pink/10' },
+                { title: 'Content Creator', desc: 'Create gaming content, streams, and videos', icon: Video, bgColor: 'bg-purple-500/20', iconColor: 'text-purple-400', borderColor: 'border-purple-500/30 hover:border-purple-500/70', gradient: 'from-purple-500/10' },
+                { title: 'QA Tester', desc: 'Test games for bugs, quality, and player experience', icon: CheckCircle2, bgColor: 'bg-orange-500/20', iconColor: 'text-orange-500', borderColor: 'border-orange-500/30 hover:border-orange-500/70', gradient: 'from-orange-500/10' },
+              ].map((career, idx) => (
+                <div
+                  key={idx}
+                  className={`glass-card rounded-xl p-6 border-2 ${career.borderColor} transition-all hover:scale-105 group bg-gradient-to-br ${career.gradient} to-transparent`}
+                >
+                  <div className={`p-3 ${career.bgColor} rounded-lg mb-4 inline-block group-hover:scale-110 transition-transform`}>
+                    <career.icon className={`h-6 w-6 ${career.iconColor}`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">{career.title}</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">{career.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-24 relative">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,165,0,0.1)_0,rgba(15,25,40,0)_70%)]"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                <span className="neon-text-pink">Frequently Asked Questions</span>
+              </h2>
+              <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+                Everything you need to know about the Game Insider programs
+              </p>
+            </div>
+
+            <div className="max-w-4xl mx-auto space-y-4">
+              {[
+                {
+                  q: 'Do I need prior experience in game development or esports?',
+                  a: 'No prior experience is required! Our programs are designed for beginners and those looking to transition into the gaming industry. We start with fundamentals and build up to advanced concepts.'
+                },
+                {
+                  q: 'How long are the programs?',
+                  a: 'The Starter Series is free and takes 2-3 weeks. Full programs range from 8-12 weeks for Game Development and 6-10 weeks for Esports, depending on your learning pace and chosen specialization.'
+                },
+                {
+                  q: 'What will I receive upon completion?',
+                  a: 'You\'ll receive a certificate of completion, a portfolio of projects, industry connections, and access to our job placement assistance program. Plus, you\'ll have the skills and confidence to pursue gaming careers.'
+                },
+                {
+                  q: 'Are the programs online or in-person?',
+                  a: 'Our programs are primarily online, allowing you to learn from anywhere. We also offer live sessions, mentorship calls, and community forums for interactive learning and networking.'
+                },
+                {
+                  q: 'How does the mentorship work?',
+                  a: 'You\'ll be paired with industry professionals who provide guidance, feedback, and real-world insights. Mentors conduct regular sessions, review your work, and help you navigate career decisions.'
+                },
+                {
+                  q: 'What makes Game Insider different from other courses?',
+                  a: 'We focus on career outcomes, not just learning. Our programs are designed by industry professionals, include real-world projects, provide mentorship, and help you build a professional network. We bridge the gap between learning and employment.'
+                },
+                {
+                  q: 'Can I get a job after completing the program?',
+                  a: 'While we can\'t guarantee employment, our programs are designed to make you job-ready. We provide career support, portfolio development, interview preparation, and connect you with industry opportunities. Many of our graduates have successfully entered the gaming industry.'
+                },
+                {
+                  q: 'What is the Cuephoria community discount?',
+                  a: 'As a Cuephoria community member, you get exclusive access to the free Starter Series and a 50% discount code (GAMEINSIDER50) for all game services at Cuephoria. This is our way of supporting the gaming community in Trichy.'
+                }
+              ].map((faq, idx) => (
+                <div
+                  key={idx}
+                  className="glass-card rounded-xl p-6 border-2 border-orange-500/30 hover:border-orange-500/60 transition-all bg-gradient-to-r from-orange-500/10 to-transparent"
+                >
+                  <h3 className="text-xl font-bold text-white mb-3 flex items-start gap-3">
+                    <span className="text-orange-500 mt-1">Q{idx + 1}.</span>
+                    <span>{faq.q}</span>
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed ml-8">{faq.a}</p>
                 </div>
               ))}
             </div>
