@@ -121,22 +121,6 @@ const BookingLanding = () => {
         { type: "Pool", original: "₹300", discounted: "₹195", savings: "₹105" }
       ],
       requirement: null
-    },
-    {
-      code: "GAMEINSIDER50",
-      discount: "50% OFF",
-      icon: <GraduationCap className="h-5 w-5 text-orange-400" />,
-      textColor: "text-orange-400",
-      bgColor: "bg-orange-500/20",
-      bgGradient: "from-orange-500/15 via-orange-600/10 to-orange-500/15",
-      borderColor: "border-orange-500/30 hover:border-orange-500/60",
-      shadowColor: "hover:shadow-[0_0_20px_rgba(255,165,0,0.3)]",
-      details: [
-        { type: "PS5/VR", original: "₹150", discounted: "₹75", savings: "₹75" },
-        { type: "Pool", original: "₹300", discounted: "₹150", savings: "₹150" }
-      ],
-      requirement: "Game Insider Community - Exclusive",
-      animate: true
     }
   ];
 
