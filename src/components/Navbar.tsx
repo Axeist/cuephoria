@@ -37,6 +37,7 @@ interface NavbarProps {
 const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,6 +62,25 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
       document.body.style.overflow = '';
     };
   }, [mobileMenuOpen]);
+
+  // Close desktop menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const header = document.querySelector('header');
+      if (desktopMenuOpen && header && !header.contains(target)) {
+        setDesktopMenuOpen(false);
+      }
+    };
+
+    if (desktopMenuOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [desktopMenuOpen]);
 
   const navItems = [
     { href: "#home", label: "Home" },
@@ -92,17 +112,21 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             <span className="text-lg md:text-xl font-bold neon-text-blue animate-pulse-neon">CUEPHORIA</span>
           </a>
           
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => (
-              <NavLink 
-                key={item.href} 
-                href={item.href} 
-                isActive={activeSection === item.href.substring(1)}
-              >
-                {item.label}
-              </NavLink>
-            ))}
+          {/* Desktop Navigation - Menu Button */}
+          <div className="hidden md:flex items-center space-x-4">
+            {/* Hamburger Menu Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setDesktopMenuOpen(!desktopMenuOpen);
+              }}
+              className="text-white hover:text-neon-blue transition-colors p-2"
+              aria-label={desktopMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {desktopMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+
+            {/* Game Insider Button - Always Visible */}
             <Link 
               to="/gameinsider"
               className="px-4 py-2 rounded-md font-medium transition-colors text-white hover:text-orange-500 border border-orange-500/30 hover:border-orange-500/60"
@@ -110,6 +134,8 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
               <GraduationCap className="h-4 w-4 inline mr-2" />
               Game Insider
             </Link>
+
+            {/* Book Now Button */}
             <a 
               href="#book-now" 
               className={cn(
@@ -121,7 +147,7 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             >
               Book Now
             </a>
-          </nav>
+          </div>
           
           {/* Mobile Menu Button */}
           <button 
@@ -132,12 +158,45 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
+        {/* Desktop Expandable Menu */}
+        {desktopMenuOpen && (
+          <div className="hidden md:block bg-gaming-darker/95 backdrop-blur-md border-t border-gaming-accent/30">
+            <div className="container mx-auto px-4 py-4">
+              <nav className="flex flex-wrap items-center gap-4">
+                {navItems.map((item) => (
+                  <NavLink 
+                    key={item.href} 
+                    href={item.href} 
+                    isActive={activeSection === item.href.substring(1)}
+                    onClick={() => setDesktopMenuOpen(false)}
+                  >
+                    {item.label}
+                  </NavLink>
+                ))}
+                <a 
+                  href="#book-now"
+                  onClick={() => setDesktopMenuOpen(false)}
+                  className={cn(
+                    "px-4 py-2 rounded-md font-medium transition-colors",
+                    activeSection === "book-now" 
+                      ? "bg-neon-pink text-white" 
+                      : "bg-neon-pink/80 text-white hover:bg-neon-pink"
+                  )}
+                >
+                  Book Now
+                </a>
+              </nav>
+            </div>
+          </div>
+        )}
       </header>
       
       {/* News Ticker positioned just below the header */}
       <div className={cn(
         "fixed left-0 right-0 z-40 transition-all duration-300 w-full",
-        isScrolled ? "top-[46px] md:top-[60px]" : "top-[50px] md:top-[80px]" 
+        desktopMenuOpen
+          ? (isScrolled ? "top-[100px] md:top-[120px]" : "top-[120px] md:top-[150px]")
+          : (isScrolled ? "top-[46px] md:top-[60px]" : "top-[50px] md:top-[80px]")
       )}>
         <NewsTicker />
       </div>
