@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Gamepad2, Siren } from 'lucide-react';
+import { Menu, X, Gamepad2, Siren, GraduationCap } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import NewsTicker from './NewsTicker';
 
@@ -102,6 +103,13 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
                 {item.label}
               </NavLink>
             ))}
+            <Link 
+              to="/gameinsider"
+              className="px-4 py-2 rounded-md font-medium transition-colors text-white hover:text-orange-500 border border-orange-500/30 hover:border-orange-500/60"
+            >
+              <GraduationCap className="h-4 w-4 inline mr-2" />
+              Game Insider
+            </Link>
             <a 
               href="#book-now" 
               className={cn(
@@ -164,6 +172,14 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
                 )}
               </a>
             ))}
+            <Link 
+              to="/gameinsider"
+              className="px-6 py-2 rounded-md bg-orange-500/80 text-white font-medium hover:bg-orange-500 transition-colors flex items-center justify-center gap-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <GraduationCap className="h-5 w-5" />
+              Game Insider
+            </Link>
             <a 
               href="#book-now" 
               className="px-6 py-2 rounded-md bg-neon-pink text-white font-medium hover:bg-neon-pink/80 transition-colors"

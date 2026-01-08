@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home, X, Percent, Gift, Zap, Sparkles, Copy, Code, ExternalLink, Star, Moon, Crown } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home, X, Percent, Gift, Zap, Sparkles, Copy, Code, ExternalLink, Star, Moon, Crown, GraduationCap } from 'lucide-react';
 
 const Footer = () => {
   const [modal, setModal] = useState(null); // 'terms', 'privacy', 'contact', or null
@@ -292,6 +292,13 @@ const Footer = () => {
                   <Users className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                   <span>About</span>
                 </a>
+                <Link 
+                  to="/gameinsider"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-orange-500 transition-colors duration-300 group text-sm"
+                >
+                  <GraduationCap className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
+                  <span>Game Insider</span>
+                </Link>
               </nav>
             </div>
 
@@ -348,6 +355,34 @@ const Footer = () => {
                   <Clock className="h-4 w-4 flex-shrink-0" />
                   <span className="text-sm">11:00 AM - 11:00 PM, Every day</span>
                 </div>
+              </div>
+            </div>
+
+            {/* Game Insider Partnership */}
+            <div className="space-y-5">
+              <h4 className="text-lg font-bold text-white">Partnerships</h4>
+              <div className="space-y-3">
+                <Link 
+                  to="/gameinsider"
+                  className="group relative p-4 bg-gradient-to-br from-orange-500/20 to-orange-600/10 rounded-xl border-2 border-orange-500/30 hover:border-orange-500/60 transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:shadow-lg hover:shadow-orange-500/20 block"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="p-2 bg-orange-500/30 rounded-lg">
+                      <GraduationCap className="h-5 w-5 text-orange-500" />
+                    </div>
+                    <div>
+                      <div className="text-orange-500 font-bold text-sm">Game Insider × Cuephoria</div>
+                      <div className="text-gray-400 text-xs">Career Development Programs</div>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 text-xs leading-relaxed mb-2">
+                    Free Starter Series in Game Development & Esports. Get 50% OFF with exclusive coupon!
+                  </p>
+                  <div className="flex items-center gap-1 text-orange-400 text-xs font-semibold group-hover:text-orange-300 transition-colors">
+                    <span>Learn More</span>
+                    <ExternalLink className="h-3 w-3" />
+                  </div>
+                </Link>
               </div>
             </div>
 

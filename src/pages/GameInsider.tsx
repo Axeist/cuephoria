@@ -239,11 +239,11 @@ const GameInsider = () => {
               </div>
 
               {/* Animated scroll indicator */}
-              <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex-col items-center hidden md:flex animate-bounce-slow">
-                <div className="w-6 h-10 border-2 border-orange-500/70 rounded-full flex justify-center p-1">
-                  <div className="w-1 h-3 bg-orange-500 rounded-full"></div>
+              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center hidden md:flex animate-bounce-slow">
+                <div className="w-6 h-10 border-2 border-orange-500/70 rounded-full flex items-center justify-center p-1">
+                  <div className="w-1 h-3 bg-orange-500 rounded-full animate-bounce-slow"></div>
                 </div>
-                <span className="text-orange-500/70 text-sm mt-2">Scroll to Explore</span>
+                <span className="text-orange-500/70 text-sm mt-2 text-center">Scroll to Explore</span>
               </div>
             </div>
           </div>

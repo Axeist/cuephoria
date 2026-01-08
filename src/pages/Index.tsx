@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import SEOMetadata from '../components/SEOMetadata';
-import { ChevronUp, ArrowRight } from 'lucide-react';
+import { ChevronUp, ArrowRight, GraduationCap, Gamepad2, Rocket, Sparkles, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // Lazy load below-the-fold components for better initial performance
@@ -53,7 +53,7 @@ const Index = () => {
     const handleScroll = () => {
       if (!ticking) {
         frameId = requestAnimationFrame(() => {
-          const sections = ['home', 'about', 'games', 'tournaments', 'gallery', 'testimonials', 'book-now', 'contact'];
+          const sections = ['home', 'about', 'games', 'tournaments', 'gallery', 'testimonials', 'book-now', 'gameinsider', 'contact'];
           let current = '';
           for (const section of sections) {
             const element = document.getElementById(section);
@@ -137,6 +137,109 @@ const Index = () => {
         <Suspense fallback={<SectionLoader />}>
           <Contact />
         </Suspense>
+
+        {/* Game Insider Partnership Section */}
+        <section id="gameinsider" className="py-20 relative overflow-hidden">
+          {/* Background effects */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,165,0,0.1)_0,rgba(15,25,40,0)_70%)]"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse-neon"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-neon-blue/10 rounded-full blur-3xl animate-pulse-neon" style={{ animationDelay: '1s' }}></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-6xl mx-auto">
+              <div className="glass-card rounded-3xl p-8 md:p-12 border-2 border-orange-500/40 bg-gradient-to-br from-orange-500/10 via-transparent to-neon-blue/10 relative overflow-hidden">
+                {/* Animated border glow */}
+                <div className="absolute inset-0 border-2 border-orange-500/30 rounded-3xl animate-pulse-neon pointer-events-none"></div>
+                
+                <div className="relative z-10">
+                  {/* Header */}
+                  <div className="text-center mb-10">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/20 rounded-full border border-orange-500/50 mb-6">
+                      <Sparkles className="h-5 w-5 text-orange-500 animate-pulse" />
+                      <span className="text-orange-500 font-bold">EXCLUSIVE PARTNERSHIP</span>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                      <span className="neon-text-blue">Game Insider</span>
+                      <span className="text-white"> × </span>
+                      <span className="neon-text-pink">Cuephoria</span>
+                    </h2>
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                      Building Careers in Game Development & Esports
+                    </p>
+                  </div>
+
+                  {/* Content Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                    <div className="p-6 bg-gaming-darker/60 rounded-2xl border-2 border-orange-500/30 hover:border-orange-500/60 transition-all group hover:scale-105">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="p-3 bg-orange-500/20 rounded-xl group-hover:bg-orange-500/30 transition-all">
+                          <GraduationCap className="h-8 w-8 text-orange-500" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-white">Free Starter Series</h3>
+                      </div>
+                      <p className="text-gray-300 leading-relaxed mb-4">
+                        Access industry-relevant education in Game Development and Esports. Learn with clarity, build relevant skills, and understand real career pathways.
+                      </p>
+                      <ul className="space-y-2 text-gray-300 mb-4">
+                        <li className="flex items-center gap-2">
+                          <span className="text-orange-500">✓</span>
+                          <span>Industry-aligned learning paths</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="text-orange-500">✓</span>
+                          <span>Mentorship from professionals</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="text-orange-500">✓</span>
+                          <span>Practical, career-focused programs</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="p-6 bg-gaming-darker/60 rounded-2xl border-2 border-neon-blue/30 hover:border-neon-blue/60 transition-all group hover:scale-105">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="p-3 bg-neon-blue/20 rounded-xl group-hover:bg-neon-blue/30 transition-all">
+                          <Rocket className="h-8 w-8 text-neon-blue" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-white">Exclusive Benefits</h3>
+                      </div>
+                      <p className="text-gray-300 leading-relaxed mb-4">
+                        As part of the Cuephoria community, you get exclusive access to Game Insider World programs with special discounts.
+                      </p>
+                      <div className="bg-gradient-to-r from-orange-500/20 to-neon-blue/20 rounded-xl p-4 border border-orange-500/30 mb-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Gamepad2 className="h-5 w-5 text-orange-500" />
+                          <span className="text-orange-500 font-bold">50% OFF Game Services</span>
+                        </div>
+                        <p className="text-gray-300 text-sm">
+                          Get exclusive coupon code <span className="font-mono font-bold text-white">GAMEINSIDER50</span> when you sign up!
+                        </p>
+                      </div>
+                      <p className="text-gray-400 text-sm">
+                        No prior experience required — just commitment and curiosity.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* CTA Button */}
+                  <div className="text-center">
+                    <Link
+                      to="/gameinsider"
+                      className="group relative inline-flex items-center gap-3 px-10 py-5 text-xl font-bold bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 hover:from-orange-600 hover:via-orange-700 hover:to-orange-600 text-white rounded-2xl transition-all duration-300 transform hover:scale-110 shadow-2xl shadow-orange-500/50 overflow-hidden border-2 border-orange-400/50"
+                    >
+                      <span className="relative z-10 flex items-center gap-3">
+                        <GraduationCap className="h-6 w-6" />
+                        Explore Game Insider Programs
+                        <ExternalLink className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -translate-x-full group-hover:translate-x-full"></div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Contact Section Added */}
         <div className="max-w-5xl mx-auto p-6 mt-12 mb-12 bg-gaming-darker/80 rounded-xl border border-neon-blue/30 text-center">
