@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Clock, Instagram, Facebook, MessageCircle, Gamepad2, Target, Users, Coffee, Trophy, BookOpen, Home, X, Percent, Gift, Zap, Sparkles, Copy, Code, ExternalLink, Star, Moon, Crown, GraduationCap } from 'lucide-react';
+import PragyanAnnouncement from './PragyanAnnouncement';
 
 const Footer = () => {
   const [modal, setModal] = useState(null); // 'terms', 'privacy', 'contact', or null
@@ -58,6 +59,10 @@ const Footer = () => {
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10 max-w-7xl">
+          {/* Pragyan @ NIT Trichy Announcement */}
+          <div className="mb-6">
+            <PragyanAnnouncement variant="card" />
+          </div>
           {/* Cuephoria Lite Fancy Announcement */}
           <div className="mb-6">
             <div className="relative glass-card rounded-xl p-4 md:p-5 border-2 border-amber-500/50 bg-gradient-to-br from-amber-500/15 via-orange-500/15 to-amber-500/15 overflow-hidden group">
@@ -237,6 +242,24 @@ const Footer = () => {
                 >
                   <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                   <span>Home</span>
+                </a>
+                <a 
+                  href="https://admin.cuephoria.in/public/tournaments"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group text-sm"
+                >
+                  <Trophy className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
+                  <span>Pragyan: Register for Tournaments</span>
+                </a>
+                <a 
+                  href="https://admin.cuephoria.in/public/booking"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group text-sm"
+                >
+                  <Target className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
+                  <span>Pragyan: Book Game Stall</span>
                 </a>
                 <a 
                   href="https://www.cuephoria.in/book"

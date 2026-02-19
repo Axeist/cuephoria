@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 
 const news = [
+  "🎯 PRAGYAN @ NIT TRICHY — Register for PS5 & 8-Ball tournaments now!",
+  "🎯 PRAGYAN GAME STALL — Book your slot for our game stall!",
   "SPECIAL ONLINE OFFER! Get FLAT 10% OFF your bill + 1 FREE AR Metashot Cricket Challenge",
   "Book online to secure your slot and enjoy exclusive discounts",
   "STUDENT SPECIAL OFFER! Get FLAT ₹100 OFF on Weekly & Monthly Passes with a valid student ID",

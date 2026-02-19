@@ -135,6 +135,22 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
               Game Insider
             </Link>
 
+            <a 
+              href="https://admin.cuephoria.in/public/tournaments"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-2 rounded-md font-medium text-neon-blue border border-neon-blue/50 hover:bg-neon-blue/10 transition-colors text-sm"
+            >
+              Pragyan: Register
+            </a>
+            <a 
+              href="https://admin.cuephoria.in/public/booking"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-2 rounded-md font-medium text-neon-pink border border-neon-pink/50 hover:bg-neon-pink/10 transition-colors text-sm"
+            >
+              Pragyan: Book Stall
+            </a>
             {/* Book Now Button */}
             <a 
               href="#book-now" 
@@ -173,6 +189,24 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
                     {item.label}
                   </NavLink>
                 ))}
+                <a 
+                  href="https://admin.cuephoria.in/public/tournaments"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setDesktopMenuOpen(false)}
+                  className="px-4 py-2 rounded-md font-medium text-neon-blue border border-neon-blue/50 hover:bg-neon-blue/10 transition-colors"
+                >
+                  Pragyan: Register
+                </a>
+                <a 
+                  href="https://admin.cuephoria.in/public/booking"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setDesktopMenuOpen(false)}
+                  className="px-4 py-2 rounded-md font-medium text-neon-pink border border-neon-pink/50 hover:bg-neon-pink/10 transition-colors"
+                >
+                  Pragyan: Book Stall
+                </a>
                 <a 
                   href="#book-now"
                   onClick={() => setDesktopMenuOpen(false)}
@@ -239,6 +273,24 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
               <GraduationCap className="h-5 w-5" />
               Game Insider
             </Link>
+            <a 
+              href="https://admin.cuephoria.in/public/tournaments"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-2 rounded-md bg-neon-blue/20 border border-neon-blue/50 text-neon-blue font-medium transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Pragyan: Register for Tournaments
+            </a>
+            <a 
+              href="https://admin.cuephoria.in/public/booking"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-2 rounded-md bg-neon-pink/20 border border-neon-pink/50 text-neon-pink font-medium transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Pragyan: Book Game Stall
+            </a>
             <a 
               href="#book-now" 
               className="px-6 py-2 rounded-md bg-neon-pink text-white font-medium hover:bg-neon-pink/80 transition-colors"

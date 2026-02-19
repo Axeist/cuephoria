@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
 import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
+import PragyanAnnouncement from './PragyanAnnouncement';
 
 const BookNow = () => {
   const { toast } = useToast();
@@ -97,6 +98,11 @@ const BookNow = () => {
             Book your gaming or pool session now and prepare for an unforgettable experience at Cuephoria.
           </p>
           
+          {/* Pragyan @ NIT Trichy - Tournaments & Game Stall */}
+          <div className="max-w-4xl mx-auto mt-6 mb-6">
+            <PragyanAnnouncement variant="card" />
+          </div>
+          
           {/* Cuephoria Lite Announcement */}
           <div className="max-w-4xl mx-auto mt-6 mb-6">
             <CuephoriaLiteAnnouncement variant="card" />
@@ -113,6 +119,24 @@ const BookNow = () => {
             </div>
           </div>
           
+          <div className="flex flex-wrap justify-center gap-3 mb-4">
+            <a 
+              href="https://admin.cuephoria.in/public/tournaments" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-3 bg-neon-blue text-white rounded-md hover:bg-neon-blue/80 transition-all duration-300"
+            >
+              Pragyan: Register for Tournaments
+            </a>
+            <a 
+              href="https://admin.cuephoria.in/public/booking" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-3 bg-neon-pink text-white rounded-md hover:bg-neon-pink/80 transition-all duration-300"
+            >
+              Pragyan: Book Game Stall
+            </a>
+          </div>
           <Link 
             to="/book" 
             className="inline-block px-8 py-3 bg-neon-pink text-white rounded-md hover:bg-neon-pink/80 transition-all duration-300"

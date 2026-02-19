@@ -1,8 +1,8 @@
 import React from 'react';
 import { ArrowRight, Clock, MapPin, Gamepad2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
 import GameInsiderAnnouncement from './GameInsiderAnnouncement';
+import PragyanAnnouncement from './PragyanAnnouncement';
 
 const Hero = ({ className = '' }) => {
   return (
@@ -79,6 +79,11 @@ const Hero = ({ className = '' }) => {
               </div>
             </div>
             
+            {/* Pragyan @ NIT Trichy Announcement */}
+            <div className="mb-4">
+              <PragyanAnnouncement variant="compact" />
+            </div>
+            
             {/* Cuephoria Lite Sneak Peek */}
             <div className="mb-4">
               <CuephoriaLiteAnnouncement variant="compact" />
@@ -89,14 +94,25 @@ const Hero = ({ className = '' }) => {
               <GameInsiderAnnouncement variant="compact" />
             </div>
             
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
-              <Link
-                to="/book"
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center lg:justify-start">
+              <a
+                href="https://admin.cuephoria.in/public/tournaments"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 rounded-md bg-neon-pink text-white font-semibold hover:bg-neon-pink/80 transition-all duration-300 transform hover:scale-105 flex items-center justify-center group"
+              >
+                Register for Tournaments
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="https://admin.cuephoria.in/public/booking"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-3 rounded-md bg-neon-blue text-gaming-darker font-semibold hover:bg-neon-blue/80 transition-all duration-300 transform hover:scale-105 flex items-center justify-center group"
               >
                 Book a Slot
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              </a>
               
               {/* WhatsApp Buttons - Chatbot and Human Agent */}
               <a 
