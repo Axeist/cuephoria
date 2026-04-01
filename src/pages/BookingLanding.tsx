@@ -8,7 +8,6 @@ import { Dialog, DialogContent } from "../components/ui/dialog";
 import { useIsMobile } from '../hooks/use-mobile';
 import { useToast } from '../hooks/use-toast';
 import CuephoriaLiteAnnouncement from '../components/CuephoriaLiteAnnouncement';
-import PragyanAnnouncement from '../components/PragyanAnnouncement';
 
 const VisitorStats = lazy(() => import('../components/VisitorStats'));
 
@@ -199,9 +198,6 @@ const BookingLanding = () => {
             </div>
             
             {/* Cuephoria Lite Announcement */}
-            <div className="max-w-4xl mx-auto mb-6 md:mb-8">
-              <PragyanAnnouncement variant="card" />
-            </div>
             <div className="max-w-4xl mx-auto mb-6 md:mb-8">
               <CuephoriaLiteAnnouncement variant="card" />
             </div>

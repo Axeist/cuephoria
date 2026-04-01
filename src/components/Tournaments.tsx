@@ -20,15 +20,9 @@ const Tournaments = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 neon-text-blue">
             🏆 Epic Gaming Tournaments
           </h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-4">
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             Join thrilling gaming competitions with amazing prizes! Compete against the best players 
             in Trichy and prove your gaming prowess across multiple game categories.
-          </p>
-          <p className="text-base text-neon-pink font-semibold max-w-2xl mx-auto">
-            🎯 <strong>Pragyan @ NIT Trichy:</strong> Register for our PS5 &amp; 8-Ball tournaments and book a slot at our game stall —{' '}
-            <a href="https://admin.cuephoria.in/public/tournaments" target="_blank" rel="noopener noreferrer" className="underline hover:text-neon-blue">Register</a>
-            {' · '}
-            <a href="https://admin.cuephoria.in/public/booking" target="_blank" rel="noopener noreferrer" className="underline hover:text-neon-blue">Book stall</a>
           </p>
         </div>
 
