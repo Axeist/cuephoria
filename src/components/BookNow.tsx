@@ -1,383 +1,243 @@
 
 import React from 'react';
-import { Calendar, Clock, Users, Award, Table2, Siren, Percent, Gift, Zap, Sparkles, Copy, ArrowRight } from 'lucide-react';
+import { Calendar, Users, Award, Sparkles, Copy, ArrowRight, MapPin, Crown, Zap, Gift, Percent } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
 import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
 
+const couponCodes = [
+  {
+    code: "NIT35", discount: "35% OFF", req: "NIT Students",
+    color: "green" as const,
+    details: [{ type: "PS5/VR", original: "₹150", discounted: "₹97.50" }, { type: "Pool", original: "₹300", discounted: "₹195" }],
+  },
+  {
+    code: "CUEPHORIA35", discount: "35% OFF", req: "Student ID",
+    color: "purple" as const,
+    details: [{ type: "PS5/VR", original: "₹150", discounted: "₹97.50" }, { type: "Pool", original: "₹300", discounted: "₹195" }],
+  },
+  {
+    code: "CUEPHORIA20", discount: "20% OFF", req: "All Customers",
+    color: "blue" as const,
+    details: [{ type: "PS5/VR", original: "₹150", discounted: "₹120" }, { type: "Pool", original: "₹300", discounted: "₹240" }],
+  },
+  {
+    code: "HH99", discount: "₹99 FLAT", req: "Mon–Fri 11AM–4PM",
+    color: "amber" as const,
+    details: [{ type: "PS5", original: "₹150", discounted: "₹99" }, { type: "Pool", original: "₹300", discounted: "₹99" }],
+  },
+] as const;
+
+type CouponColor = typeof couponCodes[number]['color'];
+
+const couponStyle = (c: CouponColor) => ({
+  wrapper: {
+    green:  'bg-green-500/10  border-green-500/30  hover:border-green-400  hover:shadow-[0_0_18px_rgba(34,197,94,0.25)]',
+    purple: 'bg-purple-500/10 border-purple-500/30 hover:border-purple-400 hover:shadow-[0_0_18px_rgba(168,85,247,0.25)]',
+    blue:   'bg-sky-500/10    border-sky-400/30    hover:border-sky-400    hover:shadow-[0_0_18px_rgba(0,200,255,0.25)]',
+    amber:  'bg-amber-500/10  border-amber-500/30  hover:border-amber-400  hover:shadow-[0_0_18px_rgba(251,191,36,0.25)]',
+  }[c],
+  text: {
+    green: 'text-green-400', purple: 'text-purple-400', blue: 'text-sky-400', amber: 'text-amber-400',
+  }[c],
+});
+
 const BookNow = () => {
   const { toast } = useToast();
-
-  const copyCouponCode = (code: string) => {
+  const copy = (code: string) => {
     navigator.clipboard.writeText(code);
-    toast({
-      title: "Coupon Copied!",
-      description: `${code} has been copied to clipboard`,
-    });
+    toast({ title: '✅ Copied!', description: `${code} copied to clipboard` });
   };
 
-  const couponCodes = [
-    {
-      code: "CUEPHORIA20",
-      discount: "20% OFF",
-      icon: <Percent className="h-5 w-5 text-neon-blue" />,
-      textColor: "text-neon-blue",
-      bgColor: "bg-neon-blue/20",
-      bgGradient: "from-neon-blue/15 via-purple-500/10 to-neon-blue/15",
-      borderColor: "border-neon-blue/30 hover:border-neon-blue/60",
-      shadowColor: "hover:shadow-[0_0_20px_rgba(0,255,255,0.3)]",
-      details: [
-        { type: "PS5/VR", original: "₹150", discounted: "₹120", savings: "₹30" },
-        { type: "Pool", original: "₹300", discounted: "₹240", savings: "₹60" }
-      ],
-      requirement: null
-    },
-    {
-      code: "CUEPHORIA35",
-      discount: "35% OFF",
-      icon: <Gift className="h-5 w-5 text-purple-400" />,
-      textColor: "text-purple-400",
-      bgColor: "bg-purple-500/20",
-      bgGradient: "from-purple-500/15 via-pink-500/10 to-purple-500/15",
-      borderColor: "border-purple-500/30 hover:border-purple-500/60",
-      shadowColor: "hover:shadow-[0_0_20px_rgba(168,85,247,0.3)]",
-      details: [
-        { type: "PS5/VR", original: "₹150", discounted: "₹97.50", savings: "₹52.50" },
-        { type: "Pool", original: "₹300", discounted: "₹195", savings: "₹105" }
-      ],
-      requirement: "Student ID Required"
-    },
-    {
-      code: "HH99",
-      discount: "₹99 FIXED",
-      icon: <Zap className="h-5 w-5 text-amber-400" />,
-      textColor: "text-amber-400",
-      bgColor: "bg-amber-500/20",
-      bgGradient: "from-amber-500/15 via-orange-500/10 to-amber-500/15",
-      borderColor: "border-amber-500/30 hover:border-amber-500/60",
-      shadowColor: "hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]",
-      details: [
-        { type: "PS5", original: "₹150", discounted: "₹99", savings: "₹51" },
-        { type: "Pool", original: "₹300", discounted: "₹99", savings: "₹201" }
-      ],
-      requirement: "Mon-Fri, 11 AM-4 PM",
-      animate: true
-    },
-    {
-      code: "NIT35",
-      discount: "35% OFF",
-      icon: <Sparkles className="h-5 w-5 text-green-400" />,
-      textColor: "text-green-400",
-      bgColor: "bg-green-500/20",
-      bgGradient: "from-green-500/15 via-teal-500/10 to-green-500/15",
-      borderColor: "border-green-500/30 hover:border-green-500/60",
-      shadowColor: "hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]",
-      details: [
-        { type: "PS5/VR", original: "₹150", discounted: "₹97.50", savings: "₹52.50" },
-        { type: "Pool", original: "₹300", discounted: "₹195", savings: "₹105" }
-      ],
-      requirement: null
-    }
-  ];
-
   return (
-    <section id="book-now" className="py-20 relative">
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(0,255,255,0.15)_0,rgba(15,25,40,0)_70%)]"></div>
-      </div>
-      
+    <section id="book-now" className="py-16 md:py-20 relative">
+      {/* Ambient glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(0,200,255,0.06)_0,transparent_70%)] pointer-events-none" />
+
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold">
+
+        {/* ── Section header ─────────────────────────────────────── */}
+        <div className="text-center mb-6 md:mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">
             Ready to <span className="neon-text-blue">Play</span>?
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto mt-4">
-            Book your gaming or pool session now and prepare for an unforgettable experience at Cuephoria.
+          <p className="text-gray-400 max-w-xl mx-auto text-sm md:text-base">
+            Book your gaming or pool session at either of our branches and enjoy an unforgettable experience.
           </p>
-          
-          {/* Cuephoria Lite Announcement */}
-          <div className="max-w-4xl mx-auto mt-6 mb-6">
-            <CuephoriaLiteAnnouncement variant="card" />
+          {/* Membership offer — elegant pill, not a blinking siren */}
+          <div className="inline-flex items-center gap-2 mt-4 px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-500/20 to-neon-pink/20 border border-purple-500/30 text-purple-200 text-xs md:text-sm font-bold">
+            <Award className="h-3.5 w-3.5 text-neon-pink flex-shrink-0" />
+            Monthly Memberships — 50% OFF &nbsp;·&nbsp; Save big every visit
           </div>
-          
-          {/* Fixed alignment for the limited time offer banner */}
-          <div className="flex justify-center mt-6 mb-8">
-            <div className="inline-flex items-center bg-gaming-darker/80 backdrop-blur-md py-3 px-8 rounded-lg border border-neon-pink/30">
-              <Siren className="h-5 w-5 text-red-500 animate-pulse mr-3" />
-              <p className="text-lg md:text-xl text-neon-pink font-bold animate-blink-slow">
-                50% OFF MONTHLY MEMBERSHIP
-              </p>
-              <Siren className="h-5 w-5 text-red-500 animate-pulse ml-3" />
-            </div>
-          </div>
-          
-          <Link 
-            to="/book" 
-            className="inline-block px-8 py-3 bg-neon-pink text-white rounded-md hover:bg-neon-pink/80 transition-all duration-300"
-          >
-            Book on our dedicated booking page
-          </Link>
         </div>
-        
-          <div className="flex flex-col lg:flex-row items-stretch gap-12">
-          <div className="w-full lg:w-1/2">
-            <div className="glass-card rounded-xl p-8 border border-neon-blue/20 h-full flex flex-col">
-              <h3 className="text-2xl font-bold mb-4 text-white flex items-center">
-                <Calendar className="h-6 w-6 text-neon-blue mr-2" />
+
+        {/* Lite Announcement */}
+        <div className="max-w-4xl mx-auto mb-6">
+          <CuephoriaLiteAnnouncement variant="card" />
+        </div>
+
+        {/* ── Main glass container ────────────────────────────────── */}
+        <div className="max-w-6xl mx-auto bg-gaming-darker/60 backdrop-blur-lg rounded-2xl border border-white/10 overflow-hidden shadow-[0_0_60px_rgba(0,200,255,0.04)]">
+
+          {/* Top half: booking + pricing side-by-side */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
+
+            {/* ── LEFT: Book Your Session ──────────────────────────── */}
+            <div className="p-5 md:p-7">
+              <h3 className="text-lg md:text-xl font-black text-white mb-1 flex items-center gap-2">
+                <Calendar className="h-5 w-5 text-neon-blue flex-shrink-0" />
                 Book Your Session
               </h3>
-              <p className="text-gray-300 text-sm mb-6">
-                Choose your branch and book instantly — our dedicated booking page lets you pick your station, time slot, and apply discount codes.
+              <p className="text-gray-400 text-xs mb-5">
+                Pick a branch and book instantly — apply discount codes at checkout.
               </p>
 
-              {/* Branch Cards */}
-              <div className="flex flex-col gap-4 flex-grow">
+              <div className="flex flex-col gap-3 mb-4">
+                {/* Main branch */}
                 <a
                   href="https://admin.cuephoria.in/public/booking"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target="_blank" rel="noopener noreferrer"
                   className="group flex items-center justify-between p-4 rounded-xl bg-neon-blue/10 border border-neon-blue/30 hover:border-neon-blue/60 hover:bg-neon-blue/15 transition-all duration-200"
                 >
                   <div>
-                    <p className="font-bold text-white text-base">Cuephoria Main Branch</p>
-                    <p className="text-gray-400 text-sm flex items-center gap-1 mt-0.5">
-                      <Users className="h-3.5 w-3.5" /> Thiruverumbur, Trichy
+                    <div className="flex items-center gap-1.5 mb-0.5">
+                      <Crown className="h-3.5 w-3.5 text-neon-blue" />
+                      <p className="font-bold text-white text-sm">Cuephoria Main Branch</p>
+                    </div>
+                    <p className="text-gray-400 text-xs flex items-center gap-1">
+                      <MapPin className="h-3 w-3" /> Thiruverumbur, Trichy
                     </p>
                   </div>
-                  <div className="flex items-center gap-1.5 px-4 py-2 bg-neon-blue text-black font-bold rounded-lg text-sm group-hover:bg-cyan-300 transition-colors">
-                    Book Now <ArrowRight className="h-3.5 w-3.5" />
+                  <div className="flex items-center gap-1 px-3 py-1.5 bg-neon-blue text-black font-black rounded-lg text-xs group-hover:bg-cyan-300 transition-colors whitespace-nowrap">
+                    Book Now <ArrowRight className="h-3 w-3" />
                   </div>
                 </a>
 
+                {/* Lite branch */}
                 <a
                   href="https://admin.cuephoria.in/lite/public/booking"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target="_blank" rel="noopener noreferrer"
                   className="group flex items-center justify-between p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 hover:border-amber-500/60 hover:bg-amber-500/15 transition-all duration-200"
                 >
                   <div>
-                    <p className="font-bold text-white text-base">
-                      Cuephoria Lite
-                      <span className="ml-2 text-[9px] bg-red-500 text-white px-1.5 py-0.5 rounded-full font-black uppercase">NEW</span>
-                    </p>
-                    <p className="text-gray-400 text-sm flex items-center gap-1 mt-0.5">
-                      <Users className="h-3.5 w-3.5" /> Opposite NIT Trichy
+                    <div className="flex items-center gap-1.5 mb-0.5">
+                      <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+                      <p className="font-bold text-white text-sm">
+                        Cuephoria Lite
+                        <span className="ml-1.5 text-[8px] bg-red-500 text-white px-1.5 py-0.5 rounded-full font-black uppercase align-middle">NEW</span>
+                      </p>
+                    </div>
+                    <p className="text-gray-400 text-xs flex items-center gap-1">
+                      <MapPin className="h-3 w-3" /> Opposite NIT Trichy
                     </p>
                   </div>
-                  <div className="flex items-center gap-1.5 px-4 py-2 bg-amber-500 text-black font-bold rounded-lg text-sm group-hover:bg-amber-300 transition-colors">
-                    Book Now <ArrowRight className="h-3.5 w-3.5" />
+                  <div className="flex items-center gap-1 px-3 py-1.5 bg-amber-500 text-black font-black rounded-lg text-xs group-hover:bg-amber-300 transition-colors whitespace-nowrap">
+                    Book Now <ArrowRight className="h-3 w-3" />
                   </div>
                 </a>
+              </div>
 
-                <Link
-                  to="/book"
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gaming-accent/40 border border-white/10 hover:border-white/20 transition-colors text-gray-300 hover:text-white text-sm"
-                >
-                  View all offers, coupons & branch details
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-              </div>
+              <Link
+                to="/book"
+                className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-colors text-gray-400 hover:text-white text-xs"
+              >
+                View all offers, coupons & branch details
+                <ArrowRight className="h-3 w-3" />
+              </Link>
             </div>
-          </div>
-          
-          <div className="w-full lg:w-1/2">
-            <div className="glass-card rounded-xl p-8 border border-neon-pink/20 h-full flex flex-col">
-              <h3 className="text-2xl font-bold mb-6 text-white flex items-center">
-                <Calendar className="h-6 w-6 text-neon-blue mr-2" />
-                Pricing & Monthly Memberships
+
+            {/* ── RIGHT: Pricing & Memberships ─────────────────────── */}
+            <div className="p-5 md:p-7">
+              <h3 className="text-lg md:text-xl font-black text-white mb-4 flex items-center gap-2">
+                <Award className="h-5 w-5 text-neon-pink flex-shrink-0" />
+                Pricing & Memberships
               </h3>
-              
-              <div className="space-y-6 flex-grow">
-                {/* Regular Pricing Table */}
-                <div className="rounded-lg overflow-hidden border border-gaming-accent/20">
-                  <Table>
-                    <TableBody>
-                      <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
-                        <TableCell className="py-4">
-                          <div>
-                            <h4 className="text-xl font-semibold text-neon-blue">Pool Table</h4>
-                            <p className="text-gray-400">Per hour rate for billiards</p>
-                          </div>
-                        </TableCell>
-                        <TableCell className="py-4 text-right">
-                          <div className="flex items-center justify-end">
-                            <div className="text-2xl font-bold text-white">₹300</div>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                      
-                      <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
-                        <TableCell className="py-4">
-                          <div>
-                            <h4 className="text-xl font-semibold text-neon-pink">Gaming Station</h4>
-                            <p className="text-gray-400">Per controller rate for PC/Console</p>
-                          </div>
-                        </TableCell>
-                        <TableCell className="py-4 text-right">
-                          <div className="flex items-center justify-end">
-                            <div className="text-2xl font-bold text-white">₹150</div>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                      
-                      <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
-                        <TableCell className="py-4">
-                          <div>
-                            <h4 className="text-xl font-semibold text-neon-blue">VR Station</h4>
-                            <p className="text-gray-400">Per hour rate for VR gaming</p>
-                          </div>
-                        </TableCell>
-                        <TableCell className="py-4 text-right">
-                          <div className="flex items-center justify-end">
-                            <div className="text-2xl font-bold text-white">₹150</div>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </div>
-                
-                {/* Monthly Membership Section */}
-                <div>
-                  <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
-                    <Award className="h-5 w-5 text-neon-pink mr-2" />
-                    Monthly Memberships - 50% OFF
-                  </h4>
-                  <div className="rounded-lg overflow-hidden border border-gaming-accent/20">
-                    <Table>
-                      <TableBody>
-                        <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
-                          <TableCell className="py-4">
-                            <div>
-                              <h5 className="text-lg font-semibold text-gray-300">💎 Silver Membership</h5>
-                              <p className="text-sm text-gray-400">Up to 2 players • Priority bookings</p>
-                            </div>
-                          </TableCell>
-                          <TableCell className="py-4 text-right text-neon-blue font-semibold">₹299</TableCell>
-                        </TableRow>
-                        <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
-                          <TableCell className="py-4">
-                            <div>
-                              <h5 className="text-lg font-semibold text-gray-300">🌟 Gold Membership</h5>
-                              <p className="text-sm text-gray-400">Up to 4 players • Priority bookings</p>
-                            </div>
-                          </TableCell>
-                          <TableCell className="py-4 text-right text-neon-pink font-semibold">₹499</TableCell>
-                        </TableRow>
-                        <TableRow className="hover:bg-gaming-accent/10">
-                          <TableCell className="py-3 text-gray-300">Extra players (per hour)</TableCell>
-                          <TableCell className="py-3 text-right text-neon-blue font-semibold">₹49</TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
+
+              {/* Pricing cards — 3 col */}
+              <div className="grid grid-cols-3 gap-2 md:gap-3 mb-5">
+                {[
+                  { label: 'Pool Table', price: '₹300', sub: '/hr', color: 'neon-blue' },
+                  { label: 'PS5 Gaming', price: '₹150', sub: '/controller', color: 'neon-pink' },
+                  { label: 'VR Station', price: '₹150', sub: '/session', color: 'amber-400' },
+                ].map(({ label, price, sub, color }) => (
+                  <div key={label} className="bg-gaming-accent/20 border border-white/10 rounded-xl p-2.5 text-center hover:border-white/20 transition-colors">
+                    <p className={`text-xl md:text-2xl font-black text-${color}`}>{price}</p>
+                    <p className="text-white text-[10px] md:text-xs font-semibold mt-0.5 leading-tight">{label}</p>
+                    <p className="text-gray-500 text-[9px] mt-0.5">{sub}</p>
                   </div>
-                </div>
-                
-                {/* Enhanced loyalty points section with table */}
-                <div className="pt-4 border-t border-gaming-accent">
-                  <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
-                    <Award className="h-5 w-5 text-neon-pink mr-2" />
-                    Loyalty Program
-                  </h4>
-                  <div className="rounded-lg overflow-hidden border border-gaming-accent/20">
-                    <Table>
-                      <TableBody>
-                        <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
-                          <TableCell className="py-3">
-                            <div className="flex items-center">
-                              <div className="h-6 w-6 rounded-full bg-neon-pink/20 flex items-center justify-center mr-2">
-                                <Award className="h-4 w-4 text-neon-pink" />
-                              </div>
-                              <span className="text-gray-300">Non-members earn</span>
-                            </div>
-                          </TableCell>
-                          <TableCell className="py-3 text-right text-neon-blue font-semibold">2 pts per ₹100</TableCell>
-                        </TableRow>
-                        <TableRow className="border-b border-gaming-accent hover:bg-gaming-accent/10">
-                          <TableCell className="py-3">
-                            <div className="flex items-center">
-                              <div className="h-6 w-6 rounded-full bg-neon-blue/20 flex items-center justify-center mr-2">
-                                <Award className="h-4 w-4 text-neon-blue" />
-                              </div>
-                              <span className="text-gray-300">Members earn</span>
-                            </div>
-                          </TableCell>
-                          <TableCell className="py-3 text-right text-neon-blue font-semibold">5 pts per ₹100</TableCell>
-                        </TableRow>
-                        <TableRow className="hover:bg-gaming-accent/10">
-                          <TableCell className="py-3">
-                            <span className="text-gray-300">Point value</span>
-                          </TableCell>
-                          <TableCell className="py-3 text-right text-neon-pink font-semibold">₹1 per point</TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </div>
-                </div>
-                
-                {/* Coupon Codes Section */}
-                <div>
-                  <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
-                    <Sparkles className="h-5 w-5 text-neon-pink mr-2 animate-pulse" />
-                    Available Coupon Codes
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {couponCodes.map((coupon, idx) => (
-                      <div
-                        key={idx}
-                        className={`group relative p-4 bg-gradient-to-r ${coupon.bgGradient} rounded-xl border ${coupon.borderColor} transition-all duration-300 ${coupon.shadowColor} overflow-hidden cursor-pointer transform hover:scale-[1.02]`}
-                        onClick={() => copyCouponCode(coupon.code)}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div className="relative z-10">
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center gap-2">
-                              <div className={`p-1.5 ${coupon.bgColor} rounded-lg`}>
-                                {coupon.icon}
-                              </div>
-                              <h5 className={`${coupon.textColor} font-bold text-sm`}>{coupon.code}</h5>
-                            </div>
-                            <span className={`px-2 py-1 ${coupon.bgColor} ${coupon.textColor} text-xs font-bold rounded-full border ${coupon.borderColor} ${coupon.animate ? 'animate-pulse' : ''}`}>
-                              {coupon.discount}
-                            </span>
-                          </div>
-                          {coupon.requirement && (
-                            <div className="mb-2">
-                              <span className="text-[10px] text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">
-                                {coupon.requirement}
-                              </span>
-                            </div>
-                          )}
-                          <div className="space-y-1 text-xs">
-                            {coupon.details.map((detail, i) => (
-                              <div key={i} className="flex items-center gap-2 text-gray-300">
-                                <span className="text-gray-500 line-through text-[10px]">{detail.original}</span>
-                                <span className={`${coupon.textColor} font-semibold`}>→ {detail.discounted}</span>
-                                <span className="text-green-400 text-[10px]">(Save {detail.savings})</span>
-                                <span className="text-gray-500 text-[10px]">{detail.type}</span>
-                              </div>
-                            ))}
-                          </div>
-                          <div className="mt-2 flex items-center gap-1 text-[10px] text-gray-400 group-hover:text-gray-300 transition-colors">
-                            <Copy className="h-3 w-3" />
-                            <span>Click to copy code</span>
-                          </div>
-                        </div>
+                ))}
+              </div>
+
+              {/* Memberships compact */}
+              <div className="mb-4">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Monthly Memberships</p>
+                <div className="space-y-1.5">
+                  {[
+                    { name: '💎 Silver', desc: 'Up to 2 players', price: '₹299', color: 'text-sky-400' },
+                    { name: '🌟 Gold', desc: 'Up to 4 players', price: '₹499', color: 'text-neon-pink' },
+                    { name: 'Extra player', desc: 'per hour add-on', price: '₹49', color: 'text-gray-300' },
+                  ].map(({ name, desc, price, color }) => (
+                    <div key={name} className="flex items-center justify-between px-3 py-2 rounded-lg bg-gaming-accent/20 border border-white/8">
+                      <div>
+                        <span className="text-white text-xs font-semibold">{name}</span>
+                        <span className="text-gray-500 text-[10px] ml-2">{desc}</span>
                       </div>
-                    ))}
-                  </div>
+                      <span className={`font-black text-sm ${color}`}>{price}</span>
+                    </div>
+                  ))}
                 </div>
-                
-                <div className="pt-2 text-center">
-                  <p className="text-gray-400 text-sm animate-blink-slow">
-                    * Online bookings get <span className="text-neon-blue font-bold">25% OFF</span> on your total bill this month!
-                  </p>
+              </div>
+
+              {/* Loyalty compact */}
+              <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-neon-pink/8 border border-neon-pink/20">
+                <Award className="h-4 w-4 text-neon-pink flex-shrink-0" />
+                <div className="text-xs text-gray-300 leading-tight">
+                  <span className="text-neon-pink font-bold">Loyalty Points: </span>
+                  Members earn <span className="text-white font-semibold">5 pts</span> · Non-members earn <span className="text-white font-semibold">2 pts</span> per ₹100 &nbsp;·&nbsp; ₹1/pt
                 </div>
               </div>
             </div>
           </div>
+
+          {/* ── Bottom: Coupon Codes (full width) ────────────────────── */}
+          <div className="border-t border-white/10 p-5 md:p-7">
+            <h3 className="text-sm md:text-base font-black text-white mb-4 flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-neon-pink" />
+              Discount Codes — tap to copy
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+              {couponCodes.map(({ code, discount, req, color, details }) => {
+                const s = couponStyle(color);
+                return (
+                  <button
+                    key={code}
+                    onClick={() => copy(code)}
+                    className={`group p-3 rounded-xl border text-left cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${s.wrapper}`}
+                  >
+                    <div className={`font-mono font-black text-sm mb-0.5 ${s.text}`}>{code}</div>
+                    <div className="text-white font-black text-xs">{discount}</div>
+                    <div className="text-gray-400 text-[10px] mt-0.5 mb-1.5 leading-snug">{req}</div>
+                    <div className="space-y-0.5">
+                      {details.map((d) => (
+                        <div key={d.type} className="flex items-center gap-1 text-[10px]">
+                          <span className="text-gray-500 line-through">{d.original}</span>
+                          <span className={`font-semibold ${s.text}`}>→ {d.discounted}</span>
+                          <span className="text-gray-500">{d.type}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className={`text-[9px] mt-1.5 flex items-center gap-0.5 opacity-50 ${s.text}`}>
+                      <Copy className="h-2.5 w-2.5" /> tap to copy
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+            <p className="text-center text-gray-500 text-xs mt-4">
+              * Online bookings get <span className="text-neon-blue font-bold">25% OFF</span> your total bill this month
+            </p>
+          </div>
+
         </div>
       </div>
     </section>

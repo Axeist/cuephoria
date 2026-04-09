@@ -135,18 +135,18 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
               Game Insider
             </Link>
 
-            {/* Book Now Button */}
-            <a 
-              href="#book-now" 
+            {/* Book Now Button — goes to /book page */}
+            <Link
+              to="/book"
               className={cn(
                 "px-6 py-2 rounded-md font-medium transition-colors",
-                activeSection === "book-now" 
-                  ? "bg-neon-pink text-white" 
-                  : "bg-neon-pink/80 text-white hover:bg-neon-pink animate-pulse-neon"
+                activeSection === "book-now"
+                  ? "bg-neon-pink text-white"
+                  : "bg-neon-pink/80 text-white hover:bg-neon-pink"
               )}
             >
               Book Now
-            </a>
+            </Link>
           </div>
           
           {/* Mobile Menu Button */}
@@ -173,18 +173,18 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
                     {item.label}
                   </NavLink>
                 ))}
-                <a 
-                  href="#book-now"
+                <Link
+                  to="/book"
                   onClick={() => setDesktopMenuOpen(false)}
                   className={cn(
                     "px-4 py-2 rounded-md font-medium transition-colors",
-                    activeSection === "book-now" 
-                      ? "bg-neon-pink text-white" 
+                    activeSection === "book-now"
+                      ? "bg-neon-pink text-white"
                       : "bg-neon-pink/80 text-white hover:bg-neon-pink"
                   )}
                 >
                   Book Now
-                </a>
+                </Link>
               </nav>
             </div>
           </div>
@@ -239,13 +239,13 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
               <GraduationCap className="h-5 w-5" />
               Game Insider
             </Link>
-            <a 
-              href="#book-now" 
+            <Link
+              to="/book"
               className="px-6 py-2 rounded-md bg-neon-pink text-white font-medium hover:bg-neon-pink/80 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Book Now
-            </a>
+            </Link>
             
             {/* Special online booking promotion in mobile menu */}
             <div className="glass-card rounded-lg p-4 mt-6 border border-neon-blue/30 w-full">
