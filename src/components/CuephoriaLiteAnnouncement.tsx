@@ -1,6 +1,5 @@
-import React from 'react';
-import { MapPin, Clock, Sparkles, ExternalLink, X, Star, Moon, Zap, Users, Gift, Percent, Crown } from 'lucide-react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { MapPin, Clock, Sparkles, ExternalLink, X, Zap, Gift, Percent, Crown, Flame } from 'lucide-react';
 
 interface CuephoriaLiteAnnouncementProps {
   variant?: 'banner' | 'card' | 'compact';
@@ -8,12 +7,57 @@ interface CuephoriaLiteAnnouncementProps {
   onClose?: () => void;
 }
 
-const CuephoriaLiteAnnouncement = ({ 
-  variant = 'banner', 
+// Grand opening: April 11, 2026 at 6:00 PM
+const LITE_OPENING = new Date('2026-04-11T18:00:00');
+
+function useLiteCountdown() {
+  const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0, expired: false });
+  useEffect(() => {
+    const tick = () => {
+      const ms = LITE_OPENING.getTime() - Date.now();
+      if (ms <= 0) { setT({ d: 0, h: 0, m: 0, s: 0, expired: true }); return; }
+      setT({
+        d: Math.floor(ms / 86400000),
+        h: Math.floor((ms % 86400000) / 3600000),
+        m: Math.floor((ms % 3600000) / 60000),
+        s: Math.floor((ms % 60000) / 1000),
+        expired: false,
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+  return t;
+}
+
+const liteInfo = {
+  logo: "https://iili.io/fjuZYga.jpg",
+  name: "Cuephoria Lite",
+  openingDate: "April 11, 2026 • 6:00 PM",
+  openingDateNote: "Opposite NIT Trichy",
+  location: "QR64+CRV Electronics Bus Stop, Valavandankottai, Tamil Nadu 620015",
+  gmapLink: "https://maps.app.goo.gl/nvTtK6SG4nGQXenGA",
+  tagline: "Same Luxury, More Affordable — Right Next to NIT Trichy!",
+  description: "Authentic Cuephoria experience at student-friendly prices. Premium gaming, VR & pool, closer to campus.",
+  features: [
+    { icon: <MapPin className="h-4 w-4" />, text: "Opposite NIT Trichy", highlight: true },
+    { icon: <Crown className="h-4 w-4" />, text: "Same Premium Quality", highlight: true },
+    { icon: <Percent className="h-4 w-4" />, text: "More Affordable Pricing", highlight: true },
+    { icon: <Gift className="h-4 w-4" />, text: "Exclusive NIT Discounts", highlight: true },
+    { icon: <Zap className="h-4 w-4" />, text: "Late Night Hours", highlight: true },
+    { icon: <Zap className="h-4 w-4" />, text: "Compact Pool Tables", highlight: true },
+  ],
+  openingDiscount: "Opening Day: Up to 60% OFF for Existing Customers!",
+};
+
+const CuephoriaLiteAnnouncement = ({
+  variant = 'banner',
   showCloseButton = false,
-  onClose 
+  onClose,
 }: CuephoriaLiteAnnouncementProps) => {
   const [isVisible, setIsVisible] = useState(true);
+  const countdown = useLiteCountdown();
 
   const handleClose = () => {
     setIsVisible(false);
@@ -22,73 +66,41 @@ const CuephoriaLiteAnnouncement = ({
 
   if (!isVisible) return null;
 
-  const liteInfo = {
-    logo: "https://iili.io/fjuZYga.jpg",
-    name: "Cuephoria Lite",
-    openingDate: "Opening April 2026",
-    openingDateNote: "Opposite NIT Trichy",
-    location: "QR64+CRV Electronics Bus Stop, Valavandankottai, Tamil Nadu 620015",
-    gmapLink: "https://maps.app.goo.gl/nvTtK6SG4nGQXenGA",
-    tagline: "Same Luxury, More Affordable - Right Next to NIT Trichy!",
-    description: "Authentic Cuephoria experience at student-friendly prices. Premium gaming, VR & pool closer to campus.",
-    features: [
-      { icon: <MapPin className="h-4 w-4" />, text: "Opposite NIT Trichy", highlight: true },
-      { icon: <Crown className="h-4 w-4" />, text: "Same Premium Quality", highlight: true },
-      { icon: <Percent className="h-4 w-4" />, text: "More Affordable Pricing", highlight: true },
-      { icon: <Gift className="h-4 w-4" />, text: "Exclusive NIT Discounts", highlight: true },
-      { icon: <Moon className="h-4 w-4" />, text: "Late Night Hours", highlight: true },
-      { icon: <Zap className="h-4 w-4" />, text: "Compact Pool Tables", highlight: true }
-    ],
-    openingDiscount: "Opening Day: Up to 60% OFF for Existing Customers!",
-    cta: "Be Among The First To Experience!"
-  };
-
+  // ── Compact ────────────────────────────────────────────────────────────────
   if (variant === 'compact') {
     return (
       <div className="relative bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 border border-amber-500/40 rounded-lg p-2.5 md:p-3 backdrop-blur-sm overflow-hidden group">
-        {/* Animated shimmer effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
-        
-        {/* Glowing border animation */}
-        <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-amber-400/0 via-amber-400/30 to-amber-400/0 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500 animate-pulse"></div>
-        
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
         <div className="relative flex items-center gap-2.5 md:gap-3">
-          <div className="relative">
-            <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-amber-400 animate-pulse" />
-            <div className="absolute inset-0 h-4 w-4 md:h-5 md:w-5">
-              <Sparkles className="h-full w-full text-amber-300 animate-ping opacity-75" />
-            </div>
-          </div>
+          <Flame className="h-4 w-4 md:h-5 md:w-5 text-amber-400 animate-pulse flex-shrink-0" />
           <p className="text-xs md:text-sm text-white flex-1">
-            <span className="font-bold text-amber-400 animate-pulse-slow inline-block">🎮 Epic News:</span>{' '}
-            <span className="text-amber-300 font-semibold relative inline-block">
-              Cuephoria Lite
-              <span className="absolute -inset-1 bg-amber-400/20 blur-md opacity-50 animate-pulse"></span>
-            </span>
-            {' '}- More Affordable, Same Luxury! Opening <span className="text-amber-400 font-semibold">this April</span>, right opposite <span className="text-amber-400 font-semibold">NIT Trichy</span>! 🚀
+            <span className="font-bold text-amber-400">🎮 Grand Opening:</span>{' '}
+            <span className="text-amber-300 font-semibold">Cuephoria Lite</span>
+            {' '}&mdash; More Affordable, Same Luxury! Opening{' '}
+            <span className="text-amber-400 font-semibold">April 11, 6 PM</span>,
+            right opposite{' '}
+            <span className="text-amber-400 font-semibold">NIT Trichy</span>! 🚀
           </p>
           <a
             href={liteInfo.gmapLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-auto text-amber-400 hover:text-amber-300 transition-all duration-300 hover:scale-110 relative group/link"
+            className="ml-auto text-amber-400 hover:text-amber-300 transition-all duration-300 hover:scale-110 flex-shrink-0"
             title="View Location"
           >
-            <MapPin className="h-4 w-4 md:h-5 md:w-5 animate-bounce-slow" />
-            <span className="absolute inset-0 bg-amber-400/20 rounded-full blur-md opacity-0 group-hover/link:opacity-100 transition-opacity duration-300"></span>
+            <MapPin className="h-4 w-4 md:h-5 md:w-5 animate-bounce" />
           </a>
         </div>
       </div>
     );
   }
 
+  // ── Card ───────────────────────────────────────────────────────────────────
   if (variant === 'card') {
     return (
       <div className="glass-card rounded-xl p-4 md:p-5 border-2 border-amber-500/50 bg-gradient-to-br from-amber-500/15 via-orange-500/15 to-amber-500/15 relative overflow-hidden group">
-        {/* Animated background effects */}
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-400/0 via-amber-400/10 to-amber-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-xl"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-300/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-2000 ease-in-out"></div>
-        
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-300/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[2000ms] ease-in-out pointer-events-none" />
+
         {showCloseButton && (
           <button
             onClick={handleClose}
@@ -98,86 +110,93 @@ const CuephoriaLiteAnnouncement = ({
             <X className="h-4 w-4" />
           </button>
         )}
+
         <div className="relative flex flex-col md:flex-row items-center gap-4 md:gap-5">
-          {/* Logo Section with Glow */}
+          {/* Logo */}
           <div className="flex-shrink-0 relative">
-            <div className="absolute inset-0 bg-amber-400/20 rounded-lg blur-md animate-pulse"></div>
+            <div className="absolute inset-0 bg-amber-400/25 rounded-lg blur-md animate-pulse pointer-events-none" />
             <img
               src={liteInfo.logo}
               alt="Cuephoria Lite Logo"
               className="w-20 h-20 md:w-24 md:h-24 object-contain rounded-lg border-2 border-amber-500/50 bg-white/10 p-2 relative z-10 shadow-lg shadow-amber-500/20"
             />
           </div>
-          
-          {/* Content Section */}
+
+          {/* Content */}
           <div className="flex-1 text-center md:text-left">
             {/* Header */}
             <div className="flex items-center justify-center md:justify-start gap-2 mb-2 flex-wrap">
-              <div className="relative">
-                <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-amber-400 animate-pulse" />
-                <div className="absolute inset-0">
-                  <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-amber-300 animate-ping opacity-50" />
-                </div>
-              </div>
+              <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-amber-400 animate-pulse" />
               <h3 className="text-xl md:text-2xl font-bold text-white">
-                <span className="text-amber-400 relative inline-block">
-                  Cuephoria Lite
-                  <span className="absolute -inset-1 bg-amber-400/20 blur-lg opacity-50 animate-pulse"></span>
-                </span>
+                <span className="text-amber-400">Cuephoria Lite</span>
               </h3>
-              <span className="px-2 py-1 bg-gradient-to-r from-amber-500/30 to-orange-500/30 text-amber-200 text-xs font-bold rounded-full border border-amber-500/50 animate-pulse shadow-lg shadow-amber-500/20">
-                APRIL 2026
+              <span className="px-2 py-0.5 bg-gradient-to-r from-amber-500/30 to-orange-500/30 text-amber-200 text-xs font-black rounded-full border border-amber-500/50 animate-pulse shadow-md shadow-amber-500/20">
+                {countdown.expired ? '🎉 OPEN NOW' : 'APR 11 • 6PM'}
               </span>
             </div>
-            
-            {/* Tagline */}
-            <p className="text-sm text-amber-300 font-semibold mb-2">
-              {liteInfo.tagline}
-            </p>
-            
-            {/* Opening Date */}
+
+            <p className="text-sm text-amber-300 font-semibold mb-1">{liteInfo.tagline}</p>
+
             <p className="text-xs text-gray-300 mb-2 flex items-center justify-center md:justify-start gap-1.5">
-              <Clock className="h-3.5 w-3.5 text-amber-400 animate-pulse-slow" />
-              <span>{liteInfo.openingDate} • {liteInfo.openingDateNote}</span>
+              <Clock className="h-3.5 w-3.5 text-amber-400" />
+              <span>{liteInfo.openingDate} &bull; {liteInfo.openingDateNote}</span>
             </p>
-            
-            {/* Description */}
-            <p className="text-xs text-gray-400 mb-3">
-              {liteInfo.description}
-            </p>
-            
-            {/* Opening Discount Banner */}
-            <div className="bg-gradient-to-r from-red-500/20 via-orange-500/20 to-amber-500/20 border-2 border-red-500/40 rounded-lg p-1.5 mb-3 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 animate-pulse"></div>
-              <div className="relative flex items-center gap-1.5">
-                <Gift className="h-3.5 w-3.5 text-red-400 animate-pulse" />
-                <p className="text-xs font-bold text-red-300">
-                  {liteInfo.openingDiscount}
+
+            <p className="text-xs text-gray-400 mb-3">{liteInfo.description}</p>
+
+            {/* Live Countdown (only while not yet open) */}
+            {!countdown.expired && (
+              <div className="mb-3 bg-black/30 border border-amber-500/30 rounded-lg p-2.5">
+                <p className="text-[10px] text-amber-400/80 uppercase tracking-widest font-bold mb-1.5 text-center">
+                  Grand Opening In
                 </p>
+                <div className="flex justify-center gap-1.5 md:gap-2">
+                  {[
+                    { v: countdown.d, l: 'D' },
+                    { v: countdown.h, l: 'H' },
+                    { v: countdown.m, l: 'M' },
+                    { v: countdown.s, l: 'S' },
+                  ].map(({ v, l }, i) => (
+                    <React.Fragment key={l}>
+                      <div className="text-center">
+                        <div className="bg-amber-500/20 border border-amber-500/40 rounded px-1.5 py-0.5 min-w-[28px]">
+                          <span className="text-amber-200 font-black text-xs md:text-sm tabular-nums">
+                            {String(v).padStart(2, '0')}
+                          </span>
+                        </div>
+                        <span className="text-amber-500/70 text-[8px] font-bold block mt-0.5">{l}</span>
+                      </div>
+                      {i < 3 && <span className="text-amber-400 font-black text-xs self-start mt-0.5">:</span>}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Opening Discount Banner */}
+            <div className="bg-gradient-to-r from-red-500/20 via-orange-500/20 to-amber-500/20 border border-red-500/40 rounded-lg p-1.5 mb-3 relative overflow-hidden">
+              <div className="absolute inset-0 bg-red-500/5 animate-pulse pointer-events-none" />
+              <div className="relative flex items-center gap-1.5">
+                <Gift className="h-3.5 w-3.5 text-red-400 animate-pulse flex-shrink-0" />
+                <p className="text-xs font-bold text-red-300">{liteInfo.openingDiscount}</p>
               </div>
             </div>
-            
-            {/* Features - Compact Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+
+            {/* Features */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5 mb-3">
               {liteInfo.features.map((feature, idx) => (
-                <div 
-                  key={idx} 
-                  className={`flex items-start gap-2 p-1.5 rounded-lg transition-all duration-300 ${
-                    feature.highlight 
-                      ? 'bg-amber-500/15 border border-amber-500/30 hover:bg-amber-500/20' 
-                      : 'bg-gaming-accent/10 border border-gaming-accent/20'
-                  }`}
+                <div
+                  key={idx}
+                  className="flex items-start gap-2 p-1.5 rounded-lg bg-amber-500/15 border border-amber-500/30 hover:bg-amber-500/20 transition-colors"
                 >
-                  <div className={`mt-0.5 flex-shrink-0 ${feature.highlight ? 'text-amber-400' : 'text-gray-400'}`}>
+                  <div className="mt-0.5 flex-shrink-0 text-amber-400">
                     {React.cloneElement(feature.icon, { className: 'h-3.5 w-3.5' })}
                   </div>
-                  <span className={`text-xs md:text-sm ${feature.highlight ? 'text-amber-200 font-semibold' : 'text-gray-300'}`}>
-                    {feature.text}
-                  </span>
+                  <span className="text-xs md:text-sm text-amber-200 font-semibold">{feature.text}</span>
                 </div>
               ))}
             </div>
-            
+
             {/* Location CTA */}
             <div className="flex flex-col sm:flex-row gap-2 items-center">
               <a
@@ -190,9 +209,7 @@ const CuephoriaLiteAnnouncement = ({
                 View Location
                 <ExternalLink className="h-3 w-3" />
               </a>
-              <div className="text-[10px] text-gray-400 text-center sm:text-left">
-                {liteInfo.location}
-              </div>
+              <div className="text-[10px] text-gray-400 text-center sm:text-left">{liteInfo.location}</div>
             </div>
           </div>
         </div>
@@ -200,7 +217,7 @@ const CuephoriaLiteAnnouncement = ({
     );
   }
 
-  // Default banner variant - slim and elegant
+  // ── Banner (default) ───────────────────────────────────────────────────────
   return (
     <div className="bg-gradient-to-r from-amber-500/15 via-orange-500/15 to-amber-500/15 border-b border-amber-500/30 backdrop-blur-sm relative overflow-hidden h-[40px] flex items-center">
       {showCloseButton && (
@@ -224,12 +241,14 @@ const CuephoriaLiteAnnouncement = ({
             </div>
             <div className="flex-1 text-center md:text-left min-w-0">
               <div className="flex items-center justify-center md:justify-start gap-1.5 md:gap-2">
-                <Sparkles className="h-3 w-3 md:h-3.5 md:w-3.5 text-amber-400 animate-pulse flex-shrink-0" />
+                <Flame className="h-3 w-3 md:h-3.5 md:w-3.5 text-amber-400 animate-pulse flex-shrink-0" />
                 <h3 className="text-xs md:text-sm font-bold text-white whitespace-nowrap">
-                  <span className="text-amber-400">Cuephoria Lite</span> - Opens April 2026
+                  <span className="text-amber-400">Cuephoria Lite</span>
+                  {' '}&mdash; Grand Opening{' '}
+                  <span className="text-amber-300">April 11 • 6 PM</span>
                 </h3>
                 <span className="px-1.5 py-0.5 bg-amber-500/20 text-amber-300 text-[9px] md:text-[10px] font-bold rounded-full border border-amber-500/40 animate-pulse whitespace-nowrap">
-                  APR 2026
+                  {countdown.expired ? '🎉 OPEN' : 'APR 11'}
                 </span>
               </div>
             </div>
@@ -251,4 +270,3 @@ const CuephoriaLiteAnnouncement = ({
 };
 
 export default CuephoriaLiteAnnouncement;
-

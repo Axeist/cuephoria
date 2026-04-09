@@ -218,6 +218,11 @@
   animation: bounce-slow 2s ease-in-out infinite;
 }
 
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
 .animate-fade-in {
   animation: fade-in-smoother 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: transform, opacity;

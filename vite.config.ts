@@ -20,7 +20,11 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Optimize chunk splitting for better caching
+    // Target modern browsers for smaller bundles (good for mobile)
+    target: 'es2020',
+    // CSS code splitting reduces initial CSS payload
+    cssCodeSplit: true,
+    // Optimized chunk splitting for better long-term caching
     rollupOptions: {
       output: {
         manualChunks: {
@@ -32,18 +36,14 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-tooltip',
             '@radix-ui/react-accordion',
           ],
-          'utils-vendor': ['@tanstack/react-query', 'date-fns'],
+          'utils-vendor': ['@tanstack/react-query'],
         },
       },
     },
-    // Increase chunk size warning limit
     chunkSizeWarningLimit: 1000,
-    // Enable source maps for production debugging (optional)
     sourcemap: false,
-    // Optimize for production (using esbuild which is faster)
     minify: 'esbuild',
   },
-  // Optimize dependencies
   optimizeDeps: {
     include: [
       'react',
