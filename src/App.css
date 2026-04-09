@@ -130,10 +130,8 @@
   animation: bounce-slow 3s infinite ease-in-out;
 }
 
-/* Custom scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
+/* Custom scroll behavior — only on anchor navigation, not global */
+/* html { scroll-behavior: smooth; } — removed: causes sluggish feel on all scroll */
 
 /* Additional utility classes */
 .glow-text {
@@ -158,23 +156,7 @@ html {
   animation: shimmer 2s infinite linear;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(18, 24, 38, 0.8);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, rgba(0, 255, 255, 0.5), rgba(255, 45, 239, 0.5));
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, rgba(0, 255, 255, 0.8), rgba(255, 45, 239, 0.8));
-}
+/* Scrollbar styling — defined once in index.css; removed duplicate here */
 
 /* Animation delays for staggered effects */
 .delay-100 {
@@ -199,7 +181,7 @@ html {
 
 /* Interactive hover effects */
 .hover-glow {
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .hover-glow:hover {

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Calendar, Clock, Users, Award, Table2, Siren, Percent, Gift, Zap, Sparkles, Copy } from 'lucide-react';
+import { Calendar, Clock, Users, Award, Table2, Siren, Percent, Gift, Zap, Sparkles, Copy, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
@@ -121,26 +121,63 @@ const BookNow = () => {
           </Link>
         </div>
         
-        <div className="flex flex-col lg:flex-row items-stretch gap-12">
+          <div className="flex flex-col lg:flex-row items-stretch gap-12">
           <div className="w-full lg:w-1/2">
-            <div className="glass-card rounded-xl p-8 border border-neon-blue/20 h-full flex flex-col relative">
-              <h3 className="text-2xl font-bold mb-6 text-white flex items-center">
+            <div className="glass-card rounded-xl p-8 border border-neon-blue/20 h-full flex flex-col">
+              <h3 className="text-2xl font-bold mb-4 text-white flex items-center">
                 <Calendar className="h-6 w-6 text-neon-blue mr-2" />
                 Book Your Session
               </h3>
-              
-              {/* Cuephoria Booking Website */}
-              <div className="w-full flex-grow rounded-lg overflow-hidden border border-neon-blue/30 bg-gaming-darker/50">
-                <iframe 
-                  width="100%" 
-                  height="750px" 
-                  src="https://admin.cuephoria.in/public/booking" 
-                  frameBorder="0" 
-                  allowFullScreen
-                  className="w-full h-[750px] rounded-lg"
-                  title="Cuephoria Booking Website"
-                  loading="lazy"
-                />
+              <p className="text-gray-300 text-sm mb-6">
+                Choose your branch and book instantly — our dedicated booking page lets you pick your station, time slot, and apply discount codes.
+              </p>
+
+              {/* Branch Cards */}
+              <div className="flex flex-col gap-4 flex-grow">
+                <a
+                  href="https://admin.cuephoria.in/public/booking"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between p-4 rounded-xl bg-neon-blue/10 border border-neon-blue/30 hover:border-neon-blue/60 hover:bg-neon-blue/15 transition-all duration-200"
+                >
+                  <div>
+                    <p className="font-bold text-white text-base">Cuephoria Main Branch</p>
+                    <p className="text-gray-400 text-sm flex items-center gap-1 mt-0.5">
+                      <Users className="h-3.5 w-3.5" /> Thiruverumbur, Trichy
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1.5 px-4 py-2 bg-neon-blue text-black font-bold rounded-lg text-sm group-hover:bg-cyan-300 transition-colors">
+                    Book Now <ArrowRight className="h-3.5 w-3.5" />
+                  </div>
+                </a>
+
+                <a
+                  href="https://admin.cuephoria.in/lite/public/booking"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 hover:border-amber-500/60 hover:bg-amber-500/15 transition-all duration-200"
+                >
+                  <div>
+                    <p className="font-bold text-white text-base">
+                      Cuephoria Lite
+                      <span className="ml-2 text-[9px] bg-red-500 text-white px-1.5 py-0.5 rounded-full font-black uppercase">NEW</span>
+                    </p>
+                    <p className="text-gray-400 text-sm flex items-center gap-1 mt-0.5">
+                      <Users className="h-3.5 w-3.5" /> Opposite NIT Trichy
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1.5 px-4 py-2 bg-amber-500 text-black font-bold rounded-lg text-sm group-hover:bg-amber-300 transition-colors">
+                    Book Now <ArrowRight className="h-3.5 w-3.5" />
+                  </div>
+                </a>
+
+                <Link
+                  to="/book"
+                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gaming-accent/40 border border-white/10 hover:border-white/20 transition-colors text-gray-300 hover:text-white text-sm"
+                >
+                  View all offers, coupons & branch details
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
               </div>
             </div>
           </div>

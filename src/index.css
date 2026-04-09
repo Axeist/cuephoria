@@ -74,7 +74,6 @@
   body {
     @apply bg-gaming-dark text-foreground;
     font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth;
     font-display: swap;
   }
   h1, h2, h3, h4, h5, h6 {
@@ -130,9 +129,16 @@
 /* Glass card styling */
 .glass-card {
   background: rgba(18, 24, 38, 0.7);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Defer paint of off-screen sections — massive scroll perf win */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
 }
 
 /* Enhanced animations for smoother transitions */
@@ -251,5 +257,15 @@
   [data-radix-popper-content-wrapper] {
     max-width: 100vw !important;
     transform: none !important;
+  }
+}
+
+/* Respect reduced-motion preference — disables most infinite animations on
+   low-power / accessibility devices (huge perf gain on older phones) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

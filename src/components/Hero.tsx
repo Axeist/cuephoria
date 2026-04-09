@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Clock, MapPin, Gamepad2 } from 'lucide-react';
+import { ArrowRight, Clock, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
 import GameInsiderAnnouncement from './GameInsiderAnnouncement';
@@ -12,41 +12,15 @@ const Hero = ({ className = '' }) => {
     >
       {/* Background elements */}
       <div className="absolute inset-0 bg-gaming-darker">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(157,78,221,0.1)_0,rgba(15,25,40,0.5)_100%)]"></div>
-        
-        {/* Animated gaming icons - reduced count for better performance */}
-        <div className="absolute inset-0 overflow-hidden opacity-10">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div 
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(157,78,221,0.1)_0,rgba(15,25,40,0.5)_100%)]" />
+        {/* Subtle horizontal grid lines — static, no animation cost */}
+        <div className="absolute inset-0 pointer-events-none">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div
               key={i}
-              className="absolute animate-float"
-              style={{
-                left: `${(i * 8.33) % 100}%`,
-                top: `${(i * 7.5) % 100}%`,
-                animationDelay: `${i * 0.4}s`,
-                willChange: 'transform'
-              }}
-            >
-              <Gamepad2 
-                size={24} 
-                className="text-white opacity-50"
-              />
-            </div>
-          ))}
-        </div>
-        
-        {/* Animated horizontal lines - reduced count for better performance */}
-        <div className="absolute inset-0">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div 
-              key={i}
-              className="absolute h-px bg-neon-blue/30 w-full"
-              style={{
-                top: `${i * 16.67}%`,
-                opacity: 0.2,
-                willChange: 'opacity'
-              }}
-            ></div>
+              className="absolute h-px bg-neon-blue/20 w-full"
+              style={{ top: `${(i + 1) * 16.67}%` }}
+            />
           ))}
         </div>
       </div>
@@ -122,19 +96,8 @@ const Hero = ({ className = '' }) => {
           
           <div className="w-full lg:w-1/2 relative">
             <div className="relative w-56 h-56 md:w-80 md:h-80 mx-auto">
-              {/* Animated pulsing light rays */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                {Array.from({ length: 12 }).map((_, i) => (
-                  <div 
-                    key={i}
-                    className="absolute w-full h-1 bg-gradient-to-r from-neon-blue/0 via-neon-blue/50 to-neon-blue/0 animate-pulse-neon"
-                    style={{
-                      transform: `rotate(${i * 30}deg)`,
-                      animationDelay: `${i * 0.2}s`
-                    }}
-                  ></div>
-                ))}
-              </div>
+              {/* Single subtle glow ring — no per-ray animations */}
+              <div className="absolute inset-0 rounded-full bg-neon-blue/10 blur-2xl" />
               
               <div className="absolute inset-0 flex items-center justify-center">
                 <img 
