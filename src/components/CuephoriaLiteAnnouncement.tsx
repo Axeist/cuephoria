@@ -25,8 +25,8 @@ const CuephoriaLiteAnnouncement = ({
   const liteInfo = {
     logo: "https://iili.io/fjuZYga.jpg",
     name: "Cuephoria Lite",
-    openingDate: "Date Will Be Announced Soon",
-    openingDateNote: "Opening in Mid-January 2026",
+    openingDate: "Opening April 2026",
+    openingDateNote: "Opposite NIT Trichy",
     location: "QR64+CRV Electronics Bus Stop, Valavandankottai, Tamil Nadu 620015",
     gmapLink: "https://maps.app.goo.gl/nvTtK6SG4nGQXenGA",
     tagline: "Same Luxury, More Affordable - Right Next to NIT Trichy!",
@@ -65,7 +65,7 @@ const CuephoriaLiteAnnouncement = ({
               Cuephoria Lite
               <span className="absolute -inset-1 bg-amber-400/20 blur-md opacity-50 animate-pulse"></span>
             </span>
-            {' '}- More Affordable, Same Luxury! Opening date announced soon, right opposite <span className="text-amber-400 font-semibold">NIT Trichy</span>! 🚀
+            {' '}- More Affordable, Same Luxury! Opening <span className="text-amber-400 font-semibold">this April</span>, right opposite <span className="text-amber-400 font-semibold">NIT Trichy</span>! 🚀
           </p>
           <a
             href={liteInfo.gmapLink}
@@ -126,7 +126,7 @@ const CuephoriaLiteAnnouncement = ({
                 </span>
               </h3>
               <span className="px-2 py-1 bg-gradient-to-r from-amber-500/30 to-orange-500/30 text-amber-200 text-xs font-bold rounded-full border border-amber-500/50 animate-pulse shadow-lg shadow-amber-500/20">
-                COMING SOON
+                APRIL 2026
               </span>
             </div>
             
@@ -226,10 +226,10 @@ const CuephoriaLiteAnnouncement = ({
               <div className="flex items-center justify-center md:justify-start gap-1.5 md:gap-2">
                 <Sparkles className="h-3 w-3 md:h-3.5 md:w-3.5 text-amber-400 animate-pulse flex-shrink-0" />
                 <h3 className="text-xs md:text-sm font-bold text-white whitespace-nowrap">
-                  <span className="text-amber-400">Cuephoria Lite</span> - Coming Soon!
+                  <span className="text-amber-400">Cuephoria Lite</span> - Opens April 2026
                 </h3>
                 <span className="px-1.5 py-0.5 bg-amber-500/20 text-amber-300 text-[9px] md:text-[10px] font-bold rounded-full border border-amber-500/40 animate-pulse whitespace-nowrap">
-                  MID-JAN 2026
+                  APR 2026
                 </span>
               </div>
             </div>

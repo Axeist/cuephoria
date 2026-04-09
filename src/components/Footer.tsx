@@ -94,7 +94,7 @@ const Footer = () => {
                       </span>
                     </h3>
                     <span className="px-2 py-1 bg-gradient-to-r from-amber-500/30 to-orange-500/30 text-amber-200 text-xs font-bold rounded-full border border-amber-500/50 animate-pulse shadow-lg shadow-amber-500/20">
-                      COMING SOON
+                      APRIL 2026
                     </span>
                   </div>
                   
@@ -104,7 +104,7 @@ const Footer = () => {
                   
                   <p className="text-xs text-gray-300 mb-2 flex items-center justify-center md:justify-start gap-1.5">
                     <Clock className="h-3.5 w-3.5 text-amber-400 animate-pulse-slow" />
-                    <span>Date Will Be Announced Soon • Opening in Mid-January 2026</span>
+                    <span>Opening April 2026 • Opposite NIT Trichy</span>
                   </p>
                   
                   <p className="text-xs text-gray-400 mb-3 text-center md:text-left">
