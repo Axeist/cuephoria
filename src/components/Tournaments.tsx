@@ -1,6 +1,29 @@
-
 import React from 'react';
-import { Trophy, Users, Calendar, ExternalLink, Zap, Award } from 'lucide-react';
+import { Trophy, Users, Calendar, ExternalLink, Zap } from 'lucide-react';
+
+const highlights = [
+  {
+    Icon: Trophy,
+    label: 'Amazing Prizes',
+    desc: 'Win cash, gaming gear, free hours, and exclusive Cuephoria merch.',
+    bgClass: 'bg-yellow-400/10 border-yellow-400/30 hover:border-yellow-400/60',
+    iconClass: 'bg-gradient-to-br from-yellow-400 to-orange-500',
+  },
+  {
+    Icon: Users,
+    label: 'Community Events',
+    desc: 'Connect with fellow gamers and participate in team-based tournaments.',
+    bgClass: 'bg-neon-pink/10 border-neon-pink/30 hover:border-neon-pink/60',
+    iconClass: 'bg-gradient-to-br from-neon-pink to-purple-500',
+  },
+  {
+    Icon: Calendar,
+    label: 'Regular Events',
+    desc: 'Weekly & monthly tournaments across FC, COD, Pool, and more.',
+    bgClass: 'bg-green-400/10 border-green-400/30 hover:border-green-400/60',
+    iconClass: 'bg-gradient-to-br from-green-400 to-emerald-500',
+  },
+];
 
 const Tournaments = () => {
   const handleTournamentClick = () => {
@@ -8,120 +31,103 @@ const Tournaments = () => {
   };
 
   return (
-    <section id="tournaments" className="py-16 md:py-24 bg-gradient-to-b from-gaming-dark to-gaming-darker relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-32 h-32 border border-neon-blue rounded-full animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 border border-neon-pink rounded-full animate-pulse"></div>
+    <section id="tournaments" className="py-16 md:py-24 relative bg-gaming-darker">
+      {/* Ambient */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,45,239,0.08)_0,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,200,255,0.06)_0,transparent_60%)]" />
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 neon-text-blue">
-            🏆 Epic Gaming Tournaments
+
+        {/* ── Heading ─────────────────────────────────────────────── */}
+        <div className="text-center mb-10 md:mb-12">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-neon-pink/70 mb-3">Compete &amp; Win</p>
+          <h2 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
+            <span className="bg-gradient-to-r from-neon-pink via-purple-300 to-neon-blue bg-clip-text text-transparent">
+              Epic Gaming Tournaments
+            </span>
           </h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            Join thrilling gaming competitions with amazing prizes! Compete against the best players 
-            in Trichy and prove your gaming prowess across multiple game categories.
+          <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
+            Join thrilling competitions with amazing prizes — compete against the best players in Trichy
+            across multiple game categories.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {/* Prize Pool */}
-          <div className="glass-card rounded-lg p-6 text-center border border-neon-blue/30 hover:border-neon-blue transition-all duration-300">
-            <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-              <Trophy className="h-8 w-8 text-white" />
+        {/* ── Highlight cards ─────────────────────────────────────── */}
+        <div className="grid md:grid-cols-3 gap-5 mb-8 md:mb-10">
+          {highlights.map(({ Icon, label, desc, bgClass, iconClass }) => (
+            <div
+              key={label}
+              className={`bg-gaming-darker/60 backdrop-blur-sm rounded-2xl border ${bgClass} p-6 text-center transition-all duration-300`}
+            >
+              <div className={`w-14 h-14 mx-auto mb-4 ${iconClass} rounded-full flex items-center justify-center`}>
+                <Icon className="h-7 w-7 text-white" />
+              </div>
+              <h3 className="text-base font-black text-white mb-2">{label}</h3>
+              <p className="text-gray-400 text-sm">{desc}</p>
             </div>
-            <h3 className="text-xl font-bold text-neon-blue mb-2">Amazing Prizes</h3>
-            <p className="text-gray-300">
-              Win cash prizes, gaming gear, free gaming hours, and exclusive merchandise
-            </p>
-          </div>
-
-          {/* Community */}
-          <div className="glass-card rounded-lg p-6 text-center border border-neon-pink/30 hover:border-neon-pink transition-all duration-300">
-            <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-neon-pink to-purple-500 rounded-full flex items-center justify-center">
-              <Users className="h-8 w-8 text-white" />
-            </div>
-            <h3 className="text-xl font-bold text-neon-pink mb-2">Community Events</h3>
-            <p className="text-gray-300">
-              Connect with fellow gamers and participate in team-based tournaments
-            </p>
-          </div>
-
-          {/* Regular Events */}
-          <div className="glass-card rounded-lg p-6 text-center border border-green-400/30 hover:border-green-400 transition-all duration-300">
-            <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
-              <Calendar className="h-8 w-8 text-white" />
-            </div>
-            <h3 className="text-xl font-bold text-green-400 mb-2">Regular Events</h3>
-            <p className="text-gray-300">
-              Weekly and monthly tournaments across FIFA, COD, Pool, and more games
-            </p>
-          </div>
+          ))}
         </div>
 
-        {/* Featured Tournament Info - Alignment UPDATED */}
-        <div className="glass-card rounded-lg p-8 mb-8 border border-neon-blue/30 bg-gradient-to-r from-gaming-dark/50 to-gaming-darker/50">
-          {/* LIVE label and heading */}
-          <div className="flex flex-col items-center justify-center mb-6">
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <Zap className="h-6 w-6 text-yellow-400 animate-pulse" />
-              <span className="text-yellow-400 font-bold text-lg animate-blink-slow uppercase tracking-wide">Live Tournaments</span>
-              <Zap className="h-6 w-6 text-yellow-400 animate-pulse" />
+        {/* ── Live tournaments glass container ────────────────────── */}
+        <div className="bg-gaming-darker/60 backdrop-blur-lg rounded-2xl border border-white/10 p-6 md:p-8 mb-8">
+          {/* Header row */}
+          <div className="flex flex-col items-center text-center mb-6">
+            <div className="flex items-center gap-2 mb-2">
+              <Zap className="h-5 w-5 text-yellow-400" />
+              <span className="text-yellow-400 font-black text-sm uppercase tracking-widest">Live Tournaments</span>
+              <Zap className="h-5 w-5 text-yellow-400" />
             </div>
-            <h3 className="text-2xl md:text-3xl font-extrabold text-white flex items-center gap-2 text-center mb-2">
-              <span role="img" aria-label="controller" className="text-2xl">🎮</span>
-              <span className="font-orbitron tracking-wide">Current &amp; Upcoming Gaming Championships</span>
+            <h3 className="text-xl md:text-2xl font-black text-white">
+              Current &amp; Upcoming Championships
             </h3>
           </div>
-          
-          {/* Lists aligned in columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-2 max-w-3xl mx-auto">
-            {/* Tournament Categories */}
-            <div>
-              <h4 className="font-bold text-lg md:text-xl mb-2 flex items-center gap-2 neon-text-blue">
-                <span role="img" aria-label="medal" className="text-xl">🏅</span>
-                Tournament Categories:
+
+          {/* Content grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {/* Categories */}
+            <div className="bg-black/30 border border-neon-blue/20 rounded-xl p-5">
+              <h4 className="font-black text-sm uppercase tracking-widest text-neon-blue mb-4 flex items-center gap-2">
+                <span>🏅</span> Categories
               </h4>
-              <ul className="text-gray-300 text-base md:text-lg space-y-1 ml-2 md:ml-4 font-medium">
-                <li>• FIFA Championships</li>
-                <li>• Call of Duty Battles</li>
-                <li>• Pool &amp; Snooker Contests</li>
-                <li>• Multi-Game Challenges</li>
+              <ul className="space-y-2 text-gray-300 text-sm">
+                {['FC Championships', 'Call of Duty Battles', 'Pool &amp; Snooker Contests', 'Multi-Game Challenges'].map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-neon-blue flex-shrink-0" />
+                    <span dangerouslySetInnerHTML={{ __html: item }} />
+                  </li>
+                ))}
               </ul>
             </div>
-            {/* Exciting Rewards */}
-            <div>
-              <h4 className="font-bold text-lg md:text-xl mb-2 flex items-center gap-2 neon-text-pink">
-                <span role="img" aria-label="gift" className="text-xl">🎁</span>
-                Exciting Rewards:
+
+            {/* Rewards */}
+            <div className="bg-black/30 border border-neon-pink/20 rounded-xl p-5">
+              <h4 className="font-black text-sm uppercase tracking-widest text-neon-pink mb-4 flex items-center gap-2">
+                <span>🎁</span> Rewards
               </h4>
-              <ul className="text-gray-300 text-base md:text-lg space-y-1 ml-2 md:ml-4 font-medium">
-                <li>• Cash Prizes up to ₹10,000</li>
-                <li>• Gaming Accessories</li>
-                <li>• Free Gaming Hours</li>
-                <li>• Cuephoria Merchandise</li>
+              <ul className="space-y-2 text-gray-300 text-sm">
+                {['Cash Prizes up to ₹10,000', 'Gaming Accessories', 'Free Gaming Hours', 'Cuephoria Merchandise'].map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-neon-pink flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
         </div>
 
-        {/* CTA Button */}
+        {/* ── CTA ────────────────────────────────────────────────── */}
         <div className="text-center">
           <button
             onClick={handleTournamentClick}
-            className="group relative px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-pink text-white font-bold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-neon-blue/50"
+            className="group inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-neon-blue to-neon-pink text-black font-black rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-neon-blue/20 text-sm"
           >
-            <span className="relative z-10 flex items-center gap-2">
-              View All Tournaments
-              <ExternalLink className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-neon-pink to-neon-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            View All Tournaments
+            <ExternalLink className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
-          <p className="text-gray-400 text-sm mt-3">
-            🚀 Register now and compete for amazing prizes!
-          </p>
+          <p className="text-gray-500 text-xs mt-3">Register now and compete for amazing prizes!</p>
         </div>
       </div>
     </section>

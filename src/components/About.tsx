@@ -1,113 +1,139 @@
-
 import React from 'react';
-import { Target, Joystick, Users, Coffee } from 'lucide-react';
+import { Target, Joystick, Users, Coffee, CheckCircle2, Clock, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
 
-const FeatureCard = ({ icon: Icon, title, description }: { icon: any; title: string; description: string }) => (
-  <div className="glass-card rounded-xl p-6 hover:border-neon-blue/30 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(0,255,255,0.3)]">
-    <div className="w-14 h-14 rounded-lg bg-gaming-accent flex items-center justify-center mb-4">
-      <Icon className="h-7 w-7 text-neon-pink" />
-    </div>
-    <h3 className="text-xl font-semibold mb-2 text-white">{title}</h3>
-    <p className="text-gray-400">{description}</p>
-  </div>
-);
+const features = [
+  {
+    Icon: Target,
+    title: '8-Ball Pool',
+    description: 'Premium pool tables with professional equipment for casual players and serious competitors.',
+    borderClass: 'border-neon-blue/30 hover:border-neon-blue/60',
+    iconClass: 'bg-neon-blue/15 border-neon-blue/30 text-neon-blue',
+  },
+  {
+    Icon: Joystick,
+    title: 'Gaming Zone',
+    description: 'State-of-the-art PS5 rigs and Meta Quest 3S VR stations with mixed reality experiences.',
+    borderClass: 'border-neon-pink/30 hover:border-neon-pink/60',
+    iconClass: 'bg-neon-pink/15 border-neon-pink/30 text-neon-pink',
+  },
+  {
+    Icon: Coffee,
+    title: 'Café Area',
+    description: 'Enjoy refreshments and snacks while you play or unwind between sessions.',
+    borderClass: 'border-amber-400/30 hover:border-amber-400/60',
+    iconClass: 'bg-amber-400/15 border-amber-400/30 text-amber-400',
+  },
+  {
+    Icon: Users,
+    title: 'Community',
+    description: 'Regular tournaments, events and a vibrant community of gaming and billiards enthusiasts.',
+    borderClass: 'border-green-400/30 hover:border-green-400/60',
+    iconClass: 'bg-green-400/15 border-green-400/30 text-green-400',
+  },
+];
+
+const whyPoints = [
+  'Premium PS5 gaming with 4K displays & high-end headsets',
+  'Professional pool tables with quality cues and accessories',
+  'Cutting-edge Meta Quest 3S VR with mixed reality',
+  'Stylish neon-lit environment perfect for any occasion',
+  'Friendly staff and a welcoming community atmosphere',
+  'Affordable rates with student & membership discounts',
+];
 
 const About = () => {
   return (
-    <section id="about" className="py-20 relative">
-      {/* Background decorations */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-neon-blue/30 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-neon-pink/30 to-transparent"></div>
-        
-        {/* Radial gradient blobs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-purple/10 rounded-full filter blur-[100px]"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-blue/10 rounded-full filter blur-[100px]"></div>
+    <section id="about" className="py-16 md:py-20 relative bg-gaming-darker">
+      {/* Ambient */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(157,78,221,0.1)_0,transparent_65%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(0,200,255,0.06)_0,transparent_65%)]" />
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col items-center text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="neon-text-blue">Experience</span> the Fusion
+
+        {/* ── Heading ─────────────────────────────────────────────── */}
+        <div className="text-center mb-10 md:mb-12">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-neon-blue/70 mb-3">Who We Are</p>
+          <h2 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
+            <span className="bg-gradient-to-r from-neon-blue via-purple-300 to-neon-pink bg-clip-text text-transparent">
+              Experience the Fusion
+            </span>
           </h2>
-          <p className="max-w-2xl text-gray-400">
-            At Cuephoria, we blend the precision of billiards with the thrill of gaming and the future of virtual reality, creating an unmatched entertainment venue that welcomes everyone from casual players to serious enthusiasts.
+          <p className="max-w-2xl mx-auto text-gray-400 text-sm md:text-base">
+            At Cuephoria, we blend the precision of billiards with the thrill of PS5 gaming and 
+            Meta Quest 3S VR — an unmatched entertainment venue for everyone.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <FeatureCard 
-            icon={Target} 
-            title="8-Ball Pool" 
-            description="Premium pool tables with professional equipment for both casual players and serious competitors."
-          />
-          <FeatureCard 
-            icon={Joystick}
-            title="Gaming Zone"
-            description="State-of-the-art PS5 gaming rigs and cutting-edge Meta Quest 3S VR stations with mixed reality experiences and latest titles."
-          />
-          <FeatureCard 
-            icon={Coffee}
-            title="Café Area"
-            description="Enjoy refreshments and snacks while you play or relax between games in our comfortable café."
-          />
-          <FeatureCard 
-            icon={Users}
-            title="Community Space"
-            description="Regular tournaments, events and a vibrant community of gaming and billiards enthusiasts."
-          />
+        {/* ── Feature cards ───────────────────────────────────────── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-8 md:mb-10">
+          {features.map(({ Icon, title, description, borderClass, iconClass }) => (
+            <div
+              key={title}
+              className={`bg-gaming-darker/60 backdrop-blur-sm rounded-2xl border ${borderClass} p-5 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,200,255,0.06)]`}
+            >
+              <div className={`w-11 h-11 rounded-xl border flex items-center justify-center mb-4 ${iconClass}`}>
+                <Icon className="h-5 w-5" />
+              </div>
+              <h3 className="text-base font-black text-white mb-2">{title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
+            </div>
+          ))}
         </div>
-        
-        {/* Cuephoria Lite Announcement */}
-        <div className="mt-12 mb-8">
+
+        {/* ── Lite Announcement ───────────────────────────────────── */}
+        <div className="mb-8 md:mb-10">
           <CuephoriaLiteAnnouncement variant="card" />
         </div>
-        
-        <div className="mt-20 glass-card rounded-xl p-8 md:p-12 relative overflow-hidden">
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="w-full md:w-1/2">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">Why Choose <span className="neon-text-pink">Cuephoria</span>?</h3>
-              <ul className="space-y-4">
-                {[
-                  "Premium gaming experience with high-end PS5 and Meta Quest 3S VR equipment",
-                  "Professional pool tables with quality cues and accessories",
-                  "Cutting-edge VR gaming with mixed reality technology",
-                  "Comfortable, stylish environment with neon aesthetics",
-                  "Friendly staff and welcoming community",
-                  "Affordable rates with special packages for regular players"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start">
-                    <div className="mr-3 mt-1 h-5 w-5 text-neon-blue flex-shrink-0">
-                      <svg viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <span className="text-gray-300">{item}</span>
+
+        {/* ── Why Choose + Hours — unified glass container ─────────── */}
+        <div className="bg-gaming-darker/60 backdrop-blur-lg rounded-2xl border border-white/10 p-5 md:p-8">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+
+            {/* Why choose */}
+            <div className="flex-1">
+              <h3 className="text-xl md:text-2xl font-black text-white mb-5">
+                Why Choose{' '}
+                <span className="bg-gradient-to-r from-neon-pink to-purple-400 bg-clip-text text-transparent">
+                  Cuephoria
+                </span>
+                ?
+              </h3>
+              <ul className="space-y-3">
+                {whyPoints.map((point) => (
+                  <li key={point} className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-neon-blue flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-300 text-sm leading-snug">{point}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            
-            <div className="w-full md:w-1/2 relative">
-              <div className="aspect-video rounded-lg overflow-hidden relative">
-                <div className="absolute inset-0 bg-gaming-gradient opacity-60"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <h4 className="text-2xl font-bold text-white mb-2">Opening Hours</h4>
-                    <p className="text-xl text-neon-blue animate-pulse-neon">11:00 AM - 11:00 PM</p>
-                    <p className="text-gray-300 mt-4">7 days a week</p>
-                    <div className="mt-6">
-                      <a 
-                        href="#contact" 
-                        className="px-6 py-2 rounded-md bg-neon-pink text-white font-medium hover:bg-neon-pink/80 transition-colors"
-                      >
-                        Contact Us
-                      </a>
-                    </div>
-                  </div>
-                </div>
+
+            {/* Hours card */}
+            <div className="md:w-64 w-full bg-black/40 border border-white/10 rounded-2xl p-6 text-center flex-shrink-0">
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-4">Open Every Day</p>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Clock className="h-4 w-4 text-neon-blue" />
+                <span className="text-neon-blue font-black text-lg">11:00 AM</span>
               </div>
+              <div className="h-px bg-white/10 my-2" />
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Clock className="h-4 w-4 text-neon-pink" />
+                <span className="text-neon-pink font-black text-lg">11:00 PM</span>
+              </div>
+              <div className="flex items-center justify-center gap-1.5 text-xs text-gray-400 mb-5">
+                <MapPin className="h-3 w-3 text-neon-blue flex-shrink-0" />
+                Thiruverumbur, Trichy
+              </div>
+              <Link
+                to="/book"
+                className="flex items-center justify-center gap-2 w-full py-2.5 bg-gradient-to-r from-neon-blue to-purple-500 text-black font-black rounded-xl text-sm hover:opacity-90 transition-opacity"
+              >
+                Book a Session
+              </Link>
             </div>
           </div>
         </div>

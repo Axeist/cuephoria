@@ -50,19 +50,21 @@ const Testimonials = () => {
 
   if (isLoading) {
     return (
-      <section id="testimonials" className="py-20 bg-gaming-dark relative overflow-hidden">
-        {/* Enhanced background effects */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl animate-pulse-neon"></div>
-          <div className="absolute bottom-20 right-10 w-80 h-80 bg-green-500/30 rounded-full blur-3xl animate-pulse-neon"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-red-500/20 rounded-full blur-3xl animate-pulse-neon"></div>
-        </div>
+    <section id="testimonials" className="py-20 bg-gaming-darker relative overflow-hidden">
+      {/* Ambient */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-green-500/30 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-red-500/20 rounded-full blur-3xl"></div>
+      </div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-orbitron">
-              What Our <span className="neon-text-pink">Gamers Say</span>
-            </h2>
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-4">
+            <span className="bg-gradient-to-r from-neon-blue via-purple-300 to-neon-pink bg-clip-text text-transparent">
+              What Our Gamers Say
+            </span>
+          </h2>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto">
               Real reviews from our amazing gaming community in Trichy
             </p>
@@ -167,13 +169,12 @@ const Testimonials = () => {
     : 0;
 
   return (
-    <section id="testimonials" className="py-20 bg-gaming-dark relative overflow-hidden">
-      {/* Enhanced animated background effects */}
-      <div className="absolute inset-0 opacity-15">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/40 rounded-full blur-3xl animate-pulse-neon"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-green-500/40 rounded-full blur-3xl animate-pulse-neon"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-red-500/30 rounded-full blur-3xl animate-pulse-neon"></div>
-        <div className="absolute top-40 right-1/4 w-48 h-48 bg-yellow-500/25 rounded-full blur-2xl animate-float"></div>
+    <section id="testimonials" className="py-20 bg-gaming-darker relative overflow-hidden">
+      {/* Ambient */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-green-500/30 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -191,8 +192,10 @@ const Testimonials = () => {
             </div>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-orbitron">
-            What Our <span className="neon-text-pink glow-text">Gamers Say</span>
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-4">
+            <span className="bg-gradient-to-r from-neon-blue via-purple-300 to-neon-pink bg-clip-text text-transparent">
+              What Our Gamers Say
+            </span>
           </h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
             Real reviews from our amazing gaming community in Trichy

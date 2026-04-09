@@ -184,8 +184,8 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
 
             {isMobile && (
               <a 
-                href="#book-now" 
-                className="w-full mt-4 py-2 rounded-md bg-neon-pink text-white text-center block transition-colors"
+                href="/book" 
+                className="w-full mt-4 py-2 rounded-xl bg-neon-pink text-white font-black text-center block transition-colors hover:opacity-90 text-sm"
                 onClick={() => setOpen(false)}
               >
                 Book This Experience
@@ -228,14 +228,12 @@ const GameCard = ({ game, index }: { game: typeof games[0]; index: number }) => 
               <div className="pt-3 md:pt-4">
                 {!isMobile && (
                   <a 
-                    href="#book-now" 
-                    className="px-4 md:px-6 py-2 rounded-md bg-neon-pink text-white text-sm md:text-base font-medium hover:bg-neon-pink/80 transition-colors inline-flex items-center"
+                    href="/book" 
+                    className="px-4 md:px-6 py-2 rounded-xl bg-neon-pink text-white font-black text-sm hover:opacity-90 transition-opacity inline-flex items-center"
                     onClick={() => setOpen(false)}
                   >
                     Book This Experience
-                    <svg className="ml-2 h-4 md:h-5 w-4 md:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
+                    <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </a>
                 )}
                 {isMobile && (
@@ -282,18 +280,22 @@ const Games = () => {
   }, [nbaApi]);
 
   return (
-    <section id="games" className="py-20 relative">
+    <section id="games" className="py-16 md:py-20 relative bg-gaming-darker">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,45,239,0.1)_0,rgba(15,25,40,0)_60%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,45,239,0.08)_0,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,200,255,0.05)_0,transparent_60%)]" />
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Our <span className="neon-text-pink">Gaming</span> Experiences
+        <div className="text-center mb-10 md:mb-12">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-neon-pink/70 mb-3">What We Offer</p>
+          <h2 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
+            <span className="bg-gradient-to-r from-neon-pink via-purple-300 to-neon-blue bg-clip-text text-transparent">
+              Gaming Experiences
+            </span>
           </h2>
-          <p className="max-w-2xl mx-auto text-gray-400">
-            Discover the variety of gaming experiences we offer at Cuephoria, from classic billiards to the latest PS5 games and cutting-edge VR gaming with Meta Quest 3S.
+          <p className="max-w-2xl mx-auto text-gray-400 text-sm md:text-base">
+            Discover the variety of gaming experiences we offer at Cuephoria, from classic billiards to the latest PS5 games and cutting-edge VR with Meta Quest 3S.
           </p>
         </div>
         
@@ -304,8 +306,8 @@ const Games = () => {
         </div>
         
         {/* Featured Games Section */}
-        <div className="mt-16">
-          <div className="glass-card rounded-xl p-6 md:p-10 border border-neon-pink/30 shadow-lg relative overflow-hidden">
+        <div className="mt-12 md:mt-16">
+          <div className="bg-gaming-darker/60 backdrop-blur-lg rounded-2xl border border-white/10 p-6 md:p-10 overflow-hidden">
             <div className="relative z-10">
               <div className="text-center mb-8">
                 <h3 className="text-3xl md:text-4xl font-bold mb-2">
@@ -498,8 +500,8 @@ const Games = () => {
           </div>
         </div>
         
-        <div className="mt-16">
-          <div className="glass-card rounded-xl p-6 md:p-10 border border-neon-blue/30 shadow-lg relative overflow-hidden">
+        <div className="mt-12 md:mt-16">
+          <div className="bg-gaming-darker/60 backdrop-blur-lg rounded-2xl border border-white/10 p-6 md:p-10 overflow-hidden">
             <div className="relative z-10">
               {/* Enhanced Title */}
               <div className="text-center mb-8 md:mb-12">
@@ -554,15 +556,18 @@ const Games = () => {
           </div>
         </div>
         
-        <div className="mt-16">
-          <div className="glass-card rounded-lg p-6 md:p-8">
-            <h3 className="text-2xl font-bold mb-6 text-center text-white">
-              Monthly <span className="neon-text-blue">Memberships</span> - 50% OFF
+        <div className="mt-12 md:mt-16">
+          <div className="bg-gaming-darker/60 backdrop-blur-lg rounded-2xl border border-white/10 p-6 md:p-8">
+            <h3 className="text-xl md:text-2xl font-black mb-2 text-center">
+              <span className="bg-gradient-to-r from-neon-blue to-purple-400 bg-clip-text text-transparent">
+                Monthly Memberships
+              </span>{' '}
+              <span className="text-white text-base font-semibold align-middle ml-2 bg-neon-blue/20 border border-neon-blue/40 text-neon-blue px-2 py-0.5 rounded-full text-xs">50% OFF</span>
             </h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               {pricingOptions.map((option, i) => (
-                <div key={i} className="glass-card p-6 rounded-xl border border-neon-blue/20 hover:border-neon-blue/50 transition-all duration-300">
+                <div key={i} className="bg-black/30 border border-white/10 hover:border-neon-blue/40 p-5 rounded-2xl transition-all duration-300">
                   <h4 className="text-xl font-semibold neon-text-pink mb-2">{option.name}</h4>
                   <div className="text-3xl font-bold text-white mb-4">{option.price}</div>
                   <p className="text-gray-300 mb-4">{option.description}</p>
@@ -592,22 +597,20 @@ const Games = () => {
           </div>
         </div>
         
-        <div className="mt-16 text-center">
-          <div className="glass-card inline-block rounded-lg p-6 md:p-8 max-w-3xl mx-auto">
+        <div className="mt-12 md:mt-16 text-center">
+          <div className="bg-gaming-darker/60 backdrop-blur-lg rounded-2xl border border-white/10 inline-block p-6 md:p-8 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold mb-4 text-white">
               Looking for more? We regularly update our game library!
             </h3>
             <p className="text-gray-400 mb-6">
               Follow us on social media to stay updated on the latest additions to our game collection and upcoming tournaments.
             </p>
-            <a 
-              href="#book-now" 
-              className="px-8 py-3 rounded-md bg-neon-blue text-gaming-darker font-semibold hover:bg-neon-blue/80 transition-all duration-300 inline-flex items-center"
+            <a
+              href="/book"
+              className="px-8 py-3 rounded-xl bg-neon-blue text-black font-black hover:opacity-90 transition-opacity inline-flex items-center text-sm"
             >
               Book a Session
-              <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-              </svg>
+              <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>
           </div>
         </div>

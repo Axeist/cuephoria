@@ -71,7 +71,7 @@ const Index = () => {
   }, []); // empty — never re-registers
 
   return (
-    <div className="min-h-screen bg-gaming-dark text-white">
+    <div className="min-h-screen bg-gaming-darker text-white">
       <SEOMetadata
         title="Cuephoria | Best PS5 Gaming, VR & Pool Club for Students in Trichy"
         description="Visit Cuephoria - Trichy's #1 gaming lounge with student discounts! Enjoy PS5 games, Meta Quest 3S VR gaming, 8-ball pool, snooker & the perfect college hangout spot. Book online for exclusive student offers!"

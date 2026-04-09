@@ -1,111 +1,109 @@
 import React from 'react';
-import { ArrowRight, Clock, MapPin } from 'lucide-react';
+import { ArrowRight, Clock, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
 import GameInsiderAnnouncement from './GameInsiderAnnouncement';
 
 const Hero = ({ className = '' }) => {
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className={`relative min-h-screen flex items-center pt-14 overflow-hidden ${className}`}
     >
-      {/* Background elements */}
+      {/* Background */}
       <div className="absolute inset-0 bg-gaming-darker">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(157,78,221,0.1)_0,rgba(15,25,40,0.5)_100%)]" />
-        {/* Subtle horizontal grid lines — static, no animation cost */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(157,78,221,0.18)_0,transparent_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_100%_100%,rgba(0,200,255,0.07)_0,transparent_100%)]" />
+        {/* Static grid lines */}
         <div className="absolute inset-0 pointer-events-none">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute h-px bg-neon-blue/20 w-full"
-              style={{ top: `${(i + 1) * 16.67}%` }}
-            />
+            <div key={i} className="absolute h-px bg-neon-blue/10 w-full" style={{ top: `${(i + 1) * 16.67}%` }} />
           ))}
         </div>
       </div>
-      
+
       <div className="container mx-auto px-4 z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12">
+
+          {/* Left — text */}
           <div className="w-full lg:w-1/2 text-center lg:text-left mt-8 md:mt-0">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              <span className="block neon-text-blue animate-pulse-neon">CUEPHORIA</span>
-              <span className="block text-3xl md:text-4xl mt-2 text-white">8-BALL CLUB & GAMING</span>
+            {/* Label */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neon-blue/10 border border-neon-blue/30 text-neon-blue text-xs font-black uppercase tracking-widest mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
+              Trichy's #1 Gaming Lounge
+            </div>
+
+            <h1 className="font-black leading-tight mb-4">
+              <span className="block text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-neon-blue via-purple-300 to-neon-pink bg-clip-text text-transparent">
+                CUEPHORIA
+              </span>
+              <span className="block text-xl md:text-3xl mt-1 text-white/90 font-bold">
+                8-Ball Club &amp; Gaming Lounge
+              </span>
             </h1>
-            
-            <h2 className="text-xl text-gray-300 mb-4 max-w-xl mx-auto lg:mx-0 font-semibold">
-              Trichy's Premier Gaming Lounge & Pool Club
-            </h2>
-            
-            <p className="text-lg text-gray-300 mb-6 max-w-xl mx-auto lg:mx-0">
-              Experience the perfect blend of billiards, snooker, PS5 gaming, and cutting-edge VR gaming with Meta Quest 3S at Cuephoria, Trichy's premier gaming lounge and café.
+
+            <p className="text-gray-400 text-sm md:text-base mb-5 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+              Experience the perfect blend of billiards, snooker, PS5 gaming, and cutting-edge
+              VR with Meta Quest 3S — all under one neon roof.
             </p>
-            
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 mb-6">
-              <div className="flex items-center space-x-2 text-gray-300">
-                <Clock className="h-5 w-5 text-neon-pink" />
-                <span>11:00 AM - 11:00 PM</span>
+
+            {/* Info chips */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6 text-sm text-gray-300">
+              <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
+                <Clock className="h-3.5 w-3.5 text-neon-pink" />
+                11 AM – 11 PM
               </div>
-              
-              <div className="flex items-center space-x-2 text-gray-300">
-                <MapPin className="h-5 w-5 text-neon-blue" />
-                <span>Thiruverumbur, Trichy, Tamil Nadu</span>
+              <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
+                <MapPin className="h-3.5 w-3.5 text-neon-blue" />
+                Thiruverumbur, Trichy
               </div>
             </div>
-            
-            {/* Cuephoria Lite Sneak Peek */}
+
+            {/* Announcements */}
             <div className="mb-4">
               <CuephoriaLiteAnnouncement variant="compact" />
             </div>
-            
-            {/* Game Insider Announcement */}
             <div className="mb-6">
               <GameInsiderAnnouncement variant="compact" />
             </div>
-            
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center lg:justify-start">
               <Link
                 to="/book"
-                className="px-8 py-3 rounded-md bg-neon-blue text-gaming-darker font-semibold hover:bg-neon-blue/80 transition-all duration-300 transform hover:scale-105 flex items-center justify-center group"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-gradient-to-r from-neon-blue to-purple-500 text-black font-black rounded-xl hover:opacity-90 transition-opacity text-sm shadow-lg shadow-neon-blue/20"
               >
-                Book a Slot
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                Book a Slot <ArrowRight className="h-4 w-4" />
               </Link>
-              
-              {/* WhatsApp Buttons - Chatbot and Human Agent */}
-              <a 
-                href={`https://wa.me/918637625155?text=${encodeURIComponent("Hello! I'd like to inquire about Cuephoria gaming lounge and pool club in Trichy.")}`}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="px-8 py-3 rounded-md bg-transparent border-2 border-neon-pink text-white font-semibold hover:bg-neon-pink/10 transition-all duration-300 flex items-center justify-center"
-                title="WhatsApp Assistant (Chatbot)"
+              <a
+                href={`https://wa.me/918637625155?text=${encodeURIComponent("Hello! I'd like to inquire about Cuephoria gaming lounge in Trichy.")}`}
+                target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-neon-pink/60 text-white font-semibold rounded-xl hover:bg-neon-pink/10 transition-colors text-sm"
               >
-                WhatsApp Assistant
+                <MessageCircle className="h-4 w-4 text-neon-pink" />
+                WhatsApp Chatbot
               </a>
               <a
-                href={`https://wa.me/917550025155?text=${encodeURIComponent("Hello! I'd like to speak with a real Cuephoria agent regarding gaming lounge and pool club.")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-3 rounded-md bg-transparent border-2 border-neon-blue text-white font-semibold hover:bg-neon-blue/10 transition-all duration-300 flex items-center justify-center"
-                title="WhatsApp Human Agent"
+                href={`https://wa.me/917550025155?text=${encodeURIComponent("Hello! I'd like to speak with a real Cuephoria agent.")}`}
+                target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-neon-blue/50 text-white font-semibold rounded-xl hover:bg-neon-blue/10 transition-colors text-sm"
               >
-                WhatsApp Human Agent
+                <Phone className="h-4 w-4 text-neon-blue" />
+                Human Agent
               </a>
             </div>
           </div>
-          
-          <div className="w-full lg:w-1/2 relative">
-            <div className="relative w-56 h-56 md:w-80 md:h-80 mx-auto">
-              {/* Single subtle glow ring — no per-ray animations */}
-              <div className="absolute inset-0 rounded-full bg-neon-blue/10 blur-2xl" />
-              
+
+          {/* Right — logo */}
+          <div className="w-full lg:w-1/2">
+            <div className="relative w-52 h-52 md:w-80 md:h-80 mx-auto">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-blue/15 to-neon-pink/10 blur-3xl" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <img 
-                  src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png" 
-                  alt="Cuephoria Logo - 8-Ball Pool Club & Gaming Lounge in Trichy" 
-                  className="w-full h-full object-contain animate-float"
-                  width="320"
-                  height="320"
+                <img
+                  src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png"
+                  alt="Cuephoria Logo"
+                  className="w-full h-full object-contain animate-float drop-shadow-[0_0_30px_rgba(157,78,221,0.5)]"
+                  width="320" height="320"
                   fetchPriority="high"
                   decoding="async"
                 />
@@ -114,13 +112,13 @@ const Hero = ({ className = '' }) => {
           </div>
         </div>
       </div>
-      
-      {/* Scroll indicator - removed to save vertical space on mobile */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex-col items-center hidden md:flex">
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1">
-          <div className="w-1 h-3 bg-white rounded-full animate-bounce-slow"></div>
+
+      {/* Scroll hint */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2">
+        <div className="w-5 h-9 border-2 border-white/20 rounded-full flex justify-center pt-1">
+          <div className="w-1 h-2 bg-white/50 rounded-full animate-bounce-slow" />
         </div>
-        <span className="text-white/70 text-sm mt-2">Scroll Down to Explore Cuephoria</span>
+        <span className="text-white/40 text-xs">Scroll to Explore</span>
       </div>
     </section>
   );
