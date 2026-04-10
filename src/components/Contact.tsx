@@ -197,7 +197,7 @@ Message: ${formData.message}`;
                   <div>
                     <h4 className="text-sm font-black text-white">
                       Cuephoria Lite{' '}
-                      <span className="text-xs text-amber-400 font-normal">(Opening Apr 11, 2026)</span>
+                      <span className="text-xs text-amber-400 font-normal">(Opening Sun Apr 12, 2026)</span>
                     </h4>
                     <p className="text-gray-400 text-sm mb-1">QR64+CRV Electronics Bus Stop, Valavandankottai, TN 620015</p>
                     <a href="https://maps.app.goo.gl/nvTtK6SG4nGQXenGA" target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors text-xs">View on Google Maps →</a>

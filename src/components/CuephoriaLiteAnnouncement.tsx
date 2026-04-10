@@ -7,8 +7,8 @@ interface CuephoriaLiteAnnouncementProps {
   onClose?: () => void;
 }
 
-// Grand opening: April 11, 2026 at 6:00 PM
-const LITE_OPENING = new Date('2026-04-11T18:00:00');
+// Grand opening: Sunday April 12, 2026 at 11:00 AM
+const LITE_OPENING = new Date('2026-04-12T11:00:00');
 
 function useLiteCountdown() {
   const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0, expired: false });
@@ -34,7 +34,7 @@ function useLiteCountdown() {
 const liteInfo = {
   logo: "https://iili.io/fjuZYga.jpg",
   name: "Cuephoria Lite",
-  openingDate: "April 11, 2026 • 6:00 PM",
+  openingDate: "Sunday, April 12, 2026 • 11:00 AM",
   openingDateNote: "Opposite NIT Trichy",
   location: "QR64+CRV Electronics Bus Stop, Valavandankottai, Tamil Nadu 620015",
   gmapLink: "https://maps.app.goo.gl/nvTtK6SG4nGQXenGA",
@@ -77,7 +77,7 @@ const CuephoriaLiteAnnouncement = ({
             <span className="font-bold text-amber-400">🎮 Grand Opening:</span>{' '}
             <span className="text-amber-300 font-semibold">Cuephoria Lite</span>
             {' '}&mdash; More Affordable, Same Luxury! Opening{' '}
-            <span className="text-amber-400 font-semibold">April 11, 6 PM</span>,
+            <span className="text-amber-400 font-semibold">April 12, 11 AM</span>,
             right opposite{' '}
             <span className="text-amber-400 font-semibold">NIT Trichy</span>! 🚀
           </p>
@@ -131,7 +131,7 @@ const CuephoriaLiteAnnouncement = ({
                 <span className="text-amber-400">Cuephoria Lite</span>
               </h3>
               <span className="px-2 py-0.5 bg-gradient-to-r from-amber-500/30 to-orange-500/30 text-amber-200 text-xs font-black rounded-full border border-amber-500/50 animate-pulse shadow-md shadow-amber-500/20">
-                {countdown.expired ? '🎉 OPEN NOW' : 'APR 11 • 6PM'}
+                {countdown.expired ? '🎉 OPEN NOW' : 'APR 12 • 11AM'}
               </span>
             </div>
 
@@ -245,10 +245,10 @@ const CuephoriaLiteAnnouncement = ({
                 <h3 className="text-xs md:text-sm font-bold text-white whitespace-nowrap">
                   <span className="text-amber-400">Cuephoria Lite</span>
                   {' '}&mdash; Grand Opening{' '}
-                  <span className="text-amber-300">April 11 • 6 PM</span>
+                  <span className="text-amber-300">Sunday, April 12 • 11 AM</span>
                 </h3>
                 <span className="px-1.5 py-0.5 bg-amber-500/20 text-amber-300 text-[9px] md:text-[10px] font-bold rounded-full border border-amber-500/40 animate-pulse whitespace-nowrap">
-                  {countdown.expired ? '🎉 OPEN' : 'APR 11'}
+                  {countdown.expired ? '🎉 OPEN' : 'APR 12'}
                 </span>
               </div>
             </div>

@@ -10,7 +10,7 @@ import SEOMetadata from '../components/SEOMetadata';
 import { useToast } from '../hooks/use-toast';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const LITE_OPENING = new Date('2026-04-11T18:00:00');
+const LITE_OPENING = new Date('2026-04-12T11:00:00');
 const WHATSAPP_BOT = '918637625155';
 const WHATSAPP_AGENT = '917550025155';
 const createWALink = (phone: string, text: string) =>
@@ -163,7 +163,7 @@ const BookingLanding = () => {
                   <span className="text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]">CUEPHORIA LITE</span>
                 </h2>
                 <p className="text-amber-200/80 text-sm md:text-base font-semibold mb-1">
-                  April 11, 2026 &bull; 6:00 PM
+                  Sunday, April 12, 2026 &bull; 11:00 AM
                 </p>
                 <p className="text-amber-300/70 text-xs md:text-sm mb-4 flex items-center justify-center gap-1">
                   <MapPin className="h-3.5 w-3.5" />
@@ -326,7 +326,7 @@ const BookingLanding = () => {
                     <div className="flex items-center gap-2 mb-3">
                       <Sparkles className="h-5 w-5 text-amber-400 animate-pulse flex-shrink-0" />
                       <span className="text-xs font-black px-2 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 uppercase tracking-wider">
-                        {lite.expired ? '🎉 Now Open!' : `Opening Apr 11 • 6 PM`}
+                        {lite.expired ? '🎉 Now Open!' : `Opening Sun Apr 12 • 11 AM`}
                       </span>
                     </div>
 
