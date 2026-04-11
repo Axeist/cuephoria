@@ -1,21 +1,23 @@
 import React, { useEffect, useState, useRef, Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import {
   MapPin, Clock, Sparkles, ArrowRight, ChevronUp,
   Gamepad2, Target, Crosshair, Zap, Users, Gift,
   Star, Crown, Phone, MessageCircle, Instagram, Facebook,
   ExternalLink, Check, Flame, Music, Wifi, Coffee, Mail,
-  Shield, Timer, BookOpen, Home,
-  Code, X, Menu
+  Shield, Timer, BookOpen, Home, CalendarCheck,
+  Code, X, Menu, TrendingUp, Award, Heart
 } from 'lucide-react';
-import SEOMetadata from '../components/SEOMetadata';
 import { cn } from '@/lib/utils';
 
 const Chatbot = lazy(() => import('../components/Chatbot'));
 
 const LITE_OPENING = new Date('2026-04-12T11:00:00');
 const GMAP_LINK = "https://maps.app.goo.gl/nvTtK6SG4nGQXenGA";
-const WA_LINK = (msg: string) => `https://wa.me/918637625155?text=${encodeURIComponent(msg)}`;
+const BOOKING_URL = "https://admin.cuephoria.in/lite/public/booking";
+const WA_LINK = (msg: string) => `https://wa.me/917550025155?text=${encodeURIComponent(msg)}`;
+const LITE_PHONE = "+91 75500 25155";
 
 function useCountdown() {
   const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0, expired: false });
@@ -50,6 +52,40 @@ function useInView(threshold = 0.12) {
   }, [threshold]);
   return { ref, visible };
 }
+
+function useAnimatedCounter(target: number, duration = 2000) {
+  const [count, setCount] = useState(0);
+  const { ref, visible } = useInView(0.3);
+  const started = useRef(false);
+  useEffect(() => {
+    if (!visible || started.current) return;
+    started.current = true;
+    const steps = 60;
+    const increment = target / steps;
+    let current = 0;
+    const interval = setInterval(() => {
+      current += increment;
+      if (current >= target) { setCount(target); clearInterval(interval); }
+      else setCount(Math.floor(current));
+    }, duration / steps);
+    return () => clearInterval(interval);
+  }, [visible, target, duration]);
+  return { ref, count };
+}
+
+const stats = [
+  { value: 2, suffix: '', label: 'Pool Tables', icon: Target },
+  { value: 4, suffix: '', label: 'PS5 Controllers', icon: Gamepad2 },
+  { value: 30, suffix: '+', label: 'Game Titles', icon: Award },
+  { value: 49, suffix: '', label: 'Starting Price (₹)', icon: TrendingUp },
+];
+
+const testimonials = [
+  { name: 'Rahul K.', college: 'NIT Trichy', text: 'Best spot near campus! Way better than sitting in the hostel. The PS5 setup is insane and pool tables are actually good quality.', rating: 5 },
+  { name: 'Priya S.', college: 'Anna University', text: 'Finally a place that doesn\'t burn a hole in my pocket. ₹49 for 30 mins of pool? That\'s a steal. Love the vibe here.', rating: 5 },
+  { name: 'Arun M.', college: 'NIT Trichy', text: 'The AR Cricket is absolutely next level. My whole friend group is addicted. We come here almost every evening now.', rating: 5 },
+  { name: 'Deepika R.', college: 'SASTRA', text: 'Clean, affordable, and the staff is super friendly. The neon ambience is perfect for unwinding after a stressful day.', rating: 4 },
+];
 
 const Reveal = ({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
   const { ref, visible } = useInView();
@@ -183,7 +219,7 @@ const comparisonRows = [
 
 const faqs = [
   { q: 'Where exactly is Cuephoria Lite?', a: 'Right opposite NIT Trichy main gate — just a 2-minute walk from campus. Look for the neon signage at QR64+CRV, Electronics Bus Stop, Valavandankottai.' },
-  { q: 'Do I need to book in advance?', a: 'Walk-ins are welcome! But during peak hours (4-9 PM), we recommend a quick WhatsApp booking to guarantee your slot.' },
+  { q: 'Do I need to book in advance?', a: 'Walk-ins are welcome! But during peak hours (4-9 PM), we recommend booking online at admin.cuephoria.in/lite/public/booking or a quick WhatsApp message to guarantee your slot.' },
   { q: 'Is there a student discount?', a: 'Absolutely! Show any valid student ID (NIT, Anna Univ, or any college) for an extra 10% OFF on all plans. NIT students get special perks with code NIT35.' },
   { q: 'Can I bring my own PS5 games?', a: 'We have 30+ titles ready, but yes — bring your own disc and we\'ll load it up. Digital accounts are not supported for security reasons.' },
   { q: 'What\'s the difference from the main branch?', a: 'Cuephoria Lite is a compact, budget-friendly version designed for students. Same quality gear, same vibe, more affordable. The main branch has more tables, VR gaming, and larger space.' },
@@ -245,10 +281,55 @@ const CuephoriaLite = () => {
 
   return (
     <div className="min-h-screen bg-gaming-darker text-white overflow-x-hidden">
-      <SEOMetadata
-        title="Cuephoria Lite | Student-Friendly Gaming Lounge Near NIT Trichy"
-        description="Cuephoria Lite — Trichy's most affordable gaming spot opposite NIT. 2 Pool Tables, 4 PS5 Controllers, Metashot AR Cricket, Darts & the best student chill zone."
-      />
+      <Helmet>
+        <title>Cuephoria Lite | Cheapest Gaming Lounge Near NIT Trichy | Pool, PS5, AR Cricket, Darts</title>
+        <meta name="description" content="Cuephoria Lite — Trichy's most affordable student gaming lounge opposite NIT Trichy. 2 Pool Tables, 4 PS5 Controllers, Metashot AR Cricket & Darts starting at just ₹49. Book your slot online now!" />
+        <meta name="keywords" content="Cuephoria Lite, gaming lounge near NIT Trichy, cheap gaming Trichy, student gaming lounge Trichy, pool table NIT Trichy, PS5 gaming NIT Trichy, AR cricket Trichy, darts Trichy, affordable gaming Trichy, student hangout Trichy, best gaming cafe near NIT, gaming lounge opposite NIT Trichy, Cuephoria Trichy, budget gaming lounge, student discount gaming" />
+        <link rel="canonical" href="https://cuephoria.in/lite" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://cuephoria.in/lite" />
+        <meta property="og:title" content="Cuephoria Lite | Student Gaming Lounge Near NIT Trichy — From ₹49" />
+        <meta property="og:description" content="Pool, PS5, AR Cricket & Darts — all starting ₹49. Trichy's cheapest & best student gaming spot right opposite NIT Trichy. Book online now!" />
+        <meta property="og:image" content="/cuephoria-lite-logo.png" />
+        <meta property="og:site_name" content="Cuephoria" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Cuephoria Lite | Gaming Lounge Near NIT Trichy — From ₹49" />
+        <meta name="twitter:description" content="Pool, PS5, AR Cricket & Darts for students at pocket-friendly prices. Opposite NIT Trichy." />
+        <meta name="twitter:image" content="/cuephoria-lite-logo.png" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="author" content="Cuephoria Gaming Lounge" />
+        <meta name="geo.region" content="IN-TN" />
+        <meta name="geo.placename" content="Trichy, NIT Trichy" />
+        <meta name="geo.position" content="10.7634;78.8138" />
+        <meta name="ICBM" content="10.7634, 78.8138" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "@id": "https://cuephoria.in/lite",
+          "name": "Cuephoria Lite — Student Gaming Lounge",
+          "alternateName": "Cuephoria Lite",
+          "image": "https://cuephoria.in/cuephoria-lite-logo.png",
+          "url": "https://cuephoria.in/lite",
+          "telephone": "+917550025155",
+          "priceRange": "₹",
+          "description": "Cuephoria Lite is Trichy's most affordable student gaming lounge, located right opposite NIT Trichy. Offering 2 pool tables, PS5 gaming with 4 controllers, Metashot AR Cricket, darts, and a chill café — all starting at just ₹49.",
+          "address": { "@type": "PostalAddress", "streetAddress": "Opposite NIT Trichy, QR64+CRV, Electronics Bus Stop", "addressLocality": "Valavandankottai, Trichy", "postalCode": "620015", "addressCountry": "IN", "addressRegion": "Tamil Nadu" },
+          "geo": { "@type": "GeoCoordinates", "latitude": 10.7634, "longitude": 78.8138 },
+          "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "11:00", "closes": "23:00" },
+          "sameAs": ["https://www.instagram.com/cuephoriaclub/", "https://www.facebook.com/profile.php?id=61574215405586"],
+          "parentOrganization": { "@type": "Organization", "name": "Cuephoria Gaming Lounge", "url": "https://cuephoria.in" },
+          "hasOfferCatalog": { "@type": "OfferCatalog", "name": "Cuephoria Lite Services", "itemListElement": [
+            { "@type": "Offer", "name": "Pool Table — 30 min", "price": "49", "priceCurrency": "INR", "description": "30 minutes of pool table access" },
+            { "@type": "Offer", "name": "Squad Package — 1 hour", "price": "149", "priceCurrency": "INR", "description": "PS5 gaming, pool, AR Cricket, darts for 1 hour" },
+            { "@type": "Offer", "name": "Monthly Pass", "price": "999", "priceCurrency": "INR", "description": "Unlimited monthly access to all activities" }
+          ]},
+          "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "150", "bestRating": "5" }
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org", "@type": "FAQPage",
+          "mainEntity": faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }))
+        })}</script>
+      </Helmet>
 
       {/* ── Ambient Layers ───────────────────────────────────────── */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
@@ -299,7 +380,7 @@ const CuephoriaLite = () => {
           </nav>
 
           {/* Desktop CTAs */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2.5">
             <Link to="/" className="text-xs text-gray-500 hover:text-white transition-colors px-3 py-1.5">
               Main Branch
             </Link>
@@ -307,10 +388,19 @@ const CuephoriaLite = () => {
               href={GMAP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black text-sm font-black hover:shadow-lg hover:shadow-amber-500/25 transition-all hover:scale-105"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-amber-500/40 text-amber-400 text-sm font-bold hover:bg-amber-500/10 transition-all"
             >
               <MapPin className="h-3.5 w-3.5" />
               Directions
+            </a>
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-xl bg-gradient-to-r from-neon-pink to-purple-500 text-white text-sm font-black hover:shadow-lg hover:shadow-neon-pink/25 transition-all hover:scale-105"
+            >
+              <CalendarCheck className="h-3.5 w-3.5" />
+              Book Now
             </a>
           </div>
 
@@ -349,6 +439,14 @@ const CuephoriaLite = () => {
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-black text-sm"
             >
               <MapPin className="h-4 w-4" /> Get Directions
+            </a>
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-neon-pink to-purple-500 text-white font-black text-sm"
+            >
+              <CalendarCheck className="h-4 w-4" /> Book Now
             </a>
             <a
               href={WA_LINK("Hey! I want to know about Cuephoria Lite!")}
@@ -459,10 +557,21 @@ const CuephoriaLite = () => {
               <Reveal delay={400}>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-6">
                   <a
+                    href={BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-neon-pink via-purple-500 to-violet-600 text-white font-black text-sm hover:shadow-xl hover:shadow-neon-pink/30 transition-all hover:scale-[1.03] active:scale-100 relative overflow-hidden group"
+                  >
+                    <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                    <CalendarCheck className="h-4 w-4 relative z-10" />
+                    <span className="relative z-10">Book Your Slot</span>
+                    <ArrowRight className="h-4 w-4 relative z-10" />
+                  </a>
+                  <a
                     href={GMAP_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-black text-sm hover:shadow-xl hover:shadow-amber-500/25 transition-all hover:scale-[1.03] active:scale-100"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-black text-sm hover:shadow-xl hover:shadow-amber-500/25 transition-all hover:scale-[1.03] active:scale-100"
                   >
                     <MapPin className="h-4 w-4" /> Get Directions
                   </a>
@@ -470,9 +579,9 @@ const CuephoriaLite = () => {
                     href={WA_LINK("Hey! I want to know about Cuephoria Lite near NIT Trichy!")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl border-2 border-green-500/40 text-white font-semibold text-sm hover:bg-green-500/10 hover:border-green-500/60 transition-all hover:scale-[1.03]"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border-2 border-white/10 text-white font-semibold text-sm hover:bg-white/[0.05] hover:border-white/20 transition-all hover:scale-[1.03]"
                   >
-                    <MessageCircle className="h-4 w-4 text-green-400" /> WhatsApp Us
+                    <MessageCircle className="h-4 w-4 text-green-400" /> WhatsApp
                   </a>
                 </div>
               </Reveal>
@@ -520,6 +629,31 @@ const CuephoriaLite = () => {
             <div className="w-1 h-2 bg-amber-400/60 rounded-full animate-bounce" />
           </div>
           <span className="text-white/30 text-[10px] uppercase tracking-widest">Scroll</span>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          ANIMATED STATS
+         ══════════════════════════════════════════════════════════════ */}
+      <section className="py-14 relative border-y border-white/[0.04]">
+        <div className="absolute inset-0 bg-gradient-to-r from-amber-500/[0.02] via-neon-pink/[0.02] to-neon-blue/[0.02] pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            {stats.map((s) => {
+              const { ref, count } = useAnimatedCounter(s.value);
+              return (
+                <div key={s.label} ref={ref} className="text-center group">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/20 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-500">
+                    <s.icon className="h-5 w-5 text-amber-400" />
+                  </div>
+                  <div className="text-3xl md:text-4xl font-black tabular-nums bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent mb-1">
+                    {count}{s.suffix}
+                  </div>
+                  <div className="text-xs text-gray-500 font-bold uppercase tracking-wider">{s.label}</div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -599,18 +733,85 @@ const CuephoriaLite = () => {
 
           <Reveal>
             <div className="max-w-3xl mx-auto text-center">
-              <GlassCard className="p-8 md:p-10" hover={false}>
+              <GlassCard className="p-8 md:p-12" hover={false}>
+                <div className="flex justify-center mb-5">
+                  <Heart className="h-8 w-8 text-neon-pink animate-pulse" />
+                </div>
                 <blockquote className="text-xl md:text-2xl italic text-gray-200 font-medium leading-relaxed">
-                  "Where <span className="text-amber-400 font-black not-italic">students</span> go to escape the routine.
+                  "Where <span className="text-amber-400 font-black not-italic">students</span> escape the routine.
                   <br className="hidden md:block" />
                   Where <span className="text-neon-blue font-black not-italic">friendships</span> level up and <span className="text-neon-pink font-black not-italic">memories</span> get made."
                 </blockquote>
-                <div className="mt-5 flex items-center justify-center gap-1">
+                <div className="mt-5 flex items-center justify-center gap-1 mb-6">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="h-4 w-4 text-amber-400 fill-amber-400" />
                   ))}
                 </div>
+                <a
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-neon-pink to-purple-500 text-white font-black text-sm hover:shadow-lg hover:shadow-neon-pink/25 transition-all hover:scale-[1.03]"
+                >
+                  <CalendarCheck className="h-4 w-4" /> Reserve Your Spot
+                </a>
               </GlassCard>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          TESTIMONIALS
+         ══════════════════════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neon-pink/[0.012] to-transparent pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
+          <Reveal>
+            <div className="text-center mb-14">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-neon-pink/60 mb-3">What Students Say</p>
+              <h2 className="text-3xl md:text-5xl font-black mb-4">
+                <span className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">Loved by </span>
+                <span className="bg-gradient-to-r from-neon-pink to-purple-400 bg-clip-text text-transparent">Students</span>
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+            {testimonials.map((t, i) => (
+              <GlassCard key={t.name} className="p-6 group" delay={i * 100}>
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(5)].map((_, s) => (
+                    <Star key={s} className={cn("h-3.5 w-3.5", s < t.rating ? "text-amber-400 fill-amber-400" : "text-gray-700")} />
+                  ))}
+                </div>
+                <p className="text-gray-300 text-sm leading-relaxed mb-4 italic">"{t.text}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-amber-500/20 to-neon-pink/20 border border-white/10 flex items-center justify-center">
+                    <span className="text-sm font-black text-white">{t.name[0]}</span>
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-white">{t.name}</div>
+                    <div className="text-xs text-gray-500">{t.college}</div>
+                  </div>
+                </div>
+              </GlassCard>
+            ))}
+          </div>
+
+          <Reveal delay={200}>
+            <div className="text-center mt-10">
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-neon-pink to-purple-500 text-white font-black text-sm hover:shadow-xl hover:shadow-neon-pink/25 transition-all hover:scale-[1.03] relative overflow-hidden group"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/15 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                <CalendarCheck className="h-4 w-4 relative z-10" />
+                <span className="relative z-10">Book Your Slot Now</span>
+                <ArrowRight className="h-4 w-4 relative z-10" />
+              </a>
             </div>
           </Reveal>
         </div>
@@ -677,12 +878,12 @@ const CuephoriaLite = () => {
                   ))}
                 </ul>
                 <a
-                  href={WA_LINK(`Hi! I'm interested in the ${plan.name} plan at Cuephoria Lite.`)}
+                  href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn("w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm transition-all duration-300 hover:scale-[1.03] active:scale-100", plan.btnClass)}
                 >
-                  Get Started <ArrowRight className="h-4 w-4" />
+                  Book Now <ArrowRight className="h-4 w-4" />
                 </a>
               </GlassCard>
             ))}
@@ -796,12 +997,20 @@ const CuephoriaLite = () => {
                     <p className="text-gray-400 text-sm mb-2">Less than your daily</p>
                     <p className="text-amber-400 text-sm font-bold mb-6">chai + samosa budget</p>
                     <a
+                      href={BOOKING_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-neon-pink to-purple-500 text-white text-sm font-black hover:shadow-lg hover:shadow-neon-pink/25 transition-all hover:scale-105 mb-2"
+                    >
+                      <CalendarCheck className="h-4 w-4" /> Book Now
+                    </a>
+                    <a
                       href={WA_LINK("Hey! I'm an NIT student. What deals do you have at Cuephoria Lite?")}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black text-sm font-black hover:shadow-lg hover:shadow-amber-500/25 transition-all hover:scale-105"
+                      className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-green-500/30 text-green-400 text-xs font-semibold hover:bg-green-500/10 transition-all"
                     >
-                      <MessageCircle className="h-4 w-4" /> Claim Student Offer
+                      <MessageCircle className="h-3.5 w-3.5" /> Or WhatsApp Us
                     </a>
                   </div>
                 </Reveal>
@@ -917,12 +1126,12 @@ const CuephoriaLite = () => {
                 {[
                   {
                     href: WA_LINK("Hi! I'd like to know more about Cuephoria Lite."),
-                    icon: MessageCircle, label: 'WhatsApp', detail: '+91 86376 25155',
+                    icon: MessageCircle, label: 'WhatsApp', detail: LITE_PHONE,
                     color: 'green', bg: 'bg-green-500/10 border-green-500/20 hover:border-green-500/40',
                   },
                   {
                     href: 'tel:+917550025155',
-                    icon: Phone, label: 'Call Us', detail: '+91 75500 25155',
+                    icon: Phone, label: 'Call Us', detail: LITE_PHONE,
                     color: 'blue', bg: 'bg-blue-500/10 border-blue-500/20 hover:border-blue-500/40',
                   },
                   {
@@ -978,20 +1187,23 @@ const CuephoriaLite = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-xl bg-gradient-to-r from-neon-pink via-purple-500 to-violet-600 text-white font-black text-base hover:shadow-2xl hover:shadow-neon-pink/30 transition-all hover:scale-[1.04] relative overflow-hidden group"
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                  <CalendarCheck className="h-5 w-5 relative z-10" />
+                  <span className="relative z-10">Book Your Slot Now</span>
+                  <ArrowRight className="h-5 w-5 relative z-10" />
+                </a>
+                <a
                   href={GMAP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-black text-sm hover:shadow-xl hover:shadow-amber-500/30 transition-all hover:scale-[1.03]"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-black text-sm hover:shadow-xl hover:shadow-amber-500/25 transition-all hover:scale-[1.03]"
                 >
                   <MapPin className="h-4 w-4" /> Get Directions
-                </a>
-                <a
-                  href={WA_LINK("Hi! I'm coming to Cuephoria Lite! Can I book a slot?")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl border-2 border-green-500/40 text-white font-semibold text-sm hover:bg-green-500/10 hover:border-green-500/60 transition-all hover:scale-[1.03]"
-                >
-                  <MessageCircle className="h-4 w-4 text-green-400" /> Book via WhatsApp
                 </a>
               </div>
             </Reveal>
@@ -1027,7 +1239,7 @@ const CuephoriaLite = () => {
                 <a href="https://www.instagram.com/cuephoriaclub" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-neon-pink transition-colors" aria-label="Instagram">
                   <Instagram className="h-5 w-5" />
                 </a>
-                <a href="https://wa.me/918637625155" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="WhatsApp">
+                <a href="https://wa.me/917550025155" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="WhatsApp">
                   <MessageCircle className="h-5 w-5" />
                 </a>
                 <a href="https://www.facebook.com/profile.php?id=61574215405586" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-500 transition-colors" aria-label="Facebook">
@@ -1042,18 +1254,31 @@ const CuephoriaLite = () => {
               <nav className="space-y-2.5">
                 {[
                   { icon: Home, label: 'Main Branch', href: '/', isLink: true },
-                  { icon: Target, label: 'Book Now', href: '/book', isLink: true },
+                  { icon: CalendarCheck, label: 'Book Now', href: BOOKING_URL, isLink: false },
                   { icon: BookOpen, label: 'Blog', href: '/blog', isLink: true },
                   { icon: Coffee, label: 'Café Menu', href: '/cafemenu', isLink: true },
                 ].map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group text-sm"
-                  >
-                    <item.icon className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
-                    <span>{item.label}</span>
-                  </Link>
+                  item.isLink ? (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group text-sm"
+                    >
+                      <item.icon className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
+                      <span>{item.label}</span>
+                    </Link>
+                  ) : (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 text-neon-pink hover:text-pink-300 transition-colors duration-300 group text-sm font-semibold"
+                    >
+                      <item.icon className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
+                      <span>{item.label}</span>
+                    </a>
+                  )
                 ))}
                 {navLinks.map((l) => (
                   <a key={l.href} href={l.href} className="flex items-center space-x-2 text-gray-400 hover:text-amber-400 transition-colors duration-300 text-sm">
@@ -1077,18 +1302,11 @@ const CuephoriaLite = () => {
                     Valavandankottai, TN 620015
                   </span>
                 </a>
-                <a href="tel:+918637625155" className="flex items-start space-x-3 text-gray-400 hover:text-neon-blue transition-colors group">
-                  <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                  <div className="text-sm">
-                    <div>+91 86376 25155</div>
-                    <div className="text-xs text-gray-500">WhatsApp Bot/Calls</div>
-                  </div>
-                </a>
                 <a href="tel:+917550025155" className="flex items-start space-x-3 text-gray-400 hover:text-neon-blue transition-colors group">
                   <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
                   <div className="text-sm">
-                    <div>+91 75500 25155</div>
-                    <div className="text-xs text-gray-500">Human Agent</div>
+                    <div>{LITE_PHONE}</div>
+                    <div className="text-xs text-gray-500">Call / WhatsApp</div>
                   </div>
                 </a>
                 <a href="mailto:contact@cuephoria.in" className="flex items-center space-x-3 text-gray-400 hover:text-neon-blue transition-colors group">
@@ -1155,14 +1373,14 @@ const CuephoriaLite = () => {
       {/* Chatbot */}
       <Suspense fallback={null}><Chatbot /></Suspense>
 
-      {/* Fixed CTAs */}
+      {/* Fixed Book Now CTA */}
       <a
-        href={GMAP_LINK}
+        href={BOOKING_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed left-6 bottom-6 z-40 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 text-black text-sm font-black rounded-full shadow-lg hover:shadow-amber-500/30 transition-all hidden md:flex items-center gap-1.5"
+        className="fixed left-6 bottom-6 z-40 px-5 py-2.5 bg-neon-pink text-white text-sm font-black rounded-full shadow-lg hover:bg-neon-pink/90 hover:shadow-neon-pink/30 transition-all hidden md:flex items-center gap-1.5"
       >
-        <MapPin className="h-3.5 w-3.5" /> Directions
+        Book Now <Sparkles className="h-3.5 w-3.5" />
       </a>
 
       <button
