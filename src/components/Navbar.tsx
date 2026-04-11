@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Gamepad2, Siren, Flame } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import NewsTicker from './NewsTicker';
 
 interface NavLinkProps {
   href: string;
@@ -97,8 +98,8 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled 
-            ? "bg-gaming-darker/80 backdrop-blur-md shadow-lg py-1.5" 
-            : "bg-transparent py-2 md:py-5"
+            ? "bg-gaming-darker/95 backdrop-blur-xl shadow-lg shadow-black/20 py-1.5" 
+            : "bg-gaming-darker/70 backdrop-blur-md py-2 md:py-4"
         )}
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
@@ -189,9 +190,11 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
             </div>
           </div>
         )}
+
+        {/* News Ticker — embedded in header */}
+        <NewsTicker />
       </header>
-      
-      
+
       {/* Mobile Menu with improved overlay */}
       <div 
         className={cn(

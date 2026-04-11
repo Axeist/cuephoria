@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Sparkles } from 'lucide-react';
 
 const news = [
   "SPECIAL ONLINE OFFER! Get FLAT 10% OFF your bill + 1 FREE AR Metashot Cricket Challenge",
@@ -12,94 +13,43 @@ const news = [
 
 const NewsTicker = () => {
   const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
-  
+  const [isAnimating, setIsAnimating] = useState(false);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentNewsIndex((prev) => (prev + 1) % news.length);
-    }, 5000);
-    
+      setIsAnimating(true);
+      setTimeout(() => {
+        setCurrentNewsIndex((prev) => (prev + 1) % news.length);
+        setIsAnimating(false);
+      }, 400);
+    }, 4000);
+
     return () => clearInterval(interval);
   }, []);
-  
+
   return (
-    <div className="bg-gaming-darker/80 backdrop-blur-md border-y border-neon-blue/20 py-0.5 overflow-hidden" role="complementary" aria-label="Announcements">
-      <div className="ticker-container">
-        <div className="ticker-wrapper">
-          <div className="ticker-text">
-            {news.map((item, index) => (
-              <span 
-                key={index} 
-                className={`inline-block whitespace-normal px-4 text-white ${index === currentNewsIndex ? 'ticker-visible' : 'ticker-hidden'}`}
-                aria-hidden={index !== currentNewsIndex}
-              >
-                <span className="mr-2 text-neon-pink" aria-hidden="true">★</span>
-                <span className="glow-text">{item}</span>
-                <span className="ml-2 text-neon-blue" aria-hidden="true">★</span>
-              </span>
-            ))}
-          </div>
+    <div className="relative overflow-hidden h-7 flex items-center" role="complementary" aria-label="Announcements">
+      <div className="absolute inset-0 bg-gradient-to-r from-neon-pink/10 via-purple-500/10 to-neon-blue/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-neon-pink/5 via-transparent to-neon-blue/5 animate-pulse" style={{ animationDuration: '3s' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-pink/30 to-transparent" />
+
+      <div className="relative w-full flex items-center justify-center px-4">
+        <Sparkles className="h-3 w-3 text-neon-pink/70 flex-shrink-0 mr-2 hidden sm:block" />
+        <div className="overflow-hidden flex-1 text-center">
+          <p
+            className={`text-[11px] sm:text-xs font-medium transition-all duration-400 ease-out ${
+              isAnimating
+                ? 'opacity-0 -translate-y-3'
+                : 'opacity-100 translate-y-0'
+            }`}
+          >
+            <span className="bg-gradient-to-r from-neon-pink via-purple-300 to-neon-blue bg-clip-text text-transparent font-bold">
+              {news[currentNewsIndex]}
+            </span>
+          </p>
         </div>
+        <Sparkles className="h-3 w-3 text-neon-blue/70 flex-shrink-0 ml-2 hidden sm:block" />
       </div>
-      
-      <style>
-      {`
-        .ticker-container {
-          width: 100%;
-          overflow: hidden;
-        }
-        
-        .ticker-wrapper {
-          width: 100%;
-          padding: 0.15rem 0;
-        }
-        
-        .ticker-text {
-          width: 100%;
-          text-align: center;
-          position: relative;
-          max-width: 100%;
-          overflow: hidden;
-        }
-        
-        .ticker-visible {
-          opacity: 1;
-          transform: translateY(0);
-          transition: opacity 0.5s ease, transform 0.5s ease;
-          animation: pulse-glow 2s ease-in-out infinite;
-          max-width: 100%;
-          display: block;
-          margin: 0 auto;
-          padding: 0 1rem;
-        }
-        
-        .ticker-hidden {
-          opacity: 0;
-          height: 0;
-          position: absolute;
-          transform: translateY(10px);
-        }
-        
-        @media (max-width: 640px) {
-          .ticker-visible {
-            font-size: 0.7rem;
-            line-height: 1.1;
-            padding: 0.15rem 0.5rem;
-          }
-          .ticker-wrapper {
-            padding: 0.1rem 0;
-          }
-        }
-        
-        @keyframes pulse-glow {
-          0%, 100% {
-            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
-          }
-          50% {
-            text-shadow: 0 0 15px rgba(255, 45, 239, 0.8), 0 0 20px rgba(255, 45, 239, 0.5);
-          }
-        }
-      `}
-      </style>
     </div>
   );
 };
