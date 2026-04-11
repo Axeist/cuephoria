@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { MapPin, Clock, Sparkles, ExternalLink, X, Zap, Gift, Percent, Crown, Flame } from 'lucide-react';
+import { MapPin, Clock, Sparkles, ExternalLink, X, Zap, Gift, Percent, Crown, Flame, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface CuephoriaLiteAnnouncementProps {
   variant?: 'banner' | 'card' | 'compact';
@@ -81,15 +82,14 @@ const CuephoriaLiteAnnouncement = ({
             right opposite{' '}
             <span className="text-amber-400 font-semibold">NIT Trichy</span>! 🚀
           </p>
-          <a
-            href={liteInfo.gmapLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-auto text-amber-400 hover:text-amber-300 transition-all duration-300 hover:scale-110 flex-shrink-0"
-            title="View Location"
+          <Link
+            to="/lite"
+            className="ml-auto text-amber-400 hover:text-amber-300 transition-all duration-300 hover:scale-110 flex-shrink-0 flex items-center gap-1"
+            title="Explore Cuephoria Lite"
           >
-            <MapPin className="h-4 w-4 md:h-5 md:w-5 animate-bounce" />
-          </a>
+            <span className="text-xs font-semibold hidden sm:inline">Explore</span>
+            <ArrowRight className="h-4 w-4 md:h-5 md:w-5 animate-bounce-slow" />
+          </Link>
         </div>
       </div>
     );
@@ -197,19 +197,25 @@ const CuephoriaLiteAnnouncement = ({
               ))}
             </div>
 
-            {/* Location CTA */}
+            {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-2 items-center">
+              <Link
+                to="/lite"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-1.5 bg-gradient-to-r from-amber-500/30 to-orange-500/30 border-2 border-amber-500/50 text-amber-200 rounded-lg hover:from-amber-500/40 hover:to-orange-500/40 transition-all duration-300 text-xs font-bold shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 hover:scale-105 group/btn"
+              >
+                <Sparkles className="h-3.5 w-3.5 group-hover/btn:animate-bounce" />
+                Explore Cuephoria Lite
+                <ArrowRight className="h-3 w-3" />
+              </Link>
               <a
                 href={liteInfo.gmapLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-500/30 to-orange-500/30 border-2 border-amber-500/50 text-amber-200 rounded-lg hover:from-amber-500/40 hover:to-orange-500/40 transition-all duration-300 text-xs font-bold shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 hover:scale-105 group/btn"
+                className="inline-flex items-center gap-1.5 text-xs text-amber-400/70 hover:text-amber-400 transition-colors"
               >
-                <MapPin className="h-3.5 w-3.5 group-hover/btn:animate-bounce" />
-                View Location
-                <ExternalLink className="h-3 w-3" />
+                <MapPin className="h-3 w-3" />
+                <span>{liteInfo.location}</span>
               </a>
-              <div className="text-[10px] text-gray-400 text-center sm:text-left">{liteInfo.location}</div>
             </div>
           </div>
         </div>

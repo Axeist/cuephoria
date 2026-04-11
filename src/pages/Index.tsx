@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import SEOMetadata from '../components/SEOMetadata';
-import { ChevronUp, ArrowRight, GraduationCap, Gamepad2, Rocket, Sparkles, ExternalLink } from 'lucide-react';
+import { ChevronUp, ArrowRight, Sparkles, MapPin, Flame, Target, Gamepad2, Crosshair } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // Lazy load below-the-fold components
@@ -23,7 +23,7 @@ const SectionLoader = () => (
   </div>
 );
 
-const SECTIONS = ['home', 'about', 'games', 'tournaments', 'gallery', 'testimonials', 'book-now', 'gameinsider', 'contact'];
+const SECTIONS = ['home', 'about', 'games', 'tournaments', 'gallery', 'testimonials', 'book-now', 'cuephoria-lite', 'contact'];
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -88,78 +88,66 @@ const Index = () => {
         <Suspense fallback={<SectionLoader />}><BookNow /></Suspense>
         <Suspense fallback={<SectionLoader />}><Contact /></Suspense>
 
-        {/* Game Insider Partnership Section */}
-        <section id="gameinsider" className="py-16 md:py-20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,165,0,0.08)_0,rgba(15,25,40,0)_70%)] pointer-events-none" />
+        {/* Cuephoria Lite Section */}
+        <section id="cuephoria-lite" className="py-16 md:py-20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.06)_0,rgba(15,25,40,0)_70%)] pointer-events-none" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-5xl mx-auto">
-              <div className="rounded-2xl p-6 md:p-10 border border-orange-500/30 bg-gradient-to-br from-orange-500/10 via-gaming-darker to-neon-blue/10">
-                <div className="text-center mb-8">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/20 rounded-full border border-orange-500/50 mb-5">
-                    <Sparkles className="h-4 w-4 text-orange-500" />
-                    <span className="text-orange-500 font-bold text-sm">EXCLUSIVE PARTNERSHIP</span>
+              <div className="rounded-2xl p-6 md:p-10 border border-amber-500/25 bg-gradient-to-br from-amber-500/[0.06] via-gaming-darker to-cyan-500/[0.04] backdrop-blur-sm relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/[0.03] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[2000ms] ease-in-out pointer-events-none" />
+
+                <div className="relative z-10">
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/15 rounded-full border border-amber-500/40 mb-5">
+                      <Flame className="h-4 w-4 text-amber-500 animate-pulse" />
+                      <span className="text-amber-400 font-bold text-sm">NOW OPEN — OPPOSITE NIT TRICHY</span>
+                      <span className="px-2 py-0.5 bg-green-500/20 border border-green-500/40 rounded-full text-green-400 text-[10px] font-black uppercase tracking-wider animate-pulse">NEW</span>
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+                      <span className="bg-gradient-to-r from-amber-300 to-orange-400 bg-clip-text text-transparent">Cuephoria Lite</span>
+                    </h2>
+                    <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+                      Same Luxury, Student-Friendly Prices — Your New Chill Spot Near Campus
+                    </p>
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-                    <span className="neon-text-blue">Game Insider</span>
-                    <span className="text-white"> × </span>
-                    <span className="neon-text-pink">Cuephoria</span>
-                  </h2>
-                  <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                    Building Careers in Game Development & Esports
+
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                    {[
+                      { icon: Target, label: '2 Pool Tables', color: 'text-cyan-400', bg: 'bg-cyan-500/10 border-cyan-500/20' },
+                      { icon: Gamepad2, label: '4 PS5 Controllers', color: 'text-violet-400', bg: 'bg-violet-500/10 border-violet-500/20' },
+                      { icon: Crosshair, label: 'AR Cricket', color: 'text-emerald-400', bg: 'bg-emerald-500/10 border-emerald-500/20' },
+                      { icon: Target, label: 'Darts Zone', color: 'text-amber-400', bg: 'bg-amber-500/10 border-amber-500/20' },
+                    ].map(({ icon: Icon, label, color, bg }) => (
+                      <div key={label} className={`flex flex-col items-center gap-2 p-4 rounded-xl border ${bg} hover:scale-[1.03] transition-transform`}>
+                        <Icon className={`h-6 w-6 ${color}`} />
+                        <span className="text-white text-xs font-bold text-center">{label}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <Link
+                      to="/lite"
+                      className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-black bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black rounded-xl transition-all duration-200 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-[1.03]"
+                    >
+                      <Sparkles className="h-4 w-4" />
+                      Explore Cuephoria Lite
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                    <a
+                      href="https://maps.app.goo.gl/nvTtK6SG4nGQXenGA"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold text-amber-300 border border-amber-500/30 hover:border-amber-500/50 rounded-xl transition-all hover:bg-amber-500/5"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      Get Directions
+                    </a>
+                  </div>
+
+                  <p className="text-center text-gray-500 text-xs mt-5">
+                    Starting at just <span className="text-amber-400 font-bold">₹49</span> — Cheaper than a fancy coffee
                   </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  <div className="p-5 bg-gaming-darker/60 rounded-xl border border-orange-500/20 hover:border-orange-500/40 transition-colors">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-2.5 bg-orange-500/20 rounded-lg">
-                        <GraduationCap className="h-6 w-6 text-orange-500" />
-                      </div>
-                      <h3 className="text-xl font-bold text-white">Free Starter Series</h3>
-                    </div>
-                    <p className="text-gray-300 text-sm leading-relaxed mb-3">
-                      Access industry-relevant education in Game Development and Esports. Learn with clarity, build skills, and understand real career pathways.
-                    </p>
-                    <ul className="space-y-1.5 text-gray-300 text-sm">
-                      {['Industry-aligned learning paths', 'Mentorship from professionals', 'Practical, career-focused programs'].map(item => (
-                        <li key={item} className="flex items-center gap-2">
-                          <span className="text-orange-500">✓</span>{item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="p-5 bg-gaming-darker/60 rounded-xl border border-neon-blue/20 hover:border-neon-blue/40 transition-colors">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-2.5 bg-neon-blue/20 rounded-lg">
-                        <Rocket className="h-6 w-6 text-neon-blue" />
-                      </div>
-                      <h3 className="text-xl font-bold text-white">Exclusive Benefits</h3>
-                    </div>
-                    <p className="text-gray-300 text-sm leading-relaxed mb-3">
-                      As a Cuephoria member, get exclusive access to Game Insider programs with special discounts.
-                    </p>
-                    <div className="bg-gradient-to-r from-orange-500/15 to-neon-blue/15 rounded-lg p-3 border border-orange-500/20">
-                      <div className="flex items-center gap-2 mb-1">
-                        <Gamepad2 className="h-4 w-4 text-orange-500" />
-                        <span className="text-orange-500 font-bold text-sm">50% OFF Game Services</span>
-                      </div>
-                      <p className="text-gray-300 text-xs">
-                        Use code <span className="font-mono font-bold text-white">GAMEINSIDER50</span> when you sign up!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="text-center">
-                  <Link
-                    to="/gameinsider"
-                    className="inline-flex items-center gap-2 px-8 py-4 text-base font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-xl transition-colors duration-200 shadow-lg shadow-orange-500/30 border border-orange-400/40"
-                  >
-                    <GraduationCap className="h-5 w-5" />
-                    Explore Game Insider Programs
-                    <ExternalLink className="h-4 w-4" />
-                  </Link>
                 </div>
               </div>
             </div>

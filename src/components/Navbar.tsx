@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Gamepad2, Siren, GraduationCap } from 'lucide-react';
+import { Menu, X, Gamepad2, Siren, Flame } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import NewsTicker from './NewsTicker';
@@ -126,13 +126,14 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
               {desktopMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
 
-            {/* Game Insider Button - Always Visible */}
+            {/* Cuephoria Lite Button - Always Visible */}
             <Link 
-              to="/gameinsider"
-              className="px-4 py-2 rounded-md font-medium transition-colors text-white hover:text-orange-500 border border-orange-500/30 hover:border-orange-500/60"
+              to="/lite"
+              className="relative px-4 py-2 rounded-md font-medium transition-colors text-white hover:text-amber-400 border border-amber-500/30 hover:border-amber-500/60"
             >
-              <GraduationCap className="h-4 w-4 inline mr-2" />
-              Game Insider
+              <Flame className="h-4 w-4 inline mr-2 text-amber-400" />
+              Lite
+              <span className="absolute -top-2 -right-2 px-1.5 py-0.5 bg-green-500/90 text-[9px] font-black text-white rounded-full leading-none">NEW</span>
             </Link>
 
             {/* Book Now Button — goes to /book page */}
@@ -232,12 +233,13 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
               </a>
             ))}
             <Link 
-              to="/gameinsider"
-              className="px-6 py-2 rounded-md bg-orange-500/80 text-white font-medium hover:bg-orange-500 transition-colors flex items-center justify-center gap-2"
+              to="/lite"
+              className="relative px-6 py-2 rounded-md bg-amber-500/80 text-white font-medium hover:bg-amber-500 transition-colors flex items-center justify-center gap-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <GraduationCap className="h-5 w-5" />
-              Game Insider
+              <Flame className="h-5 w-5" />
+              Cuephoria Lite
+              <span className="px-1.5 py-0.5 bg-green-500/90 text-[9px] font-black text-white rounded-full leading-none">NEW</span>
             </Link>
             <Link
               to="/book"
