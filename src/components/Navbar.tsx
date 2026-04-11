@@ -155,9 +155,15 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
           </div>
         )}
 
-        {/* News Ticker */}
-        <NewsTicker />
       </header>
+
+      {/* News Ticker — below header */}
+      <div className={cn(
+        "fixed left-0 right-0 z-40 transition-all duration-300",
+        isScrolled ? "top-[52px] md:top-[60px]" : "top-[48px] md:top-[72px]"
+      )}>
+        <NewsTicker />
+      </div>
 
       {/* Mobile Menu */}
       <div
