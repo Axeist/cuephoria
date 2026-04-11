@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Gamepad2, Siren, Flame } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import NewsTicker from './NewsTicker';
 
 interface NavLinkProps {
   href: string;
@@ -192,15 +191,6 @@ const Navbar = ({ activeSection = 'home' }: NavbarProps) => {
         )}
       </header>
       
-      {/* News Ticker positioned just below the header */}
-      <div className={cn(
-        "fixed left-0 right-0 z-40 transition-all duration-300 w-full",
-        desktopMenuOpen
-          ? (isScrolled ? "top-[100px] md:top-[120px]" : "top-[120px] md:top-[150px]")
-          : (isScrolled ? "top-[46px] md:top-[60px]" : "top-[50px] md:top-[80px]")
-      )}>
-        <NewsTicker />
-      </div>
       
       {/* Mobile Menu with improved overlay */}
       <div 

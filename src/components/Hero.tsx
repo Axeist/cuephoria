@@ -13,11 +13,29 @@ const Hero = ({ className = '' }) => {
       <div className="absolute inset-0 bg-gaming-darker">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(157,78,221,0.18)_0,transparent_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_100%_100%,rgba(0,200,255,0.07)_0,transparent_100%)]" />
-        {/* Static grid lines */}
-        <div className="absolute inset-0 pointer-events-none">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="absolute h-px bg-neon-blue/10 w-full" style={{ top: `${(i + 1) * 16.67}%` }} />
+        {/* Animated ambient orbs */}
+        <div className="absolute -top-40 left-1/4 w-[600px] h-[600px] bg-neon-blue/[0.04] rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute -bottom-40 right-1/4 w-[500px] h-[500px] bg-neon-pink/[0.04] rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '12s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-500/[0.025] rounded-full blur-[150px] animate-pulse" style={{ animationDuration: '15s' }} />
+        {/* Floating particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full bg-neon-blue/20 animate-pulse"
+              style={{
+                width: `${2 + (i % 3)}px`,
+                height: `${2 + (i % 3)}px`,
+                top: `${10 + i * 11}%`,
+                left: `${5 + i * 12}%`,
+                animationDuration: `${3 + (i % 4)}s`,
+                animationDelay: `${i * 0.5}s`,
+              }}
+            />
           ))}
+          <div className="absolute top-1/4 left-16 w-px h-40 bg-gradient-to-b from-transparent via-neon-blue/10 to-transparent rotate-[25deg]" />
+          <div className="absolute bottom-1/3 right-24 w-px h-32 bg-gradient-to-b from-transparent via-neon-pink/10 to-transparent -rotate-[15deg]" />
+          <div className="absolute top-2/3 left-1/3 w-px h-24 bg-gradient-to-b from-transparent via-purple-500/10 to-transparent rotate-[40deg]" />
         </div>
       </div>
 
