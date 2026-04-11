@@ -1,14 +1,21 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
 import {
   MapPin, Clock, Sparkles, ArrowRight, ChevronUp,
   Gamepad2, Target, Crosshair, Zap, Users, Gift,
-  Star, Crown, Percent, Phone, MessageCircle, Instagram,
-  ExternalLink, Check, Flame, Music, Wifi, Coffee
+  Star, Crown, Phone, MessageCircle, Instagram, Facebook,
+  ExternalLink, Check, Flame, Music, Wifi, Coffee, Mail,
+  Shield, Timer, BookOpen, Home,
+  Code, X, Menu
 } from 'lucide-react';
 import SEOMetadata from '../components/SEOMetadata';
+import { cn } from '@/lib/utils';
+
+const Chatbot = lazy(() => import('../components/Chatbot'));
 
 const LITE_OPENING = new Date('2026-04-12T11:00:00');
+const GMAP_LINK = "https://maps.app.goo.gl/nvTtK6SG4nGQXenGA";
+const WA_LINK = (msg: string) => `https://wa.me/918637625155?text=${encodeURIComponent(msg)}`;
 
 function useCountdown() {
   const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0, expired: false });
@@ -31,7 +38,7 @@ function useCountdown() {
   return t;
 }
 
-function useInView(threshold = 0.15) {
+function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -44,15 +51,33 @@ function useInView(threshold = 0.15) {
   return { ref, visible };
 }
 
-const GlassCard = ({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
+const Reveal = ({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
   const { ref, visible } = useInView();
   return (
     <div
       ref={ref}
-      className={`relative backdrop-blur-xl bg-white/[0.04] border border-white/[0.08] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
+      className={`transition-all duration-700 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/[0.06] to-transparent pointer-events-none" />
+      {children}
+    </div>
+  );
+};
+
+const GlassCard = ({ children, className = '', delay = 0, hover = true }: { children: React.ReactNode; className?: string; delay?: number; hover?: boolean }) => {
+  const { ref, visible } = useInView();
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "relative backdrop-blur-xl bg-white/[0.03] border border-white/[0.07] rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.25)] transition-all duration-700",
+        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
+        hover && 'hover:border-white/[0.14] hover:bg-white/[0.05] hover:shadow-[0_16px_50px_rgba(0,0,0,0.35)]',
+        className
+      )}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/[0.05] via-transparent to-transparent pointer-events-none" />
       <div className="relative z-10">{children}</div>
     </div>
   );
@@ -61,49 +86,51 @@ const GlassCard = ({ children, className = '', delay = 0 }: { children: React.Re
 const activities = [
   {
     icon: Target,
-    title: '2 Pool Tables',
-    desc: 'Compact professional tables — perfect for quick rounds between classes.',
-    color: 'from-cyan-400 to-blue-500',
-    glow: 'shadow-cyan-500/20',
-    iconBg: 'bg-cyan-500/15 border-cyan-500/30',
+    title: '2 Premium Pool Tables',
+    desc: 'Compact professional-grade tables with quality cues and chalk. Perfect for a quick break between classes or a full tournament with your squad.',
+    color: 'cyan',
+    iconBg: 'bg-cyan-500/10 border-cyan-500/25',
     iconColor: 'text-cyan-400',
+    gradient: 'from-cyan-500/10 to-blue-500/5',
   },
   {
     icon: Gamepad2,
     title: '4 PS5 Controllers',
-    desc: 'FIFA, GTA, Tekken, and more — squad up on the big screen.',
-    color: 'from-violet-400 to-purple-500',
-    glow: 'shadow-violet-500/20',
-    iconBg: 'bg-violet-500/15 border-violet-500/30',
+    desc: 'FIFA 25, GTA V, Tekken 8, It Takes Two, and 30+ titles on a massive 55" 4K display. Bring the whole squad — 4-player co-op is where the magic happens.',
+    color: 'violet',
+    iconBg: 'bg-violet-500/10 border-violet-500/25',
     iconColor: 'text-violet-400',
+    gradient: 'from-violet-500/10 to-purple-500/5',
   },
   {
     icon: Crosshair,
     title: 'Metashot AR Cricket',
-    desc: 'India\'s first AR cricket experience — bowl, bat, and feel the stadium.',
-    color: 'from-emerald-400 to-green-500',
-    glow: 'shadow-emerald-500/20',
-    iconBg: 'bg-emerald-500/15 border-emerald-500/30',
+    desc: 'India\'s most immersive AR cricket — realistic bowling, batting with real-time scoring. Feel like you\'re at the stadium without leaving Trichy.',
+    color: 'emerald',
+    iconBg: 'bg-emerald-500/10 border-emerald-500/25',
     iconColor: 'text-emerald-400',
+    gradient: 'from-emerald-500/10 to-green-500/5',
   },
   {
     icon: Target,
-    title: 'Darts',
-    desc: 'Classic pub-style darts — compete with friends or just chill and throw.',
-    color: 'from-amber-400 to-orange-500',
-    glow: 'shadow-amber-500/20',
-    iconBg: 'bg-amber-500/15 border-amber-500/30',
+    title: 'Darts Zone',
+    desc: 'Classic steel-tip darts with proper lighting and scoring boards. Challenge your friends to 501, Cricket, or Around the World. All skill levels welcome.',
+    color: 'amber',
+    iconBg: 'bg-amber-500/10 border-amber-500/25',
     iconColor: 'text-amber-400',
+    gradient: 'from-amber-500/10 to-orange-500/5',
   },
 ];
 
 const vibeFeatures = [
-  { icon: Music, text: 'Chill Lo-fi & Gaming Beats' },
-  { icon: Wifi, text: 'Free High-Speed Wi-Fi' },
-  { icon: Coffee, text: 'Affordable Café Menu' },
-  { icon: Users, text: 'Squad-Friendly Setup' },
-  { icon: Zap, text: 'Neon-Lit Ambience' },
-  { icon: Crown, text: 'Same Cuephoria Quality' },
+  { icon: Music, text: 'Chill Lo-fi & Gaming Beats', desc: 'Curated playlists that set the mood' },
+  { icon: Wifi, text: 'Free High-Speed Wi-Fi', desc: 'Stream, download, or finish assignments' },
+  { icon: Coffee, text: 'Affordable Café Menu', desc: 'Snacks, drinks & combos under ₹100' },
+  { icon: Users, text: 'Squad-Friendly Setup', desc: 'Designed for groups of 2-8 people' },
+  { icon: Zap, text: 'Neon-Lit Ambience', desc: 'Instagram-worthy interiors' },
+  { icon: Crown, text: 'Same Cuephoria Quality', desc: 'Premium gear, trained staff' },
+  { icon: Shield, text: 'Safe & Secure', desc: 'CCTV, clean space, zero tolerance' },
+  { icon: Timer, text: 'Extended Hours', desc: '11 AM to 11 PM every single day' },
 ];
 
 const pricingPlans = [
@@ -113,9 +140,10 @@ const pricingPlans = [
     per: '/ 30 min',
     desc: 'Quick game before or after class',
     features: ['Pool Table Access', 'Darts Zone', 'Free Wi-Fi', 'Café Access'],
-    accent: 'border-cyan-500/40',
+    accent: 'border-cyan-500/30 hover:border-cyan-500/50',
     badge: null,
-    btnClass: 'bg-white/10 hover:bg-white/20 text-white border border-white/20',
+    btnClass: 'bg-white/[0.08] hover:bg-white/[0.15] text-white border border-white/[0.15]',
+    glowColor: 'cyan',
   },
   {
     name: 'Squad',
@@ -123,204 +151,410 @@ const pricingPlans = [
     per: '/ hour',
     desc: 'The perfect hangout package',
     features: ['PS5 Gaming (4 Controllers)', 'Pool Table Access', 'Metashot AR Cricket', 'Darts Zone', 'Free Wi-Fi', '10% Café Discount'],
-    accent: 'border-amber-400/60',
+    accent: 'border-amber-500/40 hover:border-amber-500/60',
     badge: 'MOST POPULAR',
-    btnClass: 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black font-black',
+    btnClass: 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-black font-black shadow-lg shadow-amber-500/20',
+    glowColor: 'amber',
   },
   {
     name: 'Monthly Pass',
     price: '₹999',
     per: '/ month',
     desc: 'Unlimited access for regulars',
-    features: ['Unlimited Pool', 'Unlimited Darts', '2hrs PS5/day', 'AR Cricket Sessions', 'Priority Booking', '20% Café Discount', 'Exclusive Events'],
-    accent: 'border-violet-500/40',
+    features: ['Unlimited Pool & Darts', '2hrs PS5 / day', 'AR Cricket Sessions', 'Priority Booking', '20% Café Discount', 'Exclusive Member Events', 'Birthday Freebie'],
+    accent: 'border-violet-500/30 hover:border-violet-500/50',
     badge: 'BEST VALUE',
-    btnClass: 'bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white font-black',
+    btnClass: 'bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-400 hover:to-purple-500 text-white font-black shadow-lg shadow-violet-500/20',
+    glowColor: 'violet',
   },
 ];
 
+const comparisonRows = [
+  { feature: 'Location', lite: 'Opposite NIT Trichy', main: 'Thiruverumbur, Trichy' },
+  { feature: 'Pool Tables', lite: '2 Tables', main: '3+ Tables' },
+  { feature: 'PS5 Consoles', lite: '1 Console, 4 Controllers', main: 'Multiple Consoles' },
+  { feature: 'VR Gaming', lite: 'Coming Soon', main: 'Meta Quest 3S' },
+  { feature: 'AR Cricket', lite: 'Metashot AR', main: 'Metashot AR' },
+  { feature: 'Darts', lite: 'Available', main: 'Available' },
+  { feature: 'Starting Price', lite: '₹49 / 30 min', main: '₹99 / 30 min' },
+  { feature: 'Student Discounts', lite: 'Up to 60% OFF', main: 'Up to 50% OFF' },
+  { feature: 'Target Audience', lite: 'Students & Budget', main: 'Everyone' },
+];
+
+const faqs = [
+  { q: 'Where exactly is Cuephoria Lite?', a: 'Right opposite NIT Trichy main gate — just a 2-minute walk from campus. Look for the neon signage at QR64+CRV, Electronics Bus Stop, Valavandankottai.' },
+  { q: 'Do I need to book in advance?', a: 'Walk-ins are welcome! But during peak hours (4-9 PM), we recommend a quick WhatsApp booking to guarantee your slot.' },
+  { q: 'Is there a student discount?', a: 'Absolutely! Show any valid student ID (NIT, Anna Univ, or any college) for an extra 10% OFF on all plans. NIT students get special perks with code NIT35.' },
+  { q: 'Can I bring my own PS5 games?', a: 'We have 30+ titles ready, but yes — bring your own disc and we\'ll load it up. Digital accounts are not supported for security reasons.' },
+  { q: 'What\'s the difference from the main branch?', a: 'Cuephoria Lite is a compact, budget-friendly version designed for students. Same quality gear, same vibe, more affordable. The main branch has more tables, VR gaming, and larger space.' },
+  { q: 'Are there group packages?', a: 'Yes! Groups of 4+ get automatic 15% discount on the Squad plan. Birthday parties and college event bookings get custom packages — WhatsApp us for details.' },
+];
+
+const SECTIONS = ['home', 'activities', 'vibe', 'pricing', 'compare', 'faq', 'location'];
+
 const CuephoriaLite = () => {
   const countdown = useCountdown();
-  const heroRef = useRef<HTMLDivElement>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [activeSection, setActiveSection] = useState('home');
+  const activeSectionRef = useRef(activeSection);
+  activeSectionRef.current = activeSection;
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (mobileOpen) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        let current = '';
+        for (const id of SECTIONS) {
+          const el = document.getElementById(id);
+          if (el) {
+            const { top, bottom } = el.getBoundingClientRect();
+            if (top <= 150 && bottom >= 100) { current = id; break; }
+          }
+        }
+        if (current && current !== activeSectionRef.current) setActiveSection(current);
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { href: '#activities', label: 'Activities' },
+    { href: '#pricing', label: 'Pricing' },
+    { href: '#compare', label: 'Compare' },
+    { href: '#faq', label: 'FAQ' },
+    { href: '#location', label: 'Location' },
+  ];
 
   return (
-    <div className="min-h-screen bg-[#060A13] text-white overflow-hidden">
+    <div className="min-h-screen bg-gaming-darker text-white overflow-x-hidden">
       <SEOMetadata
         title="Cuephoria Lite | Student-Friendly Gaming Lounge Near NIT Trichy"
-        description="Cuephoria Lite — Trichy's most affordable gaming spot opposite NIT. 2 Pool Tables, 4 PS5 Controllers, Metashot AR Cricket, Darts & the best student chill zone. Opening April 12, 2026!"
+        description="Cuephoria Lite — Trichy's most affordable gaming spot opposite NIT. 2 Pool Tables, 4 PS5 Controllers, Metashot AR Cricket, Darts & the best student chill zone."
       />
 
-      {/* ── Ambient Background ─────────────────────────────────────── */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-amber-500/[0.04] rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-500/[0.03] rounded-full blur-[100px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-500/[0.02] rounded-full blur-[150px]" />
+      {/* ── Ambient Layers ───────────────────────────────────────── */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-40 left-1/4 w-[700px] h-[700px] bg-amber-500/[0.035] rounded-full blur-[150px] animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute -bottom-40 right-1/4 w-[600px] h-[600px] bg-neon-blue/[0.025] rounded-full blur-[130px] animate-pulse" style={{ animationDuration: '12s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-violet-500/[0.018] rounded-full blur-[180px] animate-pulse" style={{ animationDuration: '15s' }} />
       </div>
 
-      {/* ── Navigation Bar ─────────────────────────────────────────── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-2xl bg-black/40 border-b border-white/[0.06]">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2.5 group">
+      {/* ══════════════════════════════════════════════════════════════
+          NAVBAR
+         ══════════════════════════════════════════════════════════════ */}
+      <header className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled
+          ? "bg-gaming-darker/85 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.3)] py-2"
+          : "bg-transparent py-3 md:py-4"
+      )}>
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          {/* Brand */}
+          <Link to="/lite" className="flex items-center gap-2.5 group">
             <img
-              src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png"
-              alt="Cuephoria"
-              className="h-8 group-hover:scale-105 transition-transform"
+              src="/cuephoria-lite-logo.png"
+              alt="Cuephoria Lite"
+              className="h-9 md:h-11 group-hover:scale-105 transition-transform rounded-lg"
             />
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-lg font-bold text-white">CUEPHORIA</span>
-              <span className="text-xs font-black px-1.5 py-0.5 rounded bg-gradient-to-r from-amber-500/30 to-orange-500/30 border border-amber-500/50 text-amber-300">LITE</span>
+            <div className="hidden sm:flex flex-col leading-tight">
+              <span className="text-base md:text-lg font-black neon-text-blue">CUEPHORIA</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.25em] bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Lite Edition</span>
             </div>
           </Link>
-          <div className="flex items-center gap-3">
-            <Link to="/" className="text-sm text-gray-400 hover:text-white transition-colors hidden sm:block">
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className={cn(
+                  "px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200",
+                  activeSection === l.href.slice(1)
+                    ? "text-amber-400 bg-amber-500/10"
+                    : "text-gray-400 hover:text-white hover:bg-white/[0.05]"
+                )}
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Desktop CTAs */}
+          <div className="hidden md:flex items-center gap-3">
+            <Link to="/" className="text-xs text-gray-500 hover:text-white transition-colors px-3 py-1.5">
               Main Branch
             </Link>
             <a
-              href="https://maps.app.goo.gl/nvTtK6SG4nGQXenGA"
+              href={GMAP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black text-sm font-bold hover:shadow-lg hover:shadow-amber-500/25 transition-all hover:scale-105"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black text-sm font-black hover:shadow-lg hover:shadow-amber-500/25 transition-all hover:scale-105"
             >
               <MapPin className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">Get Directions</span>
-              <span className="sm:hidden">Map</span>
+              Directions
             </a>
           </div>
+
+          {/* Mobile Menu Toggle */}
+          <button className="md:hidden text-white p-1" onClick={() => setMobileOpen(!mobileOpen)}>
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
-      </nav>
+      </header>
+
+      {/* Mobile Menu Overlay */}
+      <div className={cn(
+        "fixed inset-0 bg-gaming-darker/95 backdrop-blur-xl z-50 transition-all duration-300 md:hidden",
+        mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      )}>
+        <div className="pt-20 pb-8 px-6 h-full overflow-y-auto">
+          <nav className="flex flex-col items-center gap-5">
+            {navLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setMobileOpen(false)}
+                className="text-lg text-gray-300 hover:text-amber-400 transition-colors"
+              >
+                {l.label}
+              </a>
+            ))}
+            <div className="h-px w-16 bg-white/10 my-2" />
+            <Link to="/" onClick={() => setMobileOpen(false)} className="text-sm text-gray-500 hover:text-white transition-colors">
+              Main Branch
+            </Link>
+            <a
+              href={GMAP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-black text-sm"
+            >
+              <MapPin className="h-4 w-4" /> Get Directions
+            </a>
+            <a
+              href={WA_LINK("Hey! I want to know about Cuephoria Lite!")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-green-500/40 text-green-400 font-semibold text-sm"
+            >
+              <MessageCircle className="h-4 w-4" /> WhatsApp Us
+            </a>
+          </nav>
+        </div>
+      </div>
 
       {/* ══════════════════════════════════════════════════════════════
           HERO
          ══════════════════════════════════════════════════════════════ */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center pt-16">
+      <section id="home" className="relative min-h-screen flex items-center pt-20 pb-12">
+        {/* Floating particles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 right-10 w-2 h-2 bg-amber-400/60 rounded-full animate-pulse" />
-          <div className="absolute top-40 left-20 w-1.5 h-1.5 bg-cyan-400/40 rounded-full animate-ping" />
-          <div className="absolute bottom-40 right-40 w-1 h-1 bg-violet-400/50 rounded-full animate-pulse" />
-          <div className="absolute top-1/3 left-1/3 w-px h-32 bg-gradient-to-b from-transparent via-amber-500/20 to-transparent rotate-45" />
-          <div className="absolute bottom-1/3 right-1/3 w-px h-24 bg-gradient-to-b from-transparent via-cyan-500/15 to-transparent -rotate-12" />
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full bg-amber-400/30 animate-pulse"
+              style={{
+                width: `${2 + Math.random() * 3}px`,
+                height: `${2 + Math.random() * 3}px`,
+                top: `${15 + Math.random() * 70}%`,
+                left: `${10 + Math.random() * 80}%`,
+                animationDuration: `${3 + Math.random() * 4}s`,
+                animationDelay: `${Math.random() * 2}s`,
+              }}
+            />
+          ))}
+          <div className="absolute top-1/4 left-10 w-px h-40 bg-gradient-to-b from-transparent via-amber-500/15 to-transparent rotate-[30deg]" />
+          <div className="absolute bottom-1/4 right-20 w-px h-32 bg-gradient-to-b from-transparent via-neon-blue/10 to-transparent -rotate-[20deg]" />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-black uppercase tracking-widest mb-6 backdrop-blur-sm">
-              <Flame className="h-3.5 w-3.5 animate-pulse" />
-              Grand Opening — {countdown.expired ? 'Now Open!' : 'April 12, 2026'}
+          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+            {/* Left — Text */}
+            <div className="flex-1 text-center lg:text-left">
+              {/* Badge */}
+              <Reveal>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-black uppercase tracking-widest mb-6 backdrop-blur-sm">
+                  <Flame className="h-3.5 w-3.5 animate-pulse" />
+                  {countdown.expired ? 'Now Open!' : 'Grand Opening — April 12, 2026'}
+                  <span className="px-1.5 py-0.5 bg-green-500/20 border border-green-500/40 rounded-full text-green-400 text-[9px] font-black">NEW</span>
+                </div>
+              </Reveal>
+
+              {/* Title */}
+              <Reveal delay={100}>
+                <h1 className="font-black leading-[0.92] mb-5">
+                  <span className="block text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-amber-200 via-amber-400 to-orange-500 bg-clip-text text-transparent">
+                    CUEPHORIA
+                  </span>
+                  <span className="block text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-neon-blue via-purple-300 to-neon-pink bg-clip-text text-transparent mt-1">
+                    LITE
+                  </span>
+                  <span className="block text-base md:text-xl mt-4 text-white/80 font-semibold tracking-wide">
+                    The Student Gaming Spot — Opposite NIT Trichy
+                  </span>
+                </h1>
+              </Reveal>
+
+              <Reveal delay={200}>
+                <p className="text-gray-400 text-sm md:text-base max-w-lg mx-auto lg:mx-0 mb-6 leading-relaxed">
+                  Premium pool tables, PS5 gaming with 4 controllers, Metashot AR Cricket, and Darts
+                  — all starting at just <span className="text-amber-400 font-bold">₹49</span>. The ultimate chill zone built for student budgets.
+                </p>
+              </Reveal>
+
+              {/* Countdown */}
+              {!countdown.expired && (
+                <Reveal delay={300}>
+                  <div className="inline-flex items-center gap-2 md:gap-3 backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] rounded-2xl px-4 md:px-6 py-3 mb-7">
+                    <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mr-1 hidden sm:inline">Opens in</span>
+                    {[
+                      { v: countdown.d, l: 'D' },
+                      { v: countdown.h, l: 'H' },
+                      { v: countdown.m, l: 'M' },
+                      { v: countdown.s, l: 'S' },
+                    ].map(({ v, l }, i) => (
+                      <React.Fragment key={l}>
+                        <div className="text-center min-w-[36px] md:min-w-[44px]">
+                          <div className="text-xl md:text-2xl font-black tabular-nums bg-gradient-to-b from-amber-300 to-amber-500 bg-clip-text text-transparent">
+                            {String(v).padStart(2, '0')}
+                          </div>
+                          <div className="text-[8px] text-gray-600 font-bold uppercase">{l}</div>
+                        </div>
+                        {i < 3 && <span className="text-amber-500/30 font-black text-sm self-start mt-1">:</span>}
+                      </React.Fragment>
+                    ))}
+                  </div>
+                </Reveal>
+              )}
+
+              {countdown.expired && (
+                <Reveal delay={300}>
+                  <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-green-500/15 border border-green-500/40 text-green-400 font-bold text-sm mb-7 animate-pulse">
+                    <Sparkles className="h-4 w-4" />
+                    We're OPEN — Come visit!
+                  </div>
+                </Reveal>
+              )}
+
+              {/* CTAs */}
+              <Reveal delay={400}>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-6">
+                  <a
+                    href={GMAP_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-black text-sm hover:shadow-xl hover:shadow-amber-500/25 transition-all hover:scale-[1.03] active:scale-100"
+                  >
+                    <MapPin className="h-4 w-4" /> Get Directions
+                  </a>
+                  <a
+                    href={WA_LINK("Hey! I want to know about Cuephoria Lite near NIT Trichy!")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl border-2 border-green-500/40 text-white font-semibold text-sm hover:bg-green-500/10 hover:border-green-500/60 transition-all hover:scale-[1.03]"
+                  >
+                    <MessageCircle className="h-4 w-4 text-green-400" /> WhatsApp Us
+                  </a>
+                </div>
+              </Reveal>
+
+              {/* Quick Info chips */}
+              <Reveal delay={500}>
+                <div className="flex flex-wrap gap-2 justify-center lg:justify-start text-xs text-gray-400">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08]">
+                    <Clock className="h-3 w-3 text-neon-pink" /> 11 AM – 11 PM
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08]">
+                    <MapPin className="h-3 w-3 text-neon-blue" /> Opposite NIT Trichy
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08]">
+                    <Zap className="h-3 w-3 text-amber-400" /> From ₹49
+                  </span>
+                </div>
+              </Reveal>
             </div>
 
-            {/* Title */}
-            <h1 className="font-black leading-[0.95] mb-5">
-              <span className="block text-5xl md:text-7xl lg:text-8xl bg-gradient-to-r from-amber-300 via-orange-400 to-amber-500 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(245,158,11,0.15)]">
-                CUEPHORIA LITE
-              </span>
-              <span className="block text-lg md:text-2xl mt-3 text-white/80 font-semibold tracking-wide">
-                The Student Gaming Spot — Opposite NIT Trichy
-              </span>
-            </h1>
-
-            <p className="text-gray-400 text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed">
-              Same Cuephoria luxury. Pocket-friendly prices. Pool, PS5, AR Cricket, Darts
-              — the ultimate chill zone built for students.
-            </p>
-
-            {/* Countdown */}
-            {!countdown.expired && (
-              <div className="inline-flex items-center gap-1.5 md:gap-3 backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] rounded-2xl px-5 py-3 mb-8">
-                {[
-                  { v: countdown.d, l: 'Days' },
-                  { v: countdown.h, l: 'Hours' },
-                  { v: countdown.m, l: 'Mins' },
-                  { v: countdown.s, l: 'Secs' },
-                ].map(({ v, l }, i) => (
-                  <React.Fragment key={l}>
-                    <div className="text-center min-w-[52px]">
-                      <div className="text-2xl md:text-3xl font-black tabular-nums bg-gradient-to-b from-amber-300 to-amber-500 bg-clip-text text-transparent">
-                        {String(v).padStart(2, '0')}
-                      </div>
-                      <div className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">{l}</div>
-                    </div>
-                    {i < 3 && <div className="text-amber-500/40 text-xl font-black self-start mt-1">:</div>}
-                  </React.Fragment>
-                ))}
-              </div>
-            )}
-
-            {countdown.expired && (
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-green-500/15 border border-green-500/40 text-green-400 font-bold mb-8 animate-pulse">
-                <Sparkles className="h-5 w-5" />
-                We're OPEN — Come say hi!
-              </div>
-            )}
-
-            {/* Hero CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href="https://maps.app.goo.gl/nvTtK6SG4nGQXenGA"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-black text-sm hover:shadow-xl hover:shadow-amber-500/30 transition-all hover:scale-[1.03] active:scale-100"
-              >
-                <MapPin className="h-4 w-4" />
-                Get Directions
-              </a>
-              <a
-                href={`https://wa.me/918637625155?text=${encodeURIComponent("Hey! I want to know more about Cuephoria Lite near NIT Trichy!")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl backdrop-blur-xl bg-white/[0.06] border border-white/[0.12] text-white font-semibold text-sm hover:bg-white/[0.1] transition-all hover:scale-[1.03] active:scale-100"
-              >
-                <MessageCircle className="h-4 w-4 text-green-400" />
-                WhatsApp Us
-              </a>
-            </div>
-
-            {/* Location tag */}
-            <div className="mt-8 flex items-center justify-center gap-2 text-gray-500 text-xs">
-              <MapPin className="h-3 w-3" />
-              <span>QR64+CRV, Opposite NIT Trichy, Valavandankottai, Tamil Nadu 620015</span>
+            {/* Right — Logo */}
+            <div className="w-full lg:w-[45%] flex-shrink-0">
+              <Reveal delay={200}>
+                <div className="relative w-60 h-60 md:w-80 md:h-80 lg:w-96 lg:h-96 mx-auto">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-500/15 via-neon-blue/10 to-neon-pink/10 blur-[60px] animate-pulse" style={{ animationDuration: '6s' }} />
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-violet-500/10 to-amber-500/5 blur-[40px] animate-pulse" style={{ animationDuration: '9s' }} />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <img
+                      src="/cuephoria-lite-logo.png"
+                      alt="Cuephoria Lite"
+                      className="w-full h-full object-contain animate-float drop-shadow-[0_0_50px_rgba(245,158,11,0.25)] rounded-2xl"
+                      width="384" height="384"
+                      fetchPriority="high"
+                    />
+                  </div>
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2">
-          <div className="w-5 h-9 border-2 border-white/15 rounded-full flex justify-center pt-1">
+        {/* Scroll hint */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2">
+          <div className="w-5 h-9 border-2 border-white/10 rounded-full flex justify-center pt-1">
             <div className="w-1 h-2 bg-amber-400/60 rounded-full animate-bounce" />
           </div>
+          <span className="text-white/30 text-[10px] uppercase tracking-widest">Scroll</span>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          WHAT'S INSIDE
+          ACTIVITIES
          ══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 relative">
+      <section id="activities" className="py-20 md:py-28 relative">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-14">
-            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-500/70 mb-3">What You Get</p>
-            <h2 className="text-3xl md:text-5xl font-black mb-4">
-              <span className="bg-gradient-to-r from-white via-gray-200 to-white/70 bg-clip-text text-transparent">
-                Everything You Need to
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
-                Unwind & Compete
-              </span>
-            </h2>
-            <p className="text-gray-500 max-w-lg mx-auto text-sm">
-              Compact space, massive fun. Every corner is designed for the ultimate student hangout.
-            </p>
-          </div>
+          <Reveal>
+            <div className="text-center mb-14">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-500/60 mb-3">What's Inside</p>
+              <h2 className="text-3xl md:text-5xl font-black mb-4">
+                <span className="bg-gradient-to-r from-white via-gray-100 to-white/60 bg-clip-text text-transparent">
+                  Everything You Need to
+                </span>
+                <br />
+                <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+                  Unwind & Compete
+                </span>
+              </h2>
+              <p className="text-gray-500 max-w-lg mx-auto text-sm">
+                Compact space, massive fun. Every corner is designed for the ultimate student hangout experience.
+              </p>
+            </div>
+          </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
             {activities.map((a, i) => (
-              <GlassCard key={a.title} className="p-6 hover:border-white/[0.15] group" delay={i * 100}>
+              <GlassCard key={a.title} className={`p-6 md:p-7 group bg-gradient-to-br ${a.gradient}`} delay={i * 100}>
                 <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 rounded-xl border flex items-center justify-center flex-shrink-0 ${a.iconBg} group-hover:scale-110 transition-transform duration-300`}>
-                    <a.icon className={`h-5 w-5 ${a.iconColor}`} />
+                  <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center flex-shrink-0 ${a.iconBg} group-hover:scale-110 transition-transform duration-500`}>
+                    <a.icon className={`h-6 w-6 ${a.iconColor}`} />
                   </div>
-                  <div>
-                    <h3 className="text-lg font-black text-white mb-1.5">{a.title}</h3>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-black text-white mb-2">{a.title}</h3>
                     <p className="text-gray-400 text-sm leading-relaxed">{a.desc}</p>
                   </div>
                 </div>
@@ -333,100 +567,120 @@ const CuephoriaLite = () => {
       {/* ══════════════════════════════════════════════════════════════
           THE VIBE
          ══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/[0.02] to-transparent pointer-events-none" />
+      <section id="vibe" className="py-20 md:py-28 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/[0.015] to-transparent pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <GlassCard className="p-8 md:p-12">
-              <div className="text-center mb-10">
-                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-cyan-500/70 mb-3">The Vibe</p>
-                <h2 className="text-3xl md:text-4xl font-black mb-3">
-                  <span className="bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
-                    Best Chilling Spot
-                  </span>
-                  <span className="text-white"> Near Campus</span>
-                </h2>
-                <p className="text-gray-400 text-sm max-w-md mx-auto">
-                  Skip the boring canteen. Cuephoria Lite is where you come to recharge, compete, and create memories.
-                </p>
-              </div>
+          <Reveal>
+            <div className="text-center mb-14">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-cyan-500/60 mb-3">The Vibe</p>
+              <h2 className="text-3xl md:text-5xl font-black mb-4">
+                <span className="bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
+                  Best Chilling Spot
+                </span>
+                <span className="text-white"> Near Campus</span>
+              </h2>
+              <p className="text-gray-500 max-w-lg mx-auto text-sm">
+                Skip the boring canteen. Cuephoria Lite is where you recharge, compete, and make memories.
+              </p>
+            </div>
+          </Reveal>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {vibeFeatures.map((f, i) => (
-                  <div
-                    key={f.text}
-                    className="flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] hover:bg-white/[0.06] transition-all duration-300 group"
-                  >
-                    <f.icon className="h-4 w-4 text-amber-400 group-hover:scale-110 transition-transform flex-shrink-0" />
-                    <span className="text-xs md:text-sm text-gray-300 font-medium">{f.text}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-10 text-center">
-                <blockquote className="text-lg md:text-xl italic text-gray-300 max-w-lg mx-auto">
-                  "Where <span className="text-amber-400 font-semibold not-italic">students</span> go to escape. Where <span className="text-cyan-400 font-semibold not-italic">memories</span> get made."
-                </blockquote>
-              </div>
-            </GlassCard>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12">
+            {vibeFeatures.map((f, i) => (
+              <GlassCard key={f.text} className="p-5 group text-center" delay={i * 60}>
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <f.icon className="h-5 w-5 text-amber-400" />
+                </div>
+                <h4 className="text-sm font-black text-white mb-1">{f.text}</h4>
+                <p className="text-xs text-gray-500">{f.desc}</p>
+              </GlassCard>
+            ))}
           </div>
+
+          <Reveal>
+            <div className="max-w-3xl mx-auto text-center">
+              <GlassCard className="p-8 md:p-10" hover={false}>
+                <blockquote className="text-xl md:text-2xl italic text-gray-200 font-medium leading-relaxed">
+                  "Where <span className="text-amber-400 font-black not-italic">students</span> go to escape the routine.
+                  <br className="hidden md:block" />
+                  Where <span className="text-neon-blue font-black not-italic">friendships</span> level up and <span className="text-neon-pink font-black not-italic">memories</span> get made."
+                </blockquote>
+                <div className="mt-5 flex items-center justify-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 text-amber-400 fill-amber-400" />
+                  ))}
+                </div>
+              </GlassCard>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
           PRICING
          ══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 relative">
+      <section id="pricing" className="py-20 md:py-28 relative">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-14">
-            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-500/70 mb-3">Student-Friendly Pricing</p>
-            <h2 className="text-3xl md:text-5xl font-black mb-4">
-              <span className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
-                Built for
-              </span>{' '}
-              <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">
-                Student Budgets
-              </span>
-            </h2>
-            <p className="text-gray-500 max-w-lg mx-auto text-sm">
-              No hidden fees. No surprises. Just clean pricing that respects your wallet.
-            </p>
-          </div>
+          <Reveal>
+            <div className="text-center mb-14">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-500/60 mb-3">Student-Friendly Pricing</p>
+              <h2 className="text-3xl md:text-5xl font-black mb-4">
+                <span className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
+                  Built for
+                </span>{' '}
+                <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">
+                  Student Budgets
+                </span>
+              </h2>
+              <p className="text-gray-500 max-w-lg mx-auto text-sm">
+                No hidden fees. No surprises. Just clean pricing that respects your wallet.
+              </p>
+            </div>
+          </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto items-start">
             {pricingPlans.map((plan, i) => (
               <GlassCard
                 key={plan.name}
-                className={`p-6 md:p-8 ${plan.accent} ${plan.badge === 'MOST POPULAR' ? 'md:-mt-4 md:mb-[-16px] md:py-10' : ''}`}
+                className={cn(
+                  "p-6 md:p-8",
+                  plan.accent,
+                  plan.badge === 'MOST POPULAR' && 'md:-mt-3 md:pb-10 ring-1 ring-amber-500/30'
+                )}
                 delay={i * 120}
               >
                 {plan.badge && (
                   <div className="mb-4">
-                    <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider ${plan.badge === 'MOST POPULAR' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40' : 'bg-violet-500/20 text-violet-400 border border-violet-500/40'}`}>
+                    <span className={cn(
+                      "inline-flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider",
+                      plan.badge === 'MOST POPULAR'
+                        ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
+                        : 'bg-violet-500/15 text-violet-400 border border-violet-500/30'
+                    )}>
                       <Star className="h-3 w-3" />
                       {plan.badge}
                     </span>
                   </div>
                 )}
-                <h3 className="text-lg font-black text-white mb-1">{plan.name}</h3>
-                <p className="text-xs text-gray-500 mb-4">{plan.desc}</p>
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-4xl font-black bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">{plan.price}</span>
+                <h3 className="text-xl font-black text-white mb-1">{plan.name}</h3>
+                <p className="text-xs text-gray-500 mb-5">{plan.desc}</p>
+                <div className="flex items-baseline gap-1.5 mb-7">
+                  <span className="text-4xl md:text-5xl font-black bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">{plan.price}</span>
                   <span className="text-sm text-gray-500 font-medium">{plan.per}</span>
                 </div>
-                <ul className="space-y-2.5 mb-8">
+                <ul className="space-y-3 mb-8">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-gray-300">
-                      <Check className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
+                    <li key={f} className="flex items-center gap-2.5 text-sm text-gray-300">
+                      <Check className="h-4 w-4 text-amber-400 flex-shrink-0" />
                       {f}
                     </li>
                   ))}
                 </ul>
                 <a
-                  href={`https://wa.me/918637625155?text=${encodeURIComponent(`Hi! I'm interested in the ${plan.name} plan at Cuephoria Lite.`)}`}
+                  href={WA_LINK(`Hi! I'm interested in the ${plan.name} plan at Cuephoria Lite.`)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm transition-all duration-300 hover:scale-[1.03] active:scale-100 ${plan.btnClass}`}
+                  className={cn("w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm transition-all duration-300 hover:scale-[1.03] active:scale-100", plan.btnClass)}
                 >
                   Get Started <ArrowRight className="h-4 w-4" />
                 </a>
@@ -434,11 +688,61 @@ const CuephoriaLite = () => {
             ))}
           </div>
 
-          <div className="text-center mt-8">
-            <p className="text-gray-500 text-xs">
-              NIT student? Show your ID for an extra <span className="text-amber-400 font-bold">10% OFF</span> on any plan!
-            </p>
-          </div>
+          <Reveal delay={200}>
+            <div className="text-center mt-10">
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-green-500/10 border border-green-500/25 text-green-400 text-sm font-semibold">
+                <Gift className="h-4 w-4" />
+                NIT student? Show your ID for an extra <span className="font-black">10% OFF</span> on any plan!
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          COMPARE
+         ══════════════════════════════════════════════════════════════ */}
+      <section id="compare" className="py-20 md:py-28 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-500/[0.012] to-transparent pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
+          <Reveal>
+            <div className="text-center mb-14">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-neon-pink/60 mb-3">Compare</p>
+              <h2 className="text-3xl md:text-5xl font-black mb-4">
+                <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">Lite</span>
+                <span className="text-white/60 mx-3">vs</span>
+                <span className="bg-gradient-to-r from-neon-blue to-purple-400 bg-clip-text text-transparent">Main Branch</span>
+              </h2>
+              <p className="text-gray-500 max-w-lg mx-auto text-sm">Same DNA, different vibe. Pick what suits your needs.</p>
+            </div>
+          </Reveal>
+
+          <GlassCard className="max-w-3xl mx-auto overflow-hidden" hover={false}>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-white/[0.06]">
+                    <th className="text-left p-4 text-gray-500 font-bold text-xs uppercase tracking-wider">Feature</th>
+                    <th className="p-4 text-center">
+                      <span className="text-amber-400 font-black text-sm">Lite</span>
+                    </th>
+                    <th className="p-4 text-center">
+                      <span className="text-neon-blue font-black text-sm">Main</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonRows.map((row, i) => (
+                    <tr key={row.feature} className={cn("border-b border-white/[0.04]", i % 2 === 0 && "bg-white/[0.01]")}>
+                      <td className="p-4 text-gray-400 font-medium">{row.feature}</td>
+                      <td className="p-4 text-center text-white font-semibold">{row.lite}</td>
+                      <td className="p-4 text-center text-gray-400">{row.main}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </GlassCard>
         </div>
       </section>
 
@@ -446,52 +750,61 @@ const CuephoriaLite = () => {
           STUDENT SPECIALS
          ══════════════════════════════════════════════════════════════ */}
       <section className="py-20 md:py-28 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-500/[0.02] to-transparent pointer-events-none" />
-        <div className="container mx-auto px-4 relative z-10">
-          <GlassCard className="max-w-4xl mx-auto p-8 md:p-12">
-            <div className="flex flex-col md:flex-row items-center gap-8">
+        <div className="container mx-auto px-4">
+          <GlassCard className="max-w-5xl mx-auto p-8 md:p-12" hover={false}>
+            <div className="flex flex-col lg:flex-row items-center gap-10">
               <div className="flex-1">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-500/15 border border-green-500/30 rounded-full text-green-400 text-xs font-black uppercase tracking-wider mb-4">
-                  <Gift className="h-3 w-3" />
-                  Student Specials
-                </div>
-                <h2 className="text-2xl md:text-3xl font-black text-white mb-4">
-                  Why Students
-                  <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent"> Love </span>
-                  Cuephoria Lite
-                </h2>
-                <ul className="space-y-3">
+                <Reveal>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-500/10 border border-green-500/25 rounded-full text-green-400 text-xs font-black uppercase tracking-wider mb-5">
+                    <Gift className="h-3 w-3" /> Student Specials
+                  </div>
+                  <h2 className="text-2xl md:text-4xl font-black text-white mb-6">
+                    Why Students
+                    <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent"> Love </span>
+                    <br className="hidden md:block" />
+                    Cuephoria Lite
+                  </h2>
+                </Reveal>
+                <ul className="space-y-3.5">
                   {[
                     'Starts at ₹49 — cheaper than a fancy coffee',
                     'Just 2 minutes walk from NIT Trichy campus',
-                    'Group discounts for 4+ friends',
+                    'Group discounts for 4+ friends (15% off)',
                     'Free Wi-Fi for assignments (we know the vibe)',
-                    'Monthly pass = unlimited fun for ₹999',
+                    'Monthly pass = unlimited fun for just ₹999',
                     'Opening day: up to 60% OFF for early birds',
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2.5">
-                      <Check className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-300 text-sm">{item}</span>
-                    </li>
+                    'Birthday month? Get a FREE hour on us!',
+                    'Refer a friend — both get 20% off next visit',
+                  ].map((item, i) => (
+                    <Reveal key={item} delay={i * 50}>
+                      <li className="flex items-start gap-3">
+                        <div className="w-5 h-5 rounded-full bg-green-500/15 border border-green-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="h-3 w-3 text-green-400" />
+                        </div>
+                        <span className="text-gray-300 text-sm">{item}</span>
+                      </li>
+                    </Reveal>
                   ))}
                 </ul>
               </div>
-              <div className="w-full md:w-64 flex-shrink-0">
-                <div className="backdrop-blur-xl bg-white/[0.04] border border-white/[0.08] rounded-2xl p-6 text-center">
-                  <div className="text-5xl font-black bg-gradient-to-b from-amber-300 to-amber-500 bg-clip-text text-transparent mb-1">₹49</div>
-                  <div className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-4">Starting Price</div>
-                  <div className="h-px bg-white/10 mb-4" />
-                  <p className="text-gray-400 text-xs mb-4">Less than your daily chai budget</p>
-                  <a
-                    href={`https://wa.me/918637625155?text=${encodeURIComponent("Hey! I'm an NIT student. What deals do you have at Cuephoria Lite?")}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black text-xs font-black hover:shadow-lg hover:shadow-amber-500/25 transition-all hover:scale-105"
-                  >
-                    <MessageCircle className="h-3.5 w-3.5" />
-                    Claim Student Offer
-                  </a>
-                </div>
+              <div className="w-full lg:w-72 flex-shrink-0">
+                <Reveal delay={200}>
+                  <div className="backdrop-blur-xl bg-white/[0.03] border border-amber-500/20 rounded-2xl p-8 text-center">
+                    <div className="text-6xl font-black bg-gradient-to-b from-amber-300 to-amber-500 bg-clip-text text-transparent mb-1">₹49</div>
+                    <div className="text-gray-500 text-xs font-black uppercase tracking-widest mb-5">Starting Price</div>
+                    <div className="h-px bg-white/10 mb-5" />
+                    <p className="text-gray-400 text-sm mb-2">Less than your daily</p>
+                    <p className="text-amber-400 text-sm font-bold mb-6">chai + samosa budget</p>
+                    <a
+                      href={WA_LINK("Hey! I'm an NIT student. What deals do you have at Cuephoria Lite?")}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black text-sm font-black hover:shadow-lg hover:shadow-amber-500/25 transition-all hover:scale-105"
+                    >
+                      <MessageCircle className="h-4 w-4" /> Claim Student Offer
+                    </a>
+                  </div>
+                </Reveal>
               </div>
             </div>
           </GlassCard>
@@ -499,29 +812,77 @@ const CuephoriaLite = () => {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
+          FAQ
+         ══════════════════════════════════════════════════════════════ */}
+      <section id="faq" className="py-20 md:py-28 relative">
+        <div className="container mx-auto px-4">
+          <Reveal>
+            <div className="text-center mb-14">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-500/60 mb-3">FAQ</p>
+              <h2 className="text-3xl md:text-5xl font-black mb-4">
+                <span className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
+                  Got Questions?
+                </span>
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="max-w-3xl mx-auto space-y-3">
+            {faqs.map((faq, i) => (
+              <Reveal key={i} delay={i * 60}>
+                <button
+                  onClick={() => setActiveFaq(activeFaq === i ? null : i)}
+                  className={cn(
+                    "w-full text-left backdrop-blur-xl rounded-xl border transition-all duration-300",
+                    activeFaq === i
+                      ? "bg-white/[0.05] border-amber-500/30"
+                      : "bg-white/[0.02] border-white/[0.06] hover:border-white/[0.12]"
+                  )}
+                >
+                  <div className="flex items-center justify-between p-5">
+                    <span className="text-sm font-bold text-white pr-4">{faq.q}</span>
+                    <ChevronUp className={cn(
+                      "h-4 w-4 text-amber-400 flex-shrink-0 transition-transform duration-300",
+                      activeFaq === i ? "rotate-0" : "rotate-180"
+                    )} />
+                  </div>
+                  <div className={cn(
+                    "overflow-hidden transition-all duration-300",
+                    activeFaq === i ? "max-h-48 pb-5 px-5" : "max-h-0"
+                  )}>
+                    <p className="text-sm text-gray-400 leading-relaxed">{faq.a}</p>
+                  </div>
+                </button>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
           LOCATION + CONTACT
          ══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 relative">
+      <section id="location" className="py-20 md:py-28 relative">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-14">
-            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-500/70 mb-3">Find Us</p>
-            <h2 className="text-3xl md:text-5xl font-black">
-              <span className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
-                Right Next to
-              </span>{' '}
-              <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
-                Your Campus
-              </span>
-            </h2>
-          </div>
+          <Reveal>
+            <div className="text-center mb-14">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-500/60 mb-3">Find Us</p>
+              <h2 className="text-3xl md:text-5xl font-black">
+                <span className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">Right Next to </span>
+                <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Your Campus</span>
+              </h2>
+            </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
-            <GlassCard className="p-6 md:p-8">
-              <h3 className="text-lg font-black text-white mb-5 flex items-center gap-2">
-                <MapPin className="h-5 w-5 text-amber-400" />
+            <GlassCard className="p-7 md:p-8">
+              <h3 className="text-lg font-black text-white mb-6 flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+                  <MapPin className="h-4 w-4 text-amber-400" />
+                </div>
                 Location
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-5">
                 <div>
                   <p className="text-amber-400 font-bold text-sm mb-1">Cuephoria Lite</p>
                   <p className="text-gray-400 text-sm leading-relaxed">
@@ -530,63 +891,65 @@ const CuephoriaLite = () => {
                     Valavandankottai, Tamil Nadu 620015
                   </p>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-300">
-                  <Clock className="h-4 w-4 text-cyan-400" />
+                <div className="flex items-center gap-2.5 text-sm text-gray-300">
+                  <Clock className="h-4 w-4 text-neon-blue" />
                   <span>11:00 AM – 11:00 PM, Every Day</span>
                 </div>
                 <a
-                  href="https://maps.app.goo.gl/nvTtK6SG4nGQXenGA"
+                  href={GMAP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black text-sm font-bold hover:shadow-lg hover:shadow-amber-500/25 transition-all hover:scale-105"
                 >
-                  <MapPin className="h-4 w-4" />
-                  Open in Google Maps
-                  <ExternalLink className="h-3.5 w-3.5" />
+                  <MapPin className="h-4 w-4" /> Open in Google Maps <ExternalLink className="h-3.5 w-3.5" />
                 </a>
               </div>
             </GlassCard>
 
-            <GlassCard className="p-6 md:p-8" delay={100}>
-              <h3 className="text-lg font-black text-white mb-5 flex items-center gap-2">
-                <Phone className="h-5 w-5 text-cyan-400" />
+            <GlassCard className="p-7 md:p-8" delay={100}>
+              <h3 className="text-lg font-black text-white mb-6 flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-neon-blue/10 border border-neon-blue/20 flex items-center justify-center">
+                  <Phone className="h-4 w-4 text-neon-blue" />
+                </div>
                 Get in Touch
               </h3>
               <div className="space-y-3">
-                <a
-                  href={`https://wa.me/918637625155?text=${encodeURIComponent("Hi! I'd like to know more about Cuephoria Lite near NIT Trichy.")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-xl bg-green-500/10 border border-green-500/20 hover:border-green-500/40 transition-all group"
-                >
-                  <MessageCircle className="h-5 w-5 text-green-400 group-hover:scale-110 transition-transform" />
-                  <div>
-                    <div className="text-sm font-bold text-white">WhatsApp</div>
-                    <div className="text-xs text-gray-400">+91 86376 25155</div>
-                  </div>
-                </a>
-                <a
-                  href="tel:+917550025155"
-                  className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 hover:border-blue-500/40 transition-all group"
-                >
-                  <Phone className="h-5 w-5 text-blue-400 group-hover:scale-110 transition-transform" />
-                  <div>
-                    <div className="text-sm font-bold text-white">Call Us</div>
-                    <div className="text-xs text-gray-400">+91 75500 25155</div>
-                  </div>
-                </a>
-                <a
-                  href="https://www.instagram.com/cuephoriaclub"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-xl bg-pink-500/10 border border-pink-500/20 hover:border-pink-500/40 transition-all group"
-                >
-                  <Instagram className="h-5 w-5 text-pink-400 group-hover:scale-110 transition-transform" />
-                  <div>
-                    <div className="text-sm font-bold text-white">Instagram</div>
-                    <div className="text-xs text-gray-400">@cuephoriaclub</div>
-                  </div>
-                </a>
+                {[
+                  {
+                    href: WA_LINK("Hi! I'd like to know more about Cuephoria Lite."),
+                    icon: MessageCircle, label: 'WhatsApp', detail: '+91 86376 25155',
+                    color: 'green', bg: 'bg-green-500/10 border-green-500/20 hover:border-green-500/40',
+                  },
+                  {
+                    href: 'tel:+917550025155',
+                    icon: Phone, label: 'Call Us', detail: '+91 75500 25155',
+                    color: 'blue', bg: 'bg-blue-500/10 border-blue-500/20 hover:border-blue-500/40',
+                  },
+                  {
+                    href: 'https://www.instagram.com/cuephoriaclub',
+                    icon: Instagram, label: 'Instagram', detail: '@cuephoriaclub',
+                    color: 'pink', bg: 'bg-pink-500/10 border-pink-500/20 hover:border-pink-500/40',
+                  },
+                  {
+                    href: 'mailto:contact@cuephoria.in',
+                    icon: Mail, label: 'Email', detail: 'contact@cuephoria.in',
+                    color: 'amber', bg: 'bg-amber-500/10 border-amber-500/20 hover:border-amber-500/40',
+                  },
+                ].map((c) => (
+                  <a
+                    key={c.label}
+                    href={c.href}
+                    target={c.href.startsWith('http') ? '_blank' : undefined}
+                    rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className={cn("flex items-center gap-3 p-3 rounded-xl border transition-all duration-200 group", c.bg)}
+                  >
+                    <c.icon className={`h-5 w-5 text-${c.color}-400 group-hover:scale-110 transition-transform`} />
+                    <div>
+                      <div className="text-sm font-bold text-white">{c.label}</div>
+                      <div className="text-xs text-gray-500">{c.detail}</div>
+                    </div>
+                  </a>
+                ))}
               </div>
             </GlassCard>
           </div>
@@ -597,85 +960,217 @@ const CuephoriaLite = () => {
           FINAL CTA
          ══════════════════════════════════════════════════════════════ */}
       <section className="py-20 md:py-28 relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-amber-500/[0.03] to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-amber-500/[0.025] to-transparent pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
-          <GlassCard className="max-w-3xl mx-auto p-8 md:p-14 text-center">
-            <Sparkles className="h-8 w-8 text-amber-400 mx-auto mb-5 animate-pulse" />
-            <h2 className="text-3xl md:text-4xl font-black mb-4">
-              <span className="bg-gradient-to-r from-amber-300 to-orange-400 bg-clip-text text-transparent">
-                Ready to Experience
-              </span>
-              <br />
-              <span className="text-white">Cuephoria Lite?</span>
-            </h2>
-            <p className="text-gray-400 text-sm max-w-md mx-auto mb-8">
-              Grab your friends, head over, and discover why everyone near NIT Trichy
-              is talking about us.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href="https://maps.app.goo.gl/nvTtK6SG4nGQXenGA"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-black text-sm hover:shadow-xl hover:shadow-amber-500/30 transition-all hover:scale-[1.03]"
-              >
-                <MapPin className="h-4 w-4" />
-                Get Directions
-              </a>
-              <a
-                href={`https://wa.me/918637625155?text=${encodeURIComponent("Hi! I'm coming to Cuephoria Lite! Can I book a slot?")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl backdrop-blur-xl bg-white/[0.06] border border-white/[0.12] text-white font-semibold text-sm hover:bg-white/[0.1] transition-all hover:scale-[1.03]"
-              >
-                <MessageCircle className="h-4 w-4 text-green-400" />
-                Book via WhatsApp
-              </a>
-            </div>
+          <GlassCard className="max-w-3xl mx-auto p-10 md:p-16 text-center" hover={false}>
+            <Reveal>
+              <div className="relative inline-block mb-6">
+                <img src="/cuephoria-lite-logo.png" alt="Cuephoria Lite" className="h-20 md:h-24 mx-auto rounded-xl" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black mb-4">
+                <span className="bg-gradient-to-r from-amber-300 to-orange-400 bg-clip-text text-transparent">
+                  Your Squad is Waiting
+                </span>
+              </h2>
+              <p className="text-gray-400 text-sm max-w-md mx-auto mb-8 leading-relaxed">
+                Pool, PS5, AR Cricket, and Darts — all under one roof, right at your doorstep.
+                Grab your friends and come experience the Cuephoria vibe.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <a
+                  href={GMAP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-black text-sm hover:shadow-xl hover:shadow-amber-500/30 transition-all hover:scale-[1.03]"
+                >
+                  <MapPin className="h-4 w-4" /> Get Directions
+                </a>
+                <a
+                  href={WA_LINK("Hi! I'm coming to Cuephoria Lite! Can I book a slot?")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl border-2 border-green-500/40 text-white font-semibold text-sm hover:bg-green-500/10 hover:border-green-500/60 transition-all hover:scale-[1.03]"
+                >
+                  <MessageCircle className="h-4 w-4 text-green-400" /> Book via WhatsApp
+                </a>
+              </div>
+            </Reveal>
           </GlassCard>
         </div>
       </section>
 
-      {/* ── Footer ─────────────────────────────────────────────────── */}
-      <footer className="py-10 border-t border-white/[0.06]">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <img
-              src="/lovable-uploads/2125ee9f-2006-4cf1-83be-14ea1d652752.png"
-              alt="Cuephoria"
-              className="h-6"
-            />
-            <span className="text-sm font-bold text-white">CUEPHORIA LITE</span>
+      {/* ══════════════════════════════════════════════════════════════
+          FOOTER (Matching main branch style)
+         ══════════════════════════════════════════════════════════════ */}
+      <footer className="bg-gaming-darker border-t border-gaming-accent/30 relative overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-20 -left-20 w-40 h-40 bg-amber-500/5 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-neon-blue/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10 max-w-7xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-12">
+            {/* Brand */}
+            <div className="space-y-5">
+              <div className="flex items-center space-x-3">
+                <img src="/cuephoria-lite-logo.png" alt="Cuephoria Lite" className="h-12 w-12 rounded-lg relative z-10" />
+                <div>
+                  <h3 className="text-xl font-bold text-white">Cuephoria Lite</h3>
+                  <p className="text-amber-400 text-sm">Student Gaming Spot</p>
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                The budget-friendly branch of Cuephoria, built exclusively for students near NIT Trichy.
+                Pool, PS5, AR Cricket & Darts — starting at just ₹49.
+              </p>
+              <div className="flex space-x-4 pt-2">
+                <a href="https://www.instagram.com/cuephoriaclub" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-neon-pink transition-colors" aria-label="Instagram">
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a href="https://wa.me/918637625155" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="WhatsApp">
+                  <MessageCircle className="h-5 w-5" />
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61574215405586" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-500 transition-colors" aria-label="Facebook">
+                  <Facebook className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="space-y-5">
+              <h4 className="text-lg font-bold text-white">Quick Links</h4>
+              <nav className="space-y-2.5">
+                {[
+                  { icon: Home, label: 'Main Branch', href: '/', isLink: true },
+                  { icon: Target, label: 'Book Now', href: '/book', isLink: true },
+                  { icon: BookOpen, label: 'Blog', href: '/blog', isLink: true },
+                  { icon: Coffee, label: 'Café Menu', href: '/cafemenu', isLink: true },
+                ].map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className="flex items-center space-x-2 text-gray-400 hover:text-neon-blue transition-colors duration-300 group text-sm"
+                  >
+                    <item.icon className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
+                    <span>{item.label}</span>
+                  </Link>
+                ))}
+                {navLinks.map((l) => (
+                  <a key={l.href} href={l.href} className="flex items-center space-x-2 text-gray-400 hover:text-amber-400 transition-colors duration-300 text-sm">
+                    <ArrowRight className="h-4 w-4" />
+                    <span>{l.label}</span>
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+            {/* Contact */}
+            <div className="space-y-5">
+              <h4 className="text-lg font-bold text-white">Contact Info</h4>
+              <div className="space-y-3.5">
+                <a href={GMAP_LINK} target="_blank" rel="noopener noreferrer" className="flex items-start space-x-3 text-gray-400 hover:text-neon-blue transition-colors group">
+                  <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="text-sm leading-relaxed">
+                    <span className="font-semibold text-white">Cuephoria Lite</span><br />
+                    Opposite NIT Trichy,<br />
+                    QR64+CRV, Electronics Bus Stop,<br />
+                    Valavandankottai, TN 620015
+                  </span>
+                </a>
+                <a href="tel:+918637625155" className="flex items-start space-x-3 text-gray-400 hover:text-neon-blue transition-colors group">
+                  <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <div className="text-sm">
+                    <div>+91 86376 25155</div>
+                    <div className="text-xs text-gray-500">WhatsApp Bot/Calls</div>
+                  </div>
+                </a>
+                <a href="tel:+917550025155" className="flex items-start space-x-3 text-gray-400 hover:text-neon-blue transition-colors group">
+                  <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <div className="text-sm">
+                    <div>+91 75500 25155</div>
+                    <div className="text-xs text-gray-500">Human Agent</div>
+                  </div>
+                </a>
+                <a href="mailto:contact@cuephoria.in" className="flex items-center space-x-3 text-gray-400 hover:text-neon-blue transition-colors group">
+                  <Mail className="h-4 w-4 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="text-sm">contact@cuephoria.in</span>
+                </a>
+                <div className="flex items-center space-x-3 text-gray-400">
+                  <Clock className="h-4 w-4 flex-shrink-0" />
+                  <span className="text-sm">11:00 AM - 11:00 PM, Every day</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Main Branch CTA */}
+            <div className="space-y-5">
+              <h4 className="text-lg font-bold text-white">Main Branch</h4>
+              <Link
+                to="/"
+                className="group relative p-4 bg-gradient-to-br from-neon-blue/15 to-neon-pink/10 rounded-xl border-2 border-neon-blue/25 hover:border-neon-blue/50 transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:shadow-lg hover:shadow-neon-blue/10 block"
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="p-2 bg-neon-blue/20 rounded-lg">
+                    <Gamepad2 className="h-5 w-5 text-neon-blue" />
+                  </div>
+                  <div>
+                    <div className="text-neon-blue font-bold text-sm">Cuephoria Main</div>
+                    <div className="text-gray-400 text-xs">Thiruverumbur, Trichy</div>
+                  </div>
+                </div>
+                <p className="text-gray-300 text-xs leading-relaxed mb-2">
+                  Full experience with VR Gaming (Meta Quest 3S), more tables, and larger space.
+                </p>
+                <div className="flex items-center gap-1 text-neon-blue text-xs font-semibold group-hover:text-cyan-300 transition-colors">
+                  <span>Visit Main Branch</span>
+                  <ExternalLink className="h-3 w-3" />
+                </div>
+              </Link>
+            </div>
           </div>
-          <p className="text-gray-600 text-xs mb-4">
-            A branch of Cuephoria — Trichy's #1 Gaming Lounge
-          </p>
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <Link to="/" className="text-xs text-gray-500 hover:text-amber-400 transition-colors">
-              Main Branch
-            </Link>
-            <span className="text-gray-700">·</span>
-            <Link to="/book" className="text-xs text-gray-500 hover:text-amber-400 transition-colors">
-              Book Online
-            </Link>
-            <span className="text-gray-700">·</span>
-            <Link to="/blog" className="text-xs text-gray-500 hover:text-amber-400 transition-colors">
-              Blog
-            </Link>
+
+          {/* Bottom */}
+          <div className="border-t border-gaming-accent/30 pt-8">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <div className="text-gray-400 text-sm text-center sm:text-left flex items-center gap-2 flex-wrap justify-center sm:justify-start">
+                <span>© {new Date().getFullYear()} Cuephoria. Made with ❤️ for Trichy students.</span>
+                <span className="text-gray-500">•</span>
+                <span className="text-gray-400">Powered by</span>
+                <a
+                  href="https://cuephoriatech.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-500/20 border border-green-500/40 rounded-md text-green-400 hover:bg-green-500/30 hover:border-green-500/60 transition-all duration-300 hover:scale-105 shadow-sm shadow-green-500/10"
+                >
+                  <Code className="h-3.5 w-3.5" />
+                  <span className="font-semibold text-xs">Cuephoria Tech</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+            </div>
           </div>
-          <p className="text-gray-700 text-xs">
-            © {new Date().getFullYear()} Cuephoria. Made with ❤️ for Trichy students.
-          </p>
         </div>
       </footer>
 
-      {/* Back to top */}
+      {/* Chatbot */}
+      <Suspense fallback={null}><Chatbot /></Suspense>
+
+      {/* Fixed CTAs */}
+      <a
+        href={GMAP_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed left-6 bottom-6 z-40 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 text-black text-sm font-black rounded-full shadow-lg hover:shadow-amber-500/30 transition-all hidden md:flex items-center gap-1.5"
+      >
+        <MapPin className="h-3.5 w-3.5" /> Directions
+      </a>
+
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-6 right-6 h-11 w-11 rounded-full backdrop-blur-xl bg-white/[0.06] border border-white/[0.1] flex items-center justify-center z-40 hover:bg-white/[0.12] transition-all"
+        className="fixed bottom-6 right-6 h-11 w-11 rounded-full bg-gaming-darker border border-neon-blue/30 flex items-center justify-center z-40 shadow-lg transition-colors hover:border-neon-blue/60"
         aria-label="Back to top"
       >
-        <ChevronUp size={18} className="text-amber-400" />
+        <ChevronUp size={18} className="text-neon-blue" />
       </button>
     </div>
   );
