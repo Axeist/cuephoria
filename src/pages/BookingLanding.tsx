@@ -1,16 +1,15 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import {
   ArrowRight, MapPin, Siren, Sparkles, Copy,
-  Gift, GraduationCap, ExternalLink, Flame,
+  GraduationCap, ExternalLink,
   Crown, Phone, MessageCircle
 } from 'lucide-react';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import SEOMetadata from '../components/SEOMetadata';
 import { useToast } from '../hooks/use-toast';
-
-// ─── Constants ────────────────────────────────────────────────────────────────
-const LITE_OPENING = new Date('2026-04-12T11:00:00');
+import ChocoLocaAnnouncement from '../components/ChocoLocaAnnouncement';
 const WHATSAPP_BOT = '918637625155';
 const WHATSAPP_AGENT = '917550025155';
 const createWALink = (phone: string, text: string) =>
@@ -83,8 +82,6 @@ const BookingLanding = () => {
     }
   }, [urgency.expired]);
 
-  const lite = useCountdown(LITE_OPENING);
-
   const copyCoupon = useCallback((code: string) => {
     navigator.clipboard.writeText(code);
     toast({ title: '✅ Coupon Copied!', description: `${code} copied to clipboard` });
@@ -94,9 +91,9 @@ const BookingLanding = () => {
   const agentLink = useMemo(() => createWALink(WHATSAPP_AGENT, "Hi! I'd like to speak with a Cuephoria agent about bookings."), []);
 
   const coupons = [
-    { code: 'NIT35', label: '35% OFF', req: 'NIT Students', color: 'green' as const },
-    { code: 'CUEPHORIA35', label: '35% OFF', req: 'Student ID Required', color: 'purple' as const },
-    { code: 'CUEPHORIA20', label: '20% OFF', req: 'All Customers', color: 'blue' as const },
+    { code: 'NIT35', label: '35% OFF', req: 'NIT @ Main branch', color: 'green' as const },
+    { code: 'NITLITE50', label: '50% OFF', req: 'NIT @ Lite branch', color: 'rose' as const },
+    { code: 'CUEPHORIA20', label: '20% OFF', req: 'Main — everyone else', color: 'blue' as const },
     { code: 'HH99', label: '₹99 FLAT', req: 'Mon–Fri, 11AM–4PM', color: 'amber' as const },
   ] as const;
 
@@ -105,12 +102,12 @@ const BookingLanding = () => {
   const couponStyle = (color: CouponColor) => ({
     wrapper: {
       green: 'bg-green-500/15 border-green-500/40 hover:border-green-400 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]',
-      purple: 'bg-purple-500/15 border-purple-500/40 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)]',
+      rose: 'bg-rose-500/15 border-rose-500/40 hover:border-rose-400 hover:shadow-[0_0_20px_rgba(244,63,94,0.25)]',
       blue: 'bg-sky-500/15 border-sky-500/40 hover:border-sky-400 hover:shadow-[0_0_20px_rgba(0,200,255,0.3)]',
       amber: 'bg-amber-500/15 border-amber-500/40 hover:border-amber-400 hover:shadow-[0_0_20px_rgba(251,191,36,0.3)]',
     }[color],
     text: {
-      green: 'text-green-400', purple: 'text-purple-400', blue: 'text-sky-400', amber: 'text-amber-400',
+      green: 'text-green-400', rose: 'text-rose-300', blue: 'text-sky-400', amber: 'text-amber-400',
     }[color],
   });
 
@@ -118,7 +115,7 @@ const BookingLanding = () => {
     <div className="min-h-screen bg-gaming-darker text-white overflow-x-hidden">
       <SEOMetadata
         title="Book Now | Cuephoria Main & Lite | PS5, VR & Pool in Trichy"
-        description="Book at Cuephoria Main (Thiruverumbur) or Cuephoria Lite (opposite NIT Trichy). Special 35% off for NIT students. PS5, Meta Quest VR & Pool Tables."
+        description="Book Cuephoria Main or Lite. NIT: 35% off at Main (NIT35), 50% off at Lite (NITLITE50). Everyone else at Main: 20% (CUEPHORIA20). PS5, VR & pool."
         keywords="cuephoria booking, cuephoria lite, NIT trichy gaming, student gaming trichy, ps5 booking, vr gaming trichy, pool table booking trichy"
       />
 
@@ -145,52 +142,35 @@ const BookingLanding = () => {
             />
           </div>
 
-          {/* ── LITE GRAND OPENING COUNTDOWN ─────────────────────────────── */}
-          <div className="mb-6 md:mb-8 relative group">
-            <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-amber-400/30 via-orange-400/20 to-amber-400/30 blur-sm opacity-70 animate-pulse pointer-events-none" />
-            <div className="relative bg-gradient-to-br from-amber-500/20 via-orange-600/15 to-amber-500/20 border-2 border-amber-500/50 rounded-2xl p-4 md:p-7 overflow-hidden shadow-[0_0_40px_rgba(251,191,36,0.15)]">
-              {/* Shimmer sweep */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-300/10 to-transparent -translate-x-full animate-[shimmer_2.5s_infinite]" />
+          {/* ── CHOCO LOCA CAFÉ LAUNCH ───────────────────────────────────── */}
+          <ChocoLocaAnnouncement variant="hero" />
 
-              <div className="relative z-10 text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <Flame className="h-5 w-5 md:h-6 md:w-6 text-amber-400 animate-pulse" />
-                  <span className="text-amber-200 font-black text-xs md:text-sm uppercase tracking-[0.2em]">Grand Opening</span>
-                  <Flame className="h-5 w-5 md:h-6 md:w-6 text-amber-400 animate-pulse" />
+          {/* ── Cuephoria Lite (open — compact) ──────────────────────────── */}
+          <div className="mb-6 md:mb-8 rounded-xl border border-amber-500/35 bg-amber-500/10 px-3 py-2.5 md:px-4 md:py-3">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-2.5">
+                <img
+                  src="/cuephoria-lite-logo.png"
+                  alt=""
+                  className="h-9 w-9 rounded-lg border border-amber-500/40 object-contain bg-white/5 flex-shrink-0"
+                />
+                <div>
+                  <p className="text-amber-200 font-black text-xs uppercase tracking-wider">Cuephoria Lite</p>
+                  <p className="text-gray-400 text-[11px]">Now open · Opposite NIT Trichy</p>
                 </div>
-
-                <h2 className="text-3xl md:text-5xl font-black mb-1 leading-none">
-                  <span className="text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]">CUEPHORIA LITE</span>
-                </h2>
-                <p className="text-amber-200/80 text-sm md:text-base font-semibold mb-1">
-                  Sunday, April 12, 2026 &bull; 11:00 AM
-                </p>
-                <p className="text-amber-300/70 text-xs md:text-sm mb-4 flex items-center justify-center gap-1">
-                  <MapPin className="h-3.5 w-3.5" />
-                  Opposite NIT Trichy
-                </p>
-
-                {lite.expired ? (
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/50 rounded-full text-green-300 font-black text-sm md:text-base animate-pulse">
-                    <Sparkles className="h-4 w-4" /> WE&apos;RE OPEN! BOOK NOW
-                  </div>
-                ) : (
-                  <>
-                    <div className="flex justify-center gap-2 md:gap-3 mb-4">
-                      <TimeBox value={lite.d} label="Days" color="amber" />
-                      <Colon color="amber" />
-                      <TimeBox value={lite.h} label="Hours" color="amber" />
-                      <Colon color="amber" />
-                      <TimeBox value={lite.m} label="Mins" color="amber" />
-                      <Colon color="amber" />
-                      <TimeBox value={lite.s} label="Secs" color="amber" />
-                    </div>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-500/20 border border-red-500/40 rounded-full text-red-300 font-bold text-xs md:text-sm animate-pulse">
-                      <Gift className="h-3.5 w-3.5" />
-                      Opening Day: Up to 60% OFF for Early Birds!
-                    </div>
-                  </>
-                )}
+              </div>
+              <div className="flex items-center justify-center gap-2 sm:justify-end">
+                <a
+                  href="https://admin.cuephoria.in/lite/public/booking"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 px-3 py-1.5 bg-amber-500 text-black font-black rounded-lg text-xs hover:bg-amber-300 transition-colors"
+                >
+                  Book Lite <ArrowRight className="h-3 w-3" />
+                </a>
+                <Link to="/lite" className="text-[11px] text-amber-400/80 hover:text-amber-300 font-semibold">
+                  Details →
+                </Link>
               </div>
             </div>
           </div>
@@ -208,20 +188,27 @@ const BookingLanding = () => {
           </div>
 
           {/* ── NIT DISCOUNT BANNER ──────────────────────────────────────── */}
-          <div className="mb-5 relative overflow-hidden rounded-xl border-2 border-green-500/50 bg-gradient-to-r from-green-500/15 via-teal-500/10 to-green-500/15 p-3 md:p-4 text-center shadow-[0_0_24px_rgba(34,197,94,0.1)]">
+          <div className="mb-5 relative overflow-hidden rounded-xl border-2 border-green-500/50 bg-gradient-to-r from-green-500/15 via-teal-500/10 to-rose-950/20 p-3 md:p-4 text-center shadow-[0_0_24px_rgba(34,197,94,0.1)]">
             <div className="absolute inset-0 bg-green-500/5 animate-pulse pointer-events-none" />
-            <div className="relative flex flex-wrap items-center justify-center gap-2 md:gap-3">
-              <GraduationCap className="h-5 w-5 text-green-400" />
-              <span className="text-green-200 font-black text-base md:text-xl tracking-wide">NIT TRICHY STUDENTS</span>
-              <span className="px-3 py-1 bg-green-500/30 border border-green-400/60 text-green-200 font-black text-sm md:text-lg rounded-full">
-                35% OFF
-              </span>
-              <span className="font-mono font-black text-green-400 text-sm md:text-base bg-black/30 px-2 py-0.5 rounded border border-green-500/40">
-                NIT35
-              </span>
-              <GraduationCap className="h-5 w-5 text-green-400" />
+            <div className="relative flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 md:gap-4">
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                <GraduationCap className="h-5 w-5 text-green-400" />
+                <span className="text-green-200 font-black text-sm md:text-base tracking-wide">MAIN</span>
+                <span className="px-2.5 py-1 bg-green-500/30 border border-green-400/60 text-green-200 font-black text-xs md:text-sm rounded-full">
+                  NIT 35%
+                </span>
+                <span className="font-mono font-black text-green-400 text-xs bg-black/30 px-2 py-0.5 rounded border border-green-500/40">NIT35</span>
+              </div>
+              <span className="hidden sm:inline text-green-500/40">|</span>
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                <span className="text-rose-200 font-black text-sm md:text-base tracking-wide">LITE</span>
+                <span className="px-2.5 py-1 bg-rose-500/25 border border-rose-400/50 text-rose-100 font-black text-xs md:text-sm rounded-full">
+                  NIT 50%
+                </span>
+                <span className="font-mono font-black text-rose-300 text-xs bg-black/30 px-2 py-0.5 rounded border border-rose-500/35">NITLITE50</span>
+              </div>
             </div>
-            <p className="text-green-400/70 text-[10px] md:text-xs mt-1">Show your student ID at the counter &bull; Valid at both branches</p>
+            <p className="text-green-400/70 text-[10px] md:text-xs mt-2">Show your NIT ID at the counter · Main vs Lite codes apply at each branch</p>
           </div>
 
           {/* ── URGENCY TIMER ────────────────────────────────────────────── */}
@@ -285,6 +272,7 @@ const BookingLanding = () => {
                         'Full PS5 Setup with 4K Display',
                         'Meta Quest 3S VR Gaming',
                         'Professional Pool Tables',
+                        'NIT 35% at Main (code NIT35) · Others 20% (CUEPHORIA20)',
                         '11 AM – 11 PM Daily',
                       ].map(f => (
                         <li key={f} className="flex items-center gap-2">
@@ -326,7 +314,7 @@ const BookingLanding = () => {
                     <div className="flex items-center gap-2 mb-3">
                       <Sparkles className="h-5 w-5 text-amber-400 animate-pulse flex-shrink-0" />
                       <span className="text-xs font-black px-2 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 uppercase tracking-wider">
-                        {lite.expired ? '🎉 Now Open!' : `Opening Sun Apr 12 • 11 AM`}
+                        🎉 Now Open
                       </span>
                     </div>
 
@@ -344,7 +332,7 @@ const BookingLanding = () => {
                       {[
                         { text: 'Same Premium Gaming Experience', highlight: false },
                         { text: 'More Affordable Pricing', highlight: true, color: 'text-amber-300' },
-                        { text: '35% OFF for NIT Students!', highlight: true, color: 'text-green-400' },
+                        { text: '50% OFF for NIT Students (NITLITE50)', highlight: true, color: 'text-rose-300' },
                         { text: 'Late Night Hours', highlight: false },
                       ].map(({ text, highlight, color }) => (
                         <li key={text} className="flex items-center gap-2">
@@ -353,14 +341,6 @@ const BookingLanding = () => {
                         </li>
                       ))}
                     </ul>
-
-                    {!lite.expired && (
-                      <div className="bg-amber-500/15 border border-amber-500/30 rounded-lg px-3 py-2 mb-4 text-center">
-                        <p className="text-amber-300 text-xs font-bold">
-                          Opens in {lite.d}d {lite.h}h {lite.m}m {lite.s}s
-                        </p>
-                      </div>
-                    )}
 
                     <div className="flex items-center justify-between mt-auto">
                       <p className="text-xs text-gray-400">

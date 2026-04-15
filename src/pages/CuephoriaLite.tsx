@@ -220,7 +220,7 @@ const comparisonRows = [
 const faqs = [
   { q: 'Where exactly is Cuephoria Lite?', a: 'Right opposite NIT Trichy main gate — just a 2-minute walk from campus. Look for the neon signage at QR64+CRV, Electronics Bus Stop, Valavandankottai.' },
   { q: 'Do I need to book in advance?', a: 'Walk-ins are welcome! But during peak hours (4-9 PM), we recommend booking online at admin.cuephoria.in/lite/public/booking or a quick WhatsApp message to guarantee your slot.' },
-  { q: 'Is there a student discount?', a: 'Absolutely! Show any valid student ID (NIT, Anna Univ, or any college) for an extra 10% OFF on all plans. NIT students get special perks with code NIT35.' },
+  { q: 'Is there a student discount?', a: 'Absolutely! NIT Trichy students get 50% OFF gaming & pool at Lite with code NITLITE50. Other valid college IDs may qualify for additional promos — ask at the desk.' },
   { q: 'Can I bring my own PS5 games?', a: 'We have 30+ titles ready, but yes — bring your own disc and we\'ll load it up. Digital accounts are not supported for security reasons.' },
   { q: 'What\'s the difference from the main branch?', a: 'Cuephoria Lite is a compact, budget-friendly version designed for students. Same quality gear, same vibe, more affordable. The main branch has more tables, VR gaming, and larger space.' },
   { q: 'Are there group packages?', a: 'Yes! Groups of 4+ get automatic 15% discount on the Squad plan. Birthday parties and college event bookings get custom packages — WhatsApp us for details.' },

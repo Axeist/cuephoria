@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, Clock, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
+import ChocoLocaAnnouncement from './ChocoLocaAnnouncement';
 
 const Hero = ({ className = '' }) => {
   return (
@@ -76,8 +77,9 @@ const Hero = ({ className = '' }) => {
               </div>
             </div>
 
-            {/* Announcement */}
-            <div className="mb-6">
+            {/* Announcements */}
+            <div className="mb-6 space-y-2.5">
+              <ChocoLocaAnnouncement variant="compact" />
               <CuephoriaLiteAnnouncement variant="compact" />
             </div>
 

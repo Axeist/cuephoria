@@ -23,12 +23,12 @@ const Footer = () => {
       borderColor: "border-neon-blue/30"
     },
     {
-      code: "CUEPHORIA35",
-      discount: "35% OFF",
-      icon: <Gift className="h-4 w-4 text-purple-400" />,
-      textColor: "text-purple-400",
-      bgColor: "bg-purple-500/20",
-      borderColor: "border-purple-500/30"
+      code: "NITLITE50",
+      discount: "50% OFF",
+      icon: <Gift className="h-4 w-4 text-rose-400" />,
+      textColor: "text-rose-400",
+      bgColor: "bg-rose-500/20",
+      borderColor: "border-rose-500/30"
     },
     {
       code: "HH99",
@@ -469,7 +469,7 @@ const Footer = () => {
                     <h4 className="text-lg font-semibold text-white mb-3">1. Booking & Reservations</h4>
                     <ul className="space-y-2 list-disc list-inside">
                       <li>All bookings are subject to availability and must be confirmed in advance</li>
-                      <li>Valid student ID required for CUEPHORIA35 discount</li>
+                      <li>NIT35 (Main) and NITLITE50 (Lite) require valid NIT student ID</li>
                       <li>Cancellations must be made at least 24 hours prior to avoid charges</li>
                       <li>No-shows will be charged the full session amount</li>
                       <li>Coupon codes cannot be combined with other offers</li>
@@ -492,9 +492,9 @@ const Footer = () => {
                     <ul className="space-y-2 list-disc list-inside">
                       <li>All prices are clearly displayed and subject to change</li>
                       <li>Payment must be completed before or immediately after the session</li>
-                      <li>Student discounts (CUEPHORIA35) require valid ID verification</li>
+                      <li>Student discounts require valid ID verification at the branch</li>
                       <li>Happy hour rates (HH99) apply only during specified times (Mon-Fri, 11 AM-4 PM)</li>
-                      <li>Available coupon codes: CUEPHORIA20, CUEPHORIA35, HH99, NIT35</li>
+                      <li>Available coupon codes: CUEPHORIA20, HH99, NIT35, NITLITE50</li>
                     </ul>
                   </div>
 

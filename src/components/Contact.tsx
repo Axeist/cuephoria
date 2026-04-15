@@ -201,7 +201,7 @@ Message: ${formData.message}`;
                     </h4>
                     <p className="text-gray-400 text-sm mb-1">QR64+CRV Electronics Bus Stop, Valavandankottai, TN 620015</p>
                     <a href="https://maps.app.goo.gl/nvTtK6SG4nGQXenGA" target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors text-xs">View on Google Maps →</a>
-                    <p className="text-xs text-gray-500 mt-0.5">Opposite NIT Trichy • 35% student discount</p>
+                    <p className="text-xs text-gray-500 mt-0.5">Opposite NIT Trichy • NIT students 50% off with NITLITE50</p>
                   </div>
                 </div>
 

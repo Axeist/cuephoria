@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { Flame } from 'lucide-react';
 
 const news = [
-  { text: "Cuephoria Lite — Grand Opening April 12, opposite NIT Trichy!", highlight: true },
+  { text: "Choco Loca × Cuephoria — Official café launch Apr 17, 6 PM! Full menu on site.", highlight: true },
+  { text: "Cuephoria Lite is open opposite NIT Trichy — student-friendly gaming & pool!", highlight: false },
   { text: "FLAT 10% OFF your bill + FREE AR Metashot Cricket Challenge — Book Online" },
   { text: "STUDENT SPECIAL — FLAT ₹100 OFF on Weekly & Monthly Passes with valid ID" },
   { text: "Try our latest AR and VR games with friends and family" },

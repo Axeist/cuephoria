@@ -4,20 +4,21 @@ import { Calendar, Users, Award, Sparkles, Copy, ArrowRight, MapPin, Crown, Zap,
 import { Link } from 'react-router-dom';
 import { useToast } from "@/hooks/use-toast";
 import CuephoriaLiteAnnouncement from './CuephoriaLiteAnnouncement';
+import ChocoLocaAnnouncement from './ChocoLocaAnnouncement';
 
 const couponCodes = [
   {
-    code: "NIT35", discount: "35% OFF", req: "NIT Students",
+    code: "NIT35", discount: "35% OFF", req: "NIT @ Main branch",
     color: "green" as const,
     details: [{ type: "PS5/VR", original: "₹150", discounted: "₹97.50" }, { type: "Pool", original: "₹300", discounted: "₹195" }],
   },
   {
-    code: "CUEPHORIA35", discount: "35% OFF", req: "Student ID",
-    color: "purple" as const,
-    details: [{ type: "PS5/VR", original: "₹150", discounted: "₹97.50" }, { type: "Pool", original: "₹300", discounted: "₹195" }],
+    code: "NITLITE50", discount: "50% OFF", req: "NIT @ Lite branch",
+    color: "rose" as const,
+    details: [{ type: "PS5/VR", original: "₹150", discounted: "₹75" }, { type: "Pool", original: "₹300", discounted: "₹150" }],
   },
   {
-    code: "CUEPHORIA20", discount: "20% OFF", req: "All Customers",
+    code: "CUEPHORIA20", discount: "20% OFF", req: "Main — non-NIT",
     color: "blue" as const,
     details: [{ type: "PS5/VR", original: "₹150", discounted: "₹120" }, { type: "Pool", original: "₹300", discounted: "₹240" }],
   },
@@ -33,12 +34,12 @@ type CouponColor = typeof couponCodes[number]['color'];
 const couponStyle = (c: CouponColor) => ({
   wrapper: {
     green:  'bg-green-500/10  border-green-500/30  hover:border-green-400  hover:shadow-[0_0_18px_rgba(34,197,94,0.25)]',
-    purple: 'bg-purple-500/10 border-purple-500/30 hover:border-purple-400 hover:shadow-[0_0_18px_rgba(168,85,247,0.25)]',
+    rose:   'bg-rose-500/10   border-rose-500/30    hover:border-rose-400    hover:shadow-[0_0_18px_rgba(244,63,94,0.22)]',
     blue:   'bg-sky-500/10    border-sky-400/30    hover:border-sky-400    hover:shadow-[0_0_18px_rgba(0,200,255,0.25)]',
     amber:  'bg-amber-500/10  border-amber-500/30  hover:border-amber-400  hover:shadow-[0_0_18px_rgba(251,191,36,0.25)]',
   }[c],
   text: {
-    green: 'text-green-400', purple: 'text-purple-400', blue: 'text-sky-400', amber: 'text-amber-400',
+    green: 'text-green-400', rose: 'text-rose-300', blue: 'text-sky-400', amber: 'text-amber-400',
   }[c],
 });
 
@@ -71,9 +72,10 @@ const BookNow = () => {
           </div>
         </div>
 
-        {/* Lite Announcement */}
-        <div className="max-w-4xl mx-auto mb-6">
-          <CuephoriaLiteAnnouncement variant="card" />
+        {/* Choco Loca + Lite (compact) */}
+        <div className="max-w-4xl mx-auto mb-4 space-y-3">
+          <ChocoLocaAnnouncement variant="card" />
+          <CuephoriaLiteAnnouncement variant="compact" />
         </div>
 
         {/* ── Main glass container ────────────────────────────────── */}
@@ -205,7 +207,7 @@ const BookNow = () => {
               <Sparkles className="h-4 w-4 text-neon-pink" />
               Discount Codes — tap to copy
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3">
               {couponCodes.map(({ code, discount, req, color, details }) => {
                 const s = couponStyle(color);
                 return (

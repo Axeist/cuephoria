@@ -5,6 +5,7 @@ import About from '../components/About';
 import SEOMetadata from '../components/SEOMetadata';
 import { ChevronUp, ArrowRight, Sparkles, MapPin, Flame, Target, Gamepad2, Crosshair } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ChocoLocaAnnouncement from '../components/ChocoLocaAnnouncement';
 
 // Lazy load below-the-fold components
 const Games = lazy(() => import('../components/Games'));
@@ -23,7 +24,7 @@ const SectionLoader = () => (
   </div>
 );
 
-const SECTIONS = ['home', 'about', 'games', 'tournaments', 'gallery', 'testimonials', 'book-now', 'cuephoria-lite', 'contact'];
+const SECTIONS = ['home', 'about', 'choco-loca', 'games', 'tournaments', 'gallery', 'testimonials', 'book-now', 'cuephoria-lite', 'contact'];
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -81,6 +82,12 @@ const Index = () => {
         <h1 className="sr-only">Cuephoria - Best PS5 Gaming, VR Gaming (Meta Quest 3S), 8-Ball Pool, Snooker and Student Hangout Place in Trichy</h1>
         <Hero className="mt-8 md:mt-[-2rem]" />
         <About />
+        <section id="choco-loca" className="py-12 md:py-16 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(233,150,149,0.07)_0,rgba(15,25,40,0)_65%)] pointer-events-none" />
+          <div className="container mx-auto px-4 relative z-10 max-w-4xl">
+            <ChocoLocaAnnouncement variant="card" />
+          </div>
+        </section>
         <Suspense fallback={<SectionLoader />}><Games /></Suspense>
         <Suspense fallback={<SectionLoader />}><Tournaments /></Suspense>
         <Suspense fallback={<SectionLoader />}><Gallery /></Suspense>
