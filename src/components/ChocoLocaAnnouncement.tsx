@@ -41,37 +41,70 @@ const chocoInfo = {
   igCue: 'https://www.instagram.com/cuephoriaclub/',
 };
 
-const TimeChip = ({ v, l }: { v: number; l: string }) => (
-  <div className="text-center">
-    <div className="bg-[#6B5446]/40 border border-[#E99695]/50 rounded-lg px-2 py-1 md:px-3 md:py-2 min-w-[44px] md:min-w-[56px] shadow-[0_0_16px_rgba(233,150,149,0.25)]">
-      <span className="text-[#FEFBE7] font-black text-lg md:text-2xl tabular-nums leading-none">{String(v).padStart(2, '0')}</span>
+/** Hero / large countdown — compact digits, labels under each unit */
+const HeroCountdown = ({
+  d, h, m, s,
+}: { d: number; h: number; m: number; s: number }) => {
+  const units = [
+    { v: d, l: 'Days' },
+    { v: h, l: 'Hrs' },
+    { v: m, l: 'Min' },
+    { v: s, l: 'Sec' },
+  ] as const;
+  return (
+    <div className="flex justify-center md:justify-start items-start gap-0.5 sm:gap-1 flex-wrap">
+      {units.map(({ v, l }, i) => (
+        <React.Fragment key={l}>
+          <div className="flex flex-col items-center w-[2.5rem] sm:w-[2.85rem]">
+            <div className="w-full min-h-[2rem] sm:min-h-[2.35rem] flex items-center justify-center bg-[#6B5446]/40 border border-[#E99695]/45 rounded-lg px-1 py-1 shadow-[0_0_12px_rgba(233,150,149,0.12)]">
+              <span className="text-[#FEFBE7] font-black text-sm sm:text-base tabular-nums leading-none">{String(v).padStart(2, '0')}</span>
+            </div>
+            <span className="text-[#F7D08A]/75 text-[7px] sm:text-[8px] font-bold uppercase tracking-wide mt-1">{l}</span>
+          </div>
+          {i < 3 && (
+            <span
+              className="text-[#E99695]/80 font-black text-sm sm:text-base flex items-center min-h-[2rem] sm:min-h-[2.35rem] px-px select-none"
+              aria-hidden
+            >
+              :
+            </span>
+          )}
+        </React.Fragment>
+      ))}
     </div>
-    <span className="text-[#F7D08A]/80 text-[8px] md:text-[10px] font-bold uppercase tracking-widest mt-1 block">{l}</span>
-  </div>
-);
-
-const ColonChoco = () => <span className="text-[#E99695] font-black text-lg md:text-2xl self-start mt-1">:</span>;
+  );
+};
 
 const ChocoLocaAnnouncement = ({ variant = 'compact' }: ChocoLocaAnnouncementProps) => {
   const countdown = useChocoCountdown();
 
   if (variant === 'compact') {
     return (
-      <div className="relative rounded-lg p-2.5 md:p-3 border border-[#E99695]/40 bg-gradient-to-r from-[#6B5446]/25 via-[#E99695]/10 to-[#4EB3D3]/15 backdrop-blur-sm overflow-hidden group">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F7D08A]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
-        <div className="relative flex items-center gap-2.5 md:gap-3">
-          <img src={chocoInfo.logo} alt="" className="h-10 w-10 md:h-11 md:w-11 rounded-lg object-contain border border-[#E99695]/40 bg-[#FEFBE7]/10 flex-shrink-0" />
-          <p className="text-xs md:text-sm text-[#FEFBE7]/95 flex-1 leading-snug">
-            <span className="font-black text-[#F7D08A]">Choco Loca × Cuephoria</span>
-            {' — '}
+      <div className="relative bg-gradient-to-r from-[#6B5446]/22 via-[#E99695]/14 to-[#4EB3D3]/12 border border-[#E99695]/40 rounded-lg p-2.5 md:p-3 backdrop-blur-sm overflow-hidden group w-full">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F7D08A]/12 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+        <div className="relative flex items-center gap-2.5 md:gap-3 min-h-[2.5rem]">
+          <Cake className="h-4 w-4 md:h-5 md:w-5 text-[#E99695] animate-pulse flex-shrink-0" />
+          <p className="text-xs md:text-sm text-white flex-1 min-w-0 leading-snug">
+            <span className="font-bold text-[#F7D08A]">Café launch:</span>{' '}
+            <span className="text-[#FEFBE7]/95 font-semibold">Choco Loca × Cuephoria</span>
+            {' '}&mdash;{' '}
             {countdown.expired ? (
-              <>Café is live! Fries, burgers, shakes &amp; more — <Link to="/choco-loca" className="text-[#4EB3D3] font-bold underline-offset-2 hover:underline">see menu</Link></>
+              <>Menu live — fries, shakes, desserts &amp; more at Cuephoria.</>
             ) : (
-              <>Official launch <span className="font-bold text-[#E99695]">Sat Apr 18 · 6 PM</span>.{' '}
-                <Link to="/choco-loca" className="text-[#4EB3D3] font-bold underline-offset-2 hover:underline">Menu &amp; countdown</Link></>
+              <>
+                Official launch <span className="text-[#F7D08A] font-semibold">Sat Apr 18, 6 PM</span>
+                {' '}· full menu &amp; countdown on the next page.
+              </>
             )}
           </p>
-          <Cake className="h-4 w-4 text-[#E99695] animate-pulse flex-shrink-0 hidden sm:block" />
+          <Link
+            to="/choco-loca"
+            className="ml-auto text-[#F7D08A] hover:text-[#FEFBE7] transition-all duration-300 hover:scale-110 flex-shrink-0 flex items-center gap-1"
+            title="Explore Choco Loca at Cuephoria"
+          >
+            <span className="text-xs font-semibold hidden sm:inline">Explore</span>
+            <ArrowRight className="h-4 w-4 md:h-5 md:w-5 animate-bounce-slow" />
+          </Link>
         </div>
       </div>
     );
@@ -83,15 +116,15 @@ const ChocoLocaAnnouncement = ({ variant = 'compact' }: ChocoLocaAnnouncementPro
         <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-[#E99695]/35 via-[#4EB3D3]/25 to-[#F7D08A]/30 blur-sm opacity-80 animate-pulse pointer-events-none" />
         <div className="relative bg-gradient-to-br from-[#6B5446]/35 via-[#3d2e28]/90 to-[#6B5446]/25 border-2 border-[#E99695]/45 rounded-2xl p-4 md:p-6 overflow-hidden shadow-[0_0_40px_rgba(233,150,149,0.12)]">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F7D08A]/5 to-transparent -translate-x-full animate-[shimmer_2.5s_infinite]" />
-          <div className="relative z-10 flex flex-col md:flex-row items-center gap-5 md:gap-8">
-            <div className="flex-shrink-0">
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
+            <div className="flex-shrink-0 mx-auto md:mx-0">
               <img
                 src={chocoInfo.logo}
                 alt="Choco Loca Cakes and Café"
-                className="h-24 w-24 md:h-28 md:w-28 object-contain rounded-2xl border-2 border-[#E99695]/50 bg-[#FEFBE7]/10 p-2 shadow-lg"
+                className="h-20 w-20 md:h-24 md:w-24 object-contain rounded-2xl border-2 border-[#E99695]/50 bg-[#FEFBE7]/10 p-2 shadow-lg"
               />
             </div>
-            <div className="flex-1 text-center md:text-left">
+            <div className="flex-1 min-w-0 text-center md:text-left">
               <div className="flex items-center justify-center md:justify-start gap-2 mb-1">
                 <Flame className="h-4 w-4 text-[#E99695] animate-pulse" />
                 <span className="text-[#F7D08A] font-black text-[10px] md:text-xs uppercase tracking-[0.2em]">Grand opening</span>
@@ -113,21 +146,17 @@ const ChocoLocaAnnouncement = ({ variant = 'compact' }: ChocoLocaAnnouncementPro
                 </Link>
               ) : (
                 <>
-                  <div className="flex justify-center md:justify-start gap-1.5 md:gap-2 mb-3 flex-wrap">
-                    <TimeChip v={countdown.d} l="Days" />
-                    <ColonChoco />
-                    <TimeChip v={countdown.h} l="Hrs" />
-                    <ColonChoco />
-                    <TimeChip v={countdown.m} l="Min" />
-                    <ColonChoco />
-                    <TimeChip v={countdown.s} l="Sec" />
+                  <div className="mb-3">
+                    <HeroCountdown d={countdown.d} h={countdown.h} m={countdown.m} s={countdown.s} />
                   </div>
                   <div className="flex flex-col sm:flex-row items-center gap-2 justify-center md:justify-start">
                     <Link
                       to="/choco-loca"
                       className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#E99695]/25 border border-[#E99695]/50 text-[#FEFBE7] text-xs font-bold hover:bg-[#E99695]/35 transition-colors"
                     >
-                      Full menu preview <ArrowRight className="h-3.5 w-3.5" />
+                      <Sparkles className="h-3.5 w-3.5" />
+                      Explore Choco Loca
+                      <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                     <a
                       href={chocoInfo.igChoco}
@@ -151,38 +180,38 @@ const ChocoLocaAnnouncement = ({ variant = 'compact' }: ChocoLocaAnnouncementPro
   return (
     <div className="glass-card rounded-xl p-4 md:p-5 border-2 border-[#E99695]/40 bg-gradient-to-br from-[#6B5446]/20 via-[#3d2e28]/50 to-[#4EB3D3]/10 relative overflow-hidden group">
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F7D08A]/8 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[2000ms] pointer-events-none" />
-      <div className="relative flex flex-col md:flex-row items-center gap-4 md:gap-5">
-        <div className="flex-shrink-0 relative">
+      <div className="relative flex flex-col sm:flex-row sm:items-center gap-4 md:gap-6">
+        <div className="flex-shrink-0 relative mx-auto sm:mx-0 sm:self-center">
           <div className="absolute inset-0 bg-[#E99695]/20 rounded-xl blur-md animate-pulse pointer-events-none" />
           <img
             src={chocoInfo.logo}
             alt="Choco Loca"
-            className="w-20 h-20 md:w-24 md:h-24 object-contain rounded-xl border-2 border-[#E99695]/45 bg-[#FEFBE7]/10 p-2 relative z-10"
+            className="w-[4.5rem] h-[4.5rem] md:w-24 md:h-24 object-contain rounded-xl border-2 border-[#E99695]/45 bg-[#FEFBE7]/10 p-2 relative z-10"
           />
         </div>
-        <div className="flex-1 text-center md:text-left">
-          <div className="flex items-center justify-center md:justify-start gap-2 mb-2 flex-wrap">
-            <Cake className="h-5 w-5 text-[#E99695]" />
-            <h3 className="text-xl md:text-2xl font-bold text-[#FEFBE7]">
+        <div className="flex-1 min-w-0 text-center sm:text-left flex flex-col justify-center">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-2 gap-y-1 mb-2">
+            <Cake className="h-4 w-4 md:h-5 md:w-5 text-[#E99695] shrink-0" />
+            <h3 className="text-lg md:text-2xl font-bold text-[#FEFBE7] leading-tight">
               <span className="text-[#F7D08A]">Choco Loca</span>
-              <span className="text-white/60 text-lg mx-1">×</span>
+              <span className="text-white/50 text-base md:text-lg mx-1">×</span>
               <span className="text-[#4EB3D3]">Cuephoria</span>
             </h3>
-            <span className="px-2 py-0.5 bg-[#E99695]/25 text-[#FEFBE7] text-[10px] font-black rounded-full border border-[#E99695]/50">
+            <span className="px-2 py-0.5 bg-[#E99695]/25 text-[#FEFBE7] text-[9px] font-black rounded-full border border-[#E99695]/50 whitespace-nowrap">
               {countdown.expired ? 'OPEN' : 'APR 18 · 6PM'}
             </span>
           </div>
-          <p className="text-sm text-[#F7D08A] font-semibold mb-1">{chocoInfo.tagline}</p>
-          <p className="text-xs text-[#FEFBE7]/70 mb-3 flex items-center justify-center md:justify-start gap-1.5">
-            <Clock className="h-3.5 w-3.5 text-[#E99695]" />
-            {chocoInfo.launchLine} · Order on Zomato &amp; Swiggy
+          <p className="text-xs md:text-sm text-[#F7D08A] font-semibold mb-1">{chocoInfo.tagline}</p>
+          <p className="text-[11px] md:text-xs text-[#FEFBE7]/65 mb-3 flex flex-wrap items-center justify-center sm:justify-start gap-x-1 gap-y-0.5">
+            <Clock className="h-3 w-3 text-[#E99695] flex-shrink-0" />
+            <span>{chocoInfo.launchLine} · Zomato &amp; Swiggy</span>
           </p>
           {!countdown.expired && (
-            <div className="mb-3 bg-black/30 border border-[#E99695]/30 rounded-lg p-2.5">
-              <p className="text-[10px] text-[#F7D08A]/90 uppercase tracking-widest font-bold mb-1.5 text-center md:text-left">
+            <div className="mb-3 bg-black/30 border border-[#E99695]/25 rounded-lg px-2 py-2 md:py-2.5">
+              <p className="text-[9px] text-[#F7D08A]/85 uppercase tracking-[0.15em] font-bold mb-2 text-center">
                 Launch in
               </p>
-              <div className="flex justify-center md:justify-start gap-1.5 md:gap-2 flex-wrap">
+              <div className="flex justify-center items-start gap-0.5 sm:gap-1">
                 {[
                   { v: countdown.d, l: 'D' },
                   { v: countdown.h, l: 'H' },
@@ -190,38 +219,45 @@ const ChocoLocaAnnouncement = ({ variant = 'compact' }: ChocoLocaAnnouncementPro
                   { v: countdown.s, l: 'S' },
                 ].map(({ v, l }, i) => (
                   <React.Fragment key={l}>
-                    <div className="text-center">
-                      <div className="bg-[#6B5446]/50 border border-[#E99695]/35 rounded px-1.5 py-0.5 min-w-[28px]">
-                        <span className="text-[#FEFBE7] font-black text-xs md:text-sm tabular-nums">{String(v).padStart(2, '0')}</span>
+                    <div className="flex flex-col items-center w-[2rem] sm:w-[2.25rem]">
+                      <div className="w-full min-h-[1.25rem] flex items-center justify-center bg-[#6B5446]/55 border border-[#E99695]/30 rounded-md px-0.5 py-0.5">
+                        <span className="text-[#FEFBE7] font-black text-[10px] sm:text-[11px] tabular-nums leading-none">{String(v).padStart(2, '0')}</span>
                       </div>
-                      <span className="text-[#F7D08A]/60 text-[8px] font-bold mt-0.5 block">{l}</span>
+                      <span className="text-[#F7D08A]/50 text-[7px] sm:text-[8px] font-bold mt-0.5">{l}</span>
                     </div>
-                    {i < 3 && <span className="text-[#E99695] font-black text-xs self-start mt-0.5">:</span>}
+                    {i < 3 && (
+                      <span
+                        className="text-[#E99695]/75 font-black text-[10px] select-none flex items-center min-h-[1.25rem] px-px"
+                        aria-hidden
+                      >
+                        :
+                      </span>
+                    )}
                   </React.Fragment>
                 ))}
               </div>
             </div>
           )}
-          <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:items-center sm:justify-start">
             <Link
               to="/choco-loca"
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-gradient-to-r from-[#E99695]/30 to-[#4EB3D3]/25 border-2 border-[#E99695]/45 text-[#FEFBE7] rounded-lg hover:from-[#E99695]/45 hover:to-[#4EB3D3]/35 transition-all text-xs font-bold"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-gradient-to-r from-[#E99695]/35 to-[#4EB3D3]/28 border-2 border-[#E99695]/50 text-[#FEFBE7] rounded-lg hover:from-[#E99695]/45 hover:to-[#4EB3D3]/38 transition-all text-xs font-bold shadow-md shadow-black/20 hover:scale-[1.02]"
             >
               <Sparkles className="h-3.5 w-3.5" />
-              Menu &amp; launch details
-              <ArrowRight className="h-3 w-3" />
+              Explore Choco Loca
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
             <a
               href="https://maps.app.goo.gl/vUNCsMkiMEgHfbVPA"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 text-[11px] text-[#F7D08A]/70 hover:text-[#F7D08A] transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 text-[10px] md:text-[11px] text-[#F7D08A]/75 hover:text-[#F7D08A] transition-colors sm:ml-1"
             >
-              <MapPin className="h-3 w-3" />
-              At Cuephoria · Thiruverumbur
+              <MapPin className="h-3 w-3 flex-shrink-0" />
+              Cuephoria · Thiruverumbur
             </a>
           </div>
-          <p className="text-[10px] text-[#FEFBE7]/45 mt-2">Prices on menu may vary — food lineup is set.</p>
+          <p className="text-[9px] text-[#FEFBE7]/40 mt-2 text-center sm:text-left">Prices on menu may vary — food lineup is set.</p>
         </div>
       </div>
     </div>

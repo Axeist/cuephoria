@@ -78,7 +78,7 @@ const Hero = ({ className = '' }) => {
             </div>
 
             {/* Announcements */}
-            <div className="mb-6 space-y-2.5">
+            <div className="mb-6 space-y-2.5 w-full max-w-full">
               <ChocoLocaAnnouncement variant="compact" />
               <CuephoriaLiteAnnouncement variant="compact" />
             </div>
