@@ -12,7 +12,7 @@ const ChocoLoca = () => {
     <div className="min-h-screen bg-gaming-darker text-white overflow-x-hidden">
       <SEOMetadata
         title="Choco Loca × Cuephoria | Café Menu & Launch"
-        description="Choco Loca Cakes & Café partners with Cuephoria in Trichy. Official launch April 17, 2026 at 6 PM. Burgers, fries, pizza, shakes & desserts — order on Zomato & Swiggy."
+        description="Choco Loca Cakes & Café partners with Cuephoria in Trichy. Official launch Saturday April 18, 2026 at 6 PM IST. Burgers, fries, pizza, shakes & desserts — order on Zomato & Swiggy."
         keywords="Choco Loca Trichy, Cuephoria cafe, gaming lounge food Trichy, student cafe NIT Trichy, milkshake Trichy"
       />
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Flame } from 'lucide-react';
 
 const news = [
-  { text: "Choco Loca × Cuephoria — Official café launch Apr 17, 6 PM! Full menu on site.", highlight: true },
+  { text: "Choco Loca × Cuephoria — Official café launch Sat Apr 18, 6 PM! Full menu on site.", highlight: true },
   { text: "Cuephoria Lite is open opposite NIT Trichy — student-friendly gaming & pool!", highlight: false },
   { text: "FLAT 10% OFF your bill + FREE AR Metashot Cricket Challenge — Book Online" },
   { text: "STUDENT SPECIAL — FLAT ₹100 OFF on Weekly & Monthly Passes with valid ID" },

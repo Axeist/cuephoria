@@ -6,8 +6,8 @@ interface ChocoLocaAnnouncementProps {
   variant?: 'compact' | 'card' | 'hero';
 }
 
-/** Official café launch: Thu Apr 17, 2026 · 6:00 PM IST */
-export const CHOCO_LOCA_LAUNCH = new Date('2026-04-17T18:00:00+05:30');
+/** Official café launch: Sat Apr 18, 2026 · 6:00 PM IST */
+export const CHOCO_LOCA_LAUNCH = new Date('2026-04-18T18:00:00+05:30');
 
 export function useChocoCountdown() {
   const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0, expired: false });
@@ -36,7 +36,7 @@ export function useChocoCountdown() {
 const chocoInfo = {
   logo: '/choco-loca-logo.png',
   tagline: 'Choco Loca Cakes & Café — now inside Cuephoria',
-  launchLine: 'Thursday, April 17, 2026 · 6:00 PM IST',
+  launchLine: 'Saturday, April 18, 2026 · 6:00 PM IST',
   igChoco: 'https://www.instagram.com/chocoloca_cafe/',
   igCue: 'https://www.instagram.com/cuephoriaclub/',
 };
@@ -67,7 +67,7 @@ const ChocoLocaAnnouncement = ({ variant = 'compact' }: ChocoLocaAnnouncementPro
             {countdown.expired ? (
               <>Café is live! Fries, burgers, shakes &amp; more — <Link to="/choco-loca" className="text-[#4EB3D3] font-bold underline-offset-2 hover:underline">see menu</Link></>
             ) : (
-              <>Official launch <span className="font-bold text-[#E99695]">Apr 17 · 6 PM</span>.{' '}
+              <>Official launch <span className="font-bold text-[#E99695]">Sat Apr 18 · 6 PM</span>.{' '}
                 <Link to="/choco-loca" className="text-[#4EB3D3] font-bold underline-offset-2 hover:underline">Menu &amp; countdown</Link></>
             )}
           </p>
@@ -169,7 +169,7 @@ const ChocoLocaAnnouncement = ({ variant = 'compact' }: ChocoLocaAnnouncementPro
               <span className="text-[#4EB3D3]">Cuephoria</span>
             </h3>
             <span className="px-2 py-0.5 bg-[#E99695]/25 text-[#FEFBE7] text-[10px] font-black rounded-full border border-[#E99695]/50">
-              {countdown.expired ? 'OPEN' : 'APR 17 · 6PM'}
+              {countdown.expired ? 'OPEN' : 'APR 18 · 6PM'}
             </span>
           </div>
           <p className="text-sm text-[#F7D08A] font-semibold mb-1">{chocoInfo.tagline}</p>
